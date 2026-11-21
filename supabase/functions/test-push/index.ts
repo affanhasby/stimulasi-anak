@@ -1,7 +1,7 @@
 // Apple's push service rejects a VAPID subject that is not a real mailto/https address (403 BadJwtToken),
 // so VAPID_SUBJECT is the site URL.
-// "Kirim notifikasi uji": sends one push to the caller's own device through the same path as the reminders,
-// so a parent can see end to end whether notifications reach this phone.
+// "Kirim notifikasi uji": sends one push to every device of the caller's account, through the same path as the reminders,
+// so a parent can check every phone at once. The result says how many got it and how this phone fared.
 import { createClient } from 'npm:@supabase/supabase-js@2'
 import webpush from 'npm:web-push@3.6.7'
 
@@ -25,21 +25,35 @@ Deno.serve(async (req) => {
   if (!u.user) return reply({ result: 'unauthorized' }, 401)
 
   const { endpoint } = (await req.json().catch(() => ({}))) as { endpoint?: string }
-  // Only the caller's own registered device; never someone else's endpoint.
-  const { data: d } = await sb.from('push_subscriptions').select('endpoint, p256dh, auth').eq('user_id', u.user.id).eq('endpoint', endpoint ?? '').maybeSingle()
-  if (!d) return reply({ result: 'not-registered' })
+  // Every device signed in to this account that allowed notifications (never another account's devices),
+  // the same set the immunization reminders go to.
+  const { data: devices } = await sb.from('push_subscriptions').select('endpoint, p256dh, auth').eq('user_id', u.user.id)
+  if (!devices?.length || (endpoint && !devices.some((d) => d.endpoint === endpoint))) return reply({ result: 'not-registered' })
 
-  const payload = JSON.stringify({ title: 'Notifikasi uji berhasil', body: 'Pengingat imunisasi akan muncul seperti ini di HP ini.', url: '#/lainnya/pengingat', tag: 'test-push' })
-  try {
-    await webpush.sendNotification({ endpoint: d.endpoint, keys: { p256dh: d.p256dh, auth: d.auth } }, payload, { TTL: 600 })
-    return reply({ result: 'sent' })
-  } catch (e) {
-    const code = (e as { statusCode?: number }).statusCode
-    console.error('test-push failed', code, String(e))
-    if (code === 404 || code === 410) {
-      await sb.from('push_subscriptions').delete().eq('endpoint', d.endpoint)
-      return reply({ result: 'gone' })
-    }
-    return reply({ result: 'error', code: code ?? null })
-  }
+  const payload = JSON.stringify({ title: 'Notifikasi uji berhasil', body: 'Pengingat imunisasi akan muncul seperti ini di setiap HP yang menyalakan notifikasi.', url: '#/lainnya/pengingat', tag: 'test-push' })
+  const out = { sent: 0, gone: 0, failed: 0, here: 'error' as 'sent' | 'gone' | 'error', code: null as number | null }
+  await Promise.all(
+    devices.map(async (d) => {
+      let r: 'sent' | 'gone' | 'error' = 'sent'
+      try {
+        await webpush.sendNotification({ endpoint: d.endpoint, keys: { p256dh: d.p256dh, auth: d.auth } }, payload, { TTL: 600 })
+        out.sent++
+      } catch (e) {
+        const code = (e as { statusCode?: number }).statusCode ?? null
+        console.error('test-push failed', code, String(e))
+        if (code === 404 || code === 410) {
+          // The phone unsubscribed or reinstalled: forget it.
+          await sb.from('push_subscriptions').delete().eq('endpoint', d.endpoint)
+          r = 'gone'
+          out.gone++
+        } else {
+          r = 'error'
+          out.failed++
+        }
+        if (d.endpoint === endpoint) out.code = code
+      }
+      if (d.endpoint === endpoint) out.here = r
+    }),
+  )
+  return reply({ result: out.here, ...out })
 })

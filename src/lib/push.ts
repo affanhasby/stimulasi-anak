@@ -50,12 +50,13 @@ export const PUSH_MESSAGE: Record<Exclude<PushResult, 'on'>, string> = {
   error: 'Notifikasi belum bisa diaktifkan. Periksa koneksi lalu coba lagi.',
 }
 
-/** Status code from the push service on the last failed test, shown to help diagnose. */
+/** Details of the last test: push-service code for this phone, and how many of the account's phones got it. */
 export let lastTestCode: number | null = null
+export let lastTestCounts = { sent: 0, gone: 0, failed: 0 }
 
 export type TestResult = 'sent' | 'not-on' | 'not-registered' | 'gone' | 'offline' | 'error'
 
-/** Ask the server to push one test notification to this device, through the same path as the reminders. */
+/** Ask the server to push one test notification to every phone of this account, through the same path as the reminders. */
 export async function testPush(): Promise<TestResult> {
   if (!navigator.onLine) return 'offline'
   if (!supported() || Notification.permission !== 'granted') return 'not-on'
@@ -65,7 +66,9 @@ export async function testPush(): Promise<TestResult> {
   const { data, error } = await supabase.functions.invoke('test-push', { body: { endpoint: sub.endpoint } })
   if (error) return 'error'
   const r = (data as { result?: string })?.result
-  lastTestCode = (data as { code?: number | null })?.code ?? null
+  const d = (data ?? {}) as { code?: number | null; sent?: number; gone?: number; failed?: number }
+  lastTestCode = d.code ?? null
+  lastTestCounts = { sent: d.sent ?? 0, gone: d.gone ?? 0, failed: d.failed ?? 0 }
   if (r === 'not-registered') {
     // Subscribed in the browser but missing on the server (e.g. registered before sign-in): register again.
     return (await enablePush()) === 'on' ? testPush() : 'not-registered'
@@ -74,7 +77,7 @@ export async function testPush(): Promise<TestResult> {
 }
 
 export const TEST_MESSAGE: Record<TestResult, string> = {
-  sent: 'Terkirim. Notifikasi "Notifikasi uji berhasil" akan muncul dalam beberapa detik. Kalau tidak muncul, cek pengaturan notifikasi HP untuk aplikasi ini dan pastikan mode Fokus/Jangan Ganggu tidak aktif.',
+  sent: 'Notifikasi "Notifikasi uji berhasil" akan muncul dalam beberapa detik. Kalau tidak muncul, cek pengaturan notifikasi HP untuk aplikasi ini dan pastikan mode Fokus/Jangan Ganggu tidak aktif.',
   'not-on': 'Nyalakan "Notifikasi di HP ini" dulu.',
   'not-registered': 'HP ini belum terdaftar di server. Matikan lalu nyalakan lagi "Notifikasi di HP ini".',
   gone: 'Pendaftaran notifikasi HP ini sudah kedaluwarsa. Matikan lalu nyalakan lagi "Notifikasi di HP ini".',

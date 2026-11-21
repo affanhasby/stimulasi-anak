@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { disablePush, enablePush, lastTestCode, PUSH_MESSAGE, pushOnHere, TEST_MESSAGE, testPush, type TestResult } from '../lib/push'
+import { disablePush, enablePush, lastTestCode, lastTestCounts, PUSH_MESSAGE, pushOnHere, TEST_MESSAGE, testPush, type TestResult } from '../lib/push'
 import { Toggle } from './ui'
 
 /** Notifications on this device (each phone subscribes on its own). */
@@ -39,10 +39,17 @@ export function PushToggle() {
             }}
             className="min-h-11 w-full rounded-xl border border-line text-[15px] font-bold active:scale-[.98] disabled:opacity-60"
           >
-            {test === 'busy' ? 'Mengirim…' : 'Kirim notifikasi uji'}
+            {test === 'busy' ? 'Mengirim…' : 'Kirim notifikasi uji ke semua HP'}
           </button>
+          <p className="mt-1.5 text-[13px] leading-snug text-ink-2">Dikirim ke setiap HP yang login dengan akun ini dan sudah menyalakan notifikasi.</p>
           {test && test !== 'busy' && (
             <p role="status" className={`mt-2 text-[13px] leading-snug ${test === 'sent' ? 'text-ink' : 'text-late'}`}>
+              {(test === 'sent' || test === 'error' || test === 'gone') && (
+                <b className="block">
+                  Terkirim ke {lastTestCounts.sent} HP{lastTestCounts.failed ? `, gagal di ${lastTestCounts.failed} HP` : ''}
+                  {lastTestCounts.gone ? `, ${lastTestCounts.gone} HP sudah tidak terdaftar` : ''}.
+                </b>
+              )}
               {TEST_MESSAGE[test]}
               {test === 'error' && lastTestCode ? ` (kode ${lastTestCode})` : ''}
             </p>
