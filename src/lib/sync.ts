@@ -18,8 +18,8 @@ const SPECS: Spec[] = [
   { local: 'health_checks', remote: 'health_checks', key: ['child_id', 'day'], cols: ['child_id', 'day', 'answers', 'result', 'checked_at', 'deleted'] },
   { local: 'measurements', remote: 'measurements', key: ['id'], cols: ['id', 'child_id', 'measured_on', 'weight_kg', 'length_cm', 'method', 'deleted'] },
 ]
-// Settings that belong to the account; text size and seen toasts stay per device.
-export const SETTING_COLS = ['reminder_lead_days', 'reminder_time', 'email_reminders', 'enabled_counters', 'theme', 'active_child_id']
+// Every setting belongs to the account (push permission is the only per-device choice, kept by the browser).
+export const SETTING_COLS = ['reminder_lead_days', 'reminder_time', 'email_reminders', 'enabled_counters', 'theme', 'text_size', 'active_child_id', 'seen_notices']
 
 type Row = Record<string, unknown>
 const pick = (r: Row, cols: string[]) => Object.fromEntries(cols.map((c) => [c, r[c] ?? null]))

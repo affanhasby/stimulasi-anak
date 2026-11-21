@@ -90,13 +90,15 @@
   --top-guard: calc(env(safe-area-inset-top) * 1.35);
 }
 
+/* Safari 26 finds fixed bars at the top edge by hit-testing, then draws a solid status-bar edge in their colour
+   instead of the blur. pointer-events: none would hide the strip from that hit test, so it stays hittable
+   (nothing tappable lives under the status bar anyway). */
 #top-guard {
   position: fixed;
   inset: 0 0 auto;
   height: var(--top-guard);
   background: var(--ground);
   z-index: 40;
-  pointer-events: none;
 }
 
 /* Native shell: the page itself never moves, zooms or rubber-bands; only the screen's own scroller scrolls. */

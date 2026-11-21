@@ -87,7 +87,7 @@ export function actions(db: AppDb) {
   return {
     async saveSettings(patch: Partial<Settings>) {
       const cur = { ...DEFAULT_SETTINGS, ...(await db.settings.get('me')) } as Settings & { _dirty?: number; _dirtyCols?: string[] }
-      // Device-only fields (seen toasts, text size) never mark the account settings for upload.
+      // Only the fields changed here are uploaded, so a device with older values never overwrites the others.
       const cols = Object.keys(patch).filter((k) => SETTING_COLS.includes(k))
       if (!cols.length) return void (await db.settings.put({ ...cur, ...patch, updated_at: nowIso() }))
       await after(db.settings.put({ ...cur, ...patch, ...D, _dirtyCols: [...new Set([...(cur._dirtyCols ?? []), ...cols])], updated_at: nowIso() }))
