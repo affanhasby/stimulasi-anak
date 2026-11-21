@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { IconCalendar, IconChevron } from '../components/icons'
-import { Button, Chip, Screen, Section, Sheet, Toggle } from '../components/ui'
+import { Button, Chip, Screen, Section, Sheet, Toggle, PickerInput } from '../components/ui'
 import { sourceLabel } from '../lib/content'
 import { daysBetween, type IsoDate } from '../lib/date'
 import type { Child } from '../lib/db'
@@ -229,8 +229,9 @@ export function Imunisasi({ child }: { child: Child }) {
                 <label htmlFor="given" className="block text-[15px] font-semibold">
                   Tanggal diberikan
                 </label>
-                <input id="given" type="date" value={date} max={today} min={child.birth_date} onChange={(e) => setDate(e.target.value)} className="mt-1.5 w-full rounded-xl border border-line bg-panel px-4 text-lg font-bold" />
-                <p className="mt-1.5 text-[15px] text-ink-2">{date ? longDate(date) : 'Pilih tanggal'}</p>
+                <div className="mt-1.5">
+                  <PickerInput id="given" type="date" value={date} max={today} min={child.birth_date} onChange={setDate} />
+                </div>
                 {sel.status === 'upcoming' && (
                   <p className="mt-1.5 text-[13px] leading-snug text-ink-2">Belum masuk jadwal (mulai {longDate(sel.earliest)}). Tandai hanya bila memang sudah diberikan.</p>
                 )}

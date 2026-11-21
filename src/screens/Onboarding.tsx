@@ -1,11 +1,10 @@
 import { useMemo, useState } from 'react'
 import { PushToggle } from '../components/PushToggle'
-import { Button, Chip, Screen } from '../components/ui'
+import { Button, Chip, Screen, PickerInput } from '../components/ui'
 import { nowIso, type Child } from '../lib/db'
 import { addMonths, todayIso, type IsoDate } from '../lib/date'
 import { useActions, useStore } from '../lib/store'
 import { doseName, REMINDER_OPTIONS, vaccineSchedule, type ScheduleId } from '../lib/vaccines'
-import { longDate } from '../lib/format'
 
 const LEAD_LABEL: Record<number, string> = { 0: 'Hari-H', 1: 'H-1', 2: 'H-2', 3: 'H-3', 7: 'H-7' }
 
@@ -73,19 +72,10 @@ export function Onboarding() {
           <Steps at={1} total={total} />
           <h1 className="mt-6 text-[40px] leading-[1.05] font-extrabold text-balance">Kapan si Kecil lahir?</h1>
           <p className="mt-2 text-[15px] leading-snug text-ink-2">Dari tanggal ini semua jadwal imunisasi, stimulasi, dan kemampuan sesuai usia disusun otomatis.</p>
-          <label className="mt-6 block">
-            <span className="sr-only">Tanggal lahir</span>
-            <input
-              type="date"
-              value={birth}
-              max={today}
-              min={addMonths(today, -72)}
-              onChange={(e) => setBirth(e.target.value)}
-              className="w-full rounded-2xl border border-line bg-panel px-4 py-3 text-xl font-bold"
-            />
+          <label className="mt-6 block" aria-label="Tanggal lahir">
+            <PickerInput type="date" big value={birth} max={today} min={addMonths(today, -72)} onChange={setBirth} />
           </label>
           {!birthOk && <p className="mt-2 text-[15px] font-semibold text-late">Pilih tanggal dalam 6 tahun terakhir, tidak setelah hari ini.</p>}
-          <p className="mt-2 text-[15px] text-ink-2">{birthOk && longDate(birth)}</p>
           <div className="flex-1" />
           <p className="mt-6 text-[13px] leading-relaxed text-ink-2">
             Aplikasi ini alat bantu pemantauan berdasarkan Buku KIA Kemenkes RI, IDAI, CDC/AAP, dan WHO. Bukan alat diagnosis dan tidak menggantikan bidan, dokter, atau Posyandu. Jika ada tanda bahaya, segera ke fasilitas kesehatan atau hubungi 119.
@@ -172,8 +162,9 @@ export function Onboarding() {
             ))}
           </div>
           <label className="mt-5 block text-[15px] font-semibold" htmlFor="rtime">Jam pengingat</label>
-          <input id="rtime" type="time" value={time} onChange={(e) => setTime(e.target.value || '07:00')} className="mt-1.5 w-full rounded-xl border border-line bg-panel px-3.5 text-lg font-bold" />
-          <p className="mt-1.5 text-[15px] text-ink-2">Pukul {time.replace(':', '.')}</p>
+          <div className="mt-1.5">
+            <PickerInput id="rtime" type="time" value={time} onChange={(v) => setTime(v || '07:00')} />
+          </div>
           <div className="mt-5 overflow-hidden rounded-2xl bg-panel">
             <PushToggle />
           </div>

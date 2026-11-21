@@ -2,7 +2,7 @@ import { useState, type ReactNode } from 'react'
 import { DISCLAIMER } from '../components/DangerSheet'
 import { BrandPlate } from '../components/Plate'
 import { PushToggle } from '../components/PushToggle'
-import { Button, Chip, Field, Row, Screen, Section, Sheet, Toggle } from '../components/ui'
+import { Button, Chip, Field, Row, Screen, Section, Sheet, Toggle, PickerInput } from '../components/ui'
 import { deleteAccount, signOut, updatePassword } from '../lib/auth'
 import { clockTime } from '../lib/counters'
 import { syncNow, useSyncState } from '../lib/sync'
@@ -37,7 +37,7 @@ function Profil({ child }: { child: Child }) {
     <Sub title="Profil anak">
       <div className="px-4">
         <Field label="Nama panggilan" value={draft.nickname} maxLength={40} onChange={(e) => set('nickname', e.target.value)} />
-        <Field label="Tanggal lahir" type="date" value={draft.birth_date} max={today} onChange={(e) => e.target.value && set('birth_date', e.target.value)} hint={`${longDate(draft.birth_date)}. Mengubah tanggal lahir menyusun ulang semua jadwal.`} />
+        <Field label="Tanggal lahir" type="date" value={draft.birth_date} max={today} onChange={(e) => e.target.value && set('birth_date', e.target.value)} hint="Mengubah tanggal lahir menyusun ulang semua jadwal." />
         <p className="mt-4 text-[15px] font-semibold">Jenis kelamin</p>
         <div className="mt-1.5 flex gap-2">
           <Chip selected={draft.sex === 'M'} onClick={() => set('sex', draft.sex === 'M' ? null : 'M')}>Laki-laki</Chip>
@@ -93,11 +93,9 @@ function Pengingat() {
         </div>
       </Section>
       <Section title="Jam">
-        <label className="block p-4">
-          <span className="sr-only">Jam pengingat</span>
-          <input type="time" value={s.reminder_time} onChange={(e) => e.target.value && act.saveSettings({ reminder_time: e.target.value })} className="w-full rounded-xl border border-line bg-panel px-4 text-lg font-bold" />
-          <span className="mt-1.5 block text-[15px] text-ink-2">Pukul {s.reminder_time.replace(':', '.')}</span>
-        </label>
+        <div className="p-4">
+          <PickerInput type="time" label="Jam pengingat" value={s.reminder_time} onChange={(v) => v && act.saveSettings({ reminder_time: v })} />
+        </div>
       </Section>
       <Section title="Notifikasi" note="Dipakai untuk pengingat imunisasi dan timer tidur/tengkurap yang sedang berjalan. Jadwal juga bisa disimpan ke kalender HP dari tab Imunisasi.">
         <PushToggle />

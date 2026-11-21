@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { DayBars } from '../components/DayBars'
-import { Button, Chip, Screen, Section, Sheet } from '../components/ui'
+import { Button, Chip, Screen, Section, Sheet, PickerInput } from '../components/ui'
 import { sourceLabel } from '../lib/content'
 import { clockTime, COUNTERS, formatTileDuration, isTimer, shortLabel } from '../lib/counters'
 import { ageInMonths, daysBetween, todayIso } from '../lib/date'
@@ -136,15 +136,18 @@ export function Catatan({ child, counterId }: { child: Child; counterId: string 
         <label className="block text-[15px] font-semibold" htmlFor="t-start">
           {timer ? 'Mulai' : 'Jam'}
         </label>
-        <input id="t-start" type="time" value={start} onChange={(e) => setStart(e.target.value)} className="mt-1.5 w-full rounded-xl border border-line bg-panel px-4 text-lg font-bold" />
-        <p className="mt-1.5 text-[15px] text-ink-2">Pukul {start.replace(':', '.')}{edit ? `, ${longDate(todayIso(Date.parse(edit.start_at)))}` : ''}</p>
+        <div className="mt-1.5">
+          <PickerInput id="t-start" type="time" value={start} onChange={setStart} />
+        </div>
+        {edit && <p className="mt-1.5 text-[15px] text-ink-2">{longDate(todayIso(Date.parse(edit.start_at)))}</p>}
         {timer && (edit?.end_at || !edit?.id) && (
           <>
             <label className="mt-4 block text-[15px] font-semibold" htmlFor="t-end">
               Selesai
             </label>
-            <input id="t-end" type="time" value={end} onChange={(e) => setEnd(e.target.value)} className="mt-1.5 w-full rounded-xl border border-line bg-panel px-4 text-lg font-bold" />
-            <p className="mt-1.5 text-[15px] text-ink-2">Pukul {end.replace(':', '.')}</p>
+            <div className="mt-1.5">
+              <PickerInput id="t-end" type="time" value={end} onChange={setEnd} />
+            </div>
           </>
         )}
         <div className="mt-5 grid gap-2.5">

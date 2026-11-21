@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Button, Chip, Field, Screen } from '../components/ui'
 import type { Child } from '../lib/db'
-import { longDate } from '../lib/format'
 import { ageMonthsExact } from '../lib/growth'
 import { useToday } from '../lib/hooks'
 import { back, go } from '../lib/nav'
@@ -33,7 +32,7 @@ export function Ukur({ child, id }: { child: Child; id?: string }) {
   return (
     <Screen title={existing ? 'Ubah pengukuran' : 'Catat pengukuran'} onBack="pertumbuhan" bottom="none">
       <div className="px-4">
-        <Field label="Tanggal" type="date" value={date} max={today} min={child.birth_date} onChange={(e) => e.target.value && setDate(e.target.value)} hint={longDate(date)} />
+        <Field label="Tanggal" type="date" value={date} max={today} min={child.birth_date} onChange={(e) => e.target.value && setDate(e.target.value)} />
         <Field
           label="Berat badan (kg)"
           inputMode="decimal"

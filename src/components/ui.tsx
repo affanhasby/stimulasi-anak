@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
+import { longDate } from '../lib/format'
 import { back } from '../lib/nav'
 import { syncActive } from '../lib/sync'
 import { IconBack, IconCheck, IconChevron, IconClose, IconEye, IconEyeOff, IconRefresh } from './icons'
@@ -252,6 +253,67 @@ export function Button({
   )
 }
 
+/**
+ * Date or time input that looks the same everywhere. iPhone draws native date/time inputs with its own
+ * width and vertical alignment that CSS cannot fully tame, so the app draws the box and the formatted value,
+ * and an invisible native input on top still opens the system picker on tap.
+ */
+export function PickerInput({
+  type,
+  value,
+  onChange,
+  id,
+  min,
+  max,
+  big = false,
+  invalid = false,
+  describedBy,
+  label,
+}: {
+  type: 'date' | 'time'
+  value: string
+  onChange: (v: string) => void
+  id?: string
+  min?: string
+  max?: string
+  big?: boolean
+  invalid?: boolean
+  describedBy?: string
+  label?: string
+}) {
+  const shown = !value ? (type === 'date' ? 'Pilih tanggal' : 'Pilih jam') : type === 'date' ? longDate(value) : `Pukul ${value.slice(0, 5).replace(':', '.')}`
+  return (
+    <div className="relative">
+      <input
+        id={id}
+        type={type}
+        value={value}
+        min={min}
+        max={max}
+        aria-invalid={invalid || undefined}
+        aria-describedby={describedBy}
+        aria-label={label}
+        onChange={(e) => onChange(e.target.value)}
+        onClick={(e) => {
+          try {
+            e.currentTarget.showPicker()
+          } catch {
+            /* older browsers open it themselves */
+          }
+        }}
+        className="peer absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0"
+      />
+      <div
+        aria-hidden
+        className={`flex w-full items-center justify-between gap-2 rounded-xl border bg-panel px-4 font-bold peer-focus-visible:border-ink ${big ? 'min-h-14 text-xl' : 'min-h-12 text-lg'} ${invalid ? 'border-late' : 'border-line'} ${value ? '' : 'text-ink-2'}`}
+      >
+        <span className="min-w-0 truncate">{shown}</span>
+        <IconChevron size={18} />
+      </div>
+    </div>
+  )
+}
+
 export function Field({
   label,
   hint,
@@ -266,6 +328,18 @@ export function Field({
       <label htmlFor={id} className="mb-1.5 block text-[15px] font-semibold">
         {label}
       </label>
+      {input.type === 'date' || input.type === 'time' ? (
+        <PickerInput
+          id={id}
+          type={input.type as 'date' | 'time'}
+          value={String(input.value ?? '')}
+          min={input.min as string | undefined}
+          max={input.max as string | undefined}
+          invalid={!!error}
+          describedBy={error || hint ? `${id}-d` : undefined}
+          onChange={(v) => input.onChange?.({ target: { value: v } } as React.ChangeEvent<HTMLInputElement>)}
+        />
+      ) : (
       <div className="relative">
         <input
           id={id}
@@ -287,6 +361,7 @@ export function Field({
           </button>
         )}
       </div>
+      )}
       {(error || hint) && (
         <p id={`${id}-d`} className={`mt-1.5 text-[13px] leading-snug ${error ? 'font-semibold text-late' : 'text-ink-2'}`}>
           {error ?? hint}

@@ -85,9 +85,10 @@
   color-scheme: dark;
 }
 
-/* iOS 26 blurs a band a little taller than the status bar; content starts below that band. 0 where there is no notch. */
+/* iOS 26 blurs a band below the status bar that no CSS can switch off; content starts below that band
+   (about 1.75 x the status bar on an iPhone with Dynamic Island). 0 where there is no notch. */
 :root {
-  --top-guard: calc(env(safe-area-inset-top) * 1.35);
+  --top-guard: calc(env(safe-area-inset-top) * 1.75);
 }
 
 /* Safari 26 finds fixed bars at the top edge by hit-testing, then draws a solid status-bar edge in their colour
@@ -241,4 +242,18 @@ input[type='date'] {
 input[type='time']::-webkit-date-and-time-value,
 input[type='date']::-webkit-date-and-time-value {
   text-align: left;
+}
+
+/* No form control may grow past its card (iOS gives some inputs an intrinsic minimum width). */
+input,
+textarea,
+select {
+  min-width: 0;
+  max-width: 100%;
+}
+/* iOS adds its own inner shadow and sizing to text fields; the app draws its own border. */
+input:not([type='checkbox']):not([type='radio']),
+textarea {
+  -webkit-appearance: none;
+  appearance: none;
 }
