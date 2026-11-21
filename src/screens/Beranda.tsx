@@ -180,7 +180,7 @@ export function Beranda({ child }: { child: Child }) {
 
   return (
     <Screen bottom={counters.length ? 'dock' : 'tabs'}>
-      <header className="flex items-start justify-between px-[18px] pt-[max(14px,env(safe-area-inset-top))] pb-1">
+      <header className="flex items-start justify-between px-[18px] pt-[max(14px,var(--top-guard))] pb-1">
         <div className="min-w-0">
           <h1 className="truncate text-xl leading-tight font-extrabold">{child.nickname}</h1>
           <p className="text-sm text-ink-2">

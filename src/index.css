@@ -85,6 +85,11 @@
   color-scheme: dark;
 }
 
+/* iOS 26 blurs a band a little taller than the status bar; content starts below that band. 0 where there is no notch. */
+:root {
+  --top-guard: calc(env(safe-area-inset-top) * 1.35);
+}
+
 /* Native shell: the page itself never moves, zooms or rubber-bands; only the screen's own scroller scrolls. */
 html,
 body {

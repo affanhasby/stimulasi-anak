@@ -1,7 +1,80 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
 import { back } from '../lib/nav'
-import { IconBack, IconCheck, IconChevron, IconClose, IconEye, IconEyeOff } from './icons'
+import { IconBack, IconCheck, IconChevron, IconClose, IconEye, IconEyeOff, IconRefresh } from './icons'
 import { BrandPlate } from './Plate'
+
+const PULL_AT = 72
+
+/**
+ * Pull down from the top of a screen to reload the app (and fetch a newer version if one is deployed).
+ * An installed PWA has no browser reload button, so this is the parent's way to be sure it is up to date.
+ */
+function usePullToRefresh() {
+  const ref = useRef<HTMLElement>(null)
+  const [pull, setPull] = useState(0)
+  const [dragging, setDragging] = useState(false)
+  const [busy, setBusy] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    let y0: number | null = null
+    let d = 0
+    const start = (e: TouchEvent) => {
+      y0 = el.scrollTop <= 0 && e.touches.length === 1 ? e.touches[0].clientY : null
+      d = 0
+    }
+    const move = (e: TouchEvent) => {
+      if (y0 === null) return
+      d = Math.max(0, (e.touches[0].clientY - y0) * 0.5)
+      if (d > 0 && el.scrollTop > 0) {
+        y0 = null
+        return setPull(0)
+      }
+      setDragging(true)
+      setPull(Math.min(d, 110))
+    }
+    const end = async () => {
+      setDragging(false)
+      if (y0 === null) return
+      y0 = null
+      if (d < PULL_AT) return setPull(0)
+      setBusy(true)
+      setPull(PULL_AT)
+      navigator.vibrate?.(10)
+      sessionStorage.setItem('pulled', '1')
+      const reg = await navigator.serviceWorker?.getRegistration().catch(() => undefined)
+      await reg?.update().catch(() => {})
+      location.reload()
+    }
+    el.addEventListener('touchstart', start, { passive: true })
+    el.addEventListener('touchmove', move, { passive: true })
+    el.addEventListener('touchend', end)
+    el.addEventListener('touchcancel', end)
+    return () => {
+      el.removeEventListener('touchstart', start)
+      el.removeEventListener('touchmove', move)
+      el.removeEventListener('touchend', end)
+      el.removeEventListener('touchcancel', end)
+    }
+  }, [])
+  const indicator = (
+    <div
+      role="status"
+      className="flex items-end justify-center overflow-hidden"
+      style={{ height: pull, transition: dragging ? 'none' : 'height 220ms cubic-bezier(.22,1,.36,1)' }}
+    >
+      {pull > 8 && (
+        <span className="mb-2.5 flex items-center gap-2 text-[13px] font-semibold text-ink-2">
+          <span className={`grid size-8 place-items-center rounded-full bg-panel text-ink ${busy ? 'animate-spin' : ''}`} style={busy ? undefined : { transform: `rotate(${pull * 3}deg)` }}>
+            <IconRefresh />
+          </span>
+          {busy ? 'Memuat ulang…' : pull >= PULL_AT ? 'Lepas untuk memuat ulang' : 'Tarik untuk memuat ulang'}
+        </span>
+      )}
+    </div>
+  )
+  return { ref, indicator }
+}
 
 /** A screen: fixed header, its own scroller, and room for the tab bar (and counter dock) below. */
 export function Screen({
@@ -17,11 +90,12 @@ export function Screen({
   children: ReactNode
   bottom?: 'tabs' | 'dock' | 'none'
 }) {
+  const ptr = usePullToRefresh()
   const pad = bottom === 'dock' ? 'pb-[calc(188px+env(safe-area-inset-bottom))]' : bottom === 'tabs' ? 'pb-[calc(90px+env(safe-area-inset-bottom))]' : 'pb-[calc(24px+env(safe-area-inset-bottom))]'
   return (
     <div className="mx-auto flex h-full max-w-[430px] flex-col">
       {title !== undefined && (
-        <header className="flex min-h-14 shrink-0 items-center gap-1 px-2 pt-[env(safe-area-inset-top)]">
+        <header className="flex min-h-14 shrink-0 items-center gap-1 px-2 pt-(--top-guard)">
           {onBack ? (
             <button type="button" onClick={() => back(typeof onBack === 'string' ? onBack : '')} aria-label="Kembali" className="grid size-11 place-items-center rounded-full active:bg-off">
               <IconBack />
@@ -33,7 +107,10 @@ export function Screen({
           {action}
         </header>
       )}
-      <main className={`scroller min-h-0 flex-1 ${pad}`}>{children}</main>
+      <main ref={ptr.ref} className={`scroller min-h-0 flex-1 ${pad}`}>
+        {ptr.indicator}
+        {children}
+      </main>
     </div>
   )
 }
@@ -216,6 +293,23 @@ export function Splash() {
   return (
     <div className="grid h-full place-items-center" aria-busy="true" aria-label="Memuat">
       <BrandPlate size={64} />
+    </div>
+  )
+}
+
+/** After a pull-to-refresh: a short confirmation with the build, so the parent knows the app is current. */
+export function RefreshedToast() {
+  const [show, setShow] = useState(() => sessionStorage.getItem('pulled') === '1')
+  useEffect(() => {
+    sessionStorage.removeItem('pulled')
+    if (!show) return
+    const t = setTimeout(() => setShow(false), 2500)
+    return () => clearTimeout(t)
+  }, [show])
+  if (!show) return null
+  return (
+    <div role="status" className="fixed inset-x-0 top-[max(10px,var(--top-guard))] z-50 mx-auto w-fit animate-[drop_320ms_cubic-bezier(.22,1,.36,1)] rounded-full bg-tile px-4 py-2 text-[13px] font-semibold text-on-tile">
+      Sudah dimuat ulang · versi {__APP_VERSION__}
     </div>
   )
 }

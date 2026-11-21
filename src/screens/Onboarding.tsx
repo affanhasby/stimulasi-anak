@@ -69,7 +69,7 @@ export function Onboarding() {
   if (step === 1)
     return (
       <Screen bottom="none">
-        <div className="flex min-h-full flex-col px-5 pt-[max(20px,env(safe-area-inset-top))]">
+        <div className="flex min-h-full flex-col px-5 pt-[max(20px,var(--top-guard))]">
           <Steps at={1} total={total} />
           <h1 className="mt-6 text-[40px] leading-[1.05] font-extrabold text-balance">Kapan si Kecil lahir?</h1>
           <p className="mt-2 text-[15px] leading-snug text-ink-2">Dari tanggal ini semua jadwal imunisasi, stimulasi, dan kemampuan sesuai usia disusun otomatis.</p>
@@ -102,7 +102,7 @@ export function Onboarding() {
   if (step === 2)
     return (
       <Screen bottom="none">
-        <div className="px-5 pt-[max(20px,env(safe-area-inset-top))]">
+        <div className="px-5 pt-[max(20px,var(--top-guard))]">
           <Steps at={2} total={total} />
           <h1 className="mt-6 text-[40px] leading-[1.05] font-extrabold text-balance">Tentang si Kecil</h1>
           <p className="mt-2 text-[15px] text-ink-2">Semua boleh dilewati.</p>
@@ -160,7 +160,7 @@ export function Onboarding() {
   if (step === 3)
     return (
       <Screen bottom="none">
-        <div className="px-5 pt-[max(20px,env(safe-area-inset-top))]">
+        <div className="px-5 pt-[max(20px,var(--top-guard))]">
           <Steps at={3} total={total} />
           <h1 className="mt-6 text-[40px] leading-[1.05] font-extrabold text-balance">Pengingat imunisasi</h1>
           <p className="mt-2 text-[15px] leading-snug text-ink-2">Kapan Ayah/Bunda ingin diingatkan sebelum jadwal? Boleh pilih lebih dari satu.</p>
@@ -192,7 +192,7 @@ export function Onboarding() {
 
   return (
     <Screen bottom="none">
-      <div className="px-5 pt-[max(20px,env(safe-area-inset-top))]">
+      <div className="px-5 pt-[max(20px,var(--top-guard))]">
         <Steps at={4} total={total} />
         <h1 className="mt-6 text-[40px] leading-[1.05] font-extrabold text-balance">Mana yang sudah diberikan?</h1>
         <p className="mt-2 text-[15px] leading-snug text-ink-2">Imunisasi ini dijadwalkan sebelum hari ini. Semua sudah dicentang; hapus centang yang belum diberikan. Tanggal bisa diubah nanti.</p>

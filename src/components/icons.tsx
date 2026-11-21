@@ -101,3 +101,8 @@ export const IconChart = () => (
     <path d="M3 20h18M6 20v-6M11 20V9M16 20V4" />
   </svg>
 )
+export const IconRefresh = () => (
+  <svg {...base}>
+    <path d="M20 12a8 8 0 1 1-2.34-5.66L20 8.7M20 3.5v5.2h-5.2" />
+  </svg>
+)

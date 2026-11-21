@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react'
 import { NoticeToast } from './components/NoticeToast'
 import { TabBar } from './components/TabBar'
-import { Splash } from './components/ui'
+import { RefreshedToast, Splash } from './components/ui'
 import { useSession } from './lib/auth'
 import { go, useRoute } from './lib/nav'
 import { StoreProvider, useChild, useSettings, useStore } from './lib/store'
@@ -63,9 +63,10 @@ function Main() {
   return (
     <>
       {/* iOS 26 blurs whatever sits under the status bar; a solid fixed strip there gives it nothing to blur. */}
-      <div aria-hidden className="pointer-events-none fixed inset-x-0 top-0 z-40 h-[env(safe-area-inset-top)] bg-ground" />
+      <div aria-hidden className="pointer-events-none fixed inset-x-0 top-0 z-40 h-(--top-guard) bg-ground" />
       <Suspense fallback={<Splash />}>{screen}</Suspense>
       <NoticeToast child={child} />
+      <RefreshedToast />
       {!FOCUSED.includes(top) && <TabBar route={route} />}
     </>
   )

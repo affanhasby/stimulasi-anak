@@ -51,7 +51,7 @@ export function NoticeToast({ child }: { child: Child }) {
   return (
     <div
       role="status"
-      className="fixed inset-x-3 top-[max(10px,env(safe-area-inset-top))] z-30 mx-auto flex max-w-[406px] animate-[drop_320ms_cubic-bezier(.22,1,.36,1)] items-center gap-2 rounded-2xl bg-tile py-2 pr-1.5 pl-4 text-on-tile"
+      className="fixed inset-x-3 top-[max(10px,var(--top-guard))] z-30 mx-auto flex max-w-[406px] animate-[drop_320ms_cubic-bezier(.22,1,.36,1)] items-center gap-2 rounded-2xl bg-tile py-2 pr-1.5 pl-4 text-on-tile"
     >
       <p className="min-w-0 flex-1 text-[15px] leading-snug font-semibold">{next.text}</p>
       <button

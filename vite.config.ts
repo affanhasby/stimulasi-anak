@@ -10,7 +10,12 @@ const base = process.env.BASE_PATH ?? '/'
 
 export default defineConfig({
   base,
-  define: { __APP_VERSION__: JSON.stringify(process.env.npm_package_version ?? '0.1.0') },
+  // Version plus build time (WIB), so a parent can see whether the installed app has picked up the latest deploy.
+  define: {
+    __APP_VERSION__: JSON.stringify(
+      `${process.env.npm_package_version ?? '0.1.0'} (${new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })})`,
+    ),
+  },
   resolve: {
     // Content data stays in the PRD folder (single source of truth, edited there + build_csv.py).
     alias: { '@data': fileURLToPath(new URL('./PRD dan Data', import.meta.url)) },
