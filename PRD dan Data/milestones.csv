@@ -1,0 +1,217 @@
+﻿set,group_id,id,start_months,age_or_cutoff_months,domain,text,source,page
+KIA,KIA-3M,KIA-3M-1,0,3,motorik_kasar,Mengangkat kepala setinggi 45 derajat saat tengkurap,BUKU_KIA_2021,42
+KIA,KIA-3M,KIA-3M-2,0,3,motorik_kasar,Menggerakkan kepala dari samping ke tengah,BUKU_KIA_2021,42
+KIA,KIA-3M,KIA-3M-3,0,3,sosial,Melihat dan menatap wajah ibu/ayah,BUKU_KIA_2021,42
+KIA,KIA-3M,KIA-3M-4,0,3,bahasa,Mengoceh spontan atau bereaksi dengan mengoceh,BUKU_KIA_2021,42
+KIA,KIA-3M,KIA-3M-5,0,3,sosial,Tertawa keras,BUKU_KIA_2021,42
+KIA,KIA-3M,KIA-3M-6,0,3,bahasa,Terkejut mendengar suara keras,BUKU_KIA_2021,42
+KIA,KIA-3M,KIA-3M-7,0,3,sosial,Membalas tersenyum ketika diajak bicara,BUKU_KIA_2021,42
+KIA,KIA-3M,KIA-3M-8,0,3,sosial,"Mengenal ibu dari penglihatan, penciuman, pendengaran, dan sentuhan",BUKU_KIA_2021,42
+KIA,KIA-6M,KIA-6M-1,3,6,motorik_kasar,Berbalik dari telungkup ke telentang,BUKU_KIA_2021,43
+KIA,KIA-6M,KIA-6M-2,3,6,motorik_kasar,Mengangkat kepala setinggi 90 derajat,BUKU_KIA_2021,43
+KIA,KIA-6M,KIA-6M-3,3,6,motorik_kasar,Mempertahankan posisi kepala tetap tegak dan stabil,BUKU_KIA_2021,43
+KIA,KIA-6M,KIA-6M-4,3,6,motorik_halus,Menggenggam mainan kecil atau bertangkai,BUKU_KIA_2021,43
+KIA,KIA-6M,KIA-6M-5,3,6,motorik_halus,Meraih benda yang ada dalam jangkauannya,BUKU_KIA_2021,43
+KIA,KIA-6M,KIA-6M-6,3,6,kognitif,Memperhatikan tangannya sendiri,BUKU_KIA_2021,43
+KIA,KIA-6M,KIA-6M-7,3,6,kognitif,Matanya dapat mengikuti arah (pandangan meluas),BUKU_KIA_2021,43
+KIA,KIA-6M,KIA-6M-8,3,6,kognitif,Memusatkan perhatian pada benda kecil,BUKU_KIA_2021,43
+KIA,KIA-6M,KIA-6M-9,3,6,bahasa,Mengeluarkan suara gembira bernada tinggi atau memekik,BUKU_KIA_2021,43
+KIA,KIA-6M,KIA-6M-10,3,6,sosial,Tersenyum ketika melihat mainan/gambar saat bermain sendiri,BUKU_KIA_2021,43
+KIA,KIA-9M,KIA-9M-1,6,9,motorik_kasar,Duduk sendiri,BUKU_KIA_2021,44
+KIA,KIA-9M,KIA-9M-2,6,9,motorik_kasar,Kaki menahan sebagian berat badan saat diberdirikan,BUKU_KIA_2021,44
+KIA,KIA-9M,KIA-9M-3,6,9,motorik_kasar,Merangkak meraih mainan atau mendekati orang,BUKU_KIA_2021,44
+KIA,KIA-9M,KIA-9M-4,6,9,motorik_halus,Memindahkan benda dari satu tangan ke tangan lain,BUKU_KIA_2021,44
+KIA,KIA-9M,KIA-9M-5,6,9,motorik_halus,Memegang dua benda sekaligus,BUKU_KIA_2021,44
+KIA,KIA-9M,KIA-9M-6,6,9,motorik_halus,Memungut benda sebesar kacang dengan cara meraup,BUKU_KIA_2021,44
+KIA,KIA-9M,KIA-9M-7,6,9,bahasa,"Mengeluarkan suara tanpa arti (mamama, bababa, dadada)",BUKU_KIA_2021,44
+KIA,KIA-9M,KIA-9M-8,6,9,kognitif,Mencari mainan/benda yang dijatuhkan,BUKU_KIA_2021,44
+KIA,KIA-9M,KIA-9M-9,6,9,sosial,Bermain tepuk tangan atau cilukba,BUKU_KIA_2021,44
+KIA,KIA-9M,KIA-9M-10,6,9,sosial,Senang melempar benda/mainan,BUKU_KIA_2021,44
+KIA,KIA-9M,KIA-9M-11,6,9,kemandirian,Makan kue/biskuit sendiri,BUKU_KIA_2021,44
+KIA,KIA-12M,KIA-12M-1,9,12,motorik_kasar,Mengangkat badan ke posisi berdiri,BUKU_KIA_2021,45
+KIA,KIA-12M,KIA-12M-2,9,12,motorik_kasar,Berdiri 30 detik atau berpegangan pada kursi/meja,BUKU_KIA_2021,45
+KIA,KIA-12M,KIA-12M-3,9,12,motorik_kasar,Berjalan dengan dituntun,BUKU_KIA_2021,45
+KIA,KIA-12M,KIA-12M-4,9,12,motorik_halus,Mengulurkan tangan/badan meraih mainan yang diinginkan,BUKU_KIA_2021,45
+KIA,KIA-12M,KIA-12M-5,9,12,motorik_halus,Menggenggam erat pensil,BUKU_KIA_2021,45
+KIA,KIA-12M,KIA-12M-6,9,12,kognitif,Memasukkan benda ke mulut,BUKU_KIA_2021,45
+KIA,KIA-12M,KIA-12M-7,9,12,bahasa,Menirukan suara yang didengar,BUKU_KIA_2021,45
+KIA,KIA-12M,KIA-12M-8,9,12,bahasa,Menyebut 2-3 suku kata yang sama tanpa arti,BUKU_KIA_2021,45
+KIA,KIA-12M,KIA-12M-9,9,12,kognitif,"Mengeksplorasi sekitar, ingin tahu, ingin menyentuh apa saja",BUKU_KIA_2021,45
+KIA,KIA-12M,KIA-12M-10,9,12,bahasa,Bereaksi terhadap suara perlahan atau bisikan,BUKU_KIA_2021,45
+KIA,KIA-12M,KIA-12M-11,9,12,sosial,Senang diajak bermain cilukba,BUKU_KIA_2021,45
+KIA,KIA-12M,KIA-12M-12,9,12,sosial,"Mengenal anggota keluarga, takut pada orang yang belum dikenal",BUKU_KIA_2021,45
+KIA,KIA-18M,KIA-18M-1,12,18,motorik_kasar,Berdiri sendiri tanpa berpegangan,BUKU_KIA_2021,46
+KIA,KIA-18M,KIA-18M-2,12,18,motorik_kasar,Membungkuk memungut mainan lalu berdiri kembali,BUKU_KIA_2021,46
+KIA,KIA-18M,KIA-18M-3,12,18,motorik_kasar,Berjalan mundur 5 langkah,BUKU_KIA_2021,46
+KIA,KIA-18M,KIA-18M-4,12,18,bahasa,Memanggil ayah dengan kata 'papa' dan ibu dengan 'mama',BUKU_KIA_2021,46
+KIA,KIA-18M,KIA-18M-5,12,18,motorik_halus,Menumpuk 2 kubus,BUKU_KIA_2021,46
+KIA,KIA-18M,KIA-18M-6,12,18,motorik_halus,Memasukkan kubus ke kotak,BUKU_KIA_2021,46
+KIA,KIA-18M,KIA-18M-7,12,18,bahasa,Menunjuk apa yang diinginkan tanpa menangis/merengek,BUKU_KIA_2021,46
+KIA,KIA-18M,KIA-18M-8,12,18,sosial,Memperlihatkan rasa cemburu/bersaing,BUKU_KIA_2021,46
+KIA,KIA-24M,KIA-24M-1,18,24,motorik_kasar,Berdiri sendiri tanpa berpegangan 30 detik,BUKU_KIA_2021,47
+KIA,KIA-24M,KIA-24M-2,18,24,motorik_kasar,Berjalan tanpa terhuyung-huyung,BUKU_KIA_2021,47
+KIA,KIA-24M,KIA-24M-3,18,24,motorik_halus,Menumpuk 4 buah kubus,BUKU_KIA_2021,47
+KIA,KIA-24M,KIA-24M-4,18,24,motorik_halus,Memungut benda kecil dengan ibu jari dan jari telunjuk,BUKU_KIA_2021,47
+KIA,KIA-24M,KIA-24M-5,18,24,motorik_kasar,Menggelindingkan bola ke arah sasaran,BUKU_KIA_2021,47
+KIA,KIA-24M,KIA-24M-6,18,24,bahasa,Menyebut 3-6 kata yang mempunyai arti,BUKU_KIA_2021,47
+KIA,KIA-24M,KIA-24M-7,18,24,sosial,Membantu/menirukan pekerjaan rumah tangga,BUKU_KIA_2021,47
+KIA,KIA-24M,KIA-24M-8,18,24,kemandirian,"Memegang cangkir sendiri, belajar makan-minum sendiri",BUKU_KIA_2021,47
+CDC,CDC-2,CDC-2-1,,2,sosial,Tenang saat diajak bicara atau digendong,CDC_2M,
+CDC,CDC-2,CDC-2-2,,2,sosial,Melihat wajah Anda,CDC_2M,
+CDC,CDC-2,CDC-2-3,,2,sosial,Tampak senang saat Anda mendekat,CDC_2M,
+CDC,CDC-2,CDC-2-4,,2,sosial,Tersenyum saat diajak bicara atau disenyumi,CDC_2M,
+CDC,CDC-2,CDC-2-5,,2,bahasa,Mengeluarkan suara selain menangis,CDC_2M,
+CDC,CDC-2,CDC-2-6,,2,bahasa,Bereaksi terhadap suara keras,CDC_2M,
+CDC,CDC-2,CDC-2-7,,2,kognitif,Memperhatikan Anda saat Anda bergerak,CDC_2M,
+CDC,CDC-2,CDC-2-8,,2,kognitif,Melihat mainan selama beberapa detik,CDC_2M,
+CDC,CDC-2,CDC-2-9,,2,motorik_kasar,Mengangkat kepala saat tengkurap,CDC_2M,
+CDC,CDC-2,CDC-2-10,,2,motorik_kasar,Menggerakkan kedua lengan dan kedua kaki,CDC_2M,
+CDC,CDC-2,CDC-2-11,,2,motorik_halus,Membuka tangan sebentar,CDC_2M,
+CDC,CDC-4,CDC-4-1,,4,sosial,Tersenyum sendiri untuk menarik perhatian Anda,CDC_4M,
+CDC,CDC-4,CDC-4-2,,4,sosial,Terkekeh (belum tertawa penuh) saat Anda mengajak tertawa,CDC_4M,
+CDC,CDC-4,CDC-4-3,,4,sosial,"Melihat, bergerak, atau bersuara untuk menarik/mempertahankan perhatian Anda",CDC_4M,
+CDC,CDC-4,CDC-4-4,,4,bahasa,"Bersuara 'oooo', 'aahh' (cooing)",CDC_4M,
+CDC,CDC-4,CDC-4-5,,4,bahasa,Membalas bersuara saat diajak bicara,CDC_4M,
+CDC,CDC-4,CDC-4-6,,4,bahasa,Menoleh ke arah suara Anda,CDC_4M,
+CDC,CDC-4,CDC-4-7,,4,kognitif,"Saat lapar, membuka mulut ketika melihat payudara/botol",CDC_4M,
+CDC,CDC-4,CDC-4-8,,4,kognitif,Melihat tangannya sendiri dengan tertarik,CDC_4M,
+CDC,CDC-4,CDC-4-9,,4,motorik_kasar,Kepala tegak stabil tanpa ditopang saat digendong,CDC_4M,
+CDC,CDC-4,CDC-4-10,,4,motorik_halus,Memegang mainan yang diletakkan di tangannya,CDC_4M,
+CDC,CDC-4,CDC-4-11,,4,motorik_halus,Mengayunkan lengan ke arah mainan,CDC_4M,
+CDC,CDC-4,CDC-4-12,,4,motorik_halus,Memasukkan tangan ke mulut,CDC_4M,
+CDC,CDC-4,CDC-4-13,,4,motorik_kasar,Bertumpu pada siku/lengan bawah saat tengkurap,CDC_4M,
+CDC,CDC-6,CDC-6-1,,6,sosial,Mengenali orang yang sudah dikenal,CDC_6M,
+CDC,CDC-6,CDC-6-2,,6,sosial,Suka melihat dirinya di cermin,CDC_6M,
+CDC,CDC-6,CDC-6-3,,6,sosial,Tertawa,CDC_6M,
+CDC,CDC-6,CDC-6-4,,6,bahasa,Bergantian bersuara dengan Anda,CDC_6M,
+CDC,CDC-6,CDC-6-5,,6,bahasa,Meniup 'raspberry' (menjulurkan lidah dan meniup),CDC_6M,
+CDC,CDC-6,CDC-6-6,,6,bahasa,Memekik,CDC_6M,
+CDC,CDC-6,CDC-6-7,,6,kognitif,Memasukkan benda ke mulut untuk mengeksplorasi,CDC_6M,
+CDC,CDC-6,CDC-6-8,,6,motorik_halus,Meraih mainan yang diinginkan,CDC_6M,
+CDC,CDC-6,CDC-6-9,,6,kognitif,Menutup bibir tanda tidak mau makan lagi,CDC_6M,
+CDC,CDC-6,CDC-6-10,,6,motorik_kasar,Berguling dari tengkurap ke telentang,CDC_6M,
+CDC,CDC-6,CDC-6-11,,6,motorik_kasar,Mendorong badan dengan lengan lurus saat tengkurap,CDC_6M,
+CDC,CDC-6,CDC-6-12,,6,motorik_kasar,Bertumpu pada tangan saat duduk,CDC_6M,
+CDC,CDC-9,CDC-9-1,,9,sosial,"Malu, menempel, atau takut pada orang asing",CDC_9M,
+CDC,CDC-9,CDC-9-2,,9,sosial,"Menunjukkan beberapa ekspresi wajah (senang, sedih, marah, terkejut)",CDC_9M,
+CDC,CDC-9,CDC-9-3,,9,sosial,Menoleh saat namanya dipanggil,CDC_9M,
+CDC,CDC-9,CDC-9-4,,9,sosial,"Bereaksi saat Anda pergi (melihat, meraih, atau menangis)",CDC_9M,
+CDC,CDC-9,CDC-9-5,,9,sosial,Tersenyum/tertawa saat diajak cilukba,CDC_9M,
+CDC,CDC-9,CDC-9-6,,9,bahasa,"Mengoceh beragam seperti 'mamamama', 'babababa'",CDC_9M,
+CDC,CDC-9,CDC-9-7,,9,bahasa,Mengangkat lengan minta digendong,CDC_9M,
+CDC,CDC-9,CDC-9-8,,9,kognitif,Mencari benda yang jatuh dari pandangan,CDC_9M,
+CDC,CDC-9,CDC-9-9,,9,kognitif,Membenturkan dua benda,CDC_9M,
+CDC,CDC-9,CDC-9-10,,9,motorik_kasar,Bisa duduk sendiri dari posisi lain,CDC_9M,
+CDC,CDC-9,CDC-9-11,,9,motorik_halus,Memindahkan benda dari satu tangan ke tangan lain,CDC_9M,
+CDC,CDC-9,CDC-9-12,,9,motorik_halus,Menggunakan jari untuk 'meraup' makanan,CDC_9M,
+CDC,CDC-9,CDC-9-13,,9,motorik_kasar,Duduk tanpa ditopang,CDC_9M,
+CDC,CDC-12,CDC-12-1,,12,sosial,"Bermain bersama Anda, seperti tepuk tangan (pat-a-cake)",CDC_12M,
+CDC,CDC-12,CDC-12-2,,12,bahasa,Melambaikan tangan 'dadah',CDC_12M,
+CDC,CDC-12,CDC-12-3,,12,bahasa,Memanggil orang tua 'mama'/'papa' atau sebutan khusus lain,CDC_12M,
+CDC,CDC-12,CDC-12-4,,12,bahasa,Mengerti 'jangan' (berhenti sebentar saat dilarang),CDC_12M,
+CDC,CDC-12,CDC-12-5,,12,kognitif,"Memasukkan benda ke wadah, seperti balok ke gelas",CDC_12M,
+CDC,CDC-12,CDC-12-6,,12,kognitif,Mencari benda yang disembunyikan di depannya,CDC_12M,
+CDC,CDC-12,CDC-12-7,,12,motorik_kasar,Menarik badan untuk berdiri,CDC_12M,
+CDC,CDC-12,CDC-12-8,,12,motorik_kasar,Berjalan sambil berpegangan pada perabot,CDC_12M,
+CDC,CDC-12,CDC-12-9,,12,kemandirian,Minum dari gelas tanpa tutup yang Anda pegangi,CDC_12M,
+CDC,CDC-12,CDC-12-10,,12,motorik_halus,Mengambil benda kecil dengan ibu jari dan telunjuk,CDC_12M,
+CDC,CDC-15,CDC-15-1,,15,sosial,Meniru anak lain saat bermain,CDC_15M,
+CDC,CDC-15,CDC-15-2,,15,sosial,Menunjukkan benda yang ia sukai kepada Anda,CDC_15M,
+CDC,CDC-15,CDC-15-3,,15,sosial,Bertepuk tangan saat senang,CDC_15M,
+CDC,CDC-15,CDC-15-4,,15,sosial,Memeluk boneka atau mainan,CDC_15M,
+CDC,CDC-15,CDC-15-5,,15,sosial,"Menunjukkan kasih sayang (memeluk, mencium)",CDC_15M,
+CDC,CDC-15,CDC-15-6,,15,bahasa,Mencoba mengucapkan 1-2 kata selain 'mama/papa',CDC_15M,
+CDC,CDC-15,CDC-15-7,,15,bahasa,Melihat benda yang dikenal saat Anda menyebut namanya,CDC_15M,
+CDC,CDC-15,CDC-15-8,,15,bahasa,Mengikuti perintah yang disertai isyarat dan kata,CDC_15M,
+CDC,CDC-15,CDC-15-9,,15,bahasa,Menunjuk untuk meminta sesuatu atau minta bantuan,CDC_15M,
+CDC,CDC-15,CDC-15-10,,15,kognitif,"Mencoba memakai benda dengan benar (telepon, gelas, buku)",CDC_15M,
+CDC,CDC-15,CDC-15-11,,15,motorik_halus,Menumpuk minimal dua benda kecil seperti balok,CDC_15M,
+CDC,CDC-15,CDC-15-12,,15,motorik_kasar,Melangkah beberapa langkah sendiri,CDC_15M,
+CDC,CDC-15,CDC-15-13,,15,kemandirian,Makan sebagian makanan dengan jarinya sendiri,CDC_15M,
+CDC,CDC-18,CDC-18-1,,18,sosial,Menjauh dari Anda tetapi menoleh memastikan Anda dekat,CDC_18M,
+CDC,CDC-18,CDC-18-2,,18,sosial,Menunjuk untuk memperlihatkan sesuatu yang menarik,CDC_18M,
+CDC,CDC-18,CDC-18-3,,18,kemandirian,Menyodorkan tangan untuk dicuci,CDC_18M,
+CDC,CDC-18,CDC-18-4,,18,sosial,Melihat beberapa halaman buku bersama Anda,CDC_18M,
+CDC,CDC-18,CDC-18-5,,18,kemandirian,"Membantu saat dipakaikan baju (memasukkan lengan, mengangkat kaki)",CDC_18M,
+CDC,CDC-18,CDC-18-6,,18,bahasa,Mencoba mengucapkan 3 kata atau lebih selain 'mama/papa',CDC_18M,
+CDC,CDC-18,CDC-18-7,,18,bahasa,Mengikuti perintah satu langkah tanpa isyarat,CDC_18M,
+CDC,CDC-18,CDC-18-8,,18,kognitif,Meniru Anda mengerjakan pekerjaan rumah (menyapu),CDC_18M,
+CDC,CDC-18,CDC-18-9,,18,kognitif,Bermain mainan secara sederhana (mendorong mobil-mobilan),CDC_18M,
+CDC,CDC-18,CDC-18-10,,18,motorik_kasar,Berjalan tanpa berpegangan,CDC_18M,
+CDC,CDC-18,CDC-18-11,,18,motorik_halus,Mencoret-coret,CDC_18M,
+CDC,CDC-18,CDC-18-12,,18,kemandirian,"Minum dari gelas tanpa tutup, kadang tumpah",CDC_18M,
+CDC,CDC-18,CDC-18-13,,18,kemandirian,Makan sendiri dengan jari,CDC_18M,
+CDC,CDC-18,CDC-18-14,,18,kemandirian,Mencoba memakai sendok,CDC_18M,
+CDC,CDC-18,CDC-18-15,,18,motorik_kasar,Naik-turun sofa/kursi tanpa bantuan,CDC_18M,
+CDC,CDC-24,CDC-24-1,,24,sosial,Menyadari saat orang lain terluka/sedih,CDC_2Y,
+CDC,CDC-24,CDC-24-2,,24,sosial,Melihat wajah Anda untuk tahu cara bereaksi di situasi baru,CDC_2Y,
+CDC,CDC-24,CDC-24-3,,24,bahasa,Menunjuk gambar di buku saat ditanya ('Mana beruangnya?'),CDC_2Y,
+CDC,CDC-24,CDC-24-4,,24,bahasa,Mengucapkan minimal dua kata bersamaan ('mau susu'),CDC_2Y,
+CDC,CDC-24,CDC-24-5,,24,bahasa,Menunjuk minimal dua bagian tubuh saat diminta,CDC_2Y,
+CDC,CDC-24,CDC-24-6,,24,bahasa,"Memakai isyarat selain melambai dan menunjuk (cium jauh, mengangguk)",CDC_2Y,
+CDC,CDC-24,CDC-24-7,,24,motorik_halus,Memegang benda di satu tangan sambil memakai tangan lain (membuka tutup wadah),CDC_2Y,
+CDC,CDC-24,CDC-24-8,,24,kognitif,Mencoba memakai tombol/saklar/kenop pada mainan,CDC_2Y,
+CDC,CDC-24,CDC-24-9,,24,kognitif,Bermain dengan lebih dari satu mainan sekaligus,CDC_2Y,
+CDC,CDC-24,CDC-24-10,,24,motorik_kasar,Menendang bola,CDC_2Y,
+CDC,CDC-24,CDC-24-11,,24,motorik_kasar,Berlari,CDC_2Y,
+CDC,CDC-24,CDC-24-12,,24,motorik_kasar,Berjalan (bukan merangkak) naik beberapa anak tangga,CDC_2Y,
+CDC,CDC-24,CDC-24-13,,24,kemandirian,Makan dengan sendok,CDC_2Y,
+CDC,CDC-30,CDC-30-1,,30,sosial,Bermain di samping anak lain dan kadang bermain bersama,CDC_30M,
+CDC,CDC-30,CDC-30-2,,30,sosial,Menunjukkan kemampuannya sambil berkata 'Lihat aku!',CDC_30M,
+CDC,CDC-30,CDC-30-3,,30,sosial,"Mengikuti rutinitas sederhana bila diminta, misalnya membereskan mainan saat 'waktunya beres-beres'",CDC_30M,
+CDC,CDC-30,CDC-30-4,,30,bahasa,Mengucapkan sekitar 50 kata,CDC_30M,
+CDC,CDC-30,CDC-30-5,,30,bahasa,"Menggabungkan dua kata atau lebih dengan satu kata kerja, misalnya 'Kucing lari'",CDC_30M,
+CDC,CDC-30,CDC-30-6,,30,bahasa,Menyebut nama benda di buku saat ditunjuk dan ditanya 'Ini apa?',CDC_30M,
+CDC,CDC-30,CDC-30-7,,30,bahasa,"Memakai kata 'aku', 'saya', atau 'kita'",CDC_30M,
+CDC,CDC-30,CDC-30-8,,30,kognitif,"Memakai benda untuk berpura-pura, misalnya menyuapi boneka dengan balok",CDC_30M,
+CDC,CDC-30,CDC-30-9,,30,kognitif,"Menunjukkan pemecahan masalah sederhana, misalnya naik bangku kecil untuk meraih sesuatu",CDC_30M,
+CDC,CDC-30,CDC-30-10,,30,kognitif,"Mengikuti perintah dua langkah, misalnya 'Taruh mainannya lalu tutup pintunya'",CDC_30M,
+CDC,CDC-30,CDC-30-11,,30,kognitif,"Mengenal minimal satu warna, misalnya menunjuk krayon merah saat ditanya",CDC_30M,
+CDC,CDC-30,CDC-30-12,,30,motorik_halus,"Memutar benda dengan tangan, seperti gagang pintu atau tutup botol",CDC_30M,
+CDC,CDC-30,CDC-30-13,,30,kemandirian,"Melepas sebagian baju sendiri, seperti celana longgar atau jaket terbuka",CDC_30M,
+CDC,CDC-30,CDC-30-14,,30,motorik_kasar,Melompat dengan kedua kaki terangkat dari lantai,CDC_30M,
+CDC,CDC-30,CDC-30-15,,30,motorik_halus,Membalik halaman buku satu per satu saat dibacakan,CDC_30M,
+CDC,CDC-36,CDC-36-1,,36,sosial,Tenang dalam 10 menit setelah ditinggal (mis. di penitipan),CDC_3Y,
+CDC,CDC-36,CDC-36-2,,36,sosial,Memperhatikan anak lain dan ikut bermain,CDC_3Y,
+CDC,CDC-36,CDC-36-3,,36,bahasa,Bercakap dengan minimal dua kali saling balas,CDC_3Y,
+CDC,CDC-36,CDC-36-4,,36,bahasa,"Bertanya 'siapa', 'apa', 'di mana', atau 'kenapa'",CDC_3Y,
+CDC,CDC-36,CDC-36-5,,36,bahasa,"Menyebut aksi dalam gambar/buku saat ditanya (lari, makan)",CDC_3Y,
+CDC,CDC-36,CDC-36-6,,36,bahasa,Menyebut nama depannya saat ditanya,CDC_3Y,
+CDC,CDC-36,CDC-36-7,,36,bahasa,Bicara cukup jelas untuk dipahami orang lain hampir setiap saat,CDC_3Y,
+CDC,CDC-36,CDC-36-8,,36,kognitif,Menggambar lingkaran setelah dicontohkan,CDC_3Y,
+CDC,CDC-36,CDC-36-9,,36,kognitif,Menghindari benda panas saat diperingatkan,CDC_3Y,
+CDC,CDC-36,CDC-36-10,,36,motorik_halus,"Meronce benda besar (manik besar, makaroni)",CDC_3Y,
+CDC,CDC-36,CDC-36-11,,36,kemandirian,"Memakai sebagian baju sendiri (celana longgar, jaket)",CDC_3Y,
+CDC,CDC-36,CDC-36-12,,36,kemandirian,Memakai garpu,CDC_3Y,
+CDC,CDC-48,CDC-48-1,,48,sosial,"Berpura-pura menjadi sesuatu saat bermain (guru, superhero, anjing)",CDC_4Y,
+CDC,CDC-48,CDC-48-2,,48,sosial,Minta bermain dengan anak lain jika tidak ada teman,CDC_4Y,
+CDC,CDC-48,CDC-48-3,,48,sosial,Menghibur orang lain yang sedih/terluka,CDC_4Y,
+CDC,CDC-48,CDC-48-4,,48,sosial,Menghindari bahaya (tidak melompat dari tempat tinggi),CDC_4Y,
+CDC,CDC-48,CDC-48-5,,48,sosial,Suka menjadi 'pembantu',CDC_4Y,
+CDC,CDC-48,CDC-48-6,,48,sosial,"Mengubah perilaku sesuai tempat (tempat ibadah, perpustakaan, taman)",CDC_4Y,
+CDC,CDC-48,CDC-48-7,,48,bahasa,Mengucapkan kalimat 4 kata atau lebih,CDC_4Y,
+CDC,CDC-48,CDC-48-8,,48,bahasa,Menyanyikan/menyebut sebagian kata dari lagu atau cerita,CDC_4Y,
+CDC,CDC-48,CDC-48-9,,48,bahasa,Menceritakan minimal satu kejadian hari itu,CDC_4Y,
+CDC,CDC-48,CDC-48-10,,48,bahasa,Menjawab pertanyaan sederhana ('Jaket untuk apa?'),CDC_4Y,
+CDC,CDC-48,CDC-48-11,,48,kognitif,Menyebut beberapa warna benda,CDC_4Y,
+CDC,CDC-48,CDC-48-12,,48,kognitif,Menebak kelanjutan cerita yang sudah dikenal,CDC_4Y,
+CDC,CDC-48,CDC-48-13,,48,kognitif,Menggambar orang dengan 3 bagian tubuh atau lebih,CDC_4Y,
+CDC,CDC-48,CDC-48-14,,48,motorik_kasar,Menangkap bola besar hampir setiap kali,CDC_4Y,
+CDC,CDC-48,CDC-48-15,,48,kemandirian,Mengambil makanan/menuang air sendiri dengan diawasi,CDC_4Y,
+CDC,CDC-48,CDC-48-16,,48,motorik_halus,Membuka beberapa kancing,CDC_4Y,
+CDC,CDC-48,CDC-48-17,,48,motorik_halus,Memegang krayon/pensil dengan jari dan jempol (bukan digenggam),CDC_4Y,
+CDC,CDC-60,CDC-60-1,,60,sosial,Mengikuti aturan atau bergiliran saat bermain dengan anak lain,CDC_5Y,
+CDC,CDC-60,CDC-60-2,,60,sosial,"Bernyanyi, menari, atau berakting untuk Anda",CDC_5Y,
+CDC,CDC-60,CDC-60-3,,60,kemandirian,"Mengerjakan tugas rumah sederhana (memasangkan kaus kaki, membereskan meja)",CDC_5Y,
+CDC,CDC-60,CDC-60-4,,60,bahasa,Menceritakan kisah dengan minimal dua kejadian,CDC_5Y,
+CDC,CDC-60,CDC-60-5,,60,bahasa,Menjawab pertanyaan sederhana tentang buku/cerita,CDC_5Y,
+CDC,CDC-60,CDC-60-6,,60,bahasa,Mempertahankan percakapan lebih dari tiga kali saling balas,CDC_5Y,
+CDC,CDC-60,CDC-60-7,,60,bahasa,Mengenali/membuat rima sederhana,CDC_5Y,
+CDC,CDC-60,CDC-60-8,,60,kognitif,Berhitung sampai 10,CDC_5Y,
+CDC,CDC-60,CDC-60-9,,60,kognitif,Menyebut beberapa angka 1-5 saat ditunjuk,CDC_5Y,
+CDC,CDC-60,CDC-60-10,,60,kognitif,"Memakai kata waktu (kemarin, besok, pagi, malam)",CDC_5Y,
+CDC,CDC-60,CDC-60-11,,60,kognitif,Fokus 5-10 menit dalam kegiatan (bukan layar),CDC_5Y,
+CDC,CDC-60,CDC-60-12,,60,kognitif,Menulis beberapa huruf namanya,CDC_5Y,
+CDC,CDC-60,CDC-60-13,,60,kognitif,Menyebut beberapa huruf saat ditunjuk,CDC_5Y,
+CDC,CDC-60,CDC-60-14,,60,motorik_halus,Mengancingkan beberapa kancing,CDC_5Y,
+CDC,CDC-60,CDC-60-15,,60,motorik_kasar,Melompat dengan satu kaki,CDC_5Y,

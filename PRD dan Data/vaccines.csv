@@ -1,0 +1,63 @@
+﻿id,schedule,vaccine,dose,recommended_months,recommended_days,mulai_bisa_months,mulai_bisa_days,paling_lambat_months,paling_lambat_days,batas_maksimal_months,batas_maksimal_days,min_interval_days,relative_to,recurrence,verification,condition,trigger,school_grade,sex,note,source,related_source
+K-HB0,KEMENKES,HB,HB0,0,0,0,0,0,1,0,6,,,,partial,,,,,Optimal < 24 jam setelah lahir (Kemenkes 2025; CDC: dalam 24 jam). Permenkes 12/2017 Lampiran hal. 38: bila akses sulit masih diperkenankan sampai < 7 hari. HB0 tidak termasuk vaksin yang boleh dikejar sampai usia 1 tahun. < 24 jam setelah lahir; 'Paling lambat' = tanggal lahir + 1 hari karena 24 jam bisa melewati tengah malam.,KEMENKES_JADWAL_2025,PERMENKES_12_2017
+K-BCG,KEMENKES,BCG,BCG,0,0,0,0,1,-1,12,-1,,,,partial,,,,,"Jadwal Kemenkes 2025: usia < 1 bulan. Permenkes 12/2017 Lampiran hal. 38: optimal sampai usia 2 bulan, dapat diberikan sampai usia < 1 tahun tanpa tes Mantoux. Lewat 1 tahun: konsultasi petugas.",KEMENKES_JADWAL_2025,PERMENKES_12_2017
+K-OPV1,KEMENKES,OPV,OPV1,0,0,0,0,1,-1,,,,,,verified,,,,,"Usia < 1 bulan, bersama BCG.",KEMENKES_JADWAL_2025,
+K-DPT1,KEMENKES,DPT-HB-Hib,DPT-HB-Hib 1,2,0,2,0,3,-1,,,,,,verified,,,,,"Mulai Okt 2025 di sebagian provinsi dan target nasional 2026, DPT-HB-Hib + IPV diganti vaksin Heksavalen pada usia 2, 3, 4 bulan (tetap dengan bOPV). Tampilkan nama sesuai wilayah/fasilitas.",KEMENKES_JADWAL_2025,KEMENKES_HEKSAVALEN_2025
+K-OPV2,KEMENKES,OPV,OPV2,2,0,2,0,3,-1,,,,,,verified,,,,,,KEMENKES_JADWAL_2025,
+K-PCV1,KEMENKES,PCV,PCV1,2,0,2,0,3,-1,,,,,,verified,,,,,,KEMENKES_JADWAL_2025,
+K-RV1,KEMENKES,RV,RV1,2,0,2,0,3,-1,0,104,,,,partial,,,,,"Dosis pertama minimal usia 6 minggu, paling lambat usia 14 minggu 6 hari (CDC catch-up). Jangan memulai seri pada usia >= 15 minggu. Semua dosis selesai sebelum usia 8 bulan 0 hari (CDC; Permenkes 12/2017: maksimal 8 bulan). Status partial: batas CDC berlaku untuk RotaTeq/Rotarix; vaksin program Kemenkes (produksi dalam negeri) bisa berbeda, cocokkan dengan Juknis/kemasan.",KEMENKES_JADWAL_2025,CDC_CATCHUP
+K-DPT2,KEMENKES,DPT-HB-Hib,DPT-HB-Hib 2,3,0,3,0,4,-1,,,28,,,verified,,,,,,KEMENKES_JADWAL_2025,
+K-OPV3,KEMENKES,OPV,OPV3,3,0,3,0,4,-1,,,,,,verified,,,,,,KEMENKES_JADWAL_2025,
+K-PCV2,KEMENKES,PCV,PCV2,3,0,3,0,4,-1,,,,,,verified,,,,,,KEMENKES_JADWAL_2025,
+K-RV2,KEMENKES,RV,RV2,3,0,3,0,4,-1,8,0,28,,,partial,,,,,"Jarak minimal 4 minggu dari dosis sebelumnya. Batas akhir dosis terakhir usia 8 bulan 0 hari (CDC catch-up; Permenkes 12/2017 Lampiran hal. 53: maksimal 8 bulan). Bila dosis 1 belum diberikan sebelum 15 minggu, seri tidak dimulai.",KEMENKES_JADWAL_2025,CDC_CATCHUP
+K-DPT3,KEMENKES,DPT-HB-Hib,DPT-HB-Hib 3,4,0,4,0,5,-1,,,28,,,verified,,,,,,KEMENKES_JADWAL_2025,
+K-OPV4,KEMENKES,OPV,OPV4,4,0,4,0,5,-1,,,,,,verified,,,,,,KEMENKES_JADWAL_2025,
+K-IPV1,KEMENKES,IPV,IPV1,4,0,4,0,5,-1,,,,,,verified,,,,,Disuntik di paha berbeda dari DPT-HB-Hib.,KEMENKES_ANTIGEN_BARU_2024,
+K-RV3,KEMENKES,RV,RV3,4,0,4,0,5,-1,8,0,28,,,partial,,,,,"Jarak minimal 4 minggu dari dosis sebelumnya. Batas akhir dosis terakhir usia 8 bulan 0 hari (CDC catch-up; Permenkes 12/2017 Lampiran hal. 53: maksimal 8 bulan). Bila dosis 1 belum diberikan sebelum 15 minggu, seri tidak dimulai.",KEMENKES_JADWAL_2025,CDC_CATCHUP
+K-MR1,KEMENKES,MR,MR1,9,0,9,0,10,-1,,,,,,verified,,,,,,KEMENKES_JADWAL_2025,
+K-IPV2,KEMENKES,IPV,IPV2,9,0,9,0,10,-1,,,,,,verified,,,,,Bersamaan dengan MR1.,KEMENKES_ANTIGEN_BARU_2024,
+K-JE,KEMENKES,JE,JE,10,0,10,0,11,-1,,,,,,verified,region_endemic_je,,,,Hanya di daerah endemis JE. Tampilkan hanya jika pengguna mengaktifkan / provinsi termasuk endemis.,KEMENKES_JADWAL_2025,
+K-PCV3,KEMENKES,PCV,PCV3 (booster),12,0,12,0,24,-1,24,-1,,,,verified,,,,,Kemenkes: 1 kali pada usia 12-24 bulan.,KEMENKES_JADWAL_2025,KEMENKES_ANTIGEN_BARU_2024
+K-DPT4,KEMENKES,DPT-HB-Hib,DPT-HB-Hib 4 (lanjutan baduta),18,0,18,0,24,-1,24,-1,,,,verified,,,,,Imunisasi lanjutan baduta usia 18-24 bulan.,KEMENKES_JADWAL_2025,KEMENKES_3VAKSIN_2022
+K-MR2,KEMENKES,MR,MR2 (lanjutan baduta),18,0,18,0,24,-1,24,-1,,,,verified,,,,,,KEMENKES_JADWAL_2025,KEMENKES_3VAKSIN_2022
+K-BIAS-MR,KEMENKES,MR,MR (BIAS kelas 1 SD),84,0,,,,,,,,,,verified,,school_grade,1,,Diberikan di sekolah lewat BIAS. App menampilkan pengingat informatif saat anak sekitar usia 7 tahun / kelas 1.,KEMENKES_JADWAL_2025,
+K-BIAS-DT,KEMENKES,DT,DT (BIAS kelas 1 SD),84,0,,,,,,,,,,verified,,school_grade,1,,,KEMENKES_JADWAL_2025,
+K-BIAS-Td2,KEMENKES,Td,Td (BIAS kelas 2 SD),96,0,,,,,,,,,,verified,,school_grade,2,,,KEMENKES_JADWAL_2025,
+K-BIAS-Td5,KEMENKES,Td,Td (BIAS kelas 5 SD),132,0,,,,,,,,,,verified,,school_grade,5,,,KEMENKES_JADWAL_2025,
+K-BIAS-HPV1,KEMENKES,HPV,"HPV 1 (BIAS kelas 5 SD, perempuan)",132,0,,,,,,,,,,verified,,school_grade,5,F,,KEMENKES_JADWAL_2025,
+K-BIAS-HPV2,KEMENKES,HPV,"HPV 2 (BIAS kelas 6 SD, perempuan)",144,0,,,,,,,,,,verified,,school_grade,6,F,,KEMENKES_JADWAL_2025,
+I-HB0,IDAI,HB,Hepatitis B 0,0,0,0,0,0,1,,,,,,verified,,,,,Saat lahir (< 24 jam). < 24 jam setelah lahir; 'Paling lambat' = tanggal lahir + 1 hari karena 24 jam bisa melewati tengah malam.,IDAI_JADWAL_2024,
+I-POL0,IDAI,OPV,Polio 0,0,0,0,0,1,-1,,,,,,verified,,,,,,IDAI_JADWAL_2024,
+I-BCG,IDAI,BCG,BCG,0,0,0,0,1,-1,12,-1,,,,partial,,,,,"IDAI: setelah lahir, sebelum usia 1 bulan. Batas akhir mengikuti Permenkes 12/2017 (< 1 tahun tanpa Mantoux); untuk aturan IDAI lewat 3 bulan, konfirmasi ke dokter.",IDAI_JADWAL_2024,PERMENKES_12_2017
+I-M2,IDAI,DTP,DTP-HB-Hib-Polio 1 (kombinasi),2,0,2,0,3,-1,,,,,,verified,,,,,"Hep B 1, Hib 1, Polio 1 dapat dalam vaksin kombinasi.",IDAI_JADWAL_2024,
+I-PCV1,IDAI,PCV,PCV1,2,0,2,0,3,-1,,,,,,verified,,,,,,IDAI_JADWAL_2024,
+I-RV1,IDAI,RV,Rotavirus 1,2,0,1,14,3,-1,0,104,,,,partial,,,,,"Dosis pertama minimal usia 6 minggu, paling lambat usia 14 minggu 6 hari (CDC catch-up). Jangan memulai seri pada usia >= 15 minggu. Semua dosis selesai sebelum usia 8 bulan 0 hari (CDC; Permenkes 12/2017: maksimal 8 bulan). Status partial: batas CDC berlaku untuk RotaTeq/Rotarix; vaksin program Kemenkes (produksi dalam negeri) bisa berbeda, cocokkan dengan Juknis/kemasan.",IDAI_JADWAL_2024,CDC_CATCHUP
+I-M3,IDAI,DTP,DTP-HB-Hib-Polio 2,3,0,3,0,4,-1,,,28,,,verified,,,,,IDAI: DTP 2 pada usia 3 atau 4 bulan.,IDAI_JADWAL_2024,
+I-M4,IDAI,DTP,DTP-HB-Hib-Polio 3,4,0,4,0,7,-1,,,28,,,verified,,,,,IDAI: DTP 3 pada usia 4 atau 6 bulan.,IDAI_JADWAL_2024,
+I-PCV2,IDAI,PCV,PCV2,4,0,4,0,5,-1,,,,,,verified,,,,,,IDAI_JADWAL_2024,
+I-RV2,IDAI,RV,Rotavirus 2,4,0,3,0,5,-1,8,0,28,,,partial,,,,,"Jarak minimal 4 minggu dari dosis sebelumnya. Batas akhir dosis terakhir usia 8 bulan 0 hari (CDC catch-up; Permenkes 12/2017 Lampiran hal. 53: maksimal 8 bulan). Bila dosis 1 belum diberikan sebelum 15 minggu, seri tidak dimulai. Untuk vaksin monovalen (2 dosis) ini dosis terakhir.",IDAI_JADWAL_2024,CDC_CATCHUP
+I-PCV3,IDAI,PCV,PCV3,6,0,6,0,7,-1,,,,,,verified,,,,,,IDAI_JADWAL_2024,
+I-RV3,IDAI,RV,Rotavirus 3 (hanya pentavalen),6,0,5,0,7,-1,8,0,28,,,partial,rv_pentavalent,,,,"Jarak minimal 4 minggu dari dosis sebelumnya. Batas akhir dosis terakhir usia 8 bulan 0 hari (CDC catch-up; Permenkes 12/2017 Lampiran hal. 53: maksimal 8 bulan). Bila dosis 1 belum diberikan sebelum 15 minggu, seri tidak dimulai.",IDAI_JADWAL_2024,CDC_CATCHUP
+I-INF1,IDAI,INF,Influenza 1,6,0,6,0,7,-1,,,,,,verified,,,,,,IDAI_JADWAL_2024,
+I-EV71-1,IDAI,EV71,EV71 1,6,0,6,0,36,-1,36,-1,,,,verified,,,,,"Usia 6 bulan - 3 tahun, 2 dosis jarak 1 bulan.",IDAI_JADWAL_2024,
+I-INF2,IDAI,INF,Influenza 2,7,0,7,0,8,-1,,,28,,,verified,,,,,,IDAI_JADWAL_2024,
+I-EV71-2,IDAI,EV71,EV71 2,7,0,7,0,36,-1,36,-1,28,,,verified,,,,,,IDAI_JADWAL_2024,
+I-MR,IDAI,MR,MR,9,0,9,0,10,-1,,,,,,verified,,,,,,IDAI_JADWAL_2024,
+I-JE1,IDAI,JE,JE 1,9,0,9,0,10,-1,,,,,,verified,region_endemic_je,,,,,IDAI_JADWAL_2024,
+I-PCV4,IDAI,PCV,PCV booster,12,0,12,0,16,-1,,,,,,verified,,,,,Booster usia 12-15 bulan.,IDAI_PCV_2024,
+I-VAR1,IDAI,VAR,Varisela 1,12,0,12,0,13,-1,,,,,,verified,,,,,,IDAI_JADWAL_2024,
+I-HEPA1,IDAI,HepA,Hepatitis A 1,12,0,12,0,13,-1,,,,,,verified,,,,,,IDAI_JADWAL_2024,
+I-VAR2,IDAI,VAR,Varisela 2,14,0,,,,,,,,"{""dose"": ""I-VAR1"", ""offset"": {""months"": 0, ""days"": 90}, ""not_before"": {""months"": 14, ""days"": 0}, ""on_time_window"": {""months"": 1, ""days"": -1}}",,unverified,,,,,"Mulai bisa = max(Varisela 1 + 90 hari, usia 14 bulan). Paling lambat = Mulai bisa + 1 bulan - 1 hari. 90 hari (bukan 3 bulan kalender) dipakai karena 3 bulan kalender bisa < 90 hari (mis. Feb-Apr). Rangkuman IDAI menyebut 14 bulan; CDC catch-up mensyaratkan jarak minimal 3 bulan. Tunggu dokumen resmi IDAI.",IDAI_JADWAL_2024,CDC_CATCHUP
+I-M18,IDAI,DTP,DTP-HB-Hib-Polio 4 (booster),18,0,18,0,19,-1,,,,,,verified,,,,,,IDAI_JADWAL_2024,
+I-MMR1,IDAI,MMR,MMR 1,18,0,18,0,19,-1,,,,,,verified,,,,,,IDAI_JADWAL_2024,
+I-HEPA2,IDAI,HepA,Hepatitis A 2,18,0,18,0,19,-1,,,,,,verified,,,,,,IDAI_JADWAL_2024,
+I-JE2,IDAI,JE,JE 2,24,0,24,0,25,-1,,,,,,verified,region_endemic_je,,,,,IDAI_JADWAL_2024,
+I-TYP1,IDAI,TYP,Tifoid 1,24,0,24,0,25,-1,,,,,"{""after_dose"": ""I-TYP1"", ""every_months"": 36, ""until"": {""months"": 216, ""days"": 0}}",verified,,,,,,IDAI_JADWAL_2024,
+I-INF-YEARLY,IDAI,INF,Influenza tahunan,19,0,,,,,,,,,"{""after_dose"": ""I-INF2"", ""every_months"": 12, ""until"": {""months"": 216, ""days"": 0}}",verified,,,,,1 dosis setiap tahun setelah 2 dosis awal.,IDAI_JADWAL_2024,
+I-M60,IDAI,DTP,DTP 5 + Polio 5,60,0,60,0,96,-1,,,,,,verified,,,,,Usia 5-7 tahun. Usia 5-7 tahun: paling lambat sehari sebelum ulang tahun ke-8.,IDAI_JADWAL_2024,
+I-MMR2,IDAI,MMR,MMR 2,60,0,60,0,96,-1,,,,,,verified,,,,,Usia 5-7 tahun: paling lambat sehari sebelum ulang tahun ke-8.,IDAI_JADWAL_2024,
+I-DEN1,IDAI,DEN,Dengue 1,72,0,72,0,,,,,,,,verified,,,,,Usia minimal 6 tahun; dosis 2 tiga bulan kemudian.,IDAI_JADWAL_2024,
+I-DEN2,IDAI,DEN,Dengue 2,75,0,,,,,,,,"{""dose"": ""I-DEN1"", ""offset"": {""months"": 3, ""days"": 0}, ""on_time_window"": {""months"": 1, ""days"": -1}}",,verified,,,,,,IDAI_JADWAL_2024,
+I-HPV1,IDAI,HPV,HPV 1,108,0,108,0,180,-1,,,,,,verified,,,,,"Usia 9-14 tahun: 2 dosis (dosis 2 enam bulan setelah dosis 1). Usia >=15 tahun: 3 dosis (0, 2, 6 bulan).",IDAI_JADWAL_2024,
+I-HPV2,IDAI,HPV,HPV 2,114,0,,,,,,,,"{""dose"": ""I-HPV1"", ""offset"": {""months"": 6, ""days"": 0}, ""on_time_window"": {""months"": 1, ""days"": -1}}",,verified,,,,,,IDAI_JADWAL_2024,
+I-TDAP,IDAI,DTP,Tdap (DTP 6),120,0,120,0,228,-1,,,,,,verified,,,,,Usia 10-18 tahun: paling lambat sehari sebelum ulang tahun ke-19.,IDAI_JADWAL_2024,

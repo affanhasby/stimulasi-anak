@@ -1,0 +1,1586 @@
+{
+  "_info": "Jadwal imunisasi. Usia = offset dari tanggal lahir {months, days}: tanggal = addMonths(lahir, months) (tanggal yang tidak ada dibulatkan ke akhir bulan) lalu addDays(days). Tiga tanggal per dosis, SEMUANYA INKLUSIF (hari itu masih termasuk): `earliest` = label UI 'Mulai bisa'; `on_time_until` = label UI 'Paling lambat' (hari terakhir yang masih tepat waktu menurut jadwal); `max_until` = label UI 'Batas maksimal' (hari terakhir dosis masih boleh dikejar; null = sumber tidak menyebut batas tegas, tampilkan 'Terlambat - konsultasikan ke petugas'). Status verifikasi HANYA di field `verification`: 'verified' = angka dibaca langsung dari sumber; 'partial' = sumber resmi ada tetapi kutipan dari ringkasan atau dari sumber luar negeri, tampilkan 'konfirmasi ke petugas' di samping batas; 'unverified' = belum ada sumber yang mengonfirmasi. Dosis RELATIF (punya `relative_to`, tanpa `earliest`/`on_time_until`): Mulai bisa = max(tanggal dosis acuan yang sudah diberikan + `offset`, tanggal lahir + `not_before` bila ada); Paling lambat = Mulai bisa + `on_time_window`. Selama dosis acuan belum diberikan, tampilkan 'menunggu [dosis acuan]'; `recommended` hanya perkiraan. Dosis BERULANG (punya `recurrence`): diulang tiap `every_months` setelah tanggal pemberian dosis `after_dose`, sampai usia `until`. Satu aturan per dosis: dosis relatif tidak memakai `min_interval_days_from_prev`, dosis berulang tidak memakai `repeat_every_months`/`until` di level dosis.",
+  "as_of": "2026-11-21",
+  "schedules": [
+    {
+      "id": "KEMENKES",
+      "label": "Program pemerintah (Posyandu/Puskesmas, gratis)",
+      "default": true,
+      "source": "KEMENKES_JADWAL_2025"
+    },
+    {
+      "id": "IDAI",
+      "label": "Rekomendasi IDAI (dokter anak/RS swasta)",
+      "default": false,
+      "source": "IDAI_JADWAL_2024"
+    }
+  ],
+  "vaccines": [
+    {
+      "code": "HB",
+      "name": "Hepatitis B",
+      "protects": "Hepatitis B"
+    },
+    {
+      "code": "BCG",
+      "name": "BCG",
+      "protects": "Tuberkulosis (TBC) berat"
+    },
+    {
+      "code": "OPV",
+      "name": "Polio tetes (bOPV)",
+      "protects": "Polio"
+    },
+    {
+      "code": "IPV",
+      "name": "Polio suntik (IPV)",
+      "protects": "Polio"
+    },
+    {
+      "code": "DPT-HB-Hib",
+      "name": "DPT-HB-Hib (Pentavalen)",
+      "protects": "Difteri, pertusis (batuk rejan), tetanus, hepatitis B, pneumonia & meningitis Hib"
+    },
+    {
+      "code": "PCV",
+      "name": "PCV (Pneumokokus)",
+      "protects": "Pneumonia, meningitis, infeksi telinga akibat pneumokokus"
+    },
+    {
+      "code": "RV",
+      "name": "Rotavirus",
+      "protects": "Diare berat akibat rotavirus"
+    },
+    {
+      "code": "MR",
+      "name": "Campak-Rubela (MR)",
+      "protects": "Campak dan rubela"
+    },
+    {
+      "code": "JE",
+      "name": "Japanese Encephalitis",
+      "protects": "Radang otak JE (daerah endemis)"
+    },
+    {
+      "code": "DT",
+      "name": "DT",
+      "protects": "Difteri, tetanus"
+    },
+    {
+      "code": "Td",
+      "name": "Td",
+      "protects": "Tetanus, difteri"
+    },
+    {
+      "code": "HPV",
+      "name": "HPV",
+      "protects": "Kanker leher rahim"
+    },
+    {
+      "code": "DTP",
+      "name": "DTP (kombinasi swasta)",
+      "protects": "Difteri, pertusis, tetanus"
+    },
+    {
+      "code": "Hib",
+      "name": "Hib",
+      "protects": "Pneumonia & meningitis Hib"
+    },
+    {
+      "code": "INF",
+      "name": "Influenza",
+      "protects": "Influenza"
+    },
+    {
+      "code": "MMR",
+      "name": "MMR",
+      "protects": "Campak, gondongan, rubela"
+    },
+    {
+      "code": "VAR",
+      "name": "Varisela",
+      "protects": "Cacar air"
+    },
+    {
+      "code": "HepA",
+      "name": "Hepatitis A",
+      "protects": "Hepatitis A"
+    },
+    {
+      "code": "TYP",
+      "name": "Tifoid",
+      "protects": "Demam tifoid"
+    },
+    {
+      "code": "DEN",
+      "name": "Dengue",
+      "protects": "Demam berdarah dengue"
+    },
+    {
+      "code": "EV71",
+      "name": "EV71 (HFMD)",
+      "protects": "Flu Singapura (penyakit tangan, kaki, mulut) akibat EV71"
+    }
+  ],
+  "doses": [
+    {
+      "id": "K-HB0",
+      "schedule": "KEMENKES",
+      "vaccine": "HB",
+      "dose": "HB0",
+      "recommended": {
+        "months": 0,
+        "days": 0
+      },
+      "earliest": {
+        "months": 0,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 0,
+        "days": 1
+      },
+      "max_until": {
+        "months": 0,
+        "days": 6
+      },
+      "note": "Optimal < 24 jam setelah lahir (Kemenkes 2025; CDC: dalam 24 jam). Permenkes 12/2017 Lampiran hal. 38: bila akses sulit masih diperkenankan sampai < 7 hari. HB0 tidak termasuk vaksin yang boleh dikejar sampai usia 1 tahun.",
+      "source": "KEMENKES_JADWAL_2025",
+      "verification": "partial",
+      "related_source": "PERMENKES_12_2017",
+      "on_time_note": "< 24 jam setelah lahir; 'Paling lambat' = tanggal lahir + 1 hari karena 24 jam bisa melewati tengah malam."
+    },
+    {
+      "id": "K-BCG",
+      "schedule": "KEMENKES",
+      "vaccine": "BCG",
+      "dose": "BCG",
+      "recommended": {
+        "months": 0,
+        "days": 0
+      },
+      "earliest": {
+        "months": 0,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 1,
+        "days": -1
+      },
+      "max_until": {
+        "months": 12,
+        "days": -1
+      },
+      "note": "Jadwal Kemenkes 2025: usia < 1 bulan. Permenkes 12/2017 Lampiran hal. 38: optimal sampai usia 2 bulan, dapat diberikan sampai usia < 1 tahun tanpa tes Mantoux. Lewat 1 tahun: konsultasi petugas.",
+      "source": "KEMENKES_JADWAL_2025",
+      "verification": "partial",
+      "related_source": "PERMENKES_12_2017"
+    },
+    {
+      "id": "K-OPV1",
+      "schedule": "KEMENKES",
+      "vaccine": "OPV",
+      "dose": "OPV1",
+      "recommended": {
+        "months": 0,
+        "days": 0
+      },
+      "earliest": {
+        "months": 0,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 1,
+        "days": -1
+      },
+      "max_until": null,
+      "note": "Usia < 1 bulan, bersama BCG.",
+      "source": "KEMENKES_JADWAL_2025",
+      "verification": "verified"
+    },
+    {
+      "id": "K-DPT1",
+      "schedule": "KEMENKES",
+      "vaccine": "DPT-HB-Hib",
+      "dose": "DPT-HB-Hib 1",
+      "recommended": {
+        "months": 2,
+        "days": 0
+      },
+      "earliest": {
+        "months": 2,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 3,
+        "days": -1
+      },
+      "max_until": null,
+      "note": "Mulai Okt 2025 di sebagian provinsi dan target nasional 2026, DPT-HB-Hib + IPV diganti vaksin Heksavalen pada usia 2, 3, 4 bulan (tetap dengan bOPV). Tampilkan nama sesuai wilayah/fasilitas.",
+      "source": "KEMENKES_JADWAL_2025",
+      "related_source": "KEMENKES_HEKSAVALEN_2025",
+      "verification": "verified"
+    },
+    {
+      "id": "K-OPV2",
+      "schedule": "KEMENKES",
+      "vaccine": "OPV",
+      "dose": "OPV2",
+      "recommended": {
+        "months": 2,
+        "days": 0
+      },
+      "earliest": {
+        "months": 2,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 3,
+        "days": -1
+      },
+      "max_until": null,
+      "source": "KEMENKES_JADWAL_2025",
+      "verification": "verified"
+    },
+    {
+      "id": "K-PCV1",
+      "schedule": "KEMENKES",
+      "vaccine": "PCV",
+      "dose": "PCV1",
+      "recommended": {
+        "months": 2,
+        "days": 0
+      },
+      "earliest": {
+        "months": 2,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 3,
+        "days": -1
+      },
+      "max_until": null,
+      "source": "KEMENKES_JADWAL_2025",
+      "verification": "verified"
+    },
+    {
+      "id": "K-RV1",
+      "schedule": "KEMENKES",
+      "vaccine": "RV",
+      "dose": "RV1",
+      "recommended": {
+        "months": 2,
+        "days": 0
+      },
+      "earliest": {
+        "months": 2,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 3,
+        "days": -1
+      },
+      "max_until": {
+        "months": 0,
+        "days": 104
+      },
+      "note": "Dosis pertama minimal usia 6 minggu, paling lambat usia 14 minggu 6 hari (CDC catch-up). Jangan memulai seri pada usia >= 15 minggu. Semua dosis selesai sebelum usia 8 bulan 0 hari (CDC; Permenkes 12/2017: maksimal 8 bulan). Status partial: batas CDC berlaku untuk RotaTeq/Rotarix; vaksin program Kemenkes (produksi dalam negeri) bisa berbeda, cocokkan dengan Juknis/kemasan.",
+      "source": "KEMENKES_JADWAL_2025",
+      "related_source": "CDC_CATCHUP",
+      "min_age": {
+        "months": 0,
+        "days": 42
+      },
+      "verification": "partial"
+    },
+    {
+      "id": "K-DPT2",
+      "schedule": "KEMENKES",
+      "vaccine": "DPT-HB-Hib",
+      "dose": "DPT-HB-Hib 2",
+      "recommended": {
+        "months": 3,
+        "days": 0
+      },
+      "earliest": {
+        "months": 3,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 4,
+        "days": -1
+      },
+      "min_interval_days_from_prev": 28,
+      "max_until": null,
+      "source": "KEMENKES_JADWAL_2025",
+      "verification": "verified"
+    },
+    {
+      "id": "K-OPV3",
+      "schedule": "KEMENKES",
+      "vaccine": "OPV",
+      "dose": "OPV3",
+      "recommended": {
+        "months": 3,
+        "days": 0
+      },
+      "earliest": {
+        "months": 3,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 4,
+        "days": -1
+      },
+      "max_until": null,
+      "source": "KEMENKES_JADWAL_2025",
+      "verification": "verified"
+    },
+    {
+      "id": "K-PCV2",
+      "schedule": "KEMENKES",
+      "vaccine": "PCV",
+      "dose": "PCV2",
+      "recommended": {
+        "months": 3,
+        "days": 0
+      },
+      "earliest": {
+        "months": 3,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 4,
+        "days": -1
+      },
+      "max_until": null,
+      "source": "KEMENKES_JADWAL_2025",
+      "verification": "verified"
+    },
+    {
+      "id": "K-RV2",
+      "schedule": "KEMENKES",
+      "vaccine": "RV",
+      "dose": "RV2",
+      "recommended": {
+        "months": 3,
+        "days": 0
+      },
+      "earliest": {
+        "months": 3,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 4,
+        "days": -1
+      },
+      "max_until": {
+        "months": 8,
+        "days": 0
+      },
+      "source": "KEMENKES_JADWAL_2025",
+      "min_age": {
+        "months": 0,
+        "days": 42
+      },
+      "verification": "partial",
+      "min_interval_days_from_prev": 28,
+      "note": "Jarak minimal 4 minggu dari dosis sebelumnya. Batas akhir dosis terakhir usia 8 bulan 0 hari (CDC catch-up; Permenkes 12/2017 Lampiran hal. 53: maksimal 8 bulan). Bila dosis 1 belum diberikan sebelum 15 minggu, seri tidak dimulai.",
+      "related_source": "CDC_CATCHUP"
+    },
+    {
+      "id": "K-DPT3",
+      "schedule": "KEMENKES",
+      "vaccine": "DPT-HB-Hib",
+      "dose": "DPT-HB-Hib 3",
+      "recommended": {
+        "months": 4,
+        "days": 0
+      },
+      "earliest": {
+        "months": 4,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 5,
+        "days": -1
+      },
+      "min_interval_days_from_prev": 28,
+      "max_until": null,
+      "source": "KEMENKES_JADWAL_2025",
+      "verification": "verified"
+    },
+    {
+      "id": "K-OPV4",
+      "schedule": "KEMENKES",
+      "vaccine": "OPV",
+      "dose": "OPV4",
+      "recommended": {
+        "months": 4,
+        "days": 0
+      },
+      "earliest": {
+        "months": 4,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 5,
+        "days": -1
+      },
+      "max_until": null,
+      "source": "KEMENKES_JADWAL_2025",
+      "verification": "verified"
+    },
+    {
+      "id": "K-IPV1",
+      "schedule": "KEMENKES",
+      "vaccine": "IPV",
+      "dose": "IPV1",
+      "recommended": {
+        "months": 4,
+        "days": 0
+      },
+      "earliest": {
+        "months": 4,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 5,
+        "days": -1
+      },
+      "max_until": null,
+      "note": "Disuntik di paha berbeda dari DPT-HB-Hib.",
+      "source": "KEMENKES_ANTIGEN_BARU_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "K-RV3",
+      "schedule": "KEMENKES",
+      "vaccine": "RV",
+      "dose": "RV3",
+      "recommended": {
+        "months": 4,
+        "days": 0
+      },
+      "earliest": {
+        "months": 4,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 5,
+        "days": -1
+      },
+      "max_until": {
+        "months": 8,
+        "days": 0
+      },
+      "source": "KEMENKES_JADWAL_2025",
+      "min_age": {
+        "months": 0,
+        "days": 42
+      },
+      "verification": "partial",
+      "min_interval_days_from_prev": 28,
+      "note": "Jarak minimal 4 minggu dari dosis sebelumnya. Batas akhir dosis terakhir usia 8 bulan 0 hari (CDC catch-up; Permenkes 12/2017 Lampiran hal. 53: maksimal 8 bulan). Bila dosis 1 belum diberikan sebelum 15 minggu, seri tidak dimulai.",
+      "related_source": "CDC_CATCHUP"
+    },
+    {
+      "id": "K-MR1",
+      "schedule": "KEMENKES",
+      "vaccine": "MR",
+      "dose": "MR1",
+      "recommended": {
+        "months": 9,
+        "days": 0
+      },
+      "earliest": {
+        "months": 9,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 10,
+        "days": -1
+      },
+      "max_until": null,
+      "source": "KEMENKES_JADWAL_2025",
+      "verification": "verified"
+    },
+    {
+      "id": "K-IPV2",
+      "schedule": "KEMENKES",
+      "vaccine": "IPV",
+      "dose": "IPV2",
+      "recommended": {
+        "months": 9,
+        "days": 0
+      },
+      "earliest": {
+        "months": 9,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 10,
+        "days": -1
+      },
+      "max_until": null,
+      "note": "Bersamaan dengan MR1.",
+      "source": "KEMENKES_ANTIGEN_BARU_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "K-JE",
+      "schedule": "KEMENKES",
+      "vaccine": "JE",
+      "dose": "JE",
+      "recommended": {
+        "months": 10,
+        "days": 0
+      },
+      "earliest": {
+        "months": 10,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 11,
+        "days": -1
+      },
+      "max_until": null,
+      "condition": "region_endemic_je",
+      "note": "Hanya di daerah endemis JE. Tampilkan hanya jika pengguna mengaktifkan / provinsi termasuk endemis.",
+      "source": "KEMENKES_JADWAL_2025",
+      "verification": "verified"
+    },
+    {
+      "id": "K-PCV3",
+      "schedule": "KEMENKES",
+      "vaccine": "PCV",
+      "dose": "PCV3 (booster)",
+      "recommended": {
+        "months": 12,
+        "days": 0
+      },
+      "earliest": {
+        "months": 12,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 24,
+        "days": -1
+      },
+      "max_until": {
+        "months": 24,
+        "days": -1
+      },
+      "note": "Kemenkes: 1 kali pada usia 12-24 bulan.",
+      "source": "KEMENKES_JADWAL_2025",
+      "related_source": "KEMENKES_ANTIGEN_BARU_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "K-DPT4",
+      "schedule": "KEMENKES",
+      "vaccine": "DPT-HB-Hib",
+      "dose": "DPT-HB-Hib 4 (lanjutan baduta)",
+      "recommended": {
+        "months": 18,
+        "days": 0
+      },
+      "earliest": {
+        "months": 18,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 24,
+        "days": -1
+      },
+      "max_until": {
+        "months": 24,
+        "days": -1
+      },
+      "note": "Imunisasi lanjutan baduta usia 18-24 bulan.",
+      "source": "KEMENKES_JADWAL_2025",
+      "related_source": "KEMENKES_3VAKSIN_2022",
+      "verification": "verified"
+    },
+    {
+      "id": "K-MR2",
+      "schedule": "KEMENKES",
+      "vaccine": "MR",
+      "dose": "MR2 (lanjutan baduta)",
+      "recommended": {
+        "months": 18,
+        "days": 0
+      },
+      "earliest": {
+        "months": 18,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 24,
+        "days": -1
+      },
+      "max_until": {
+        "months": 24,
+        "days": -1
+      },
+      "source": "KEMENKES_JADWAL_2025",
+      "related_source": "KEMENKES_3VAKSIN_2022",
+      "verification": "verified"
+    },
+    {
+      "id": "K-BIAS-MR",
+      "schedule": "KEMENKES",
+      "vaccine": "MR",
+      "dose": "MR (BIAS kelas 1 SD)",
+      "trigger": "school_grade",
+      "school_grade": 1,
+      "approx_age": {
+        "months": 84,
+        "days": 0
+      },
+      "note": "Diberikan di sekolah lewat BIAS. App menampilkan pengingat informatif saat anak sekitar usia 7 tahun / kelas 1.",
+      "source": "KEMENKES_JADWAL_2025",
+      "verification": "verified"
+    },
+    {
+      "id": "K-BIAS-DT",
+      "schedule": "KEMENKES",
+      "vaccine": "DT",
+      "dose": "DT (BIAS kelas 1 SD)",
+      "trigger": "school_grade",
+      "school_grade": 1,
+      "approx_age": {
+        "months": 84,
+        "days": 0
+      },
+      "source": "KEMENKES_JADWAL_2025",
+      "verification": "verified"
+    },
+    {
+      "id": "K-BIAS-Td2",
+      "schedule": "KEMENKES",
+      "vaccine": "Td",
+      "dose": "Td (BIAS kelas 2 SD)",
+      "trigger": "school_grade",
+      "school_grade": 2,
+      "approx_age": {
+        "months": 96,
+        "days": 0
+      },
+      "source": "KEMENKES_JADWAL_2025",
+      "verification": "verified"
+    },
+    {
+      "id": "K-BIAS-Td5",
+      "schedule": "KEMENKES",
+      "vaccine": "Td",
+      "dose": "Td (BIAS kelas 5 SD)",
+      "trigger": "school_grade",
+      "school_grade": 5,
+      "approx_age": {
+        "months": 132,
+        "days": 0
+      },
+      "source": "KEMENKES_JADWAL_2025",
+      "verification": "verified"
+    },
+    {
+      "id": "K-BIAS-HPV1",
+      "schedule": "KEMENKES",
+      "vaccine": "HPV",
+      "dose": "HPV 1 (BIAS kelas 5 SD, perempuan)",
+      "trigger": "school_grade",
+      "school_grade": 5,
+      "sex": "F",
+      "approx_age": {
+        "months": 132,
+        "days": 0
+      },
+      "source": "KEMENKES_JADWAL_2025",
+      "verification": "verified"
+    },
+    {
+      "id": "K-BIAS-HPV2",
+      "schedule": "KEMENKES",
+      "vaccine": "HPV",
+      "dose": "HPV 2 (BIAS kelas 6 SD, perempuan)",
+      "trigger": "school_grade",
+      "school_grade": 6,
+      "sex": "F",
+      "approx_age": {
+        "months": 144,
+        "days": 0
+      },
+      "source": "KEMENKES_JADWAL_2025",
+      "verification": "verified"
+    },
+    {
+      "id": "I-HB0",
+      "schedule": "IDAI",
+      "vaccine": "HB",
+      "dose": "Hepatitis B 0",
+      "recommended": {
+        "months": 0,
+        "days": 0
+      },
+      "earliest": {
+        "months": 0,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 0,
+        "days": 1
+      },
+      "max_until": null,
+      "note": "Saat lahir (< 24 jam).",
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified",
+      "on_time_note": "< 24 jam setelah lahir; 'Paling lambat' = tanggal lahir + 1 hari karena 24 jam bisa melewati tengah malam."
+    },
+    {
+      "id": "I-POL0",
+      "schedule": "IDAI",
+      "vaccine": "OPV",
+      "dose": "Polio 0",
+      "recommended": {
+        "months": 0,
+        "days": 0
+      },
+      "earliest": {
+        "months": 0,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 1,
+        "days": -1
+      },
+      "max_until": null,
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-BCG",
+      "schedule": "IDAI",
+      "vaccine": "BCG",
+      "dose": "BCG",
+      "recommended": {
+        "months": 0,
+        "days": 0
+      },
+      "earliest": {
+        "months": 0,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 1,
+        "days": -1
+      },
+      "max_until": {
+        "months": 12,
+        "days": -1
+      },
+      "note": "IDAI: setelah lahir, sebelum usia 1 bulan. Batas akhir mengikuti Permenkes 12/2017 (< 1 tahun tanpa Mantoux); untuk aturan IDAI lewat 3 bulan, konfirmasi ke dokter.",
+      "source": "IDAI_JADWAL_2024",
+      "verification": "partial",
+      "related_source": "PERMENKES_12_2017"
+    },
+    {
+      "id": "I-M2",
+      "schedule": "IDAI",
+      "vaccine": "DTP",
+      "dose": "DTP-HB-Hib-Polio 1 (kombinasi)",
+      "recommended": {
+        "months": 2,
+        "days": 0
+      },
+      "earliest": {
+        "months": 2,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 3,
+        "days": -1
+      },
+      "max_until": null,
+      "note": "Hep B 1, Hib 1, Polio 1 dapat dalam vaksin kombinasi.",
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-PCV1",
+      "schedule": "IDAI",
+      "vaccine": "PCV",
+      "dose": "PCV1",
+      "recommended": {
+        "months": 2,
+        "days": 0
+      },
+      "earliest": {
+        "months": 2,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 3,
+        "days": -1
+      },
+      "max_until": null,
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-RV1",
+      "schedule": "IDAI",
+      "vaccine": "RV",
+      "dose": "Rotavirus 1",
+      "recommended": {
+        "months": 2,
+        "days": 0
+      },
+      "earliest": {
+        "months": 1,
+        "days": 14
+      },
+      "on_time_until": {
+        "months": 3,
+        "days": -1
+      },
+      "max_until": {
+        "months": 0,
+        "days": 104
+      },
+      "note": "Dosis pertama minimal usia 6 minggu, paling lambat usia 14 minggu 6 hari (CDC catch-up). Jangan memulai seri pada usia >= 15 minggu. Semua dosis selesai sebelum usia 8 bulan 0 hari (CDC; Permenkes 12/2017: maksimal 8 bulan). Status partial: batas CDC berlaku untuk RotaTeq/Rotarix; vaksin program Kemenkes (produksi dalam negeri) bisa berbeda, cocokkan dengan Juknis/kemasan.",
+      "source": "IDAI_JADWAL_2024",
+      "min_age": {
+        "months": 0,
+        "days": 42
+      },
+      "verification": "partial",
+      "related_source": "CDC_CATCHUP"
+    },
+    {
+      "id": "I-M3",
+      "schedule": "IDAI",
+      "vaccine": "DTP",
+      "dose": "DTP-HB-Hib-Polio 2",
+      "recommended": {
+        "months": 3,
+        "days": 0
+      },
+      "earliest": {
+        "months": 3,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 4,
+        "days": -1
+      },
+      "min_interval_days_from_prev": 28,
+      "max_until": null,
+      "note": "IDAI: DTP 2 pada usia 3 atau 4 bulan.",
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-M4",
+      "schedule": "IDAI",
+      "vaccine": "DTP",
+      "dose": "DTP-HB-Hib-Polio 3",
+      "recommended": {
+        "months": 4,
+        "days": 0
+      },
+      "earliest": {
+        "months": 4,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 7,
+        "days": -1
+      },
+      "min_interval_days_from_prev": 28,
+      "max_until": null,
+      "note": "IDAI: DTP 3 pada usia 4 atau 6 bulan.",
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-PCV2",
+      "schedule": "IDAI",
+      "vaccine": "PCV",
+      "dose": "PCV2",
+      "recommended": {
+        "months": 4,
+        "days": 0
+      },
+      "earliest": {
+        "months": 4,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 5,
+        "days": -1
+      },
+      "max_until": null,
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-RV2",
+      "schedule": "IDAI",
+      "vaccine": "RV",
+      "dose": "Rotavirus 2",
+      "recommended": {
+        "months": 4,
+        "days": 0
+      },
+      "earliest": {
+        "months": 3,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 5,
+        "days": -1
+      },
+      "max_until": {
+        "months": 8,
+        "days": 0
+      },
+      "source": "IDAI_JADWAL_2024",
+      "min_age": {
+        "months": 0,
+        "days": 42
+      },
+      "verification": "partial",
+      "min_interval_days_from_prev": 28,
+      "note": "Jarak minimal 4 minggu dari dosis sebelumnya. Batas akhir dosis terakhir usia 8 bulan 0 hari (CDC catch-up; Permenkes 12/2017 Lampiran hal. 53: maksimal 8 bulan). Bila dosis 1 belum diberikan sebelum 15 minggu, seri tidak dimulai. Untuk vaksin monovalen (2 dosis) ini dosis terakhir.",
+      "related_source": "CDC_CATCHUP"
+    },
+    {
+      "id": "I-PCV3",
+      "schedule": "IDAI",
+      "vaccine": "PCV",
+      "dose": "PCV3",
+      "recommended": {
+        "months": 6,
+        "days": 0
+      },
+      "earliest": {
+        "months": 6,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 7,
+        "days": -1
+      },
+      "max_until": null,
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-RV3",
+      "schedule": "IDAI",
+      "vaccine": "RV",
+      "dose": "Rotavirus 3 (hanya pentavalen)",
+      "recommended": {
+        "months": 6,
+        "days": 0
+      },
+      "earliest": {
+        "months": 5,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 7,
+        "days": -1
+      },
+      "max_until": {
+        "months": 8,
+        "days": 0
+      },
+      "condition": "rv_pentavalent",
+      "source": "IDAI_JADWAL_2024",
+      "min_age": {
+        "months": 0,
+        "days": 42
+      },
+      "verification": "partial",
+      "min_interval_days_from_prev": 28,
+      "note": "Jarak minimal 4 minggu dari dosis sebelumnya. Batas akhir dosis terakhir usia 8 bulan 0 hari (CDC catch-up; Permenkes 12/2017 Lampiran hal. 53: maksimal 8 bulan). Bila dosis 1 belum diberikan sebelum 15 minggu, seri tidak dimulai.",
+      "related_source": "CDC_CATCHUP"
+    },
+    {
+      "id": "I-INF1",
+      "schedule": "IDAI",
+      "vaccine": "INF",
+      "dose": "Influenza 1",
+      "recommended": {
+        "months": 6,
+        "days": 0
+      },
+      "earliest": {
+        "months": 6,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 7,
+        "days": -1
+      },
+      "max_until": null,
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-EV71-1",
+      "schedule": "IDAI",
+      "vaccine": "EV71",
+      "dose": "EV71 1",
+      "recommended": {
+        "months": 6,
+        "days": 0
+      },
+      "earliest": {
+        "months": 6,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 36,
+        "days": -1
+      },
+      "max_until": {
+        "months": 36,
+        "days": -1
+      },
+      "optional": true,
+      "note": "Usia 6 bulan - 3 tahun, 2 dosis jarak 1 bulan.",
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-INF2",
+      "schedule": "IDAI",
+      "vaccine": "INF",
+      "dose": "Influenza 2",
+      "recommended": {
+        "months": 7,
+        "days": 0
+      },
+      "earliest": {
+        "months": 7,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 8,
+        "days": -1
+      },
+      "min_interval_days_from_prev": 28,
+      "max_until": null,
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-EV71-2",
+      "schedule": "IDAI",
+      "vaccine": "EV71",
+      "dose": "EV71 2",
+      "recommended": {
+        "months": 7,
+        "days": 0
+      },
+      "earliest": {
+        "months": 7,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 36,
+        "days": -1
+      },
+      "min_interval_days_from_prev": 28,
+      "optional": true,
+      "max_until": {
+        "months": 36,
+        "days": -1
+      },
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-MR",
+      "schedule": "IDAI",
+      "vaccine": "MR",
+      "dose": "MR",
+      "recommended": {
+        "months": 9,
+        "days": 0
+      },
+      "earliest": {
+        "months": 9,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 10,
+        "days": -1
+      },
+      "max_until": null,
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-JE1",
+      "schedule": "IDAI",
+      "vaccine": "JE",
+      "dose": "JE 1",
+      "recommended": {
+        "months": 9,
+        "days": 0
+      },
+      "earliest": {
+        "months": 9,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 10,
+        "days": -1
+      },
+      "max_until": null,
+      "condition": "region_endemic_je",
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-PCV4",
+      "schedule": "IDAI",
+      "vaccine": "PCV",
+      "dose": "PCV booster",
+      "recommended": {
+        "months": 12,
+        "days": 0
+      },
+      "earliest": {
+        "months": 12,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 16,
+        "days": -1
+      },
+      "max_until": null,
+      "note": "Booster usia 12-15 bulan.",
+      "source": "IDAI_PCV_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-VAR1",
+      "schedule": "IDAI",
+      "vaccine": "VAR",
+      "dose": "Varisela 1",
+      "recommended": {
+        "months": 12,
+        "days": 0
+      },
+      "earliest": {
+        "months": 12,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 13,
+        "days": -1
+      },
+      "max_until": null,
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-HEPA1",
+      "schedule": "IDAI",
+      "vaccine": "HepA",
+      "dose": "Hepatitis A 1",
+      "recommended": {
+        "months": 12,
+        "days": 0
+      },
+      "earliest": {
+        "months": 12,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 13,
+        "days": -1
+      },
+      "max_until": null,
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-VAR2",
+      "schedule": "IDAI",
+      "vaccine": "VAR",
+      "dose": "Varisela 2",
+      "recommended": {
+        "months": 14,
+        "days": 0
+      },
+      "note": "Mulai bisa = max(Varisela 1 + 90 hari, usia 14 bulan). Paling lambat = Mulai bisa + 1 bulan - 1 hari. 90 hari (bukan 3 bulan kalender) dipakai karena 3 bulan kalender bisa < 90 hari (mis. Feb-Apr). Rangkuman IDAI menyebut 14 bulan; CDC catch-up mensyaratkan jarak minimal 3 bulan. Tunggu dokumen resmi IDAI.",
+      "source": "IDAI_JADWAL_2024",
+      "verification": "unverified",
+      "related_source": "CDC_CATCHUP",
+      "relative_to": {
+        "dose": "I-VAR1",
+        "offset": {
+          "months": 0,
+          "days": 90
+        },
+        "not_before": {
+          "months": 14,
+          "days": 0
+        },
+        "on_time_window": {
+          "months": 1,
+          "days": -1
+        }
+      }
+    },
+    {
+      "id": "I-M18",
+      "schedule": "IDAI",
+      "vaccine": "DTP",
+      "dose": "DTP-HB-Hib-Polio 4 (booster)",
+      "recommended": {
+        "months": 18,
+        "days": 0
+      },
+      "earliest": {
+        "months": 18,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 19,
+        "days": -1
+      },
+      "max_until": null,
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-MMR1",
+      "schedule": "IDAI",
+      "vaccine": "MMR",
+      "dose": "MMR 1",
+      "recommended": {
+        "months": 18,
+        "days": 0
+      },
+      "earliest": {
+        "months": 18,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 19,
+        "days": -1
+      },
+      "max_until": null,
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-HEPA2",
+      "schedule": "IDAI",
+      "vaccine": "HepA",
+      "dose": "Hepatitis A 2",
+      "recommended": {
+        "months": 18,
+        "days": 0
+      },
+      "earliest": {
+        "months": 18,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 19,
+        "days": -1
+      },
+      "max_until": null,
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-JE2",
+      "schedule": "IDAI",
+      "vaccine": "JE",
+      "dose": "JE 2",
+      "recommended": {
+        "months": 24,
+        "days": 0
+      },
+      "earliest": {
+        "months": 24,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 25,
+        "days": -1
+      },
+      "max_until": null,
+      "condition": "region_endemic_je",
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-TYP1",
+      "schedule": "IDAI",
+      "vaccine": "TYP",
+      "dose": "Tifoid 1",
+      "recommended": {
+        "months": 24,
+        "days": 0
+      },
+      "earliest": {
+        "months": 24,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 25,
+        "days": -1
+      },
+      "max_until": null,
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified",
+      "recurrence": {
+        "after_dose": "I-TYP1",
+        "every_months": 36,
+        "until": {
+          "months": 216,
+          "days": 0
+        }
+      }
+    },
+    {
+      "id": "I-INF-YEARLY",
+      "schedule": "IDAI",
+      "vaccine": "INF",
+      "dose": "Influenza tahunan",
+      "recommended": {
+        "months": 19,
+        "days": 0
+      },
+      "note": "1 dosis setiap tahun setelah 2 dosis awal.",
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified",
+      "recurrence": {
+        "after_dose": "I-INF2",
+        "every_months": 12,
+        "until": {
+          "months": 216,
+          "days": 0
+        }
+      }
+    },
+    {
+      "id": "I-M60",
+      "schedule": "IDAI",
+      "vaccine": "DTP",
+      "dose": "DTP 5 + Polio 5",
+      "recommended": {
+        "months": 60,
+        "days": 0
+      },
+      "earliest": {
+        "months": 60,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 96,
+        "days": -1
+      },
+      "max_until": null,
+      "note": "Usia 5-7 tahun. Usia 5-7 tahun: paling lambat sehari sebelum ulang tahun ke-8.",
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-MMR2",
+      "schedule": "IDAI",
+      "vaccine": "MMR",
+      "dose": "MMR 2",
+      "recommended": {
+        "months": 60,
+        "days": 0
+      },
+      "earliest": {
+        "months": 60,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 96,
+        "days": -1
+      },
+      "max_until": null,
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified",
+      "note": "Usia 5-7 tahun: paling lambat sehari sebelum ulang tahun ke-8."
+    },
+    {
+      "id": "I-DEN1",
+      "schedule": "IDAI",
+      "vaccine": "DEN",
+      "dose": "Dengue 1",
+      "recommended": {
+        "months": 72,
+        "days": 0
+      },
+      "earliest": {
+        "months": 72,
+        "days": 0
+      },
+      "on_time_until": null,
+      "max_until": null,
+      "optional": true,
+      "note": "Usia minimal 6 tahun; dosis 2 tiga bulan kemudian.",
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-DEN2",
+      "schedule": "IDAI",
+      "vaccine": "DEN",
+      "dose": "Dengue 2",
+      "recommended": {
+        "months": 75,
+        "days": 0
+      },
+      "optional": true,
+      "max_until": null,
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified",
+      "relative_to": {
+        "dose": "I-DEN1",
+        "offset": {
+          "months": 3,
+          "days": 0
+        },
+        "on_time_window": {
+          "months": 1,
+          "days": -1
+        }
+      }
+    },
+    {
+      "id": "I-HPV1",
+      "schedule": "IDAI",
+      "vaccine": "HPV",
+      "dose": "HPV 1",
+      "recommended": {
+        "months": 108,
+        "days": 0
+      },
+      "earliest": {
+        "months": 108,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 180,
+        "days": -1
+      },
+      "max_until": null,
+      "note": "Usia 9-14 tahun: 2 dosis (dosis 2 enam bulan setelah dosis 1). Usia >=15 tahun: 3 dosis (0, 2, 6 bulan).",
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    },
+    {
+      "id": "I-HPV2",
+      "schedule": "IDAI",
+      "vaccine": "HPV",
+      "dose": "HPV 2",
+      "recommended": {
+        "months": 114,
+        "days": 0
+      },
+      "max_until": null,
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified",
+      "relative_to": {
+        "dose": "I-HPV1",
+        "offset": {
+          "months": 6,
+          "days": 0
+        },
+        "on_time_window": {
+          "months": 1,
+          "days": -1
+        }
+      }
+    },
+    {
+      "id": "I-TDAP",
+      "schedule": "IDAI",
+      "vaccine": "DTP",
+      "dose": "Tdap (DTP 6)",
+      "recommended": {
+        "months": 120,
+        "days": 0
+      },
+      "earliest": {
+        "months": 120,
+        "days": 0
+      },
+      "on_time_until": {
+        "months": 228,
+        "days": -1
+      },
+      "max_until": null,
+      "note": "Usia 10-18 tahun: paling lambat sehari sebelum ulang tahun ke-19.",
+      "source": "IDAI_JADWAL_2024",
+      "verification": "verified"
+    }
+  ],
+  "catch_up_rules": [
+    {
+      "vaccine": "ALL_EXCEPT_HB0",
+      "schedule": "KEMENKES",
+      "rule": "Pada kondisi tertentu, semua jenis vaksin kecuali HB0 dapat diberikan sebelum bayi berusia 1 tahun (imunisasi kejar).",
+      "source": "PERMENKES_12_2017",
+      "page": "Lampiran hal. 38",
+      "verification": "partial"
+    },
+    {
+      "vaccine": "RV",
+      "schedule": "ALL",
+      "rule": "Dosis 1: usia 6 minggu - 14 minggu 6 hari. Jarak antar dosis minimal 4 minggu. Dosis terakhir paling lambat usia 8 bulan 0 hari.",
+      "source": "CDC_CATCHUP",
+      "verification": "verified"
+    },
+    {
+      "vaccine": "PCV",
+      "schedule": "IDAI",
+      "rule": "Belum PCV di usia 7-12 bulan: 2 dosis jarak minimal 1 bulan, booster 12-15 bulan (minimal 2 bulan setelah dosis terakhir). Usia 1-2 tahun: 2 dosis jarak minimal 2 bulan. Usia 2-5 tahun: PCV10 2 dosis jarak 2 bulan, atau PCV13/PCV15 1 dosis.",
+      "source": "IDAI_PCV_2024",
+      "verification": "verified"
+    },
+    {
+      "vaccine": "ALL",
+      "schedule": "ALL",
+      "rule": "Dosis yang terlambat tidak perlu diulang dari awal; lanjutkan dosis berikutnya. App tidak menghitung jadwal kejar sendiri selain aturan di atas; tampilkan 'Terlambat - segera konsultasikan ke Posyandu/Puskesmas/dokter'.",
+      "source": "IDAI_JADWAL_2024",
+      "verification": "unverified"
+    }
+  ],
+  "reminder_options": {
+    "lead_time_days_choices": [
+      0,
+      1,
+      2,
+      3,
+      7
+    ],
+    "default_lead_time_days": [
+      1
+    ],
+    "multi_select": true,
+    "time_of_day_default": "07:00",
+    "overdue_nudge_days_after_window_end": [
+      1,
+      7,
+      14
+    ]
+  },
+  "version": "2026.11.21-4"
+}

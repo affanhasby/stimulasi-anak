@@ -1,0 +1,131 @@
+﻿id,start_months,end_months,domain,frequency,minutes,title,how,source,page
+S-0-01,0,3,sosial,daily_core,5,"Peluk, cium, dan timang","Peluk, cium, dan timang bayi dengan penuh kasih sayang, terutama saat ia rewel.",BUKU_KIA_2021,42
+S-0-02,0,3,bahasa,daily_core,5,Tatap mata dan ajak bicara,"Tatap mata bayi, tersenyum, dan ajak bicara saat menyusui, mengganti popok, atau memandikan.",BUKU_KIA_2021,42
+S-0-03,0,3,bahasa,rotating,5,Tirukan ocehan bayi,"Saat bayi mengoceh atau membuat ekspresi, tirukan suara dan ekspresinya lalu beri jeda agar ia 'membalas'.",BUKU_KIA_2021,42
+S-0-04,0,3,bahasa,rotating,5,Nyanyikan lagu,Nyanyikan lagu anak atau perdengarkan suara yang bervariasi sambil berinteraksi langsung.,BUKU_KIA_2021,42
+S-0-05,0,3,kognitif,rotating,5,Gantung benda warna-warni,"Gantung benda berwarna cerah atau berbunyi di atas tempat tidur, dalam jangkauan pandang bayi (sekitar 20-30 cm), lalu gerakkan perlahan.",BUKU_KIA_2021,42
+S-0-06,0,3,motorik_kasar,daily_core,3,Latihan angkat kepala (tengkurap),"Saat bayi bangun dan diawasi, letakkan tengkurap di alas datar dan ajak ia mengangkat kepala dengan mainan atau wajah Anda di depannya. Mulai beberapa menit, beberapa kali sehari. Jangan tengkurap saat tidur.",BUKU_KIA_2021,42
+S-0-07,0,3,motorik_halus,rotating,3,Sentuh dan genggam mainan,"Sentuhkan mainan ke telapak tangan bayi agar ia menggenggam, lalu ajak meraih.",BUKU_KIA_2021,42
+S-0-08,0,3,motorik_kasar,rotating,3,Latihan miring dan berguling,"Bantu bayi miring ke kanan dan kiri, serta berguling dari tengkurap ke telentang dengan lembut.",BUKU_KIA_2021,42
+S-3-01,3,6,sosial,daily_core,5,"Peluk, tatap, senyum, ajak bicara","Peluk dan cium bayi, tatap matanya sambil tersenyum dan ajak bicara.",BUKU_KIA_2021,43
+S-3-02,3,6,bahasa,rotating,5,Cari sumber suara,Bunyikan mainan/kerincingan di samping kiri lalu kanan bayi; ajak ia menoleh mencari sumber suara.,BUKU_KIA_2021,43
+S-3-03,3,6,sosial,rotating,5,Cilukba,Tutup wajah Anda dengan kain/tangan lalu buka sambil berkata 'baa'.,BUKU_KIA_2021,43
+S-3-04,3,6,sosial,rotating,3,Lihat wajah di cermin,"Gendong bayi di depan cermin, tunjuk dan sebut 'ini adik', 'ini ibu'.",BUKU_KIA_2021,43
+S-3-05,3,6,sosial,rotating,3,Peluk dan ayun,Peluk bayi lalu ayun perlahan sambil bernyanyi.,BUKU_KIA_2021,43
+S-3-06,3,6,motorik_halus,rotating,5,Raih mainan,Letakkan mainan sedikit di luar jangkauan agar bayi berusaha melihat dan meraihnya.,BUKU_KIA_2021,43
+S-3-07,3,6,kognitif,rotating,3,Ikuti benda bergerak,Gerakkan benda kecil berwarna perlahan dari kiri ke kanan agar diikuti matanya.,BUKU_KIA_2021,43
+S-3-08,3,6,motorik_halus,rotating,3,Ambil benda kecil (diawasi),"Biarkan bayi mencoba mengambil benda kecil yang aman (tidak bisa tertelan, diameter lebih dari 4 cm) di bawah pengawasan.",BUKU_KIA_2021,43
+S-3-09,3,6,motorik_kasar,daily_core,5,Latihan berguling dan duduk,Ajak bayi tengkurap dan berguling; latih duduk dengan ditopang bantal atau pangkuan.,BUKU_KIA_2021,43
+S-6-01,6,9,sosial,daily_core,5,Panggil namanya,"Peluk, senyum, ajak bicara, dan sering panggil bayi dengan namanya.",BUKU_KIA_2021,44
+S-6-02,6,9,sosial,rotating,3,"Salam, tepuk tangan, dadah","Ajari bersalaman, bertepuk tangan, dan melambai 'dadah' pada orang lain.",BUKU_KIA_2021,44
+S-6-03,6,9,bahasa,daily_core,5,Sebut nama orang dan benda,"Sebut nama anggota keluarga (papa, mama) dan benda di sekitar sambil menunjuk.",BUKU_KIA_2021,44
+S-6-04,6,9,motorik_kasar,rotating,5,Latihan merangkak,Letakkan mainan sedikit di depan bayi yang tengkurap agar ia merangkak meraihnya. (Turunan dari ceklis KIA 'merangkak meraih mainan'.),BUKU_KIA_2021,44
+S-6-05,6,9,motorik_halus,rotating,3,Pindah tangan,"Beri mainan di satu tangan, lalu tawarkan mainan kedua agar ia memindahkan/memegang dua benda.",BUKU_KIA_2021,44
+S-6-06,6,9,kognitif,rotating,3,Cari mainan jatuh,Jatuhkan mainan dari pandangannya lalu ajak ia mencari.,BUKU_KIA_2021,44
+S-6-07,6,9,kemandirian,rotating,5,Pegang makanan sendiri,"Saat MP-ASI, beri makanan yang aman untuk digenggam (finger food lunak) dengan pengawasan.",BUKU_KIA_2021,44
+S-9-01,9,12,motorik_halus,rotating,5,Masukkan benda ke wadah,Ajak memasukkan balok/benda kecil yang aman ke dalam wadah lalu mengeluarkannya.,BUKU_KIA_2021,45
+S-9-02,9,12,motorik_halus,rotating,5,Menumpuk balok,"Contohkan menumpuk dua balok, lalu biarkan anak mencoba.",BUKU_KIA_2021,45
+S-9-03,9,12,kognitif,rotating,5,Sembunyikan dan cari,"Sembunyikan mainan di bawah kain di depannya, ajak ia menemukannya.",BUKU_KIA_2021,45
+S-9-04,9,12,motorik_halus,rotating,5,Mencoret-coret,"Beri krayon besar dan kertas, biarkan anak mencoret (diawasi).",BUKU_KIA_2021,45
+S-9-05,9,12,motorik_kasar,daily_core,5,"Merangkak, berdiri, berjalan dituntun","Latih merangkak, berdiri berpegangan, dan berjalan sambil dituntun kedua tangannya.",BUKU_KIA_2021,45
+S-9-06,9,12,bahasa,rotating,5,Bicara dengan boneka,"Ajak anak 'mengobrol' dengan boneka, tirukan suara-suara.",BUKU_KIA_2021,45
+S-9-07,9,12,bahasa,daily_core,5,Tunjuk dan sebut nama,"Tunjuk dan sebut nama orang, benda, dan bagian tubuh (mata, hidung, mulut).",BUKU_KIA_2021,45
+S-9-08,9,12,bahasa,daily_core,5,Bacakan buku cerita,"Bacakan buku bergambar, tunjuk gambarnya sambil menyebut namanya.",BUKU_KIA_2021,45
+S-12-01,12,18,motorik_kasar,rotating,5,Jalan mundur dan naik tangga,Ajak berjalan mundur beberapa langkah dan naik tangga sambil dipegangi.,BUKU_KIA_2021,46
+S-12-02,12,18,motorik_kasar,rotating,5,"Tangkap, lempar, tendang bola","Gelindingkan bola ke anak, ajak menangkap, melempar, dan menendang.",BUKU_KIA_2021,46
+S-12-03,12,18,motorik_halus,rotating,5,"Balok, puzzle sederhana, menggambar","Main susun balok, puzzle 2-3 keping, dan menggambar bebas.",BUKU_KIA_2021,46
+S-12-04,12,18,motorik_halus,rotating,5,Main air dan meniup,"Main air di baskom (selalu diawasi), ajak meniup gelembung/kertas.",BUKU_KIA_2021,46
+S-12-05,12,18,bahasa,daily_core,5,Cerita dari buku bergambar,"Ceritakan isi buku bergambar, sebut nama benda dan bernyanyi bersama.",BUKU_KIA_2021,46
+S-12-06,12,18,bahasa,rotating,3,Main telepon-teleponan,"Pura-pura menelepon, ajak anak 'menjawab'.",BUKU_KIA_2021,46
+S-12-07,12,18,sosial,rotating,10,"Main dengan teman, petak umpet",Beri kesempatan bermain dengan anak lain; main petak umpet sederhana.,BUKU_KIA_2021,46
+S-12-08,12,18,kemandirian,rotating,5,"Bereskan mainan, lepas baju",Ajak membereskan mainan ke kotak dan mencoba melepas baju sendiri.,BUKU_KIA_2021,46
+S-12-09,12,18,sosial,daily_core,15,Makan bersama keluarga,Ajak anak makan bersama keluarga di meja makan.,BUKU_KIA_2021,46
+S-12-10,12,18,motorik_halus,rotating,5,Meronce manik besar,Ajak memasukkan manik/benda besar berlubang ke tali (diawasi).,BUKU_KIA_2021,46
+S-18-01,18,24,bahasa,daily_core,10,"Ngobrol, bertanya, bercerita, bernyanyi","Ajak bicara, beri pertanyaan sederhana, bercerita, dan bernyanyi bersama.",BUKU_KIA_2021,47
+S-18-02,18,24,kemandirian,rotating,5,Bantu pekerjaan rumah,"Beri perintah sederhana: 'tolong ambilkan sendok', ajak ikut menyapu/melipat.",BUKU_KIA_2021,47
+S-18-03,18,24,kemandirian,rotating,10,Makan pakai sendok/garpu,"Biarkan anak makan sendiri dengan sendok dan garpu, walau berantakan.",BUKU_KIA_2021,47
+S-18-04,18,24,motorik_halus,rotating,10,"Balok, puzzle, menggambar","Susun 4 balok atau lebih, puzzle sederhana, menggambar.",BUKU_KIA_2021,47
+S-18-05,18,24,sosial,rotating,10,"Main rumah-rumahan, petak umpet","Main peran sederhana (masak-masakan, rumah-rumahan) dan petak umpet.",BUKU_KIA_2021,47
+S-18-06,18,24,motorik_kasar,daily_core,15,"Jalan, lari, lompat","Ajak berjalan, berlari, dan melompat di tempat aman.",BUKU_KIA_2021,47
+S-18-07,18,24,motorik_kasar,rotating,5,"Berdiri satu kaki, naik tangga",Latih berdiri satu kaki sambil berpegangan dan naik tangga.,BUKU_KIA_2021,47
+S-18-08,18,24,motorik_kasar,rotating,5,"Lempar, tangkap, tendang bola","Main bola: lempar, tangkap, dan tendang.",BUKU_KIA_2021,47
+S-24-01,24,30,bahasa,daily_core,5,Ulangi kata dengan benar,"Saat anak salah mengucap ('mau nana'), ulangi dengan benar dan lengkap: 'Kamu mau pisang lagi?'",CDC_2Y,
+S-24-02,24,30,bahasa,daily_core,10,Bacakan buku dan tunjuk gambar,Bacakan buku bergambar dan minta anak menunjuk: 'Mana kucingnya?',CDC_2Y,
+S-24-03,24,30,motorik_kasar,daily_core,15,"Main bola: tendang, gelinding, lempar","Beri bola untuk ditendang, digelindingkan, dan dilempar bergantian.",CDC_2Y,
+S-24-04,24,30,kognitif,rotating,10,Mainan sebab-akibat,"Beri mainan yang bereaksi saat ditekan (tombol berbunyi, kotak kejutan) dan biarkan anak mencoba.",CDC_2Y,
+S-24-05,24,30,sosial,rotating,10,Dandan pakai baju orang dewasa,"Siapkan sepatu, topi, atau kemeja orang dewasa untuk mulai main pura-pura.",CDC_2Y,
+S-24-06,24,30,kemandirian,rotating,5,Bantu siapkan meja makan,"Minta anak membawa gelas plastik atau serbet ke meja, lalu ucapkan terima kasih.",CDC_2Y,
+S-24-07,24,30,kemandirian,rotating,5,Masukkan mainan/baju ke keranjang,Ajak anak memasukkan mainan atau cucian ke keranjang dan puji usahanya.,CDC_2Y,
+S-24-08,24,30,motorik_kasar,rotating,5,Ayunan 'Siap... mulai!',"Saat mendorong ayunan, katakan 'Siap, satu, dua...' dan tunggu anak berseru 'mulai!'",CDC_2Y,
+S-24-09,24,30,motorik_halus,rotating,10,Krayon dan cat jari,"Buat titik dan coretan dengan krayon besar atau cat jari, lalu pajang hasilnya.",CDC_2Y,
+S-24-10,24,30,kognitif,rotating,15,Main pasir/air dengan wadah,"Main pasir atau air (selalu diawasi) dengan wadah, sendok, dan corong.",CDC_2Y,
+S-24-11,24,30,kognitif,rotating,10,Puzzle bentuk dan hewan,Puzzle sederhana bentuk/warna/hewan; sebut nama tiap keping saat dipasang.,CDC_2Y,
+S-24-12,24,30,bahasa,rotating,5,Nyanyi dan isi kata,"Nyanyikan 'Kepala, Pundak, Lutut, Kaki', berhenti sebentar agar anak melanjutkan katanya.",CDC_2Y,
+S-24-13,24,30,motorik_halus,rotating,10,Susun dan robohkan menara balok,Bergantian menyusun menara balok lalu merobohkannya bersama.,CDC_2Y,
+S-24-14,24,30,kemandirian,rotating,3,Buka laci atau pintu sendiri,Biarkan anak membuka laci saat menyimpan baju atau membuka pintu saat akan keluar.,CDC_2Y,
+S-24-15,24,30,sosial,rotating,20,Jalan-jalan eksplorasi,"Ajak ke taman, berjalan di sekitar rumah, atau naik angkutan umum sambil menamai yang dilihat.",CDC_2Y,
+S-24-16,24,30,sosial,rotating,15,Main bersama teman (diawasi),Atur waktu bermain dengan anak lain; ajarkan bergiliran dan berbagi dengan kata-kata.,CDC_2Y,
+S-30-01,30,36,sosial,daily_core,15,Main bebas sesuai minat,Biarkan anak memilih mainan dan cara bermain; ikuti arahannya.,CDC_30M,
+S-30-02,30,36,bahasa,daily_core,10,Tanya 'siapa/apa/di mana' saat membaca,"Saat membaca buku, tanyakan pertanyaan sederhana tentang gambar dan cerita.",CDC_30M,
+S-30-03,30,36,motorik_kasar,daily_core,20,Main di luar: lari dan memanjat,"Main di taman, coba alat panjat, berlari di area aman.",CDC_30M,
+S-30-04,30,36,motorik_halus,rotating,10,Menggambar garis lalu lingkaran,"Pakai krayon, kapur di lantai, atau busa sabun di nampan; contohkan garis lurus lalu lingkaran.",CDC_30M,
+S-30-05,30,36,bahasa,rotating,5,Kata berlawanan,"Gambarkan benda dengan kata berlawanan: besar-kecil, cepat-lambat, di dalam-di luar.",CDC_30M,
+S-30-06,30,36,kognitif,rotating,10,Puzzle dan sebut namanya,"Puzzle bentuk, warna, atau hewan; sebut nama tiap keping.",CDC_30M,
+S-30-07,30,36,kognitif,rotating,15,Kardus jadi mobil/rumah,"Jadikan kardus besar mobil, bus, atau rumah; biarkan anak mewarnai dan menempel stiker.",CDC_30M,
+S-30-08,30,36,bahasa,rotating,5,Sebut warna dan bagian tubuh,"Tunjuk dan sebut warna, bagian tubuh, dan gambar di buku.",CDC_30M,
+S-30-09,30,36,motorik_kasar,rotating,10,Oper dan tendang bola,"Tendang bola bergantian, lalu contohkan berlari sambil menendang.",CDC_30M,
+S-30-10,30,36,motorik_kasar,rotating,10,Ikuti pemimpin,"Berjalan lurus, berbelok, mundur, dan berjinjit; anak menirukan.",CDC_30M,
+S-30-11,30,36,sosial,rotating,15,Masak-masakan,Main pura-pura memasak dengan peralatan dapur yang aman.,CDC_30M,
+S-30-12,30,36,motorik_halus,rotating,5,Balik halaman buku,"Contohkan membalik halaman satu per satu, lalu beri anak giliran.",CDC_30M,
+S-30-13,30,36,kemandirian,rotating,3,Pilih dari 2-3 pilihan,Biarkan anak memilih camilan sehat atau baju dari 2-3 pilihan.,CDC_30M,
+S-30-14,30,36,sosial,rotating,15,Bermain dengan anak lain,Ajak ke taman/perpustakaan atau kelompok bermain; latih berbagi dan bergiliran.,CDC_30M,
+S-30-15,30,36,sosial,rotating,15,Makan bersama tanpa layar,"Makan bersama keluarga dengan menu yang sama, tanpa layar di meja.",CDC_30M,
+S-36-01,36,48,bahasa,daily_core,10,Baca dan tanya 'lalu apa?',"Saat membaca, tanya apa yang terjadi dan apa yang akan terjadi berikutnya.",CDC_3Y,
+S-36-02,36,48,motorik_kasar,daily_core,30,"Main di luar, anak memimpin",Main di taman atau jalan setapak; biarkan anak memilih arah dan permainan.,CDC_3Y,
+S-36-03,36,48,sosial,daily_core,3,Namai perasaan,"Sebut perasaan anak ('kamu kesal ya') dan ajarkan menenangkan diri: tarik napas dalam, peluk boneka.",CDC_3Y,
+S-36-04,36,48,kognitif,rotating,5,Main berhitung,"Hitung jari, anak tangga, atau benda sehari-hari bersama.",CDC_3Y,
+S-36-05,36,48,kemandirian,rotating,15,Bantu masak,Ajak mencuci sayur/buah atau mengaduk adonan.,CDC_3Y,
+S-36-06,36,48,bahasa,rotating,5,Perintah 2-3 langkah,"Beri instruksi 2-3 langkah: 'Ambil sepatu, pakai, lalu tunggu di pintu.'",CDC_3Y,
+S-36-07,36,48,bahasa,rotating,5,Lagu dan sajak,Ajarkan lagu anak dan sajak pendek.,CDC_3Y,
+S-36-08,36,48,motorik_halus,rotating,10,Kotak aktivitas menggambar,"Siapkan kertas, krayon, buku mewarnai; gambar garis dan bentuk bersama.",CDC_3Y,
+S-36-09,36,48,motorik_halus,rotating,15,Main plastisin,"Remas, tekan, cubit, dan bentuk bola dari plastisin/playdough untuk menguatkan otot tangan.",CDC_3Y,
+S-36-10,36,48,kognitif,rotating,5,Main lawan kata,"Main tebak lawan kata: kecil-besar, cepat-lambat, pelan-keras.",CDC_3Y,
+S-36-11,36,48,kognitif,rotating,10,Cari yang sama,Cari benda/gambar yang sama di buku atau di sekitar rumah.,CDC_3Y,
+S-36-12,36,48,sosial,rotating,10,Latihan situasi baru,Siapkan anak menghadapi tempat/orang baru lewat cerita atau main peran.,CDC_3Y,
+S-36-13,36,48,bahasa,rotating,3,Sebut nama dan umur,Latih anak menyebut nama lengkap dan umurnya.,CDC_3Y,
+S-36-14,36,48,kognitif,rotating,10,Pecahkan masalah bersama,"Saat anak menghadapi masalah, ajukan pertanyaan, bantu pikirkan beberapa cara, lalu coba satu per satu.",CDC_3Y,
+S-36-15,36,48,sosial,rotating,15,Bermain dengan teman,Dorong bermain dengan anak lain untuk belajar berteman.,CDC_3Y,
+S-36-16,36,48,sosial,rotating,3,Aturan sederhana,Buat 1-2 aturan jelas (misalnya 'tangan lembut'); puji saat diikuti.,CDC_3Y,
+S-48-01,48,60,bahasa,daily_core,10,Baca dan tebak kelanjutan,Baca bersama; tanyakan apa yang terjadi dan apa yang mungkin terjadi selanjutnya.,CDC_4Y,
+S-48-02,48,60,motorik_kasar,daily_core,30,Aktif bergerak pilihan anak,Main aktif setiap hari; biarkan anak memilih kegiatannya.,CDC_4Y,
+S-48-03,48,60,kognitif,rotating,5,"Warna, bentuk, ukuran","Tanyakan warna, bentuk, dan ukuran benda yang dilihat sepanjang hari.",CDC_4Y,
+S-48-04,48,60,sosial,rotating,20,Main pura-pura dengan properti,"Siapkan kostum, panci, balok; ikut bermain peran bersama anak.",CDC_4Y,
+S-48-05,48,60,kognitif,rotating,5,Jawab 'kenapa' bersama,Jawab pertanyaan 'kenapa' atau cari jawabannya bersama di buku.,CDC_4Y,
+S-48-06,48,60,kognitif,rotating,5,Hitung benda sederhana,"Hitung jari, mainan, atau buah bersama.",CDC_4Y,
+S-48-07,48,60,motorik_kasar,rotating,15,"Kejar-kejaran, petak umpet","Main kejar-kejaran, ikuti pemimpin, atau petak umpet di luar.",CDC_4Y,
+S-48-08,48,60,kemandirian,rotating,5,Tugas rumah kecil,"Ambil surat/koran, beri makan hewan, atau lap meja.",CDC_4Y,
+S-48-09,48,60,sosial,rotating,10,Lampu merah lampu hijau / tari beku,Latih berhenti dengan permainan 'lampu merah-hijau' atau menari lalu diam saat musik berhenti.,CDC_4Y,
+S-48-10,48,60,motorik_kasar,rotating,10,Menari dan saling meniru,"Menari lagu favorit, bergantian meniru gerakan.",CDC_4Y,
+S-48-11,48,60,bahasa,rotating,5,Kata urutan,"Pakai kata 'pertama, kedua, terakhir' dan tanya apa yang terjadi berikutnya.",CDC_4Y,
+S-48-12,48,60,kognitif,rotating,10,Permainan papan sederhana,Main tic-tac-toe atau kartu memasangkan gambar.,CDC_4Y,
+S-48-13,48,60,sosial,rotating,5,Peduli perasaan teman,"Ajak memikirkan perasaan orang lain, misalnya membawakan boneka untuk teman yang sedih.",CDC_4Y,
+S-48-14,48,60,bahasa,rotating,20,Ke perpustakaan pilih buku,Ajak ke perpustakaan/toko buku dan biarkan anak memilih bukunya.,CDC_4Y,
+S-48-15,48,60,sosial,rotating,15,"Bermain dengan teman, belajar bergiliran",Bermain dengan anak lain; contohkan 'Boleh aku dapat giliran?',CDC_4Y,
+S-48-16,48,60,kemandirian,rotating,3,Pilih dari 2-3 pilihan sehat,Biarkan anak memilih dari 2-3 pilihan makanan/minuman sehat.,CDC_4Y,
+S-60-01,60,72,bahasa,daily_core,10,Baca dan tanya 'kenapa/bagaimana',"Baca bersama, tanyakan apa yang terjadi, lalu kembangkan dengan 'kenapa?' dan 'bagaimana?'",CDC_5Y,
+S-60-02,60,72,motorik_kasar,daily_core,30,Aktif bergerak pilihan anak,Main aktif setiap hari sesuai pilihan anak.,CDC_5Y,
+S-60-03,60,72,kognitif,rotating,5,Kata waktu dan nama hari,"Nyanyikan nama-nama hari; bicarakan hari ini, besok, kemarin.",CDC_5Y,
+S-60-04,60,72,kemandirian,rotating,5,Lakukan sendiri,"Biarkan anak merapikan tempat tidur, mengancing baju, atau menuang air sendiri; rayakan usahanya.",CDC_5Y,
+S-60-05,60,72,sosial,rotating,5,Buku tentang perasaan,Sebut perasaan anak dan Anda; baca buku tentang perasaan tokohnya.,CDC_5Y,
+S-60-06,60,72,bahasa,rotating,5,Main rima,Main tebak rima: 'Apa yang berima dengan bola?',CDC_5Y,
+S-60-07,60,72,sosial,rotating,15,Main dengan aturan,"Ajarkan aturan lewat permainan papan, kartu, atau 'Simon berkata'.",CDC_5Y,
+S-60-08,60,72,bahasa,rotating,10,'Membaca' dari gambar,Minta anak menceritakan isi buku dari gambarnya.,CDC_5Y,
+S-60-09,60,72,kognitif,rotating,10,Game memori dan fokus,"Main kartu memori, tic-tac-toe, 'aku melihat sesuatu...', atau panas-dingin.",CDC_5Y,
+S-60-10,60,72,sosial,rotating,5,Sentuhan aman dan tidak aman,"Ajarkan bagian tubuh pribadi, cara berkata 'tidak', dan orang dewasa tempat mengadu.",CDC_5Y,
+S-60-11,60,72,sosial,rotating,5,Kalau tersesat,"Ajarkan mencari 'penolong' (petugas berseragam, ibu dengan anak) dan hafal nama lengkapnya serta nama orang tua.",CDC_5Y,
+S-60-12,60,72,sosial,rotating,15,Main sekolah-sekolahan,"Main pura-pura sekolah, rumah-rumahan, atau toko dengan properti.",CDC_5Y,
+S-60-13,60,72,motorik_halus,rotating,15,Proyek kreatif,"Siapkan krayon, kertas, cat, gunting anak, lem untuk membuat karya.",CDC_5Y,
+S-60-14,60,72,motorik_kasar,rotating,15,Ayunan dan monkey bar,"Di taman, latih mengayun kaki sendiri di ayunan dan bergelantungan.",CDC_5Y,
+S-60-15,60,72,kognitif,rotating,10,Puzzle dan balok,Beri mainan merakit seperti puzzle dan balok susun.,CDC_5Y,
+S-60-16,60,72,kognitif,rotating,20,Ikuti minat anak,"Cari buku atau kunjungi tempat (taman, kebun binatang) sesuai minat anak.",CDC_5Y,
+S-60-17,60,72,kemandirian,rotating,10,Bantu siapkan makanan,"Ajak membantu menyiapkan makan keluarga, lalu makan bersama tanpa layar.",CDC_5Y,

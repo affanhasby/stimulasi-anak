@@ -1,0 +1,314 @@
+{
+  "_info": "Daftar sumber rujukan. Setiap item data lain merujuk ke id di sini lewat field `source` / `sources`. as_of = tanggal halaman dibaca saat riset.",
+  "as_of": "2026-11-21",
+  "sources": [
+    {
+      "id": "AAP_ENOUGH_MILK",
+      "publisher": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "How to Tell if Your Breastfed Baby is Getting Enough Milk (update 13 Jan 2025)",
+      "url": "https://www.healthychildren.org/English/ages-stages/baby/breastfeeding/Pages/How-to-Tell-If-Baby-Is-Getting-Enough-Milk.aspx",
+      "type": "organisasi profesi"
+    },
+    {
+      "id": "AASM_SLEEP_2016",
+      "publisher": "American Academy of Sleep Medicine, didukung AAP; J Clin Sleep Med",
+      "title": "Paruthi S et al. Recommended Amount of Sleep for Pediatric Populations. J Clin Sleep Med 2016;12(6):785-786",
+      "url": "https://doi.org/10.5664/jcsm.5866",
+      "type": "jurnal peer-review / konsensus",
+      "note": "Belum dibuka saat riset; angka 4-12 bln dan 1-2 thn sudah dikonfirmasi oleh Buku KIA 2021 hal. 33."
+    },
+    {
+      "id": "BUKU_KIA_2021",
+      "publisher": "Kementerian Kesehatan RI",
+      "title": "Buku Kesehatan Ibu dan Anak (Buku KIA) edisi 2021",
+      "date": "2021",
+      "url": "https://sikompak.bappenas.go.id/pembelajaran/view/52/id/other_doc/Buku%20KIA%20Revisi%202021/download.pdf",
+      "type": "pemerintah",
+      "note": "Hal. 33-47 dibaca. Hal. 48-53 (usia 2-6 tahun) belum terbaca saat riset; perlu diisi dari Buku KIA cetak terbaru."
+    },
+    {
+      "id": "CDC_12M",
+      "publisher": "CDC - Learn the Signs. Act Early.",
+      "title": "Milestones by 1 Year",
+      "url": "https://www.cdc.gov/act-early/milestones/1-year.html",
+      "type": "pemerintah AS"
+    },
+    {
+      "id": "CDC_15M",
+      "publisher": "CDC - Learn the Signs. Act Early.",
+      "title": "Milestones by 15 Months",
+      "url": "https://www.cdc.gov/act-early/milestones/15-months.html",
+      "type": "pemerintah AS"
+    },
+    {
+      "id": "CDC_18M",
+      "publisher": "CDC - Learn the Signs. Act Early.",
+      "title": "Milestones by 18 Months",
+      "url": "https://www.cdc.gov/act-early/milestones/18-months.html",
+      "type": "pemerintah AS"
+    },
+    {
+      "id": "CDC_2M",
+      "publisher": "CDC - Learn the Signs. Act Early.",
+      "title": "Milestones by 2 Months",
+      "url": "https://www.cdc.gov/act-early/milestones/2-months.html",
+      "type": "pemerintah AS"
+    },
+    {
+      "id": "CDC_2Y",
+      "publisher": "CDC - Learn the Signs. Act Early.",
+      "title": "Milestones by 2 Years + Parenting Tips and Activities",
+      "date": "2026-05-16",
+      "url": "https://www.cdc.gov/act-early/milestones/2-years.html",
+      "type": "pemerintah AS"
+    },
+    {
+      "id": "CDC_30M",
+      "publisher": "CDC - Learn the Signs. Act Early.",
+      "title": "Milestones by 30 Months + What You Can Do",
+      "date": "2026-05-16",
+      "url": "https://www.cdc.gov/act-early/milestones/30-months.html",
+      "type": "pemerintah AS"
+    },
+    {
+      "id": "CDC_3Y",
+      "publisher": "CDC - Learn the Signs. Act Early.",
+      "title": "Milestones by 3 Years + Parenting Tips and Activities",
+      "date": "2026-05-16",
+      "url": "https://www.cdc.gov/act-early/milestones/3-years.html",
+      "type": "pemerintah AS"
+    },
+    {
+      "id": "CDC_4M",
+      "publisher": "CDC - Learn the Signs. Act Early.",
+      "title": "Milestones by 4 Months",
+      "url": "https://www.cdc.gov/act-early/milestones/4-months.html",
+      "type": "pemerintah AS"
+    },
+    {
+      "id": "CDC_4Y",
+      "publisher": "CDC - Learn the Signs. Act Early.",
+      "title": "Milestones by 4 Years + Parenting Tips and Activities",
+      "date": "2026-05-16",
+      "url": "https://www.cdc.gov/act-early/milestones/4-years.html",
+      "type": "pemerintah AS"
+    },
+    {
+      "id": "CDC_5Y",
+      "publisher": "CDC - Learn the Signs. Act Early.",
+      "title": "Milestones by 5 Years + Parenting Tips and Activities",
+      "date": "2026-05-16",
+      "url": "https://www.cdc.gov/act-early/milestones/5-years.html",
+      "type": "pemerintah AS"
+    },
+    {
+      "id": "CDC_6M",
+      "publisher": "CDC - Learn the Signs. Act Early.",
+      "title": "Milestones by 6 Months",
+      "url": "https://www.cdc.gov/act-early/milestones/6-months.html",
+      "type": "pemerintah AS"
+    },
+    {
+      "id": "CDC_9M",
+      "publisher": "CDC - Learn the Signs. Act Early.",
+      "title": "Milestones by 9 Months",
+      "url": "https://www.cdc.gov/act-early/milestones/9-months.html",
+      "type": "pemerintah AS"
+    },
+    {
+      "id": "CDC_CATCHUP",
+      "publisher": "CDC",
+      "title": "Catch-up Immunization Schedule for Persons Aged 4 Months-18 Years (dipublikasi 2026-05-15)",
+      "date": "2026-05-15",
+      "url": "https://www.cdc.gov/vaccines/hcp/imz-schedules/child-adolescent-catch-up.html",
+      "type": "pemerintah AS"
+    },
+    {
+      "id": "CDC_IMZ_NOTES",
+      "publisher": "CDC",
+      "title": "Child and Adolescent Immunization Schedule Notes (dipublikasi 2026-09-14)",
+      "date": "2026-09-14",
+      "url": "https://www.cdc.gov/vaccines/hcp/imz-schedules/child-adolescent-notes.html",
+      "type": "pemerintah AS"
+    },
+    {
+      "id": "CDC_MILESTONES_2022",
+      "publisher": "CDC - Learn the Signs. Act Early. (bersama AAP)",
+      "title": "CDC's Developmental Milestones (revisi 2022)",
+      "date": "2022-02",
+      "url": "https://www.cdc.gov/act-early/milestones/index.html",
+      "type": "pemerintah AS / organisasi profesi",
+      "note": "Milestone = kemampuan yang dimiliki >=75% anak pada usia tsb (Zubler et al., Pediatrics 2022)."
+    },
+    {
+      "id": "CDC_MILESTONES_KEYPOINTS",
+      "publisher": "CDC",
+      "title": "Key Points about CDC's Developmental Milestone Checklists",
+      "url": "https://www.cdc.gov/act-early/milestones/key-points.html",
+      "type": "pemerintah AS"
+    },
+    {
+      "id": "CDC_ROTAVIRUS",
+      "publisher": "CDC",
+      "title": "Rotavirus Vaccine Considerations / Recommendations (2024-07-15)",
+      "date": "2024-07-15",
+      "url": "https://www.cdc.gov/rotavirus/hcp/vaccine-considerations/index.html",
+      "type": "pemerintah AS"
+    },
+    {
+      "id": "IDAI_JADWAL_2024",
+      "publisher": "Satgas Imunisasi IDAI (dikutip Bio Farma)",
+      "title": "Jadwal Imunisasi Anak Usia 0-18 Tahun Rekomendasi IDAI 2024",
+      "date": "2024-10",
+      "url": "https://biofarma.co.id/id/announcement/download/catat-jadwal-imunisasi-anak-terbaru-2024",
+      "type": "organisasi profesi (sumber sekunder: rangkuman Bio Farma)",
+      "note": "Wajib dicek ulang ke dokumen resmi IDAI (idai.or.id) sebelum rilis."
+    },
+    {
+      "id": "IDAI_PCV_2024",
+      "publisher": "Satgas Imunisasi IDAI (diberitakan Kontan)",
+      "title": "Satgas Imunisasi IDAI Rilis Jadwal Imunisasi Anak Usia 0-18 Tahun",
+      "date": "2024-10-21",
+      "url": "https://momsmoney.kontan.co.id/news/satgas-imunisasi-idai-rilis-jadwal-imunisasi-anak-usia-0-18-tahun",
+      "type": "berita yang mengutip IDAI"
+    },
+    {
+      "id": "KEMENKES_3VAKSIN_2022",
+      "publisher": "Kementerian Kesehatan RI",
+      "title": "Kemenkes Tambah 3 Jenis Vaksin Imunisasi Rutin, Salah Satunya HPV",
+      "date": "2022-04-23",
+      "url": "https://kemkes.go.id/id/39708",
+      "type": "pemerintah",
+      "note": "Dasar rentang imunisasi lanjutan baduta 18-24 bulan."
+    },
+    {
+      "id": "KEMENKES_ANTIGEN_BARU_2024",
+      "publisher": "Kementerian Kesehatan RI",
+      "title": "95 Persen Anak Harus Dapat Imunisasi, Cek Yuk 3 Jenis Antigen Baru",
+      "date": "2024-02-01",
+      "url": "https://kemkes.go.id/id/95-persen-anak-harus-dapat-imunisasi-cek-yuk-3-jenis-antigen-baru",
+      "type": "pemerintah"
+    },
+    {
+      "id": "KEMENKES_HEKSAVALEN_2025",
+      "publisher": "Kementerian Kesehatan RI",
+      "title": "Pemerintah Perkuat Perlindungan Anak melalui Imunisasi Heksavalen",
+      "date": "2025-12-22",
+      "url": "https://www.kemkes.go.id/id/pemerintah-perkuat-perlindungan-anak-melalui-imunisasi-heksavalen",
+      "type": "pemerintah"
+    },
+    {
+      "id": "KEMENKES_JADWAL_2025",
+      "publisher": "Kementerian Kesehatan RI",
+      "title": "Pekan Imunisasi Dunia 2025 - Jadwal Imunisasi Rutin Lengkap",
+      "date": "2025-03-21",
+      "url": "https://www.kemkes.go.id/eng/pekan-imunisasi-dunia-2025-ayo-lengkapi-imunisasi-untuk-generasi-sehat-menuju-indonesia-emas",
+      "type": "pemerintah"
+    },
+    {
+      "id": "PERMENKES_12_2017",
+      "publisher": "Kementerian Kesehatan RI",
+      "title": "Permenkes No. 12 Tahun 2017 tentang Penyelenggaraan Imunisasi (Lampiran: Pedoman Penyelenggaraan Imunisasi)",
+      "date": "2017",
+      "url": "https://peraturan.go.id/files/bn559-2017.pdf",
+      "type": "regulasi pemerintah",
+      "note": "Batang tubuh terbaca verbatim. Lampiran (hal. 37-53) hanya terbaca lewat ringkasan dari salinan ampeid.org; kutipan Lampiran wajib dicocokkan ke PDF cetak."
+    },
+    {
+      "id": "SUTTER_DIAPERS",
+      "publisher": "Sutter Health (ditinjau dokter FAAP)",
+      "title": "How Many Diapers a Day Your Newborn Should Have",
+      "date": "2026-05-12",
+      "url": "https://www.sutterhealth.org/health/how-many-diapers-a-day-your-newborn-should-have",
+      "type": "sistem kesehatan (pendukung)"
+    },
+    {
+      "id": "WHO_ROTAVIRUS_2021",
+      "publisher": "World Health Organization",
+      "title": "Rotavirus vaccines: WHO position paper - July 2021 (Weekly Epidemiological Record No 28)",
+      "url": "https://www.who.int/publications/i/item/WHO-WER9628",
+      "type": "WHO",
+      "note": "Halaman landing dibuka; PDF lengkap (iris.who.int) belum terbaca. Batas usia rotavirus memakai CDC_CATCHUP."
+    },
+    {
+      "id": "ZUBLER_2022",
+      "publisher": "Pediatrics (AAP), jurnal peer-review",
+      "title": "Zubler JM et al. Evidence-Informed Milestones for Developmental Surveillance Tools. Pediatrics 2022;149(3):e2021052138",
+      "url": "https://doi.org/10.1542/peds.2021-052138",
+      "type": "jurnal peer-review"
+    },
+    {
+      "id": "AAP_HC_1M",
+      "publisher": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Developmental Milestones At 1 Month Old",
+      "url": "https://healthychildren.org/English/ages-stages/baby/Pages/Developmental-Milestones-1-Month.aspx",
+      "date": "2026-04-21",
+      "type": "riset-2026-11",
+      "note": "Ditambahkan dari riset per bulan / standar pertumbuhan (PRD dan Data/research)."
+    },
+    {
+      "id": "AAP_HC_1_4M",
+      "publisher": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Developmental Milestones: 1-4 Months Old",
+      "url": "https://www.healthychildren.org/english/ages-stages/baby/pages/developmental-milestones-3-months.aspx",
+      "date": "2026-04-22",
+      "type": "riset-2026-11",
+      "note": "Ditambahkan dari riset per bulan / standar pertumbuhan (PRD dan Data/research)."
+    },
+    {
+      "id": "AAP_HC_4_7M",
+      "publisher": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Developmental Milestones: 7 Months (usia 4-7 bulan)",
+      "url": "https://www.healthychildren.org/English/ages-stages/baby/Pages/Developmental-Milestones-7-Months.aspx",
+      "date": "2009-06-07",
+      "type": "riset-2026-11",
+      "note": "Ditambahkan dari riset per bulan / standar pertumbuhan (PRD dan Data/research)."
+    },
+    {
+      "id": "IDAI_PANTAU_2016",
+      "publisher": "Ikatan Dokter Anak Indonesia (Afifa, Sambo, Medise)",
+      "title": "Pentingnya Memantau Pertumbuhan dan Perkembangan Anak (Bagian 2)",
+      "url": "https://www.idai.or.id/artikel/seputar-kesehatan-anak/pentingnya-memantau-pertumbuhan-dan-perkembangan-anak-bagian-2",
+      "date": "2016-08-18",
+      "type": "riset-2026-11",
+      "note": "Ditambahkan dari riset per bulan / standar pertumbuhan (PRD dan Data/research)."
+    },
+    {
+      "id": "WHO_MDS_2006",
+      "publisher": "WHO Multicentre Growth Reference Study Group; Acta Paediatrica Suppl 450:86-95",
+      "title": "WHO Motor Development Study: Windows of achievement for six gross motor development milestones",
+      "url": "https://doi.org/10.1080/08035320500495563",
+      "date": "2006",
+      "type": "riset-2026-11",
+      "note": "Ditambahkan dari riset per bulan / standar pertumbuhan (PRD dan Data/research)."
+    },
+    {
+      "id": "permenkes_2_2020",
+      "publisher": "Kementerian Kesehatan RI (Berita Negara RI 2020 No. 7)",
+      "title": "Peraturan Menteri Kesehatan Nomor 2 Tahun 2020 tentang Standar Antropometri Anak",
+      "url": "https://www.peraturan.go.id/files/bn7-2020.pdf",
+      "date": "ditetapkan 2020-01-02, diundangkan 2020-01-08",
+      "type": "riset-2026-11",
+      "note": "Ditambahkan dari riset per bulan / standar pertumbuhan (PRD dan Data/research)."
+    },
+    {
+      "id": "permenkes_66_2014",
+      "publisher": "Kementerian Kesehatan RI (Berita Negara RI 2014 No. 1524)",
+      "title": "Peraturan Menteri Kesehatan Nomor 66 Tahun 2014 tentang Pemantauan Pertumbuhan, Perkembangan, dan Gangguan Tumbuh Kembang Anak",
+      "url": "https://platform.who.int/docs/default-source/mca-documents/policy-documents/law/idn-ch-14-03-law-2014-ind-moh-regulation-66-2014---monitoring-of-growth--development--and-disorder-of-child-growth.pdf",
+      "date": "ditetapkan 2014-09-23, diundangkan 2014-10-10",
+      "type": "riset-2026-11",
+      "note": "Ditambahkan dari riset per bulan / standar pertumbuhan (PRD dan Data/research)."
+    },
+    {
+      "id": "permenkes_6_2024",
+      "publisher": "Kementerian Kesehatan RI",
+      "title": "Peraturan Menteri Kesehatan Nomor 6 Tahun 2024 tentang Standar Teknis Pemenuhan Standar Pelayanan Minimal Kesehatan (mencabut Permenkes 4/2019)",
+      "url": "https://peraturan.go.id/files/permenkes-no-6-tahun-2024.pdf",
+      "date": "ditetapkan 2024-04-03",
+      "type": "riset-2026-11",
+      "note": "Ditambahkan dari riset per bulan / standar pertumbuhan (PRD dan Data/research)."
+    }
+  ],
+  "version": "2026.11.21-3"
+}

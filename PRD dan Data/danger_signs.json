@@ -1,0 +1,94 @@
+{
+  "_info": "Tanda bahaya umum (bukan perkembangan). Ditampilkan sebagai kartu 'Kapan harus segera ke fasilitas kesehatan' sesuai usia, dan bisa diakses kapan saja lewat tombol darurat. Satu tanda saja sudah cukup untuk segera dibawa.",
+  "as_of": "2026-11-21",
+  "groups": [
+    {
+      "id": "DS-NEWBORN",
+      "label": "Bayi baru lahir (0-28 hari)",
+      "age_days": [
+        0,
+        28
+      ],
+      "rule": "Jika ditemukan 1 atau lebih tanda bahaya, bayi segera dibawa ke fasilitas kesehatan.",
+      "source": "BUKU_KIA_2021",
+      "page": "37",
+      "signs": [
+        "Muntah-muntah",
+        "Demam / panas tinggi",
+        "Tidak mau menyusu",
+        "Kejang",
+        "Sesak napas / sulit bernapas",
+        "Tubuh dingin atau lemah",
+        "Kulit dan mata kuning",
+        "Diare",
+        "Merintih atau menangis terus-menerus",
+        "Tali pusat kemerahan sampai dinding perut, berbau, atau bernanah",
+        "Tinja berwarna pucat"
+      ]
+    },
+    {
+      "id": "DS-JAUNDICE",
+      "label": "Kuning pada bayi",
+      "age_days": [
+        0,
+        60
+      ],
+      "rule": "Kuning normal muncul pada 24-72 jam dan hilang dalam 2 minggu. Tidak normal bila muncul sebelum 24 jam, menetap lebih dari 2 minggu, atau mata tetap kuning / urin kuning keruh setelah 2 minggu: segera ke dokter.",
+      "source": "BUKU_KIA_2021",
+      "page": "36, 39",
+      "signs": [
+        "Kuning muncul < 24 jam setelah lahir",
+        "Kuning > 2 minggu",
+        "Mata tetap kuning setelah 2 minggu",
+        "Urin kuning keruh",
+        "Tinja pucat (cek kartu warna tinja)"
+      ]
+    },
+    {
+      "id": "DS-TODDLER",
+      "label": "Bayi & balita",
+      "age_days": [
+        29,
+        2190
+      ],
+      "rule": "Jika ditemukan 1 atau lebih tanda bahaya, balita segera dibawa ke fasilitas kesehatan.",
+      "source": "BUKU_KIA_2021",
+      "page": "38",
+      "signs": [
+        "Tidak bisa minum / menyusu",
+        "Kejang",
+        "Sesak napas atau kulit kebiruan",
+        "Bengkak yang sakit di belakang telinga",
+        "Diare",
+        "Muntah-muntah",
+        "Demam tinggi",
+        "Berdarah dari hidung, kulit, atau dalam tinja"
+      ]
+    },
+    {
+      "id": "DS-DEHYDRATION",
+      "label": "Tanda dehidrasi pada bayi",
+      "age_days": [
+        0,
+        365
+      ],
+      "rule": "Hubungi dokter dan susui lebih sering.",
+      "source": "SUTTER_DIAPERS",
+      "signs": [
+        "Popok basah 4 atau kurang dalam 24 jam (usia > 4 hari)",
+        "Sulit dibangunkan untuk menyusu",
+        "Lidah dan mulut kering",
+        "Menangis tanpa air mata",
+        "Ubun-ubun cekung",
+        "Berat badan turun lebih dari 10%"
+      ]
+    }
+  ],
+  "hotline": {
+    "label": "Halo Kemenkes",
+    "number": "1500-567",
+    "source": "KEMENKES_ANTIGEN_BARU_2024",
+    "emergency": "112 / 119"
+  },
+  "version": "2026.11.21-3"
+}

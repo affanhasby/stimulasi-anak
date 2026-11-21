@@ -1,0 +1,5 @@
+﻿vaccine,schedule,rule,verification,source,page
+ALL_EXCEPT_HB0,KEMENKES,"Pada kondisi tertentu, semua jenis vaksin kecuali HB0 dapat diberikan sebelum bayi berusia 1 tahun (imunisasi kejar).",partial,PERMENKES_12_2017,Lampiran hal. 38
+RV,ALL,Dosis 1: usia 6 minggu - 14 minggu 6 hari. Jarak antar dosis minimal 4 minggu. Dosis terakhir paling lambat usia 8 bulan 0 hari.,verified,CDC_CATCHUP,
+PCV,IDAI,"Belum PCV di usia 7-12 bulan: 2 dosis jarak minimal 1 bulan, booster 12-15 bulan (minimal 2 bulan setelah dosis terakhir). Usia 1-2 tahun: 2 dosis jarak minimal 2 bulan. Usia 2-5 tahun: PCV10 2 dosis jarak 2 bulan, atau PCV13/PCV15 1 dosis.",verified,IDAI_PCV_2024,
+ALL,ALL,Dosis yang terlambat tidak perlu diulang dari awal; lanjutkan dosis berikutnya. App tidak menghitung jadwal kejar sendiri selain aturan di atas; tampilkan 'Terlambat - segera konsultasikan ke Posyandu/Puskesmas/dokter'.,unverified,IDAI_JADWAL_2024,

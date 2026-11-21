@@ -1,0 +1,3345 @@
+{
+  "as_of": "2026-11-21",
+  "_conventions": "expected_month = bulan saat kemampuan ditampilkan sebagai 'kemampuan bulan ini' (bilangan bulat usia bulan penuh). referral_cutoff_month = batas rujukan resmi (KIA: 3/6/9/12/18/24; CDC: usia milestone). stimulation start_month inklusif, end_month eksklusif (sama dengan README). verification: verified = usia/rentang dibaca langsung dari sumber; partial = interpolasi atau pemetaan longgar. Sumber WHO median dibulatkan ke atas (ceil).",
+  "month_grid": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    15,
+    18,
+    21,
+    24,
+    30,
+    36,
+    42,
+    48,
+    54,
+    60,
+    66,
+    72
+  ],
+  "sources": [
+    {
+      "id": "BUKU_KIA_2021",
+      "publisher": "Kementerian Kesehatan RI",
+      "title": "Buku Kesehatan Ibu dan Anak (Buku KIA) edisi revisi 2021, hal. 42-47",
+      "url": "https://sikompak.bappenas.go.id/pembelajaran/view/52/id/other_doc/Buku%20KIA%20Revisi%202021/download.pdf",
+      "date": "2021"
+    },
+    {
+      "id": "BUKU_KIA_2024",
+      "publisher": "Kementerian Kesehatan RI (isi dibaca lewat ringkasan pihak ketiga di SlideShare)",
+      "title": "Buku Kesehatan Ibu dan Anak (Buku KIA) Revisi 2024 - bagian balita",
+      "url": "https://www.slideshare.net/slideshow/informasi-kesehatan-buku-kia-revisi-2024-bagian-balita-pdf/275116332",
+      "date": "2024-12"
+    },
+    {
+      "id": "KEMENKES_KPSP",
+      "publisher": "Kementerian Kesehatan RI (dikutip lewat manual CSL FK Universitas Hasanuddin)",
+      "title": "Pedoman Pelaksanaan Stimulasi, Deteksi dan Intervensi Dini Tumbuh Kembang Anak (SDIDTK) - jadwal KPSP",
+      "url": "https://kedokteran.med.unhas.ac.id/wp-content/uploads/2019/01/MANUAL-CSL-5-BUKU-PANDUAN-KPSP.pdf",
+      "date": "2019 (manual); pedoman Kemenkes 2016/2019/2022"
+    },
+    {
+      "id": "WHO_MDS_2006",
+      "publisher": "WHO Multicentre Growth Reference Study Group; Acta Paediatrica Suppl 450:86-95",
+      "title": "WHO Motor Development Study: Windows of achievement for six gross motor development milestones",
+      "url": "https://doi.org/10.1080/08035320500495563",
+      "date": "2006"
+    },
+    {
+      "id": "WHO_MOTOR_PAGE",
+      "publisher": "World Health Organization",
+      "title": "Child growth standards - Motor development milestones",
+      "url": "https://www.who.int/tools/child-growth-standards/standards/motor-development-milestones",
+      "date": "tanpa tanggal (dibaca 2026-11-21)"
+    },
+    {
+      "id": "IDAI_MOTOR_2024",
+      "publisher": "Kompas TV, meliput seminar media IDAI (dr. Amanda Soebadi, Sp.A(K), Sekretaris UKK Neurologi IDAI)",
+      "title": "IDAI Ungkap Perkembangan Motorik Normal pada Bayi di Usia 4 sampai 12 Bulan",
+      "url": "https://www.kompas.tv/lifestyle/539241/idai-ungkap-perkembangan-motorik-normal-pada-bayi-di-usia-4-sampai-12-bulan",
+      "date": "2024-09-18"
+    },
+    {
+      "id": "IDAI_PANTAU_2016",
+      "publisher": "Ikatan Dokter Anak Indonesia (Afifa, Sambo, Medise)",
+      "title": "Pentingnya Memantau Pertumbuhan dan Perkembangan Anak (Bagian 2)",
+      "url": "https://www.idai.or.id/artikel/seputar-kesehatan-anak/pentingnya-memantau-pertumbuhan-dan-perkembangan-anak-bagian-2",
+      "date": "2016-08-18"
+    },
+    {
+      "id": "IDAI_JELAJAH_2015",
+      "publisher": "Ikatan Dokter Anak Indonesia (Catharine M. Sambo)",
+      "title": "Menjelajah Sebelum Berjalan",
+      "url": "https://www.idai.or.id/artikel/seputar-kesehatan-anak/menjelajah-sebelum-berjalan",
+      "date": "2015-04-09"
+    },
+    {
+      "id": "AAP_HC_1M",
+      "publisher": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Developmental Milestones At 1 Month Old",
+      "url": "https://healthychildren.org/English/ages-stages/baby/Pages/Developmental-Milestones-1-Month.aspx",
+      "date": "2026-04-21"
+    },
+    {
+      "id": "AAP_HC_1_4M",
+      "publisher": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Developmental Milestones: 1-4 Months Old",
+      "url": "https://www.healthychildren.org/english/ages-stages/baby/pages/developmental-milestones-3-months.aspx",
+      "date": "2026-04-22"
+    },
+    {
+      "id": "AAP_HC_4_7M",
+      "publisher": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Developmental Milestones: 7 Months (usia 4-7 bulan)",
+      "url": "https://www.healthychildren.org/English/ages-stages/baby/Pages/Developmental-Milestones-7-Months.aspx",
+      "date": "2009-06-07"
+    },
+    {
+      "id": "CDC_2M",
+      "publisher": "CDC - Learn the Signs. Act Early. (milestone direvisi bersama AAP 2022)",
+      "title": "Milestones by 2 months + Parenting Tips and Activities",
+      "url": "https://www.cdc.gov/act-early/milestones/2-months.html",
+      "date": "2026-05-16 (last reviewed)"
+    },
+    {
+      "id": "CDC_4M",
+      "publisher": "CDC - Learn the Signs. Act Early. (milestone direvisi bersama AAP 2022)",
+      "title": "Milestones by 4 months + Parenting Tips and Activities",
+      "url": "https://www.cdc.gov/act-early/milestones/4-months.html",
+      "date": "2026-05-16 (last reviewed)"
+    },
+    {
+      "id": "CDC_6M",
+      "publisher": "CDC - Learn the Signs. Act Early. (milestone direvisi bersama AAP 2022)",
+      "title": "Milestones by 6 months + Parenting Tips and Activities",
+      "url": "https://www.cdc.gov/act-early/milestones/6-months.html",
+      "date": "2026-05-16 (last reviewed)"
+    },
+    {
+      "id": "CDC_9M",
+      "publisher": "CDC - Learn the Signs. Act Early. (milestone direvisi bersama AAP 2022)",
+      "title": "Milestones by 9 months + Parenting Tips and Activities",
+      "url": "https://www.cdc.gov/act-early/milestones/9-months.html",
+      "date": "2026-05-16 (last reviewed)"
+    },
+    {
+      "id": "CDC_12M",
+      "publisher": "CDC - Learn the Signs. Act Early. (milestone direvisi bersama AAP 2022)",
+      "title": "Milestones by 1 year + Parenting Tips and Activities",
+      "url": "https://www.cdc.gov/act-early/milestones/1-year.html",
+      "date": "2026-05-16 (last reviewed)"
+    },
+    {
+      "id": "CDC_15M",
+      "publisher": "CDC - Learn the Signs. Act Early. (milestone direvisi bersama AAP 2022)",
+      "title": "Milestones by 15 months + Parenting Tips and Activities",
+      "url": "https://www.cdc.gov/act-early/milestones/15-months.html",
+      "date": "2026-05-16 (last reviewed)"
+    },
+    {
+      "id": "CDC_18M",
+      "publisher": "CDC - Learn the Signs. Act Early. (milestone direvisi bersama AAP 2022)",
+      "title": "Milestones by 18 months + Parenting Tips and Activities",
+      "url": "https://www.cdc.gov/act-early/milestones/18-months.html",
+      "date": "2026-05-16 (last reviewed)"
+    },
+    {
+      "id": "CDC_2Y",
+      "publisher": "CDC - Learn the Signs. Act Early. (milestone direvisi bersama AAP 2022)",
+      "title": "Milestones by 2 years + Parenting Tips and Activities",
+      "url": "https://www.cdc.gov/act-early/milestones/2-years.html",
+      "date": "2026-05-16 (last reviewed)"
+    },
+    {
+      "id": "CDC_30M",
+      "publisher": "CDC - Learn the Signs. Act Early. (milestone direvisi bersama AAP 2022)",
+      "title": "Milestones by 30 months + Parenting Tips and Activities",
+      "url": "https://www.cdc.gov/act-early/milestones/30-months.html",
+      "date": "2026-05-16 (last reviewed)"
+    },
+    {
+      "id": "CDC_3Y",
+      "publisher": "CDC - Learn the Signs. Act Early. (milestone direvisi bersama AAP 2022)",
+      "title": "Milestones by 3 years + Parenting Tips and Activities",
+      "url": "https://www.cdc.gov/act-early/milestones/3-years.html",
+      "date": "2026-05-16 (last reviewed)"
+    },
+    {
+      "id": "CDC_4Y",
+      "publisher": "CDC - Learn the Signs. Act Early. (milestone direvisi bersama AAP 2022)",
+      "title": "Milestones by 4 years + Parenting Tips and Activities",
+      "url": "https://www.cdc.gov/act-early/milestones/4-years.html",
+      "date": "2026-05-16 (last reviewed)"
+    },
+    {
+      "id": "CDC_5Y",
+      "publisher": "CDC - Learn the Signs. Act Early. (milestone direvisi bersama AAP 2022)",
+      "title": "Milestones by 5 years + Parenting Tips and Activities",
+      "url": "https://www.cdc.gov/act-early/milestones/5-years.html",
+      "date": "2026-05-16 (last reviewed)"
+    }
+  ],
+  "milestone_months": [
+    {
+      "item_id": "KIA-3M-1",
+      "set": "KIA",
+      "expected_month": 2,
+      "referral_cutoff_month": 3,
+      "verification": "verified",
+      "source": "CDC_2M",
+      "note": "CDC 2 bln: mengangkat kepala saat tengkurap"
+    },
+    {
+      "item_id": "KIA-3M-2",
+      "set": "KIA",
+      "expected_month": 1,
+      "referral_cutoff_month": 3,
+      "verification": "verified",
+      "source": "AAP_HC_1M",
+      "note": "AAP 1 bln: menggerakkan kepala ke samping saat tengkurap"
+    },
+    {
+      "item_id": "KIA-3M-3",
+      "set": "KIA",
+      "expected_month": 1,
+      "referral_cutoff_month": 3,
+      "verification": "verified",
+      "source": "AAP_HC_1M",
+      "note": "AAP 1 bln: lebih suka wajah, memperhatikan saat digendong; CDC 2 bln: melihat wajah"
+    },
+    {
+      "item_id": "KIA-3M-4",
+      "set": "KIA",
+      "expected_month": 3,
+      "referral_cutoff_month": 3,
+      "verification": "verified",
+      "source": "AAP_HC_1_4M",
+      "note": "AAP: cooing mulai bulan ke-2 atau ke-3"
+    },
+    {
+      "item_id": "KIA-3M-5",
+      "set": "KIA",
+      "expected_month": 3,
+      "referral_cutoff_month": 3,
+      "verification": "partial",
+      "source": "BUKU_KIA_2021",
+      "note": "Tidak ada sumber bulanan; CDC baru mencantumkan terkekeh 4 bln dan tertawa 6 bln. KIA menetapkan batas 3 bln (lebih ketat)."
+    },
+    {
+      "item_id": "KIA-3M-6",
+      "set": "KIA",
+      "expected_month": 1,
+      "referral_cutoff_month": 3,
+      "verification": "verified",
+      "source": "AAP_HC_1M",
+      "note": "AAP 1 bln: bereaksi terhadap suara keras"
+    },
+    {
+      "item_id": "KIA-3M-7",
+      "set": "KIA",
+      "expected_month": 2,
+      "referral_cutoff_month": 3,
+      "verification": "verified",
+      "source": "CDC_2M",
+      "note": "CDC 2 bln: tersenyum saat diajak bicara"
+    },
+    {
+      "item_id": "KIA-3M-8",
+      "set": "KIA",
+      "expected_month": 2,
+      "referral_cutoff_month": 3,
+      "verification": "partial",
+      "source": "AAP_HC_1M",
+      "note": "AAP 1 bln: mengenali bau ASI ibu; pengenalan multi-indera diinterpolasi ke 2 bln"
+    },
+    {
+      "item_id": "KIA-6M-1",
+      "set": "KIA",
+      "expected_month": 5,
+      "referral_cutoff_month": 6,
+      "verification": "partial",
+      "source": "AAP_HC_4_7M",
+      "note": "AAP: berguling dua arah di rentang 4-7 bln; CDC & IDAI: sekitar/paling lambat 6 bln"
+    },
+    {
+      "item_id": "KIA-6M-2",
+      "set": "KIA",
+      "expected_month": 4,
+      "referral_cutoff_month": 6,
+      "verification": "partial",
+      "source": "CDC_4M",
+      "note": "CDC 4 bln: bertumpu siku/lengan bawah saat tengkurap (kepala tegak)"
+    },
+    {
+      "item_id": "KIA-6M-3",
+      "set": "KIA",
+      "expected_month": 4,
+      "referral_cutoff_month": 6,
+      "verification": "verified",
+      "source": "CDC_4M",
+      "note": "CDC 4 bln: kepala tegak stabil tanpa ditopang"
+    },
+    {
+      "item_id": "KIA-6M-4",
+      "set": "KIA",
+      "expected_month": 4,
+      "referral_cutoff_month": 6,
+      "verification": "verified",
+      "source": "CDC_4M",
+      "note": "CDC 4 bln: memegang mainan yang diletakkan di tangan"
+    },
+    {
+      "item_id": "KIA-6M-5",
+      "set": "KIA",
+      "expected_month": 5,
+      "referral_cutoff_month": 6,
+      "verification": "partial",
+      "source": "AAP_HC_4_7M",
+      "note": "CDC 4 bln mengayun lengan ke mainan; CDC 6 bln meraih; diinterpolasi 5 bln"
+    },
+    {
+      "item_id": "KIA-6M-6",
+      "set": "KIA",
+      "expected_month": 4,
+      "referral_cutoff_month": 6,
+      "verification": "verified",
+      "source": "CDC_4M",
+      "note": "CDC 4 bln: melihat tangannya dengan tertarik"
+    },
+    {
+      "item_id": "KIA-6M-7",
+      "set": "KIA",
+      "expected_month": 4,
+      "referral_cutoff_month": 6,
+      "verification": "partial",
+      "source": "AAP_HC_1_4M",
+      "note": "AAP 4 bln: bisa melihat beberapa meter, mengikuti benda"
+    },
+    {
+      "item_id": "KIA-6M-8",
+      "set": "KIA",
+      "expected_month": 5,
+      "referral_cutoff_month": 6,
+      "verification": "partial",
+      "source": "BUKU_KIA_2021",
+      "note": "Interpolasi di dalam rentang 3-6 bln"
+    },
+    {
+      "item_id": "KIA-6M-9",
+      "set": "KIA",
+      "expected_month": 6,
+      "referral_cutoff_month": 6,
+      "verification": "verified",
+      "source": "CDC_6M",
+      "note": "CDC 6 bln: memekik"
+    },
+    {
+      "item_id": "KIA-6M-10",
+      "set": "KIA",
+      "expected_month": 6,
+      "referral_cutoff_month": 6,
+      "verification": "partial",
+      "source": "CDC_6M",
+      "note": "CDC 6 bln: suka melihat diri di cermin/tertawa; dipetakan longgar"
+    },
+    {
+      "item_id": "KIA-9M-1",
+      "set": "KIA",
+      "expected_month": 6,
+      "referral_cutoff_month": 9,
+      "verification": "verified",
+      "source": "WHO_MDS_2006",
+      "note": "WHO median duduk tanpa ditopang 6,0 bln (jendela 3,8-9,2); IDAI rata-rata 6-7 bln"
+    },
+    {
+      "item_id": "KIA-9M-2",
+      "set": "KIA",
+      "expected_month": 8,
+      "referral_cutoff_month": 9,
+      "verification": "verified",
+      "source": "WHO_MDS_2006",
+      "note": "WHO median berdiri dengan bantuan 7,6 bln (4,8-11,4)"
+    },
+    {
+      "item_id": "KIA-9M-3",
+      "set": "KIA",
+      "expected_month": 9,
+      "referral_cutoff_month": 9,
+      "verification": "verified",
+      "source": "WHO_MDS_2006",
+      "note": "WHO median merangkak 8,5 bln (5,2-13,5); IDAI: sebagian bayi tidak melalui merangkak"
+    },
+    {
+      "item_id": "KIA-9M-4",
+      "set": "KIA",
+      "expected_month": 7,
+      "referral_cutoff_month": 9,
+      "verification": "verified",
+      "source": "AAP_HC_4_7M",
+      "note": "AAP 4-7 bln: memindahkan benda antartangan; CDC 9 bln"
+    },
+    {
+      "item_id": "KIA-9M-5",
+      "set": "KIA",
+      "expected_month": 8,
+      "referral_cutoff_month": 9,
+      "verification": "partial",
+      "source": "CDC_9M",
+      "note": "CDC 9 bln: membenturkan dua benda; diinterpolasi 8 bln"
+    },
+    {
+      "item_id": "KIA-9M-6",
+      "set": "KIA",
+      "expected_month": 8,
+      "referral_cutoff_month": 9,
+      "verification": "partial",
+      "source": "AAP_HC_4_7M",
+      "note": "AAP 4-7 bln: genggaman meraup; CDC 9 bln meraup makanan"
+    },
+    {
+      "item_id": "KIA-9M-7",
+      "set": "KIA",
+      "expected_month": 7,
+      "referral_cutoff_month": 9,
+      "verification": "verified",
+      "source": "AAP_HC_4_7M",
+      "note": "AAP 4-7 bln: mengoceh rangkaian konsonan; CDC 9 bln mamama/bababa"
+    },
+    {
+      "item_id": "KIA-9M-8",
+      "set": "KIA",
+      "expected_month": 8,
+      "referral_cutoff_month": 9,
+      "verification": "partial",
+      "source": "CDC_9M",
+      "note": "AAP 4-7 bln mencari benda yang tersembunyi sebagian; CDC 9 bln mencari benda jatuh"
+    },
+    {
+      "item_id": "KIA-9M-9",
+      "set": "KIA",
+      "expected_month": 9,
+      "referral_cutoff_month": 9,
+      "verification": "verified",
+      "source": "CDC_9M",
+      "note": "CDC 9 bln: tersenyum/tertawa saat cilukba"
+    },
+    {
+      "item_id": "KIA-9M-10",
+      "set": "KIA",
+      "expected_month": 9,
+      "referral_cutoff_month": 9,
+      "verification": "partial",
+      "source": "BUKU_KIA_2021",
+      "note": "Interpolasi"
+    },
+    {
+      "item_id": "KIA-9M-11",
+      "set": "KIA",
+      "expected_month": 8,
+      "referral_cutoff_month": 9,
+      "verification": "partial",
+      "source": "CDC_9M",
+      "note": "Tips CDC 9 bln: biarkan bayi makan sendiri"
+    },
+    {
+      "item_id": "KIA-12M-1",
+      "set": "KIA",
+      "expected_month": 10,
+      "referral_cutoff_month": 12,
+      "verification": "partial",
+      "source": "CDC_12M",
+      "note": "CDC 12 bln: menarik badan untuk berdiri; WHO berdiri dengan bantuan median 7,6 bln"
+    },
+    {
+      "item_id": "KIA-12M-2",
+      "set": "KIA",
+      "expected_month": 11,
+      "referral_cutoff_month": 12,
+      "verification": "partial",
+      "source": "WHO_MDS_2006",
+      "note": "WHO berdiri dengan bantuan 4,8-11,4 bln; CDC 12 bln berjalan berpegangan perabot"
+    },
+    {
+      "item_id": "KIA-12M-3",
+      "set": "KIA",
+      "expected_month": 10,
+      "referral_cutoff_month": 12,
+      "verification": "verified",
+      "source": "WHO_MDS_2006",
+      "note": "WHO median berjalan dengan bantuan 9,2 bln (5,9-13,7); IDAI ~9 bln berjalan berpegangan"
+    },
+    {
+      "item_id": "KIA-12M-4",
+      "set": "KIA",
+      "expected_month": 10,
+      "referral_cutoff_month": 12,
+      "verification": "partial",
+      "source": "BUKU_KIA_2021",
+      "note": "Interpolasi"
+    },
+    {
+      "item_id": "KIA-12M-5",
+      "set": "KIA",
+      "expected_month": 11,
+      "referral_cutoff_month": 12,
+      "verification": "partial",
+      "source": "BUKU_KIA_2021",
+      "note": "Interpolasi"
+    },
+    {
+      "item_id": "KIA-12M-6",
+      "set": "KIA",
+      "expected_month": 10,
+      "referral_cutoff_month": 12,
+      "verification": "partial",
+      "source": "CDC_6M",
+      "note": "CDC 6 bln sudah memasukkan benda ke mulut; KIA mencantumkan di 9-12 bln"
+    },
+    {
+      "item_id": "KIA-12M-7",
+      "set": "KIA",
+      "expected_month": 10,
+      "referral_cutoff_month": 12,
+      "verification": "partial",
+      "source": "CDC_9M",
+      "note": "Tips CDC 9 bln: ulangi suara bayi"
+    },
+    {
+      "item_id": "KIA-12M-8",
+      "set": "KIA",
+      "expected_month": 10,
+      "referral_cutoff_month": 12,
+      "verification": "partial",
+      "source": "IDAI_PANTAU_2016",
+      "note": "IDAI: usia 9-12 bln mengoceh 2-3 suku kata tanpa arti (rentang, bukan bulan)"
+    },
+    {
+      "item_id": "KIA-12M-9",
+      "set": "KIA",
+      "expected_month": 11,
+      "referral_cutoff_month": 12,
+      "verification": "partial",
+      "source": "BUKU_KIA_2021",
+      "note": "Interpolasi"
+    },
+    {
+      "item_id": "KIA-12M-10",
+      "set": "KIA",
+      "expected_month": 11,
+      "referral_cutoff_month": 12,
+      "verification": "partial",
+      "source": "BUKU_KIA_2021",
+      "note": "Interpolasi"
+    },
+    {
+      "item_id": "KIA-12M-11",
+      "set": "KIA",
+      "expected_month": 10,
+      "referral_cutoff_month": 12,
+      "verification": "partial",
+      "source": "CDC_9M",
+      "note": "CDC 9 bln: senang cilukba"
+    },
+    {
+      "item_id": "KIA-12M-12",
+      "set": "KIA",
+      "expected_month": 10,
+      "referral_cutoff_month": 12,
+      "verification": "partial",
+      "source": "CDC_9M",
+      "note": "CDC 9 bln: malu/takut pada orang asing"
+    },
+    {
+      "item_id": "KIA-18M-1",
+      "set": "KIA",
+      "expected_month": 15,
+      "referral_cutoff_month": 18,
+      "verification": "partial",
+      "source": "WHO_MDS_2006",
+      "note": "WHO median berdiri sendiri 10,8 bln (6,9-16,9); dipasang di titik 15 bln dalam rentang KIA 12-18"
+    },
+    {
+      "item_id": "KIA-18M-2",
+      "set": "KIA",
+      "expected_month": 15,
+      "referral_cutoff_month": 18,
+      "verification": "partial",
+      "source": "BUKU_KIA_2021",
+      "note": "Interpolasi"
+    },
+    {
+      "item_id": "KIA-18M-3",
+      "set": "KIA",
+      "expected_month": 18,
+      "referral_cutoff_month": 18,
+      "verification": "partial",
+      "source": "BUKU_KIA_2021",
+      "note": "Interpolasi"
+    },
+    {
+      "item_id": "KIA-18M-4",
+      "set": "KIA",
+      "expected_month": 15,
+      "referral_cutoff_month": 18,
+      "verification": "partial",
+      "source": "CDC_12M",
+      "note": "CDC 12 bln: memanggil mama/papa; KIA rentang 12-18"
+    },
+    {
+      "item_id": "KIA-18M-5",
+      "set": "KIA",
+      "expected_month": 15,
+      "referral_cutoff_month": 18,
+      "verification": "verified",
+      "source": "CDC_15M",
+      "note": "CDC 15 bln: menumpuk minimal dua benda"
+    },
+    {
+      "item_id": "KIA-18M-6",
+      "set": "KIA",
+      "expected_month": 15,
+      "referral_cutoff_month": 18,
+      "verification": "partial",
+      "source": "CDC_12M",
+      "note": "CDC 12 bln: memasukkan benda ke wadah"
+    },
+    {
+      "item_id": "KIA-18M-7",
+      "set": "KIA",
+      "expected_month": 15,
+      "referral_cutoff_month": 18,
+      "verification": "verified",
+      "source": "CDC_15M",
+      "note": "CDC 15 bln: menunjuk untuk meminta"
+    },
+    {
+      "item_id": "KIA-18M-8",
+      "set": "KIA",
+      "expected_month": 18,
+      "referral_cutoff_month": 18,
+      "verification": "partial",
+      "source": "BUKU_KIA_2021",
+      "note": "Interpolasi"
+    },
+    {
+      "item_id": "KIA-24M-1",
+      "set": "KIA",
+      "expected_month": 21,
+      "referral_cutoff_month": 24,
+      "verification": "partial",
+      "source": "BUKU_KIA_2021",
+      "note": "Interpolasi"
+    },
+    {
+      "item_id": "KIA-24M-2",
+      "set": "KIA",
+      "expected_month": 21,
+      "referral_cutoff_month": 24,
+      "verification": "partial",
+      "source": "WHO_MDS_2006",
+      "note": "WHO berjalan sendiri median 12,1 bln, batas 99% 17,6 bln; berjalan stabil diinterpolasi 21 bln"
+    },
+    {
+      "item_id": "KIA-24M-3",
+      "set": "KIA",
+      "expected_month": 21,
+      "referral_cutoff_month": 24,
+      "verification": "partial",
+      "source": "BUKU_KIA_2021",
+      "note": "Interpolasi"
+    },
+    {
+      "item_id": "KIA-24M-4",
+      "set": "KIA",
+      "expected_month": 21,
+      "referral_cutoff_month": 24,
+      "verification": "partial",
+      "source": "CDC_12M",
+      "note": "CDC 12 bln: menjimpit dengan ibu jari-telunjuk; KIA menaruh di 18-24 bln"
+    },
+    {
+      "item_id": "KIA-24M-5",
+      "set": "KIA",
+      "expected_month": 24,
+      "referral_cutoff_month": 24,
+      "verification": "partial",
+      "source": "CDC_2Y",
+      "note": "CDC 2 thn: menendang bola"
+    },
+    {
+      "item_id": "KIA-24M-6",
+      "set": "KIA",
+      "expected_month": 21,
+      "referral_cutoff_month": 24,
+      "verification": "partial",
+      "source": "CDC_18M",
+      "note": "CDC 18 bln: mencoba mengucapkan 3 kata atau lebih"
+    },
+    {
+      "item_id": "KIA-24M-7",
+      "set": "KIA",
+      "expected_month": 21,
+      "referral_cutoff_month": 24,
+      "verification": "partial",
+      "source": "CDC_18M",
+      "note": "CDC 18 bln: meniru pekerjaan rumah"
+    },
+    {
+      "item_id": "KIA-24M-8",
+      "set": "KIA",
+      "expected_month": 24,
+      "referral_cutoff_month": 24,
+      "verification": "partial",
+      "source": "CDC_2Y",
+      "note": "CDC 18 bln minum dari gelas; CDC 2 thn makan dengan sendok"
+    },
+    {
+      "item_id": "CDC-2-1",
+      "set": "CDC",
+      "expected_month": 2,
+      "referral_cutoff_month": 2,
+      "verification": "verified",
+      "source": "CDC_2M"
+    },
+    {
+      "item_id": "CDC-2-2",
+      "set": "CDC",
+      "expected_month": 2,
+      "referral_cutoff_month": 2,
+      "verification": "verified",
+      "source": "CDC_2M"
+    },
+    {
+      "item_id": "CDC-2-3",
+      "set": "CDC",
+      "expected_month": 2,
+      "referral_cutoff_month": 2,
+      "verification": "verified",
+      "source": "CDC_2M"
+    },
+    {
+      "item_id": "CDC-2-4",
+      "set": "CDC",
+      "expected_month": 2,
+      "referral_cutoff_month": 2,
+      "verification": "verified",
+      "source": "CDC_2M"
+    },
+    {
+      "item_id": "CDC-2-5",
+      "set": "CDC",
+      "expected_month": 2,
+      "referral_cutoff_month": 2,
+      "verification": "verified",
+      "source": "CDC_2M"
+    },
+    {
+      "item_id": "CDC-2-6",
+      "set": "CDC",
+      "expected_month": 2,
+      "referral_cutoff_month": 2,
+      "verification": "verified",
+      "source": "CDC_2M"
+    },
+    {
+      "item_id": "CDC-2-7",
+      "set": "CDC",
+      "expected_month": 2,
+      "referral_cutoff_month": 2,
+      "verification": "verified",
+      "source": "CDC_2M"
+    },
+    {
+      "item_id": "CDC-2-8",
+      "set": "CDC",
+      "expected_month": 2,
+      "referral_cutoff_month": 2,
+      "verification": "verified",
+      "source": "CDC_2M"
+    },
+    {
+      "item_id": "CDC-2-9",
+      "set": "CDC",
+      "expected_month": 2,
+      "referral_cutoff_month": 2,
+      "verification": "verified",
+      "source": "CDC_2M"
+    },
+    {
+      "item_id": "CDC-2-10",
+      "set": "CDC",
+      "expected_month": 2,
+      "referral_cutoff_month": 2,
+      "verification": "verified",
+      "source": "CDC_2M"
+    },
+    {
+      "item_id": "CDC-2-11",
+      "set": "CDC",
+      "expected_month": 2,
+      "referral_cutoff_month": 2,
+      "verification": "verified",
+      "source": "CDC_2M"
+    },
+    {
+      "item_id": "CDC-4-1",
+      "set": "CDC",
+      "expected_month": 4,
+      "referral_cutoff_month": 4,
+      "verification": "verified",
+      "source": "CDC_4M"
+    },
+    {
+      "item_id": "CDC-4-2",
+      "set": "CDC",
+      "expected_month": 4,
+      "referral_cutoff_month": 4,
+      "verification": "verified",
+      "source": "CDC_4M"
+    },
+    {
+      "item_id": "CDC-4-3",
+      "set": "CDC",
+      "expected_month": 4,
+      "referral_cutoff_month": 4,
+      "verification": "verified",
+      "source": "CDC_4M"
+    },
+    {
+      "item_id": "CDC-4-4",
+      "set": "CDC",
+      "expected_month": 4,
+      "referral_cutoff_month": 4,
+      "verification": "verified",
+      "source": "CDC_4M"
+    },
+    {
+      "item_id": "CDC-4-5",
+      "set": "CDC",
+      "expected_month": 4,
+      "referral_cutoff_month": 4,
+      "verification": "verified",
+      "source": "CDC_4M"
+    },
+    {
+      "item_id": "CDC-4-6",
+      "set": "CDC",
+      "expected_month": 4,
+      "referral_cutoff_month": 4,
+      "verification": "verified",
+      "source": "CDC_4M"
+    },
+    {
+      "item_id": "CDC-4-7",
+      "set": "CDC",
+      "expected_month": 4,
+      "referral_cutoff_month": 4,
+      "verification": "verified",
+      "source": "CDC_4M"
+    },
+    {
+      "item_id": "CDC-4-8",
+      "set": "CDC",
+      "expected_month": 4,
+      "referral_cutoff_month": 4,
+      "verification": "verified",
+      "source": "CDC_4M"
+    },
+    {
+      "item_id": "CDC-4-9",
+      "set": "CDC",
+      "expected_month": 4,
+      "referral_cutoff_month": 4,
+      "verification": "verified",
+      "source": "CDC_4M"
+    },
+    {
+      "item_id": "CDC-4-10",
+      "set": "CDC",
+      "expected_month": 4,
+      "referral_cutoff_month": 4,
+      "verification": "verified",
+      "source": "CDC_4M"
+    },
+    {
+      "item_id": "CDC-4-11",
+      "set": "CDC",
+      "expected_month": 4,
+      "referral_cutoff_month": 4,
+      "verification": "verified",
+      "source": "CDC_4M"
+    },
+    {
+      "item_id": "CDC-4-12",
+      "set": "CDC",
+      "expected_month": 4,
+      "referral_cutoff_month": 4,
+      "verification": "verified",
+      "source": "CDC_4M"
+    },
+    {
+      "item_id": "CDC-4-13",
+      "set": "CDC",
+      "expected_month": 4,
+      "referral_cutoff_month": 4,
+      "verification": "verified",
+      "source": "CDC_4M"
+    },
+    {
+      "item_id": "CDC-6-1",
+      "set": "CDC",
+      "expected_month": 6,
+      "referral_cutoff_month": 6,
+      "verification": "verified",
+      "source": "CDC_6M"
+    },
+    {
+      "item_id": "CDC-6-2",
+      "set": "CDC",
+      "expected_month": 6,
+      "referral_cutoff_month": 6,
+      "verification": "verified",
+      "source": "CDC_6M"
+    },
+    {
+      "item_id": "CDC-6-3",
+      "set": "CDC",
+      "expected_month": 6,
+      "referral_cutoff_month": 6,
+      "verification": "verified",
+      "source": "CDC_6M"
+    },
+    {
+      "item_id": "CDC-6-4",
+      "set": "CDC",
+      "expected_month": 6,
+      "referral_cutoff_month": 6,
+      "verification": "verified",
+      "source": "CDC_6M"
+    },
+    {
+      "item_id": "CDC-6-5",
+      "set": "CDC",
+      "expected_month": 6,
+      "referral_cutoff_month": 6,
+      "verification": "verified",
+      "source": "CDC_6M"
+    },
+    {
+      "item_id": "CDC-6-6",
+      "set": "CDC",
+      "expected_month": 6,
+      "referral_cutoff_month": 6,
+      "verification": "verified",
+      "source": "CDC_6M"
+    },
+    {
+      "item_id": "CDC-6-7",
+      "set": "CDC",
+      "expected_month": 6,
+      "referral_cutoff_month": 6,
+      "verification": "verified",
+      "source": "CDC_6M"
+    },
+    {
+      "item_id": "CDC-6-8",
+      "set": "CDC",
+      "expected_month": 6,
+      "referral_cutoff_month": 6,
+      "verification": "verified",
+      "source": "CDC_6M"
+    },
+    {
+      "item_id": "CDC-6-9",
+      "set": "CDC",
+      "expected_month": 6,
+      "referral_cutoff_month": 6,
+      "verification": "verified",
+      "source": "CDC_6M"
+    },
+    {
+      "item_id": "CDC-6-10",
+      "set": "CDC",
+      "expected_month": 6,
+      "referral_cutoff_month": 6,
+      "verification": "verified",
+      "source": "CDC_6M"
+    },
+    {
+      "item_id": "CDC-6-11",
+      "set": "CDC",
+      "expected_month": 6,
+      "referral_cutoff_month": 6,
+      "verification": "verified",
+      "source": "CDC_6M"
+    },
+    {
+      "item_id": "CDC-6-12",
+      "set": "CDC",
+      "expected_month": 6,
+      "referral_cutoff_month": 6,
+      "verification": "verified",
+      "source": "CDC_6M"
+    },
+    {
+      "item_id": "CDC-9-1",
+      "set": "CDC",
+      "expected_month": 9,
+      "referral_cutoff_month": 9,
+      "verification": "verified",
+      "source": "CDC_9M"
+    },
+    {
+      "item_id": "CDC-9-2",
+      "set": "CDC",
+      "expected_month": 9,
+      "referral_cutoff_month": 9,
+      "verification": "verified",
+      "source": "CDC_9M"
+    },
+    {
+      "item_id": "CDC-9-3",
+      "set": "CDC",
+      "expected_month": 9,
+      "referral_cutoff_month": 9,
+      "verification": "verified",
+      "source": "CDC_9M"
+    },
+    {
+      "item_id": "CDC-9-4",
+      "set": "CDC",
+      "expected_month": 9,
+      "referral_cutoff_month": 9,
+      "verification": "verified",
+      "source": "CDC_9M"
+    },
+    {
+      "item_id": "CDC-9-5",
+      "set": "CDC",
+      "expected_month": 9,
+      "referral_cutoff_month": 9,
+      "verification": "verified",
+      "source": "CDC_9M"
+    },
+    {
+      "item_id": "CDC-9-6",
+      "set": "CDC",
+      "expected_month": 9,
+      "referral_cutoff_month": 9,
+      "verification": "verified",
+      "source": "CDC_9M"
+    },
+    {
+      "item_id": "CDC-9-7",
+      "set": "CDC",
+      "expected_month": 9,
+      "referral_cutoff_month": 9,
+      "verification": "verified",
+      "source": "CDC_9M"
+    },
+    {
+      "item_id": "CDC-9-8",
+      "set": "CDC",
+      "expected_month": 9,
+      "referral_cutoff_month": 9,
+      "verification": "verified",
+      "source": "CDC_9M"
+    },
+    {
+      "item_id": "CDC-9-9",
+      "set": "CDC",
+      "expected_month": 9,
+      "referral_cutoff_month": 9,
+      "verification": "verified",
+      "source": "CDC_9M"
+    },
+    {
+      "item_id": "CDC-9-10",
+      "set": "CDC",
+      "expected_month": 9,
+      "referral_cutoff_month": 9,
+      "verification": "verified",
+      "source": "CDC_9M"
+    },
+    {
+      "item_id": "CDC-9-11",
+      "set": "CDC",
+      "expected_month": 9,
+      "referral_cutoff_month": 9,
+      "verification": "verified",
+      "source": "CDC_9M"
+    },
+    {
+      "item_id": "CDC-9-12",
+      "set": "CDC",
+      "expected_month": 9,
+      "referral_cutoff_month": 9,
+      "verification": "verified",
+      "source": "CDC_9M"
+    },
+    {
+      "item_id": "CDC-9-13",
+      "set": "CDC",
+      "expected_month": 9,
+      "referral_cutoff_month": 9,
+      "verification": "verified",
+      "source": "CDC_9M"
+    },
+    {
+      "item_id": "CDC-12-1",
+      "set": "CDC",
+      "expected_month": 12,
+      "referral_cutoff_month": 12,
+      "verification": "verified",
+      "source": "CDC_12M"
+    },
+    {
+      "item_id": "CDC-12-2",
+      "set": "CDC",
+      "expected_month": 12,
+      "referral_cutoff_month": 12,
+      "verification": "verified",
+      "source": "CDC_12M"
+    },
+    {
+      "item_id": "CDC-12-3",
+      "set": "CDC",
+      "expected_month": 12,
+      "referral_cutoff_month": 12,
+      "verification": "verified",
+      "source": "CDC_12M"
+    },
+    {
+      "item_id": "CDC-12-4",
+      "set": "CDC",
+      "expected_month": 12,
+      "referral_cutoff_month": 12,
+      "verification": "verified",
+      "source": "CDC_12M"
+    },
+    {
+      "item_id": "CDC-12-5",
+      "set": "CDC",
+      "expected_month": 12,
+      "referral_cutoff_month": 12,
+      "verification": "verified",
+      "source": "CDC_12M"
+    },
+    {
+      "item_id": "CDC-12-6",
+      "set": "CDC",
+      "expected_month": 12,
+      "referral_cutoff_month": 12,
+      "verification": "verified",
+      "source": "CDC_12M"
+    },
+    {
+      "item_id": "CDC-12-7",
+      "set": "CDC",
+      "expected_month": 12,
+      "referral_cutoff_month": 12,
+      "verification": "verified",
+      "source": "CDC_12M"
+    },
+    {
+      "item_id": "CDC-12-8",
+      "set": "CDC",
+      "expected_month": 12,
+      "referral_cutoff_month": 12,
+      "verification": "verified",
+      "source": "CDC_12M"
+    },
+    {
+      "item_id": "CDC-12-9",
+      "set": "CDC",
+      "expected_month": 12,
+      "referral_cutoff_month": 12,
+      "verification": "verified",
+      "source": "CDC_12M"
+    },
+    {
+      "item_id": "CDC-12-10",
+      "set": "CDC",
+      "expected_month": 12,
+      "referral_cutoff_month": 12,
+      "verification": "verified",
+      "source": "CDC_12M"
+    },
+    {
+      "item_id": "CDC-15-1",
+      "set": "CDC",
+      "expected_month": 15,
+      "referral_cutoff_month": 15,
+      "verification": "verified",
+      "source": "CDC_15M"
+    },
+    {
+      "item_id": "CDC-15-2",
+      "set": "CDC",
+      "expected_month": 15,
+      "referral_cutoff_month": 15,
+      "verification": "verified",
+      "source": "CDC_15M"
+    },
+    {
+      "item_id": "CDC-15-3",
+      "set": "CDC",
+      "expected_month": 15,
+      "referral_cutoff_month": 15,
+      "verification": "verified",
+      "source": "CDC_15M"
+    },
+    {
+      "item_id": "CDC-15-4",
+      "set": "CDC",
+      "expected_month": 15,
+      "referral_cutoff_month": 15,
+      "verification": "verified",
+      "source": "CDC_15M"
+    },
+    {
+      "item_id": "CDC-15-5",
+      "set": "CDC",
+      "expected_month": 15,
+      "referral_cutoff_month": 15,
+      "verification": "verified",
+      "source": "CDC_15M"
+    },
+    {
+      "item_id": "CDC-15-6",
+      "set": "CDC",
+      "expected_month": 15,
+      "referral_cutoff_month": 15,
+      "verification": "verified",
+      "source": "CDC_15M"
+    },
+    {
+      "item_id": "CDC-15-7",
+      "set": "CDC",
+      "expected_month": 15,
+      "referral_cutoff_month": 15,
+      "verification": "verified",
+      "source": "CDC_15M"
+    },
+    {
+      "item_id": "CDC-15-8",
+      "set": "CDC",
+      "expected_month": 15,
+      "referral_cutoff_month": 15,
+      "verification": "verified",
+      "source": "CDC_15M"
+    },
+    {
+      "item_id": "CDC-15-9",
+      "set": "CDC",
+      "expected_month": 15,
+      "referral_cutoff_month": 15,
+      "verification": "verified",
+      "source": "CDC_15M"
+    },
+    {
+      "item_id": "CDC-15-10",
+      "set": "CDC",
+      "expected_month": 15,
+      "referral_cutoff_month": 15,
+      "verification": "verified",
+      "source": "CDC_15M"
+    },
+    {
+      "item_id": "CDC-15-11",
+      "set": "CDC",
+      "expected_month": 15,
+      "referral_cutoff_month": 15,
+      "verification": "verified",
+      "source": "CDC_15M"
+    },
+    {
+      "item_id": "CDC-15-12",
+      "set": "CDC",
+      "expected_month": 15,
+      "referral_cutoff_month": 15,
+      "verification": "verified",
+      "source": "CDC_15M"
+    },
+    {
+      "item_id": "CDC-15-13",
+      "set": "CDC",
+      "expected_month": 15,
+      "referral_cutoff_month": 15,
+      "verification": "verified",
+      "source": "CDC_15M"
+    },
+    {
+      "item_id": "CDC-18-1",
+      "set": "CDC",
+      "expected_month": 18,
+      "referral_cutoff_month": 18,
+      "verification": "verified",
+      "source": "CDC_18M"
+    },
+    {
+      "item_id": "CDC-18-2",
+      "set": "CDC",
+      "expected_month": 18,
+      "referral_cutoff_month": 18,
+      "verification": "verified",
+      "source": "CDC_18M"
+    },
+    {
+      "item_id": "CDC-18-3",
+      "set": "CDC",
+      "expected_month": 18,
+      "referral_cutoff_month": 18,
+      "verification": "verified",
+      "source": "CDC_18M"
+    },
+    {
+      "item_id": "CDC-18-4",
+      "set": "CDC",
+      "expected_month": 18,
+      "referral_cutoff_month": 18,
+      "verification": "verified",
+      "source": "CDC_18M"
+    },
+    {
+      "item_id": "CDC-18-5",
+      "set": "CDC",
+      "expected_month": 18,
+      "referral_cutoff_month": 18,
+      "verification": "verified",
+      "source": "CDC_18M"
+    },
+    {
+      "item_id": "CDC-18-6",
+      "set": "CDC",
+      "expected_month": 18,
+      "referral_cutoff_month": 18,
+      "verification": "verified",
+      "source": "CDC_18M"
+    },
+    {
+      "item_id": "CDC-18-7",
+      "set": "CDC",
+      "expected_month": 18,
+      "referral_cutoff_month": 18,
+      "verification": "verified",
+      "source": "CDC_18M"
+    },
+    {
+      "item_id": "CDC-18-8",
+      "set": "CDC",
+      "expected_month": 18,
+      "referral_cutoff_month": 18,
+      "verification": "verified",
+      "source": "CDC_18M"
+    },
+    {
+      "item_id": "CDC-18-9",
+      "set": "CDC",
+      "expected_month": 18,
+      "referral_cutoff_month": 18,
+      "verification": "verified",
+      "source": "CDC_18M"
+    },
+    {
+      "item_id": "CDC-18-10",
+      "set": "CDC",
+      "expected_month": 18,
+      "referral_cutoff_month": 18,
+      "verification": "verified",
+      "source": "CDC_18M"
+    },
+    {
+      "item_id": "CDC-18-11",
+      "set": "CDC",
+      "expected_month": 18,
+      "referral_cutoff_month": 18,
+      "verification": "verified",
+      "source": "CDC_18M"
+    },
+    {
+      "item_id": "CDC-18-12",
+      "set": "CDC",
+      "expected_month": 18,
+      "referral_cutoff_month": 18,
+      "verification": "verified",
+      "source": "CDC_18M"
+    },
+    {
+      "item_id": "CDC-18-13",
+      "set": "CDC",
+      "expected_month": 18,
+      "referral_cutoff_month": 18,
+      "verification": "verified",
+      "source": "CDC_18M"
+    },
+    {
+      "item_id": "CDC-18-14",
+      "set": "CDC",
+      "expected_month": 18,
+      "referral_cutoff_month": 18,
+      "verification": "verified",
+      "source": "CDC_18M"
+    },
+    {
+      "item_id": "CDC-18-15",
+      "set": "CDC",
+      "expected_month": 18,
+      "referral_cutoff_month": 18,
+      "verification": "verified",
+      "source": "CDC_18M"
+    },
+    {
+      "item_id": "CDC-24-1",
+      "set": "CDC",
+      "expected_month": 24,
+      "referral_cutoff_month": 24,
+      "verification": "verified",
+      "source": "CDC_2Y"
+    },
+    {
+      "item_id": "CDC-24-2",
+      "set": "CDC",
+      "expected_month": 24,
+      "referral_cutoff_month": 24,
+      "verification": "verified",
+      "source": "CDC_2Y"
+    },
+    {
+      "item_id": "CDC-24-3",
+      "set": "CDC",
+      "expected_month": 24,
+      "referral_cutoff_month": 24,
+      "verification": "verified",
+      "source": "CDC_2Y"
+    },
+    {
+      "item_id": "CDC-24-4",
+      "set": "CDC",
+      "expected_month": 24,
+      "referral_cutoff_month": 24,
+      "verification": "verified",
+      "source": "CDC_2Y"
+    },
+    {
+      "item_id": "CDC-24-5",
+      "set": "CDC",
+      "expected_month": 24,
+      "referral_cutoff_month": 24,
+      "verification": "verified",
+      "source": "CDC_2Y"
+    },
+    {
+      "item_id": "CDC-24-6",
+      "set": "CDC",
+      "expected_month": 24,
+      "referral_cutoff_month": 24,
+      "verification": "verified",
+      "source": "CDC_2Y"
+    },
+    {
+      "item_id": "CDC-24-7",
+      "set": "CDC",
+      "expected_month": 24,
+      "referral_cutoff_month": 24,
+      "verification": "verified",
+      "source": "CDC_2Y"
+    },
+    {
+      "item_id": "CDC-24-8",
+      "set": "CDC",
+      "expected_month": 24,
+      "referral_cutoff_month": 24,
+      "verification": "verified",
+      "source": "CDC_2Y"
+    },
+    {
+      "item_id": "CDC-24-9",
+      "set": "CDC",
+      "expected_month": 24,
+      "referral_cutoff_month": 24,
+      "verification": "verified",
+      "source": "CDC_2Y"
+    },
+    {
+      "item_id": "CDC-24-10",
+      "set": "CDC",
+      "expected_month": 24,
+      "referral_cutoff_month": 24,
+      "verification": "verified",
+      "source": "CDC_2Y"
+    },
+    {
+      "item_id": "CDC-24-11",
+      "set": "CDC",
+      "expected_month": 24,
+      "referral_cutoff_month": 24,
+      "verification": "verified",
+      "source": "CDC_2Y"
+    },
+    {
+      "item_id": "CDC-24-12",
+      "set": "CDC",
+      "expected_month": 24,
+      "referral_cutoff_month": 24,
+      "verification": "verified",
+      "source": "CDC_2Y"
+    },
+    {
+      "item_id": "CDC-24-13",
+      "set": "CDC",
+      "expected_month": 24,
+      "referral_cutoff_month": 24,
+      "verification": "verified",
+      "source": "CDC_2Y"
+    },
+    {
+      "item_id": "CDC-30-1",
+      "set": "CDC",
+      "expected_month": 30,
+      "referral_cutoff_month": 30,
+      "verification": "verified",
+      "source": "CDC_30M"
+    },
+    {
+      "item_id": "CDC-30-2",
+      "set": "CDC",
+      "expected_month": 30,
+      "referral_cutoff_month": 30,
+      "verification": "verified",
+      "source": "CDC_30M"
+    },
+    {
+      "item_id": "CDC-30-3",
+      "set": "CDC",
+      "expected_month": 30,
+      "referral_cutoff_month": 30,
+      "verification": "verified",
+      "source": "CDC_30M"
+    },
+    {
+      "item_id": "CDC-30-4",
+      "set": "CDC",
+      "expected_month": 30,
+      "referral_cutoff_month": 30,
+      "verification": "verified",
+      "source": "CDC_30M"
+    },
+    {
+      "item_id": "CDC-30-5",
+      "set": "CDC",
+      "expected_month": 30,
+      "referral_cutoff_month": 30,
+      "verification": "verified",
+      "source": "CDC_30M"
+    },
+    {
+      "item_id": "CDC-30-6",
+      "set": "CDC",
+      "expected_month": 30,
+      "referral_cutoff_month": 30,
+      "verification": "verified",
+      "source": "CDC_30M"
+    },
+    {
+      "item_id": "CDC-30-7",
+      "set": "CDC",
+      "expected_month": 30,
+      "referral_cutoff_month": 30,
+      "verification": "verified",
+      "source": "CDC_30M"
+    },
+    {
+      "item_id": "CDC-30-8",
+      "set": "CDC",
+      "expected_month": 30,
+      "referral_cutoff_month": 30,
+      "verification": "verified",
+      "source": "CDC_30M"
+    },
+    {
+      "item_id": "CDC-30-9",
+      "set": "CDC",
+      "expected_month": 30,
+      "referral_cutoff_month": 30,
+      "verification": "verified",
+      "source": "CDC_30M"
+    },
+    {
+      "item_id": "CDC-30-10",
+      "set": "CDC",
+      "expected_month": 30,
+      "referral_cutoff_month": 30,
+      "verification": "verified",
+      "source": "CDC_30M"
+    },
+    {
+      "item_id": "CDC-30-11",
+      "set": "CDC",
+      "expected_month": 30,
+      "referral_cutoff_month": 30,
+      "verification": "verified",
+      "source": "CDC_30M"
+    },
+    {
+      "item_id": "CDC-30-12",
+      "set": "CDC",
+      "expected_month": 30,
+      "referral_cutoff_month": 30,
+      "verification": "verified",
+      "source": "CDC_30M"
+    },
+    {
+      "item_id": "CDC-30-13",
+      "set": "CDC",
+      "expected_month": 30,
+      "referral_cutoff_month": 30,
+      "verification": "verified",
+      "source": "CDC_30M"
+    },
+    {
+      "item_id": "CDC-30-14",
+      "set": "CDC",
+      "expected_month": 30,
+      "referral_cutoff_month": 30,
+      "verification": "verified",
+      "source": "CDC_30M"
+    },
+    {
+      "item_id": "CDC-30-15",
+      "set": "CDC",
+      "expected_month": 30,
+      "referral_cutoff_month": 30,
+      "verification": "verified",
+      "source": "CDC_30M"
+    },
+    {
+      "item_id": "CDC-36-1",
+      "set": "CDC",
+      "expected_month": 36,
+      "referral_cutoff_month": 36,
+      "verification": "verified",
+      "source": "CDC_3Y"
+    },
+    {
+      "item_id": "CDC-36-2",
+      "set": "CDC",
+      "expected_month": 36,
+      "referral_cutoff_month": 36,
+      "verification": "verified",
+      "source": "CDC_3Y"
+    },
+    {
+      "item_id": "CDC-36-3",
+      "set": "CDC",
+      "expected_month": 36,
+      "referral_cutoff_month": 36,
+      "verification": "verified",
+      "source": "CDC_3Y"
+    },
+    {
+      "item_id": "CDC-36-4",
+      "set": "CDC",
+      "expected_month": 36,
+      "referral_cutoff_month": 36,
+      "verification": "verified",
+      "source": "CDC_3Y"
+    },
+    {
+      "item_id": "CDC-36-5",
+      "set": "CDC",
+      "expected_month": 36,
+      "referral_cutoff_month": 36,
+      "verification": "verified",
+      "source": "CDC_3Y"
+    },
+    {
+      "item_id": "CDC-36-6",
+      "set": "CDC",
+      "expected_month": 36,
+      "referral_cutoff_month": 36,
+      "verification": "verified",
+      "source": "CDC_3Y"
+    },
+    {
+      "item_id": "CDC-36-7",
+      "set": "CDC",
+      "expected_month": 36,
+      "referral_cutoff_month": 36,
+      "verification": "verified",
+      "source": "CDC_3Y"
+    },
+    {
+      "item_id": "CDC-36-8",
+      "set": "CDC",
+      "expected_month": 36,
+      "referral_cutoff_month": 36,
+      "verification": "verified",
+      "source": "CDC_3Y"
+    },
+    {
+      "item_id": "CDC-36-9",
+      "set": "CDC",
+      "expected_month": 36,
+      "referral_cutoff_month": 36,
+      "verification": "verified",
+      "source": "CDC_3Y"
+    },
+    {
+      "item_id": "CDC-36-10",
+      "set": "CDC",
+      "expected_month": 36,
+      "referral_cutoff_month": 36,
+      "verification": "verified",
+      "source": "CDC_3Y"
+    },
+    {
+      "item_id": "CDC-36-11",
+      "set": "CDC",
+      "expected_month": 36,
+      "referral_cutoff_month": 36,
+      "verification": "verified",
+      "source": "CDC_3Y"
+    },
+    {
+      "item_id": "CDC-36-12",
+      "set": "CDC",
+      "expected_month": 36,
+      "referral_cutoff_month": 36,
+      "verification": "verified",
+      "source": "CDC_3Y"
+    },
+    {
+      "item_id": "CDC-48-1",
+      "set": "CDC",
+      "expected_month": 48,
+      "referral_cutoff_month": 48,
+      "verification": "verified",
+      "source": "CDC_4Y"
+    },
+    {
+      "item_id": "CDC-48-2",
+      "set": "CDC",
+      "expected_month": 48,
+      "referral_cutoff_month": 48,
+      "verification": "verified",
+      "source": "CDC_4Y"
+    },
+    {
+      "item_id": "CDC-48-3",
+      "set": "CDC",
+      "expected_month": 48,
+      "referral_cutoff_month": 48,
+      "verification": "verified",
+      "source": "CDC_4Y"
+    },
+    {
+      "item_id": "CDC-48-4",
+      "set": "CDC",
+      "expected_month": 48,
+      "referral_cutoff_month": 48,
+      "verification": "verified",
+      "source": "CDC_4Y"
+    },
+    {
+      "item_id": "CDC-48-5",
+      "set": "CDC",
+      "expected_month": 48,
+      "referral_cutoff_month": 48,
+      "verification": "verified",
+      "source": "CDC_4Y"
+    },
+    {
+      "item_id": "CDC-48-6",
+      "set": "CDC",
+      "expected_month": 48,
+      "referral_cutoff_month": 48,
+      "verification": "verified",
+      "source": "CDC_4Y"
+    },
+    {
+      "item_id": "CDC-48-7",
+      "set": "CDC",
+      "expected_month": 48,
+      "referral_cutoff_month": 48,
+      "verification": "verified",
+      "source": "CDC_4Y"
+    },
+    {
+      "item_id": "CDC-48-8",
+      "set": "CDC",
+      "expected_month": 48,
+      "referral_cutoff_month": 48,
+      "verification": "verified",
+      "source": "CDC_4Y"
+    },
+    {
+      "item_id": "CDC-48-9",
+      "set": "CDC",
+      "expected_month": 48,
+      "referral_cutoff_month": 48,
+      "verification": "verified",
+      "source": "CDC_4Y"
+    },
+    {
+      "item_id": "CDC-48-10",
+      "set": "CDC",
+      "expected_month": 48,
+      "referral_cutoff_month": 48,
+      "verification": "verified",
+      "source": "CDC_4Y"
+    },
+    {
+      "item_id": "CDC-48-11",
+      "set": "CDC",
+      "expected_month": 48,
+      "referral_cutoff_month": 48,
+      "verification": "verified",
+      "source": "CDC_4Y"
+    },
+    {
+      "item_id": "CDC-48-12",
+      "set": "CDC",
+      "expected_month": 48,
+      "referral_cutoff_month": 48,
+      "verification": "verified",
+      "source": "CDC_4Y"
+    },
+    {
+      "item_id": "CDC-48-13",
+      "set": "CDC",
+      "expected_month": 48,
+      "referral_cutoff_month": 48,
+      "verification": "verified",
+      "source": "CDC_4Y"
+    },
+    {
+      "item_id": "CDC-48-14",
+      "set": "CDC",
+      "expected_month": 48,
+      "referral_cutoff_month": 48,
+      "verification": "verified",
+      "source": "CDC_4Y"
+    },
+    {
+      "item_id": "CDC-48-15",
+      "set": "CDC",
+      "expected_month": 48,
+      "referral_cutoff_month": 48,
+      "verification": "verified",
+      "source": "CDC_4Y"
+    },
+    {
+      "item_id": "CDC-48-16",
+      "set": "CDC",
+      "expected_month": 48,
+      "referral_cutoff_month": 48,
+      "verification": "verified",
+      "source": "CDC_4Y"
+    },
+    {
+      "item_id": "CDC-48-17",
+      "set": "CDC",
+      "expected_month": 48,
+      "referral_cutoff_month": 48,
+      "verification": "verified",
+      "source": "CDC_4Y"
+    },
+    {
+      "item_id": "CDC-60-1",
+      "set": "CDC",
+      "expected_month": 60,
+      "referral_cutoff_month": 60,
+      "verification": "verified",
+      "source": "CDC_5Y"
+    },
+    {
+      "item_id": "CDC-60-2",
+      "set": "CDC",
+      "expected_month": 60,
+      "referral_cutoff_month": 60,
+      "verification": "verified",
+      "source": "CDC_5Y"
+    },
+    {
+      "item_id": "CDC-60-3",
+      "set": "CDC",
+      "expected_month": 60,
+      "referral_cutoff_month": 60,
+      "verification": "verified",
+      "source": "CDC_5Y"
+    },
+    {
+      "item_id": "CDC-60-4",
+      "set": "CDC",
+      "expected_month": 60,
+      "referral_cutoff_month": 60,
+      "verification": "verified",
+      "source": "CDC_5Y"
+    },
+    {
+      "item_id": "CDC-60-5",
+      "set": "CDC",
+      "expected_month": 60,
+      "referral_cutoff_month": 60,
+      "verification": "verified",
+      "source": "CDC_5Y"
+    },
+    {
+      "item_id": "CDC-60-6",
+      "set": "CDC",
+      "expected_month": 60,
+      "referral_cutoff_month": 60,
+      "verification": "verified",
+      "source": "CDC_5Y"
+    },
+    {
+      "item_id": "CDC-60-7",
+      "set": "CDC",
+      "expected_month": 60,
+      "referral_cutoff_month": 60,
+      "verification": "verified",
+      "source": "CDC_5Y"
+    },
+    {
+      "item_id": "CDC-60-8",
+      "set": "CDC",
+      "expected_month": 60,
+      "referral_cutoff_month": 60,
+      "verification": "verified",
+      "source": "CDC_5Y"
+    },
+    {
+      "item_id": "CDC-60-9",
+      "set": "CDC",
+      "expected_month": 60,
+      "referral_cutoff_month": 60,
+      "verification": "verified",
+      "source": "CDC_5Y"
+    },
+    {
+      "item_id": "CDC-60-10",
+      "set": "CDC",
+      "expected_month": 60,
+      "referral_cutoff_month": 60,
+      "verification": "verified",
+      "source": "CDC_5Y"
+    },
+    {
+      "item_id": "CDC-60-11",
+      "set": "CDC",
+      "expected_month": 60,
+      "referral_cutoff_month": 60,
+      "verification": "verified",
+      "source": "CDC_5Y"
+    },
+    {
+      "item_id": "CDC-60-12",
+      "set": "CDC",
+      "expected_month": 60,
+      "referral_cutoff_month": 60,
+      "verification": "verified",
+      "source": "CDC_5Y"
+    },
+    {
+      "item_id": "CDC-60-13",
+      "set": "CDC",
+      "expected_month": 60,
+      "referral_cutoff_month": 60,
+      "verification": "verified",
+      "source": "CDC_5Y"
+    },
+    {
+      "item_id": "CDC-60-14",
+      "set": "CDC",
+      "expected_month": 60,
+      "referral_cutoff_month": 60,
+      "verification": "verified",
+      "source": "CDC_5Y"
+    },
+    {
+      "item_id": "CDC-60-15",
+      "set": "CDC",
+      "expected_month": 60,
+      "referral_cutoff_month": 60,
+      "verification": "verified",
+      "source": "CDC_5Y"
+    }
+  ],
+  "stimulation_months": [
+    {
+      "activity_id": "S-0-01",
+      "start_month": 0,
+      "end_month": 3,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-0-02",
+      "start_month": 0,
+      "end_month": 3,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-0-03",
+      "start_month": 0,
+      "end_month": 3,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-0-04",
+      "start_month": 0,
+      "end_month": 3,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-0-05",
+      "start_month": 0,
+      "end_month": 3,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-0-06",
+      "start_month": 0,
+      "end_month": 6,
+      "verification": "partial",
+      "source": "CDC_4M",
+      "note": "KIA 0-3; tips CDC 2/4/6 bln & IDAI (tengkurap sejak dini, durasi ditambah bertahap) memperpanjang ke 6 bln"
+    },
+    {
+      "activity_id": "S-0-07",
+      "start_month": 0,
+      "end_month": 3,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-0-08",
+      "start_month": 1,
+      "end_month": 3,
+      "verification": "partial",
+      "source": "BUKU_KIA_2021",
+      "note": "Mulai bulan ke-1 (bukan hari-hari pertama); interpolasi"
+    },
+    {
+      "activity_id": "S-3-01",
+      "start_month": 3,
+      "end_month": 6,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-3-02",
+      "start_month": 2,
+      "end_month": 6,
+      "verification": "partial",
+      "source": "CDC_2M",
+      "note": "Tips CDC 2 bln: bunyikan kerincingan di samping kepala"
+    },
+    {
+      "activity_id": "S-3-03",
+      "start_month": 3,
+      "end_month": 12,
+      "verification": "partial",
+      "source": "CDC_9M",
+      "note": "CDC 4 & 9 bln dan ceklis KIA-9M-9/KIA-12M-11 memakai cilukba sampai 12 bln"
+    },
+    {
+      "activity_id": "S-3-04",
+      "start_month": 2,
+      "end_month": 6,
+      "verification": "partial",
+      "source": "CDC_2M",
+      "note": "Tips CDC 2 bln: cermin aman bayi"
+    },
+    {
+      "activity_id": "S-3-05",
+      "start_month": 3,
+      "end_month": 6,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-3-06",
+      "start_month": 3,
+      "end_month": 6,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-3-07",
+      "start_month": 2,
+      "end_month": 5,
+      "verification": "partial",
+      "source": "CDC_4M",
+      "note": "AAP 2 bln mengikuti benda bergerak; tips CDC 4 bln"
+    },
+    {
+      "activity_id": "S-3-08",
+      "start_month": 4,
+      "end_month": 6,
+      "verification": "partial",
+      "source": "BUKU_KIA_2021",
+      "note": "Setelah bisa menggenggam (KIA-6M-4, 4 bln); interpolasi"
+    },
+    {
+      "activity_id": "S-3-09",
+      "start_month": 3,
+      "end_month": 6,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-6-01",
+      "start_month": 6,
+      "end_month": 9,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-6-02",
+      "start_month": 6,
+      "end_month": 12,
+      "verification": "partial",
+      "source": "CDC_9M",
+      "note": "Tips CDC 9 bln ajari dadah; CDC 12 bln melambai"
+    },
+    {
+      "activity_id": "S-6-03",
+      "start_month": 6,
+      "end_month": 9,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-6-04",
+      "start_month": 6,
+      "end_month": 10,
+      "verification": "partial",
+      "source": "WHO_MDS_2006",
+      "note": "Median merangkak 8,5 bln; IDAI: jangan dipaksa"
+    },
+    {
+      "activity_id": "S-6-05",
+      "start_month": 6,
+      "end_month": 9,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-6-06",
+      "start_month": 6,
+      "end_month": 9,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-6-07",
+      "start_month": 6,
+      "end_month": 12,
+      "verification": "partial",
+      "source": "CDC_9M",
+      "note": "Tips CDC 9 bln & 1 thn: biarkan makan sendiri"
+    },
+    {
+      "activity_id": "S-9-01",
+      "start_month": 8,
+      "end_month": 12,
+      "verification": "partial",
+      "source": "CDC_9M",
+      "note": "Tips CDC 9 bln: tumpahkan balok dari wadah lalu masukkan lagi"
+    },
+    {
+      "activity_id": "S-9-02",
+      "start_month": 9,
+      "end_month": 12,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-9-03",
+      "start_month": 8,
+      "end_month": 12,
+      "verification": "partial",
+      "source": "CDC_9M",
+      "note": "Tips CDC 9 bln: sembunyikan mainan di bawah selimut"
+    },
+    {
+      "activity_id": "S-9-04",
+      "start_month": 9,
+      "end_month": 12,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-9-05",
+      "start_month": 9,
+      "end_month": 12,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-9-06",
+      "start_month": 9,
+      "end_month": 12,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-9-07",
+      "start_month": 9,
+      "end_month": 12,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-9-08",
+      "start_month": 9,
+      "end_month": 12,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-12-01",
+      "start_month": 13,
+      "end_month": 18,
+      "verification": "partial",
+      "source": "WHO_MDS_2006",
+      "note": "Setelah berjalan sendiri (median 12,1 bln)"
+    },
+    {
+      "activity_id": "S-12-02",
+      "start_month": 12,
+      "end_month": 18,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-12-03",
+      "start_month": 12,
+      "end_month": 18,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-12-04",
+      "start_month": 12,
+      "end_month": 18,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-12-05",
+      "start_month": 12,
+      "end_month": 18,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-12-06",
+      "start_month": 12,
+      "end_month": 18,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-12-07",
+      "start_month": 12,
+      "end_month": 18,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-12-08",
+      "start_month": 12,
+      "end_month": 18,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-12-09",
+      "start_month": 12,
+      "end_month": 18,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-12-10",
+      "start_month": 15,
+      "end_month": 18,
+      "verification": "partial",
+      "source": "BUKU_KIA_2021",
+      "note": "Interpolasi: meronce butuh genggaman halus"
+    },
+    {
+      "activity_id": "S-18-01",
+      "start_month": 18,
+      "end_month": 24,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-18-02",
+      "start_month": 18,
+      "end_month": 24,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-18-03",
+      "start_month": 18,
+      "end_month": 24,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-18-04",
+      "start_month": 18,
+      "end_month": 24,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-18-05",
+      "start_month": 18,
+      "end_month": 24,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-18-06",
+      "start_month": 18,
+      "end_month": 24,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-18-07",
+      "start_month": 21,
+      "end_month": 24,
+      "verification": "partial",
+      "source": "BUKU_KIA_2021",
+      "note": "Interpolasi"
+    },
+    {
+      "activity_id": "S-18-08",
+      "start_month": 18,
+      "end_month": 24,
+      "verification": "verified",
+      "source": "BUKU_KIA_2021",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-24-01",
+      "start_month": 24,
+      "end_month": 30,
+      "verification": "verified",
+      "source": "CDC_2Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-24-02",
+      "start_month": 24,
+      "end_month": 30,
+      "verification": "verified",
+      "source": "CDC_2Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-24-03",
+      "start_month": 24,
+      "end_month": 30,
+      "verification": "verified",
+      "source": "CDC_2Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-24-04",
+      "start_month": 24,
+      "end_month": 30,
+      "verification": "verified",
+      "source": "CDC_2Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-24-05",
+      "start_month": 24,
+      "end_month": 30,
+      "verification": "verified",
+      "source": "CDC_2Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-24-06",
+      "start_month": 24,
+      "end_month": 30,
+      "verification": "verified",
+      "source": "CDC_2Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-24-07",
+      "start_month": 24,
+      "end_month": 30,
+      "verification": "verified",
+      "source": "CDC_2Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-24-08",
+      "start_month": 24,
+      "end_month": 30,
+      "verification": "verified",
+      "source": "CDC_2Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-24-09",
+      "start_month": 24,
+      "end_month": 30,
+      "verification": "verified",
+      "source": "CDC_2Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-24-10",
+      "start_month": 24,
+      "end_month": 30,
+      "verification": "verified",
+      "source": "CDC_2Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-24-11",
+      "start_month": 24,
+      "end_month": 30,
+      "verification": "verified",
+      "source": "CDC_2Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-24-12",
+      "start_month": 24,
+      "end_month": 30,
+      "verification": "verified",
+      "source": "CDC_2Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-24-13",
+      "start_month": 24,
+      "end_month": 30,
+      "verification": "verified",
+      "source": "CDC_2Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-24-14",
+      "start_month": 24,
+      "end_month": 30,
+      "verification": "verified",
+      "source": "CDC_2Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-24-15",
+      "start_month": 24,
+      "end_month": 30,
+      "verification": "verified",
+      "source": "CDC_2Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-24-16",
+      "start_month": 24,
+      "end_month": 30,
+      "verification": "verified",
+      "source": "CDC_2Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-30-01",
+      "start_month": 30,
+      "end_month": 36,
+      "verification": "verified",
+      "source": "CDC_30M",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-30-02",
+      "start_month": 30,
+      "end_month": 36,
+      "verification": "verified",
+      "source": "CDC_30M",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-30-03",
+      "start_month": 30,
+      "end_month": 36,
+      "verification": "verified",
+      "source": "CDC_30M",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-30-04",
+      "start_month": 30,
+      "end_month": 36,
+      "verification": "verified",
+      "source": "CDC_30M",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-30-05",
+      "start_month": 30,
+      "end_month": 36,
+      "verification": "verified",
+      "source": "CDC_30M",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-30-06",
+      "start_month": 30,
+      "end_month": 36,
+      "verification": "verified",
+      "source": "CDC_30M",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-30-07",
+      "start_month": 30,
+      "end_month": 36,
+      "verification": "verified",
+      "source": "CDC_30M",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-30-08",
+      "start_month": 30,
+      "end_month": 36,
+      "verification": "verified",
+      "source": "CDC_30M",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-30-09",
+      "start_month": 30,
+      "end_month": 36,
+      "verification": "verified",
+      "source": "CDC_30M",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-30-10",
+      "start_month": 30,
+      "end_month": 36,
+      "verification": "verified",
+      "source": "CDC_30M",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-30-11",
+      "start_month": 30,
+      "end_month": 36,
+      "verification": "verified",
+      "source": "CDC_30M",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-30-12",
+      "start_month": 30,
+      "end_month": 36,
+      "verification": "verified",
+      "source": "CDC_30M",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-30-13",
+      "start_month": 30,
+      "end_month": 36,
+      "verification": "verified",
+      "source": "CDC_30M",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-30-14",
+      "start_month": 30,
+      "end_month": 36,
+      "verification": "verified",
+      "source": "CDC_30M",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-30-15",
+      "start_month": 30,
+      "end_month": 36,
+      "verification": "verified",
+      "source": "CDC_30M",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-36-01",
+      "start_month": 36,
+      "end_month": 48,
+      "verification": "verified",
+      "source": "CDC_3Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-36-02",
+      "start_month": 36,
+      "end_month": 48,
+      "verification": "verified",
+      "source": "CDC_3Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-36-03",
+      "start_month": 36,
+      "end_month": 48,
+      "verification": "verified",
+      "source": "CDC_3Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-36-04",
+      "start_month": 36,
+      "end_month": 48,
+      "verification": "verified",
+      "source": "CDC_3Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-36-05",
+      "start_month": 36,
+      "end_month": 48,
+      "verification": "verified",
+      "source": "CDC_3Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-36-06",
+      "start_month": 36,
+      "end_month": 48,
+      "verification": "verified",
+      "source": "CDC_3Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-36-07",
+      "start_month": 36,
+      "end_month": 48,
+      "verification": "verified",
+      "source": "CDC_3Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-36-08",
+      "start_month": 36,
+      "end_month": 48,
+      "verification": "verified",
+      "source": "CDC_3Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-36-09",
+      "start_month": 36,
+      "end_month": 48,
+      "verification": "verified",
+      "source": "CDC_3Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-36-10",
+      "start_month": 36,
+      "end_month": 48,
+      "verification": "verified",
+      "source": "CDC_3Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-36-11",
+      "start_month": 36,
+      "end_month": 48,
+      "verification": "verified",
+      "source": "CDC_3Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-36-12",
+      "start_month": 36,
+      "end_month": 48,
+      "verification": "verified",
+      "source": "CDC_3Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-36-13",
+      "start_month": 36,
+      "end_month": 48,
+      "verification": "verified",
+      "source": "CDC_3Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-36-14",
+      "start_month": 36,
+      "end_month": 48,
+      "verification": "verified",
+      "source": "CDC_3Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-36-15",
+      "start_month": 36,
+      "end_month": 48,
+      "verification": "verified",
+      "source": "CDC_3Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-36-16",
+      "start_month": 36,
+      "end_month": 48,
+      "verification": "verified",
+      "source": "CDC_3Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-48-01",
+      "start_month": 48,
+      "end_month": 60,
+      "verification": "verified",
+      "source": "CDC_4Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-48-02",
+      "start_month": 48,
+      "end_month": 60,
+      "verification": "verified",
+      "source": "CDC_4Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-48-03",
+      "start_month": 48,
+      "end_month": 60,
+      "verification": "verified",
+      "source": "CDC_4Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-48-04",
+      "start_month": 48,
+      "end_month": 60,
+      "verification": "verified",
+      "source": "CDC_4Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-48-05",
+      "start_month": 48,
+      "end_month": 60,
+      "verification": "verified",
+      "source": "CDC_4Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-48-06",
+      "start_month": 48,
+      "end_month": 60,
+      "verification": "verified",
+      "source": "CDC_4Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-48-07",
+      "start_month": 48,
+      "end_month": 60,
+      "verification": "verified",
+      "source": "CDC_4Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-48-08",
+      "start_month": 48,
+      "end_month": 60,
+      "verification": "verified",
+      "source": "CDC_4Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-48-09",
+      "start_month": 48,
+      "end_month": 60,
+      "verification": "verified",
+      "source": "CDC_4Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-48-10",
+      "start_month": 48,
+      "end_month": 60,
+      "verification": "verified",
+      "source": "CDC_4Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-48-11",
+      "start_month": 48,
+      "end_month": 60,
+      "verification": "verified",
+      "source": "CDC_4Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-48-12",
+      "start_month": 48,
+      "end_month": 60,
+      "verification": "verified",
+      "source": "CDC_4Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-48-13",
+      "start_month": 48,
+      "end_month": 60,
+      "verification": "verified",
+      "source": "CDC_4Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-48-14",
+      "start_month": 48,
+      "end_month": 60,
+      "verification": "verified",
+      "source": "CDC_4Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-48-15",
+      "start_month": 48,
+      "end_month": 60,
+      "verification": "verified",
+      "source": "CDC_4Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-48-16",
+      "start_month": 48,
+      "end_month": 60,
+      "verification": "verified",
+      "source": "CDC_4Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-60-01",
+      "start_month": 60,
+      "end_month": 72,
+      "verification": "verified",
+      "source": "CDC_5Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-60-02",
+      "start_month": 60,
+      "end_month": 72,
+      "verification": "verified",
+      "source": "CDC_5Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-60-03",
+      "start_month": 60,
+      "end_month": 72,
+      "verification": "verified",
+      "source": "CDC_5Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-60-04",
+      "start_month": 60,
+      "end_month": 72,
+      "verification": "verified",
+      "source": "CDC_5Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-60-05",
+      "start_month": 60,
+      "end_month": 72,
+      "verification": "verified",
+      "source": "CDC_5Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-60-06",
+      "start_month": 60,
+      "end_month": 72,
+      "verification": "verified",
+      "source": "CDC_5Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-60-07",
+      "start_month": 60,
+      "end_month": 72,
+      "verification": "verified",
+      "source": "CDC_5Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-60-08",
+      "start_month": 60,
+      "end_month": 72,
+      "verification": "verified",
+      "source": "CDC_5Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-60-09",
+      "start_month": 60,
+      "end_month": 72,
+      "verification": "verified",
+      "source": "CDC_5Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-60-10",
+      "start_month": 60,
+      "end_month": 72,
+      "verification": "verified",
+      "source": "CDC_5Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-60-11",
+      "start_month": 60,
+      "end_month": 72,
+      "verification": "verified",
+      "source": "CDC_5Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-60-12",
+      "start_month": 60,
+      "end_month": 72,
+      "verification": "verified",
+      "source": "CDC_5Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-60-13",
+      "start_month": 60,
+      "end_month": 72,
+      "verification": "verified",
+      "source": "CDC_5Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-60-14",
+      "start_month": 60,
+      "end_month": 72,
+      "verification": "verified",
+      "source": "CDC_5Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-60-15",
+      "start_month": 60,
+      "end_month": 72,
+      "verification": "verified",
+      "source": "CDC_5Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-60-16",
+      "start_month": 60,
+      "end_month": 72,
+      "verification": "verified",
+      "source": "CDC_5Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-60-17",
+      "start_month": 60,
+      "end_month": 72,
+      "verification": "verified",
+      "source": "CDC_5Y",
+      "note": "Rentang asli"
+    },
+    {
+      "activity_id": "S-0-09",
+      "start_month": 0,
+      "end_month": 3,
+      "verification": "partial",
+      "source": "AAP_HC_1M",
+      "note": "Kegiatan baru dari tips CDC/AAP; usia diambil dari halaman usia sumber"
+    },
+    {
+      "activity_id": "S-0-10",
+      "start_month": 0,
+      "end_month": 3,
+      "verification": "partial",
+      "source": "CDC_2M",
+      "note": "Kegiatan baru dari tips CDC/AAP; usia diambil dari halaman usia sumber"
+    },
+    {
+      "activity_id": "S-3-10",
+      "start_month": 3,
+      "end_month": 6,
+      "verification": "partial",
+      "source": "CDC_4M",
+      "note": "Kegiatan baru dari tips CDC/AAP; usia diambil dari halaman usia sumber"
+    },
+    {
+      "activity_id": "S-3-11",
+      "start_month": 4,
+      "end_month": 8,
+      "verification": "partial",
+      "source": "CDC_4M",
+      "note": "Kegiatan baru dari tips CDC/AAP; usia diambil dari halaman usia sumber"
+    },
+    {
+      "activity_id": "S-3-12",
+      "start_month": 4,
+      "end_month": 9,
+      "verification": "partial",
+      "source": "CDC_6M",
+      "note": "Kegiatan baru dari tips CDC/AAP; usia diambil dari halaman usia sumber"
+    },
+    {
+      "activity_id": "S-6-08",
+      "start_month": 5,
+      "end_month": 7,
+      "verification": "partial",
+      "source": "CDC_6M",
+      "note": "Kegiatan baru dari tips CDC/AAP; usia diambil dari halaman usia sumber"
+    },
+    {
+      "activity_id": "S-6-09",
+      "start_month": 8,
+      "end_month": 12,
+      "verification": "partial",
+      "source": "CDC_9M",
+      "note": "Kegiatan baru dari tips CDC/AAP; usia diambil dari halaman usia sumber"
+    },
+    {
+      "activity_id": "S-6-10",
+      "start_month": 8,
+      "end_month": 11,
+      "verification": "partial",
+      "source": "CDC_9M",
+      "note": "Kegiatan baru dari tips CDC/AAP; usia diambil dari halaman usia sumber"
+    },
+    {
+      "activity_id": "S-9-09",
+      "start_month": 10,
+      "end_month": 15,
+      "verification": "partial",
+      "source": "CDC_12M",
+      "note": "Kegiatan baru dari tips CDC/AAP; usia diambil dari halaman usia sumber"
+    },
+    {
+      "activity_id": "S-9-10",
+      "start_month": 10,
+      "end_month": 13,
+      "verification": "partial",
+      "source": "CDC_12M",
+      "note": "Kegiatan baru dari tips CDC/AAP; usia diambil dari halaman usia sumber"
+    },
+    {
+      "activity_id": "S-9-11",
+      "start_month": 9,
+      "end_month": 15,
+      "verification": "partial",
+      "source": "CDC_12M",
+      "note": "Kegiatan baru dari tips CDC/AAP; usia diambil dari halaman usia sumber"
+    },
+    {
+      "activity_id": "S-12-11",
+      "start_month": 12,
+      "end_month": 18,
+      "verification": "partial",
+      "source": "CDC_15M",
+      "note": "Kegiatan baru dari tips CDC/AAP; usia diambil dari halaman usia sumber"
+    },
+    {
+      "activity_id": "S-12-12",
+      "start_month": 13,
+      "end_month": 18,
+      "verification": "partial",
+      "source": "CDC_15M",
+      "note": "Kegiatan baru dari tips CDC/AAP; usia diambil dari halaman usia sumber"
+    },
+    {
+      "activity_id": "S-12-13",
+      "start_month": 15,
+      "end_month": 24,
+      "verification": "partial",
+      "source": "CDC_18M",
+      "note": "Kegiatan baru dari tips CDC/AAP; usia diambil dari halaman usia sumber"
+    },
+    {
+      "activity_id": "S-18-09",
+      "start_month": 18,
+      "end_month": 24,
+      "verification": "partial",
+      "source": "CDC_18M",
+      "note": "Kegiatan baru dari tips CDC/AAP; usia diambil dari halaman usia sumber"
+    },
+    {
+      "activity_id": "S-18-10",
+      "start_month": 15,
+      "end_month": 24,
+      "verification": "partial",
+      "source": "CDC_18M",
+      "note": "Kegiatan baru dari tips CDC/AAP; usia diambil dari halaman usia sumber"
+    }
+  ],
+  "new_activities": [
+    {
+      "id": "S-0-09",
+      "start": 0,
+      "end": 3,
+      "domain": "kognitif",
+      "frequency": "rotating",
+      "minutes": 3,
+      "title": "Lihat gambar kontras tinggi",
+      "how": "Tunjukkan gambar/buku hitam-putih atau pola kontras tinggi sekitar 20-30 cm dari wajah bayi, lalu ceritakan gambarnya. Jangan dipasang di tempat tidur saat bayi tidur.",
+      "source": "AAP_HC_1M",
+      "page": null
+    },
+    {
+      "id": "S-0-10",
+      "start": 0,
+      "end": 3,
+      "domain": "sosial",
+      "frequency": "rotating",
+      "minutes": 3,
+      "title": "Kenali tanda bayi",
+      "how": "Perhatikan apakah bayi ingin bermain (menatap, tenang) atau butuh jeda (memalingkan wajah, rewel). Berhenti saat ia butuh istirahat.",
+      "source": "CDC_2M",
+      "page": null
+    },
+    {
+      "id": "S-3-10",
+      "start": 3,
+      "end": 6,
+      "domain": "motorik_kasar",
+      "frequency": "rotating",
+      "minutes": 3,
+      "title": "Gerakkan lengan dan kaki sambil bernyanyi",
+      "how": "Baringkan bayi telentang, bernyanyi atau bicara sambil menggerakkan lengan dan kakinya perlahan selama beberapa menit.",
+      "source": "CDC_4M",
+      "page": null
+    },
+    {
+      "id": "S-3-11",
+      "start": 4,
+      "end": 8,
+      "domain": "motorik_kasar",
+      "frequency": "rotating",
+      "minutes": 3,
+      "title": "Berdiri di pangkuan",
+      "how": "Pegang bayi di bawah ketiak, letakkan kakinya di pangkuan Anda dan biarkan ia memantul pelan sambil menahan sebagian berat badannya.",
+      "source": "CDC_4M",
+      "page": null
+    },
+    {
+      "id": "S-3-12",
+      "start": 4,
+      "end": 9,
+      "domain": "motorik_kasar",
+      "frequency": "rotating",
+      "minutes": 10,
+      "title": "Main di lantai/matras",
+      "how": "Sediakan waktu main di lantai atau matras bersih setiap hari. Jangan biarkan bayi terlalu lama di ayunan, kereta dorong, atau kursi bayi.",
+      "source": "CDC_6M",
+      "page": null
+    },
+    {
+      "id": "S-6-08",
+      "start": 5,
+      "end": 7,
+      "domain": "motorik_kasar",
+      "frequency": "rotating",
+      "minutes": 5,
+      "title": "Latihan duduk seimbang",
+      "how": "Dudukkan bayi tegak dengan ditopang (pangkuan/bantal di sekelilingnya) dan letakkan mainan di depannya agar ia berlatih menjaga keseimbangan.",
+      "source": "CDC_6M",
+      "page": null
+    },
+    {
+      "id": "S-6-09",
+      "start": 8,
+      "end": 12,
+      "domain": "sosial",
+      "frequency": "rotating",
+      "minutes": 3,
+      "title": "Oper mainan bergantian",
+      "how": "Berikan mainan ke bayi, minta kembali, lalu berikan lagi sambil berkata 'giliran Ibu, giliran adik'.",
+      "source": "CDC_9M",
+      "page": null
+    },
+    {
+      "id": "S-6-10",
+      "start": 8,
+      "end": 11,
+      "domain": "motorik_kasar",
+      "frequency": "rotating",
+      "minutes": 5,
+      "title": "Berdiri berpegangan perabot",
+      "how": "Letakkan bayi di dekat perabot yang kokoh dan tidak mudah terguling agar ia bisa menarik badan untuk berdiri. Selalu diawasi.",
+      "source": "CDC_9M",
+      "page": null
+    },
+    {
+      "id": "S-9-09",
+      "start": 10,
+      "end": 15,
+      "domain": "motorik_kasar",
+      "frequency": "rotating",
+      "minutes": 5,
+      "title": "Dorong benda kokoh",
+      "how": "Biarkan anak mendorong benda yang kokoh (kursi kecil, kotak berat) untuk berlatih berjalan. Hindari baby walker.",
+      "source": "CDC_12M",
+      "page": null
+    },
+    {
+      "id": "S-9-10",
+      "start": 10,
+      "end": 13,
+      "domain": "kognitif",
+      "frequency": "rotating",
+      "minutes": 5,
+      "title": "Main bunyi panci dan sendok",
+      "how": "Beri panci, mangkuk plastik, dan sendok kayu agar anak memukul dan mendengar bunyi yang berbeda.",
+      "source": "CDC_12M",
+      "page": null
+    },
+    {
+      "id": "S-9-11",
+      "start": 9,
+      "end": 15,
+      "domain": "kemandirian",
+      "frequency": "rotating",
+      "minutes": 5,
+      "title": "Belajar minum dari gelas",
+      "how": "Beri gelas terbuka kecil berisi sedikit air saat makan; pegangi gelasnya dan biarkan anak mencoba minum sendiri.",
+      "source": "CDC_12M",
+      "page": null
+    },
+    {
+      "id": "S-12-11",
+      "start": 12,
+      "end": 18,
+      "domain": "sosial",
+      "frequency": "rotating",
+      "minutes": 5,
+      "title": "Lagu dengan gerakan tangan",
+      "how": "Nyanyikan lagu dengan gerakan tangan (mis. 'Kepala, pundak, lutut, kaki') dan tunggu anak menirukan.",
+      "source": "CDC_15M",
+      "page": null
+    },
+    {
+      "id": "S-12-12",
+      "start": 13,
+      "end": 18,
+      "domain": "bahasa",
+      "frequency": "rotating",
+      "minutes": 5,
+      "title": "Buku foto keluarga",
+      "how": "Buat album foto keluarga dan hewan peliharaan; lihat bersama dan sebut namanya satu per satu.",
+      "source": "CDC_15M",
+      "page": null
+    },
+    {
+      "id": "S-12-13",
+      "start": 15,
+      "end": 24,
+      "domain": "sosial",
+      "frequency": "rotating",
+      "minutes": 5,
+      "title": "Suapi boneka",
+      "how": "Ajak anak pura-pura menyuapi atau menidurkan boneka, lalu bergiliran melakukannya.",
+      "source": "CDC_18M",
+      "page": null
+    },
+    {
+      "id": "S-18-09",
+      "start": 18,
+      "end": 24,
+      "domain": "kemandirian",
+      "frequency": "rotating",
+      "minutes": 3,
+      "title": "Pilih dari dua pilihan",
+      "how": "Tawarkan dua pilihan sederhana, misalnya 'Mau baju merah atau biru?'.",
+      "source": "CDC_18M",
+      "page": null
+    },
+    {
+      "id": "S-18-10",
+      "start": 15,
+      "end": 24,
+      "domain": "motorik_kasar",
+      "frequency": "rotating",
+      "minutes": 10,
+      "title": "Mainan dorong-tarik",
+      "how": "Beri mainan yang aman untuk didorong atau ditarik sambil berjalan.",
+      "source": "CDC_18M",
+      "page": null
+    }
+  ]
+}

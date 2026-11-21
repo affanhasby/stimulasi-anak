@@ -1,0 +1,1310 @@
+{
+  "_info": "Milestone perkembangan. Dua set: (1) ceklis Buku KIA (acuan utama di Indonesia, jawaban Ya/Tidak, dievaluasi pada usia batas), (2) milestone CDC/AAP 2022 (>=75% anak sudah bisa pada usia tsb). App menampilkan set KIA sebagai ceklis utama dan CDC sebagai 'info tambahan: biasanya anak sudah bisa'. Usia dalam bulan. domain: sosial | bahasa | kognitif | motorik_kasar | motorik_halus | kemandirian.",
+  "as_of": "2026-11-21",
+  "red_flag_rules": [
+    {
+      "id": "RF-KIA-CUTOFF",
+      "text": "Jika pada usia batas (3, 6, 9, 12, 18, 24 bulan) anak belum bisa melakukan SALAH SATU kemampuan di ceklis, bawa anak ke Puskesmas/fasilitas kesehatan.",
+      "trigger": "any_item_no_at_or_after_cutoff",
+      "severity": "periksa_segera",
+      "source": "BUKU_KIA_2021",
+      "page": "42-47"
+    },
+    {
+      "id": "RF-CDC-MISSING",
+      "text": "Jika anak belum mencapai satu atau lebih milestone pada usianya, bicarakan dengan dokter anak dan minta skrining perkembangan. Jangan 'tunggu dan lihat'.",
+      "trigger": "any_cdc_item_no_at_or_after_age",
+      "severity": "konsultasi",
+      "source": "CDC_MILESTONES_2022"
+    },
+    {
+      "id": "RF-REGRESSION",
+      "text": "Anak kehilangan kemampuan yang sebelumnya sudah bisa (misalnya berhenti mengoceh, tidak lagi menoleh saat dipanggil) di usia berapa pun: segera konsultasikan ke dokter.",
+      "trigger": "item_changed_yes_to_no",
+      "severity": "periksa_segera",
+      "source": "CDC_MILESTONES_2022"
+    },
+    {
+      "id": "RF-PARENT-CONCERN",
+      "text": "Orang tua merasa khawatir walaupun semua ceklis terpenuhi: tetap boleh dan dianjurkan konsultasi. Orang tua paling mengenal anaknya.",
+      "trigger": "manual",
+      "severity": "konsultasi",
+      "source": "CDC_MILESTONES_2022"
+    }
+  ],
+  "screening_schedule": [
+    {
+      "what": "Skrining perkembangan terstandar (AAP)",
+      "age_months": [
+        9,
+        18,
+        30
+      ],
+      "source": "CDC_MILESTONES_2022"
+    },
+    {
+      "what": "Skrining autisme (AAP)",
+      "age_months": [
+        18,
+        24
+      ],
+      "source": "CDC_MILESTONES_2022"
+    },
+    {
+      "what": "KPSP di fasilitas kesehatan (SDIDTK)",
+      "age_months": [
+        30,
+        36,
+        42,
+        48,
+        54,
+        60,
+        72
+      ],
+      "source": "BUKU_KIA_2021",
+      "page": "10"
+    }
+  ],
+  "kia_checklists": [
+    {
+      "id": "KIA-3M",
+      "age_band": "29 hari - 3 bulan",
+      "start_months": 0,
+      "cutoff_months": 3,
+      "source": "BUKU_KIA_2021",
+      "page": "42",
+      "items": [
+        {
+          "id": "KIA-3M-1",
+          "domain": "motorik_kasar",
+          "text": "Mengangkat kepala setinggi 45 derajat saat tengkurap"
+        },
+        {
+          "id": "KIA-3M-2",
+          "domain": "motorik_kasar",
+          "text": "Menggerakkan kepala dari samping ke tengah"
+        },
+        {
+          "id": "KIA-3M-3",
+          "domain": "sosial",
+          "text": "Melihat dan menatap wajah ibu/ayah"
+        },
+        {
+          "id": "KIA-3M-4",
+          "domain": "bahasa",
+          "text": "Mengoceh spontan atau bereaksi dengan mengoceh"
+        },
+        {
+          "id": "KIA-3M-5",
+          "domain": "sosial",
+          "text": "Tertawa keras"
+        },
+        {
+          "id": "KIA-3M-6",
+          "domain": "bahasa",
+          "text": "Terkejut mendengar suara keras"
+        },
+        {
+          "id": "KIA-3M-7",
+          "domain": "sosial",
+          "text": "Membalas tersenyum ketika diajak bicara"
+        },
+        {
+          "id": "KIA-3M-8",
+          "domain": "sosial",
+          "text": "Mengenal ibu dari penglihatan, penciuman, pendengaran, dan sentuhan"
+        }
+      ]
+    },
+    {
+      "id": "KIA-6M",
+      "age_band": "3 - 6 bulan",
+      "start_months": 3,
+      "cutoff_months": 6,
+      "source": "BUKU_KIA_2021",
+      "page": "43",
+      "items": [
+        {
+          "id": "KIA-6M-1",
+          "domain": "motorik_kasar",
+          "text": "Berbalik dari telungkup ke telentang"
+        },
+        {
+          "id": "KIA-6M-2",
+          "domain": "motorik_kasar",
+          "text": "Mengangkat kepala setinggi 90 derajat"
+        },
+        {
+          "id": "KIA-6M-3",
+          "domain": "motorik_kasar",
+          "text": "Mempertahankan posisi kepala tetap tegak dan stabil"
+        },
+        {
+          "id": "KIA-6M-4",
+          "domain": "motorik_halus",
+          "text": "Menggenggam mainan kecil atau bertangkai"
+        },
+        {
+          "id": "KIA-6M-5",
+          "domain": "motorik_halus",
+          "text": "Meraih benda yang ada dalam jangkauannya"
+        },
+        {
+          "id": "KIA-6M-6",
+          "domain": "kognitif",
+          "text": "Memperhatikan tangannya sendiri"
+        },
+        {
+          "id": "KIA-6M-7",
+          "domain": "kognitif",
+          "text": "Matanya dapat mengikuti arah (pandangan meluas)"
+        },
+        {
+          "id": "KIA-6M-8",
+          "domain": "kognitif",
+          "text": "Memusatkan perhatian pada benda kecil"
+        },
+        {
+          "id": "KIA-6M-9",
+          "domain": "bahasa",
+          "text": "Mengeluarkan suara gembira bernada tinggi atau memekik"
+        },
+        {
+          "id": "KIA-6M-10",
+          "domain": "sosial",
+          "text": "Tersenyum ketika melihat mainan/gambar saat bermain sendiri"
+        }
+      ]
+    },
+    {
+      "id": "KIA-9M",
+      "age_band": "6 - 9 bulan",
+      "start_months": 6,
+      "cutoff_months": 9,
+      "source": "BUKU_KIA_2021",
+      "page": "44",
+      "items": [
+        {
+          "id": "KIA-9M-1",
+          "domain": "motorik_kasar",
+          "text": "Duduk sendiri"
+        },
+        {
+          "id": "KIA-9M-2",
+          "domain": "motorik_kasar",
+          "text": "Kaki menahan sebagian berat badan saat diberdirikan"
+        },
+        {
+          "id": "KIA-9M-3",
+          "domain": "motorik_kasar",
+          "text": "Merangkak meraih mainan atau mendekati orang"
+        },
+        {
+          "id": "KIA-9M-4",
+          "domain": "motorik_halus",
+          "text": "Memindahkan benda dari satu tangan ke tangan lain"
+        },
+        {
+          "id": "KIA-9M-5",
+          "domain": "motorik_halus",
+          "text": "Memegang dua benda sekaligus"
+        },
+        {
+          "id": "KIA-9M-6",
+          "domain": "motorik_halus",
+          "text": "Memungut benda sebesar kacang dengan cara meraup"
+        },
+        {
+          "id": "KIA-9M-7",
+          "domain": "bahasa",
+          "text": "Mengeluarkan suara tanpa arti (mamama, bababa, dadada)"
+        },
+        {
+          "id": "KIA-9M-8",
+          "domain": "kognitif",
+          "text": "Mencari mainan/benda yang dijatuhkan"
+        },
+        {
+          "id": "KIA-9M-9",
+          "domain": "sosial",
+          "text": "Bermain tepuk tangan atau cilukba"
+        },
+        {
+          "id": "KIA-9M-10",
+          "domain": "sosial",
+          "text": "Senang melempar benda/mainan"
+        },
+        {
+          "id": "KIA-9M-11",
+          "domain": "kemandirian",
+          "text": "Makan kue/biskuit sendiri"
+        }
+      ]
+    },
+    {
+      "id": "KIA-12M",
+      "age_band": "9 - 12 bulan",
+      "start_months": 9,
+      "cutoff_months": 12,
+      "source": "BUKU_KIA_2021",
+      "page": "45",
+      "items": [
+        {
+          "id": "KIA-12M-1",
+          "domain": "motorik_kasar",
+          "text": "Mengangkat badan ke posisi berdiri"
+        },
+        {
+          "id": "KIA-12M-2",
+          "domain": "motorik_kasar",
+          "text": "Berdiri 30 detik atau berpegangan pada kursi/meja"
+        },
+        {
+          "id": "KIA-12M-3",
+          "domain": "motorik_kasar",
+          "text": "Berjalan dengan dituntun"
+        },
+        {
+          "id": "KIA-12M-4",
+          "domain": "motorik_halus",
+          "text": "Mengulurkan tangan/badan meraih mainan yang diinginkan"
+        },
+        {
+          "id": "KIA-12M-5",
+          "domain": "motorik_halus",
+          "text": "Menggenggam erat pensil"
+        },
+        {
+          "id": "KIA-12M-6",
+          "domain": "kognitif",
+          "text": "Memasukkan benda ke mulut"
+        },
+        {
+          "id": "KIA-12M-7",
+          "domain": "bahasa",
+          "text": "Menirukan suara yang didengar"
+        },
+        {
+          "id": "KIA-12M-8",
+          "domain": "bahasa",
+          "text": "Menyebut 2-3 suku kata yang sama tanpa arti"
+        },
+        {
+          "id": "KIA-12M-9",
+          "domain": "kognitif",
+          "text": "Mengeksplorasi sekitar, ingin tahu, ingin menyentuh apa saja"
+        },
+        {
+          "id": "KIA-12M-10",
+          "domain": "bahasa",
+          "text": "Bereaksi terhadap suara perlahan atau bisikan"
+        },
+        {
+          "id": "KIA-12M-11",
+          "domain": "sosial",
+          "text": "Senang diajak bermain cilukba"
+        },
+        {
+          "id": "KIA-12M-12",
+          "domain": "sosial",
+          "text": "Mengenal anggota keluarga, takut pada orang yang belum dikenal"
+        }
+      ]
+    },
+    {
+      "id": "KIA-18M",
+      "age_band": "12 - 18 bulan",
+      "start_months": 12,
+      "cutoff_months": 18,
+      "source": "BUKU_KIA_2021",
+      "page": "46",
+      "items": [
+        {
+          "id": "KIA-18M-1",
+          "domain": "motorik_kasar",
+          "text": "Berdiri sendiri tanpa berpegangan"
+        },
+        {
+          "id": "KIA-18M-2",
+          "domain": "motorik_kasar",
+          "text": "Membungkuk memungut mainan lalu berdiri kembali"
+        },
+        {
+          "id": "KIA-18M-3",
+          "domain": "motorik_kasar",
+          "text": "Berjalan mundur 5 langkah"
+        },
+        {
+          "id": "KIA-18M-4",
+          "domain": "bahasa",
+          "text": "Memanggil ayah dengan kata 'papa' dan ibu dengan 'mama'"
+        },
+        {
+          "id": "KIA-18M-5",
+          "domain": "motorik_halus",
+          "text": "Menumpuk 2 kubus"
+        },
+        {
+          "id": "KIA-18M-6",
+          "domain": "motorik_halus",
+          "text": "Memasukkan kubus ke kotak"
+        },
+        {
+          "id": "KIA-18M-7",
+          "domain": "bahasa",
+          "text": "Menunjuk apa yang diinginkan tanpa menangis/merengek"
+        },
+        {
+          "id": "KIA-18M-8",
+          "domain": "sosial",
+          "text": "Memperlihatkan rasa cemburu/bersaing"
+        }
+      ]
+    },
+    {
+      "id": "KIA-24M",
+      "age_band": "18 - 24 bulan",
+      "start_months": 18,
+      "cutoff_months": 24,
+      "source": "BUKU_KIA_2021",
+      "page": "47",
+      "items": [
+        {
+          "id": "KIA-24M-1",
+          "domain": "motorik_kasar",
+          "text": "Berdiri sendiri tanpa berpegangan 30 detik"
+        },
+        {
+          "id": "KIA-24M-2",
+          "domain": "motorik_kasar",
+          "text": "Berjalan tanpa terhuyung-huyung"
+        },
+        {
+          "id": "KIA-24M-3",
+          "domain": "motorik_halus",
+          "text": "Menumpuk 4 buah kubus"
+        },
+        {
+          "id": "KIA-24M-4",
+          "domain": "motorik_halus",
+          "text": "Memungut benda kecil dengan ibu jari dan jari telunjuk"
+        },
+        {
+          "id": "KIA-24M-5",
+          "domain": "motorik_kasar",
+          "text": "Menggelindingkan bola ke arah sasaran"
+        },
+        {
+          "id": "KIA-24M-6",
+          "domain": "bahasa",
+          "text": "Menyebut 3-6 kata yang mempunyai arti"
+        },
+        {
+          "id": "KIA-24M-7",
+          "domain": "sosial",
+          "text": "Membantu/menirukan pekerjaan rumah tangga"
+        },
+        {
+          "id": "KIA-24M-8",
+          "domain": "kemandirian",
+          "text": "Memegang cangkir sendiri, belajar makan-minum sendiri"
+        }
+      ]
+    },
+    {
+      "id": "KIA-2Y-6Y",
+      "age_band": "2 - 6 tahun",
+      "start_months": 24,
+      "cutoff_months": 72,
+      "source": "BUKU_KIA_2021",
+      "page": "49-53",
+      "status": "TODO",
+      "items": [],
+      "note": "Ceklis 2-3, 3-4, 4-5, 5-6 tahun ada di Buku KIA hal. 49, 51, 52, 53. Salinan PDF Buku KIA 2021 yang dapat diakses terpotong di hal. 48 (dicoba ulang 2026-11-21), jadi isinya belum bisa diambil. Butuh Buku KIA cetak atau PDF lengkap. Sementara app memakai milestone CDC 24, 30, 36, 48, 60 bulan sebagai ceklis utama usia 2-6 tahun.",
+      "fallback": "cdc_milestones"
+    }
+  ],
+  "cdc_milestones": [
+    {
+      "age_months": 2,
+      "items": [
+        {
+          "id": "CDC-2-1",
+          "domain": "sosial",
+          "text": "Tenang saat diajak bicara atau digendong"
+        },
+        {
+          "id": "CDC-2-2",
+          "domain": "sosial",
+          "text": "Melihat wajah Anda"
+        },
+        {
+          "id": "CDC-2-3",
+          "domain": "sosial",
+          "text": "Tampak senang saat Anda mendekat"
+        },
+        {
+          "id": "CDC-2-4",
+          "domain": "sosial",
+          "text": "Tersenyum saat diajak bicara atau disenyumi"
+        },
+        {
+          "id": "CDC-2-5",
+          "domain": "bahasa",
+          "text": "Mengeluarkan suara selain menangis"
+        },
+        {
+          "id": "CDC-2-6",
+          "domain": "bahasa",
+          "text": "Bereaksi terhadap suara keras"
+        },
+        {
+          "id": "CDC-2-7",
+          "domain": "kognitif",
+          "text": "Memperhatikan Anda saat Anda bergerak"
+        },
+        {
+          "id": "CDC-2-8",
+          "domain": "kognitif",
+          "text": "Melihat mainan selama beberapa detik"
+        },
+        {
+          "id": "CDC-2-9",
+          "domain": "motorik_kasar",
+          "text": "Mengangkat kepala saat tengkurap"
+        },
+        {
+          "id": "CDC-2-10",
+          "domain": "motorik_kasar",
+          "text": "Menggerakkan kedua lengan dan kedua kaki"
+        },
+        {
+          "id": "CDC-2-11",
+          "domain": "motorik_halus",
+          "text": "Membuka tangan sebentar"
+        }
+      ],
+      "source": "CDC_2M",
+      "related_source": "CDC_MILESTONES_2022"
+    },
+    {
+      "age_months": 4,
+      "items": [
+        {
+          "id": "CDC-4-1",
+          "domain": "sosial",
+          "text": "Tersenyum sendiri untuk menarik perhatian Anda"
+        },
+        {
+          "id": "CDC-4-2",
+          "domain": "sosial",
+          "text": "Terkekeh (belum tertawa penuh) saat Anda mengajak tertawa"
+        },
+        {
+          "id": "CDC-4-3",
+          "domain": "sosial",
+          "text": "Melihat, bergerak, atau bersuara untuk menarik/mempertahankan perhatian Anda"
+        },
+        {
+          "id": "CDC-4-4",
+          "domain": "bahasa",
+          "text": "Bersuara 'oooo', 'aahh' (cooing)"
+        },
+        {
+          "id": "CDC-4-5",
+          "domain": "bahasa",
+          "text": "Membalas bersuara saat diajak bicara"
+        },
+        {
+          "id": "CDC-4-6",
+          "domain": "bahasa",
+          "text": "Menoleh ke arah suara Anda"
+        },
+        {
+          "id": "CDC-4-7",
+          "domain": "kognitif",
+          "text": "Saat lapar, membuka mulut ketika melihat payudara/botol"
+        },
+        {
+          "id": "CDC-4-8",
+          "domain": "kognitif",
+          "text": "Melihat tangannya sendiri dengan tertarik"
+        },
+        {
+          "id": "CDC-4-9",
+          "domain": "motorik_kasar",
+          "text": "Kepala tegak stabil tanpa ditopang saat digendong"
+        },
+        {
+          "id": "CDC-4-10",
+          "domain": "motorik_halus",
+          "text": "Memegang mainan yang diletakkan di tangannya"
+        },
+        {
+          "id": "CDC-4-11",
+          "domain": "motorik_halus",
+          "text": "Mengayunkan lengan ke arah mainan"
+        },
+        {
+          "id": "CDC-4-12",
+          "domain": "motorik_halus",
+          "text": "Memasukkan tangan ke mulut"
+        },
+        {
+          "id": "CDC-4-13",
+          "domain": "motorik_kasar",
+          "text": "Bertumpu pada siku/lengan bawah saat tengkurap"
+        }
+      ],
+      "source": "CDC_4M",
+      "related_source": "CDC_MILESTONES_2022"
+    },
+    {
+      "age_months": 6,
+      "items": [
+        {
+          "id": "CDC-6-1",
+          "domain": "sosial",
+          "text": "Mengenali orang yang sudah dikenal"
+        },
+        {
+          "id": "CDC-6-2",
+          "domain": "sosial",
+          "text": "Suka melihat dirinya di cermin"
+        },
+        {
+          "id": "CDC-6-3",
+          "domain": "sosial",
+          "text": "Tertawa"
+        },
+        {
+          "id": "CDC-6-4",
+          "domain": "bahasa",
+          "text": "Bergantian bersuara dengan Anda"
+        },
+        {
+          "id": "CDC-6-5",
+          "domain": "bahasa",
+          "text": "Meniup 'raspberry' (menjulurkan lidah dan meniup)"
+        },
+        {
+          "id": "CDC-6-6",
+          "domain": "bahasa",
+          "text": "Memekik"
+        },
+        {
+          "id": "CDC-6-7",
+          "domain": "kognitif",
+          "text": "Memasukkan benda ke mulut untuk mengeksplorasi"
+        },
+        {
+          "id": "CDC-6-8",
+          "domain": "motorik_halus",
+          "text": "Meraih mainan yang diinginkan"
+        },
+        {
+          "id": "CDC-6-9",
+          "domain": "kognitif",
+          "text": "Menutup bibir tanda tidak mau makan lagi"
+        },
+        {
+          "id": "CDC-6-10",
+          "domain": "motorik_kasar",
+          "text": "Berguling dari tengkurap ke telentang"
+        },
+        {
+          "id": "CDC-6-11",
+          "domain": "motorik_kasar",
+          "text": "Mendorong badan dengan lengan lurus saat tengkurap"
+        },
+        {
+          "id": "CDC-6-12",
+          "domain": "motorik_kasar",
+          "text": "Bertumpu pada tangan saat duduk"
+        }
+      ],
+      "source": "CDC_6M",
+      "related_source": "CDC_MILESTONES_2022"
+    },
+    {
+      "age_months": 9,
+      "items": [
+        {
+          "id": "CDC-9-1",
+          "domain": "sosial",
+          "text": "Malu, menempel, atau takut pada orang asing"
+        },
+        {
+          "id": "CDC-9-2",
+          "domain": "sosial",
+          "text": "Menunjukkan beberapa ekspresi wajah (senang, sedih, marah, terkejut)"
+        },
+        {
+          "id": "CDC-9-3",
+          "domain": "sosial",
+          "text": "Menoleh saat namanya dipanggil"
+        },
+        {
+          "id": "CDC-9-4",
+          "domain": "sosial",
+          "text": "Bereaksi saat Anda pergi (melihat, meraih, atau menangis)"
+        },
+        {
+          "id": "CDC-9-5",
+          "domain": "sosial",
+          "text": "Tersenyum/tertawa saat diajak cilukba"
+        },
+        {
+          "id": "CDC-9-6",
+          "domain": "bahasa",
+          "text": "Mengoceh beragam seperti 'mamamama', 'babababa'"
+        },
+        {
+          "id": "CDC-9-7",
+          "domain": "bahasa",
+          "text": "Mengangkat lengan minta digendong"
+        },
+        {
+          "id": "CDC-9-8",
+          "domain": "kognitif",
+          "text": "Mencari benda yang jatuh dari pandangan"
+        },
+        {
+          "id": "CDC-9-9",
+          "domain": "kognitif",
+          "text": "Membenturkan dua benda"
+        },
+        {
+          "id": "CDC-9-10",
+          "domain": "motorik_kasar",
+          "text": "Bisa duduk sendiri dari posisi lain"
+        },
+        {
+          "id": "CDC-9-11",
+          "domain": "motorik_halus",
+          "text": "Memindahkan benda dari satu tangan ke tangan lain"
+        },
+        {
+          "id": "CDC-9-12",
+          "domain": "motorik_halus",
+          "text": "Menggunakan jari untuk 'meraup' makanan"
+        },
+        {
+          "id": "CDC-9-13",
+          "domain": "motorik_kasar",
+          "text": "Duduk tanpa ditopang"
+        }
+      ],
+      "source": "CDC_9M",
+      "related_source": "CDC_MILESTONES_2022"
+    },
+    {
+      "age_months": 12,
+      "items": [
+        {
+          "id": "CDC-12-1",
+          "domain": "sosial",
+          "text": "Bermain bersama Anda, seperti tepuk tangan (pat-a-cake)"
+        },
+        {
+          "id": "CDC-12-2",
+          "domain": "bahasa",
+          "text": "Melambaikan tangan 'dadah'"
+        },
+        {
+          "id": "CDC-12-3",
+          "domain": "bahasa",
+          "text": "Memanggil orang tua 'mama'/'papa' atau sebutan khusus lain"
+        },
+        {
+          "id": "CDC-12-4",
+          "domain": "bahasa",
+          "text": "Mengerti 'jangan' (berhenti sebentar saat dilarang)"
+        },
+        {
+          "id": "CDC-12-5",
+          "domain": "kognitif",
+          "text": "Memasukkan benda ke wadah, seperti balok ke gelas"
+        },
+        {
+          "id": "CDC-12-6",
+          "domain": "kognitif",
+          "text": "Mencari benda yang disembunyikan di depannya"
+        },
+        {
+          "id": "CDC-12-7",
+          "domain": "motorik_kasar",
+          "text": "Menarik badan untuk berdiri"
+        },
+        {
+          "id": "CDC-12-8",
+          "domain": "motorik_kasar",
+          "text": "Berjalan sambil berpegangan pada perabot"
+        },
+        {
+          "id": "CDC-12-9",
+          "domain": "kemandirian",
+          "text": "Minum dari gelas tanpa tutup yang Anda pegangi"
+        },
+        {
+          "id": "CDC-12-10",
+          "domain": "motorik_halus",
+          "text": "Mengambil benda kecil dengan ibu jari dan telunjuk"
+        }
+      ],
+      "source": "CDC_12M",
+      "related_source": "CDC_MILESTONES_2022"
+    },
+    {
+      "age_months": 15,
+      "items": [
+        {
+          "id": "CDC-15-1",
+          "domain": "sosial",
+          "text": "Meniru anak lain saat bermain"
+        },
+        {
+          "id": "CDC-15-2",
+          "domain": "sosial",
+          "text": "Menunjukkan benda yang ia sukai kepada Anda"
+        },
+        {
+          "id": "CDC-15-3",
+          "domain": "sosial",
+          "text": "Bertepuk tangan saat senang"
+        },
+        {
+          "id": "CDC-15-4",
+          "domain": "sosial",
+          "text": "Memeluk boneka atau mainan"
+        },
+        {
+          "id": "CDC-15-5",
+          "domain": "sosial",
+          "text": "Menunjukkan kasih sayang (memeluk, mencium)"
+        },
+        {
+          "id": "CDC-15-6",
+          "domain": "bahasa",
+          "text": "Mencoba mengucapkan 1-2 kata selain 'mama/papa'"
+        },
+        {
+          "id": "CDC-15-7",
+          "domain": "bahasa",
+          "text": "Melihat benda yang dikenal saat Anda menyebut namanya"
+        },
+        {
+          "id": "CDC-15-8",
+          "domain": "bahasa",
+          "text": "Mengikuti perintah yang disertai isyarat dan kata"
+        },
+        {
+          "id": "CDC-15-9",
+          "domain": "bahasa",
+          "text": "Menunjuk untuk meminta sesuatu atau minta bantuan"
+        },
+        {
+          "id": "CDC-15-10",
+          "domain": "kognitif",
+          "text": "Mencoba memakai benda dengan benar (telepon, gelas, buku)"
+        },
+        {
+          "id": "CDC-15-11",
+          "domain": "motorik_halus",
+          "text": "Menumpuk minimal dua benda kecil seperti balok"
+        },
+        {
+          "id": "CDC-15-12",
+          "domain": "motorik_kasar",
+          "text": "Melangkah beberapa langkah sendiri"
+        },
+        {
+          "id": "CDC-15-13",
+          "domain": "kemandirian",
+          "text": "Makan sebagian makanan dengan jarinya sendiri"
+        }
+      ],
+      "source": "CDC_15M",
+      "related_source": "CDC_MILESTONES_2022"
+    },
+    {
+      "age_months": 18,
+      "items": [
+        {
+          "id": "CDC-18-1",
+          "domain": "sosial",
+          "text": "Menjauh dari Anda tetapi menoleh memastikan Anda dekat"
+        },
+        {
+          "id": "CDC-18-2",
+          "domain": "sosial",
+          "text": "Menunjuk untuk memperlihatkan sesuatu yang menarik"
+        },
+        {
+          "id": "CDC-18-3",
+          "domain": "kemandirian",
+          "text": "Menyodorkan tangan untuk dicuci"
+        },
+        {
+          "id": "CDC-18-4",
+          "domain": "sosial",
+          "text": "Melihat beberapa halaman buku bersama Anda"
+        },
+        {
+          "id": "CDC-18-5",
+          "domain": "kemandirian",
+          "text": "Membantu saat dipakaikan baju (memasukkan lengan, mengangkat kaki)"
+        },
+        {
+          "id": "CDC-18-6",
+          "domain": "bahasa",
+          "text": "Mencoba mengucapkan 3 kata atau lebih selain 'mama/papa'"
+        },
+        {
+          "id": "CDC-18-7",
+          "domain": "bahasa",
+          "text": "Mengikuti perintah satu langkah tanpa isyarat"
+        },
+        {
+          "id": "CDC-18-8",
+          "domain": "kognitif",
+          "text": "Meniru Anda mengerjakan pekerjaan rumah (menyapu)"
+        },
+        {
+          "id": "CDC-18-9",
+          "domain": "kognitif",
+          "text": "Bermain mainan secara sederhana (mendorong mobil-mobilan)"
+        },
+        {
+          "id": "CDC-18-10",
+          "domain": "motorik_kasar",
+          "text": "Berjalan tanpa berpegangan"
+        },
+        {
+          "id": "CDC-18-11",
+          "domain": "motorik_halus",
+          "text": "Mencoret-coret"
+        },
+        {
+          "id": "CDC-18-12",
+          "domain": "kemandirian",
+          "text": "Minum dari gelas tanpa tutup, kadang tumpah"
+        },
+        {
+          "id": "CDC-18-13",
+          "domain": "kemandirian",
+          "text": "Makan sendiri dengan jari"
+        },
+        {
+          "id": "CDC-18-14",
+          "domain": "kemandirian",
+          "text": "Mencoba memakai sendok"
+        },
+        {
+          "id": "CDC-18-15",
+          "domain": "motorik_kasar",
+          "text": "Naik-turun sofa/kursi tanpa bantuan"
+        }
+      ],
+      "source": "CDC_18M",
+      "related_source": "CDC_MILESTONES_2022"
+    },
+    {
+      "age_months": 24,
+      "items": [
+        {
+          "id": "CDC-24-1",
+          "domain": "sosial",
+          "text": "Menyadari saat orang lain terluka/sedih"
+        },
+        {
+          "id": "CDC-24-2",
+          "domain": "sosial",
+          "text": "Melihat wajah Anda untuk tahu cara bereaksi di situasi baru"
+        },
+        {
+          "id": "CDC-24-3",
+          "domain": "bahasa",
+          "text": "Menunjuk gambar di buku saat ditanya ('Mana beruangnya?')"
+        },
+        {
+          "id": "CDC-24-4",
+          "domain": "bahasa",
+          "text": "Mengucapkan minimal dua kata bersamaan ('mau susu')"
+        },
+        {
+          "id": "CDC-24-5",
+          "domain": "bahasa",
+          "text": "Menunjuk minimal dua bagian tubuh saat diminta"
+        },
+        {
+          "id": "CDC-24-6",
+          "domain": "bahasa",
+          "text": "Memakai isyarat selain melambai dan menunjuk (cium jauh, mengangguk)"
+        },
+        {
+          "id": "CDC-24-7",
+          "domain": "motorik_halus",
+          "text": "Memegang benda di satu tangan sambil memakai tangan lain (membuka tutup wadah)"
+        },
+        {
+          "id": "CDC-24-8",
+          "domain": "kognitif",
+          "text": "Mencoba memakai tombol/saklar/kenop pada mainan"
+        },
+        {
+          "id": "CDC-24-9",
+          "domain": "kognitif",
+          "text": "Bermain dengan lebih dari satu mainan sekaligus"
+        },
+        {
+          "id": "CDC-24-10",
+          "domain": "motorik_kasar",
+          "text": "Menendang bola"
+        },
+        {
+          "id": "CDC-24-11",
+          "domain": "motorik_kasar",
+          "text": "Berlari"
+        },
+        {
+          "id": "CDC-24-12",
+          "domain": "motorik_kasar",
+          "text": "Berjalan (bukan merangkak) naik beberapa anak tangga"
+        },
+        {
+          "id": "CDC-24-13",
+          "domain": "kemandirian",
+          "text": "Makan dengan sendok"
+        }
+      ],
+      "source": "CDC_2Y",
+      "related_source": "CDC_MILESTONES_2022"
+    },
+    {
+      "age_months": 30,
+      "source": "CDC_30M",
+      "items": [
+        {
+          "id": "CDC-30-1",
+          "domain": "sosial",
+          "text": "Bermain di samping anak lain dan kadang bermain bersama"
+        },
+        {
+          "id": "CDC-30-2",
+          "domain": "sosial",
+          "text": "Menunjukkan kemampuannya sambil berkata 'Lihat aku!'"
+        },
+        {
+          "id": "CDC-30-3",
+          "domain": "sosial",
+          "text": "Mengikuti rutinitas sederhana bila diminta, misalnya membereskan mainan saat 'waktunya beres-beres'"
+        },
+        {
+          "id": "CDC-30-4",
+          "domain": "bahasa",
+          "text": "Mengucapkan sekitar 50 kata"
+        },
+        {
+          "id": "CDC-30-5",
+          "domain": "bahasa",
+          "text": "Menggabungkan dua kata atau lebih dengan satu kata kerja, misalnya 'Kucing lari'"
+        },
+        {
+          "id": "CDC-30-6",
+          "domain": "bahasa",
+          "text": "Menyebut nama benda di buku saat ditunjuk dan ditanya 'Ini apa?'"
+        },
+        {
+          "id": "CDC-30-7",
+          "domain": "bahasa",
+          "text": "Memakai kata 'aku', 'saya', atau 'kita'"
+        },
+        {
+          "id": "CDC-30-8",
+          "domain": "kognitif",
+          "text": "Memakai benda untuk berpura-pura, misalnya menyuapi boneka dengan balok"
+        },
+        {
+          "id": "CDC-30-9",
+          "domain": "kognitif",
+          "text": "Menunjukkan pemecahan masalah sederhana, misalnya naik bangku kecil untuk meraih sesuatu"
+        },
+        {
+          "id": "CDC-30-10",
+          "domain": "kognitif",
+          "text": "Mengikuti perintah dua langkah, misalnya 'Taruh mainannya lalu tutup pintunya'"
+        },
+        {
+          "id": "CDC-30-11",
+          "domain": "kognitif",
+          "text": "Mengenal minimal satu warna, misalnya menunjuk krayon merah saat ditanya"
+        },
+        {
+          "id": "CDC-30-12",
+          "domain": "motorik_halus",
+          "text": "Memutar benda dengan tangan, seperti gagang pintu atau tutup botol"
+        },
+        {
+          "id": "CDC-30-13",
+          "domain": "kemandirian",
+          "text": "Melepas sebagian baju sendiri, seperti celana longgar atau jaket terbuka"
+        },
+        {
+          "id": "CDC-30-14",
+          "domain": "motorik_kasar",
+          "text": "Melompat dengan kedua kaki terangkat dari lantai"
+        },
+        {
+          "id": "CDC-30-15",
+          "domain": "motorik_halus",
+          "text": "Membalik halaman buku satu per satu saat dibacakan"
+        }
+      ],
+      "related_source": "CDC_MILESTONES_2022"
+    },
+    {
+      "age_months": 36,
+      "items": [
+        {
+          "id": "CDC-36-1",
+          "domain": "sosial",
+          "text": "Tenang dalam 10 menit setelah ditinggal (mis. di penitipan)"
+        },
+        {
+          "id": "CDC-36-2",
+          "domain": "sosial",
+          "text": "Memperhatikan anak lain dan ikut bermain"
+        },
+        {
+          "id": "CDC-36-3",
+          "domain": "bahasa",
+          "text": "Bercakap dengan minimal dua kali saling balas"
+        },
+        {
+          "id": "CDC-36-4",
+          "domain": "bahasa",
+          "text": "Bertanya 'siapa', 'apa', 'di mana', atau 'kenapa'"
+        },
+        {
+          "id": "CDC-36-5",
+          "domain": "bahasa",
+          "text": "Menyebut aksi dalam gambar/buku saat ditanya (lari, makan)"
+        },
+        {
+          "id": "CDC-36-6",
+          "domain": "bahasa",
+          "text": "Menyebut nama depannya saat ditanya"
+        },
+        {
+          "id": "CDC-36-7",
+          "domain": "bahasa",
+          "text": "Bicara cukup jelas untuk dipahami orang lain hampir setiap saat"
+        },
+        {
+          "id": "CDC-36-8",
+          "domain": "kognitif",
+          "text": "Menggambar lingkaran setelah dicontohkan"
+        },
+        {
+          "id": "CDC-36-9",
+          "domain": "kognitif",
+          "text": "Menghindari benda panas saat diperingatkan"
+        },
+        {
+          "id": "CDC-36-10",
+          "domain": "motorik_halus",
+          "text": "Meronce benda besar (manik besar, makaroni)"
+        },
+        {
+          "id": "CDC-36-11",
+          "domain": "kemandirian",
+          "text": "Memakai sebagian baju sendiri (celana longgar, jaket)"
+        },
+        {
+          "id": "CDC-36-12",
+          "domain": "kemandirian",
+          "text": "Memakai garpu"
+        }
+      ],
+      "source": "CDC_3Y",
+      "related_source": "CDC_MILESTONES_2022"
+    },
+    {
+      "age_months": 48,
+      "items": [
+        {
+          "id": "CDC-48-1",
+          "domain": "sosial",
+          "text": "Berpura-pura menjadi sesuatu saat bermain (guru, superhero, anjing)"
+        },
+        {
+          "id": "CDC-48-2",
+          "domain": "sosial",
+          "text": "Minta bermain dengan anak lain jika tidak ada teman"
+        },
+        {
+          "id": "CDC-48-3",
+          "domain": "sosial",
+          "text": "Menghibur orang lain yang sedih/terluka"
+        },
+        {
+          "id": "CDC-48-4",
+          "domain": "sosial",
+          "text": "Menghindari bahaya (tidak melompat dari tempat tinggi)"
+        },
+        {
+          "id": "CDC-48-5",
+          "domain": "sosial",
+          "text": "Suka menjadi 'pembantu'"
+        },
+        {
+          "id": "CDC-48-6",
+          "domain": "sosial",
+          "text": "Mengubah perilaku sesuai tempat (tempat ibadah, perpustakaan, taman)"
+        },
+        {
+          "id": "CDC-48-7",
+          "domain": "bahasa",
+          "text": "Mengucapkan kalimat 4 kata atau lebih"
+        },
+        {
+          "id": "CDC-48-8",
+          "domain": "bahasa",
+          "text": "Menyanyikan/menyebut sebagian kata dari lagu atau cerita"
+        },
+        {
+          "id": "CDC-48-9",
+          "domain": "bahasa",
+          "text": "Menceritakan minimal satu kejadian hari itu"
+        },
+        {
+          "id": "CDC-48-10",
+          "domain": "bahasa",
+          "text": "Menjawab pertanyaan sederhana ('Jaket untuk apa?')"
+        },
+        {
+          "id": "CDC-48-11",
+          "domain": "kognitif",
+          "text": "Menyebut beberapa warna benda"
+        },
+        {
+          "id": "CDC-48-12",
+          "domain": "kognitif",
+          "text": "Menebak kelanjutan cerita yang sudah dikenal"
+        },
+        {
+          "id": "CDC-48-13",
+          "domain": "kognitif",
+          "text": "Menggambar orang dengan 3 bagian tubuh atau lebih"
+        },
+        {
+          "id": "CDC-48-14",
+          "domain": "motorik_kasar",
+          "text": "Menangkap bola besar hampir setiap kali"
+        },
+        {
+          "id": "CDC-48-15",
+          "domain": "kemandirian",
+          "text": "Mengambil makanan/menuang air sendiri dengan diawasi"
+        },
+        {
+          "id": "CDC-48-16",
+          "domain": "motorik_halus",
+          "text": "Membuka beberapa kancing"
+        },
+        {
+          "id": "CDC-48-17",
+          "domain": "motorik_halus",
+          "text": "Memegang krayon/pensil dengan jari dan jempol (bukan digenggam)"
+        }
+      ],
+      "source": "CDC_4Y",
+      "related_source": "CDC_MILESTONES_2022"
+    },
+    {
+      "age_months": 60,
+      "items": [
+        {
+          "id": "CDC-60-1",
+          "domain": "sosial",
+          "text": "Mengikuti aturan atau bergiliran saat bermain dengan anak lain"
+        },
+        {
+          "id": "CDC-60-2",
+          "domain": "sosial",
+          "text": "Bernyanyi, menari, atau berakting untuk Anda"
+        },
+        {
+          "id": "CDC-60-3",
+          "domain": "kemandirian",
+          "text": "Mengerjakan tugas rumah sederhana (memasangkan kaus kaki, membereskan meja)"
+        },
+        {
+          "id": "CDC-60-4",
+          "domain": "bahasa",
+          "text": "Menceritakan kisah dengan minimal dua kejadian"
+        },
+        {
+          "id": "CDC-60-5",
+          "domain": "bahasa",
+          "text": "Menjawab pertanyaan sederhana tentang buku/cerita"
+        },
+        {
+          "id": "CDC-60-6",
+          "domain": "bahasa",
+          "text": "Mempertahankan percakapan lebih dari tiga kali saling balas"
+        },
+        {
+          "id": "CDC-60-7",
+          "domain": "bahasa",
+          "text": "Mengenali/membuat rima sederhana"
+        },
+        {
+          "id": "CDC-60-8",
+          "domain": "kognitif",
+          "text": "Berhitung sampai 10"
+        },
+        {
+          "id": "CDC-60-9",
+          "domain": "kognitif",
+          "text": "Menyebut beberapa angka 1-5 saat ditunjuk"
+        },
+        {
+          "id": "CDC-60-10",
+          "domain": "kognitif",
+          "text": "Memakai kata waktu (kemarin, besok, pagi, malam)"
+        },
+        {
+          "id": "CDC-60-11",
+          "domain": "kognitif",
+          "text": "Fokus 5-10 menit dalam kegiatan (bukan layar)"
+        },
+        {
+          "id": "CDC-60-12",
+          "domain": "kognitif",
+          "text": "Menulis beberapa huruf namanya"
+        },
+        {
+          "id": "CDC-60-13",
+          "domain": "kognitif",
+          "text": "Menyebut beberapa huruf saat ditunjuk"
+        },
+        {
+          "id": "CDC-60-14",
+          "domain": "motorik_halus",
+          "text": "Mengancingkan beberapa kancing"
+        },
+        {
+          "id": "CDC-60-15",
+          "domain": "motorik_kasar",
+          "text": "Melompat dengan satu kaki"
+        }
+      ],
+      "source": "CDC_5Y",
+      "related_source": "CDC_MILESTONES_2022"
+    }
+  ],
+  "_source_cdc": "Setiap kelompok usia CDC punya `source` sendiri (CDC_2M ... CDC_5Y) dan related_source CDC_MILESTONES_2022. Terjemahan bebas ke Bahasa Indonesia.",
+  "version": "2026.11.21-3"
+}

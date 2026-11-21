@@ -1,0 +1,31 @@
+﻿group_id,group_label,age_days_from,age_days_to,sign,rule,source,page
+DS-NEWBORN,Bayi baru lahir (0-28 hari),0,28,Muntah-muntah,"Jika ditemukan 1 atau lebih tanda bahaya, bayi segera dibawa ke fasilitas kesehatan.",BUKU_KIA_2021,37
+DS-NEWBORN,Bayi baru lahir (0-28 hari),0,28,Demam / panas tinggi,"Jika ditemukan 1 atau lebih tanda bahaya, bayi segera dibawa ke fasilitas kesehatan.",BUKU_KIA_2021,37
+DS-NEWBORN,Bayi baru lahir (0-28 hari),0,28,Tidak mau menyusu,"Jika ditemukan 1 atau lebih tanda bahaya, bayi segera dibawa ke fasilitas kesehatan.",BUKU_KIA_2021,37
+DS-NEWBORN,Bayi baru lahir (0-28 hari),0,28,Kejang,"Jika ditemukan 1 atau lebih tanda bahaya, bayi segera dibawa ke fasilitas kesehatan.",BUKU_KIA_2021,37
+DS-NEWBORN,Bayi baru lahir (0-28 hari),0,28,Sesak napas / sulit bernapas,"Jika ditemukan 1 atau lebih tanda bahaya, bayi segera dibawa ke fasilitas kesehatan.",BUKU_KIA_2021,37
+DS-NEWBORN,Bayi baru lahir (0-28 hari),0,28,Tubuh dingin atau lemah,"Jika ditemukan 1 atau lebih tanda bahaya, bayi segera dibawa ke fasilitas kesehatan.",BUKU_KIA_2021,37
+DS-NEWBORN,Bayi baru lahir (0-28 hari),0,28,Kulit dan mata kuning,"Jika ditemukan 1 atau lebih tanda bahaya, bayi segera dibawa ke fasilitas kesehatan.",BUKU_KIA_2021,37
+DS-NEWBORN,Bayi baru lahir (0-28 hari),0,28,Diare,"Jika ditemukan 1 atau lebih tanda bahaya, bayi segera dibawa ke fasilitas kesehatan.",BUKU_KIA_2021,37
+DS-NEWBORN,Bayi baru lahir (0-28 hari),0,28,Merintih atau menangis terus-menerus,"Jika ditemukan 1 atau lebih tanda bahaya, bayi segera dibawa ke fasilitas kesehatan.",BUKU_KIA_2021,37
+DS-NEWBORN,Bayi baru lahir (0-28 hari),0,28,"Tali pusat kemerahan sampai dinding perut, berbau, atau bernanah","Jika ditemukan 1 atau lebih tanda bahaya, bayi segera dibawa ke fasilitas kesehatan.",BUKU_KIA_2021,37
+DS-NEWBORN,Bayi baru lahir (0-28 hari),0,28,Tinja berwarna pucat,"Jika ditemukan 1 atau lebih tanda bahaya, bayi segera dibawa ke fasilitas kesehatan.",BUKU_KIA_2021,37
+DS-JAUNDICE,Kuning pada bayi,0,60,Kuning muncul < 24 jam setelah lahir,"Kuning normal muncul pada 24-72 jam dan hilang dalam 2 minggu. Tidak normal bila muncul sebelum 24 jam, menetap lebih dari 2 minggu, atau mata tetap kuning / urin kuning keruh setelah 2 minggu: segera ke dokter.",BUKU_KIA_2021,"36, 39"
+DS-JAUNDICE,Kuning pada bayi,0,60,Kuning > 2 minggu,"Kuning normal muncul pada 24-72 jam dan hilang dalam 2 minggu. Tidak normal bila muncul sebelum 24 jam, menetap lebih dari 2 minggu, atau mata tetap kuning / urin kuning keruh setelah 2 minggu: segera ke dokter.",BUKU_KIA_2021,"36, 39"
+DS-JAUNDICE,Kuning pada bayi,0,60,Mata tetap kuning setelah 2 minggu,"Kuning normal muncul pada 24-72 jam dan hilang dalam 2 minggu. Tidak normal bila muncul sebelum 24 jam, menetap lebih dari 2 minggu, atau mata tetap kuning / urin kuning keruh setelah 2 minggu: segera ke dokter.",BUKU_KIA_2021,"36, 39"
+DS-JAUNDICE,Kuning pada bayi,0,60,Urin kuning keruh,"Kuning normal muncul pada 24-72 jam dan hilang dalam 2 minggu. Tidak normal bila muncul sebelum 24 jam, menetap lebih dari 2 minggu, atau mata tetap kuning / urin kuning keruh setelah 2 minggu: segera ke dokter.",BUKU_KIA_2021,"36, 39"
+DS-JAUNDICE,Kuning pada bayi,0,60,Tinja pucat (cek kartu warna tinja),"Kuning normal muncul pada 24-72 jam dan hilang dalam 2 minggu. Tidak normal bila muncul sebelum 24 jam, menetap lebih dari 2 minggu, atau mata tetap kuning / urin kuning keruh setelah 2 minggu: segera ke dokter.",BUKU_KIA_2021,"36, 39"
+DS-TODDLER,Bayi & balita,29,2190,Tidak bisa minum / menyusu,"Jika ditemukan 1 atau lebih tanda bahaya, balita segera dibawa ke fasilitas kesehatan.",BUKU_KIA_2021,38
+DS-TODDLER,Bayi & balita,29,2190,Kejang,"Jika ditemukan 1 atau lebih tanda bahaya, balita segera dibawa ke fasilitas kesehatan.",BUKU_KIA_2021,38
+DS-TODDLER,Bayi & balita,29,2190,Sesak napas atau kulit kebiruan,"Jika ditemukan 1 atau lebih tanda bahaya, balita segera dibawa ke fasilitas kesehatan.",BUKU_KIA_2021,38
+DS-TODDLER,Bayi & balita,29,2190,Bengkak yang sakit di belakang telinga,"Jika ditemukan 1 atau lebih tanda bahaya, balita segera dibawa ke fasilitas kesehatan.",BUKU_KIA_2021,38
+DS-TODDLER,Bayi & balita,29,2190,Diare,"Jika ditemukan 1 atau lebih tanda bahaya, balita segera dibawa ke fasilitas kesehatan.",BUKU_KIA_2021,38
+DS-TODDLER,Bayi & balita,29,2190,Muntah-muntah,"Jika ditemukan 1 atau lebih tanda bahaya, balita segera dibawa ke fasilitas kesehatan.",BUKU_KIA_2021,38
+DS-TODDLER,Bayi & balita,29,2190,Demam tinggi,"Jika ditemukan 1 atau lebih tanda bahaya, balita segera dibawa ke fasilitas kesehatan.",BUKU_KIA_2021,38
+DS-TODDLER,Bayi & balita,29,2190,"Berdarah dari hidung, kulit, atau dalam tinja","Jika ditemukan 1 atau lebih tanda bahaya, balita segera dibawa ke fasilitas kesehatan.",BUKU_KIA_2021,38
+DS-DEHYDRATION,Tanda dehidrasi pada bayi,0,365,Popok basah 4 atau kurang dalam 24 jam (usia > 4 hari),Hubungi dokter dan susui lebih sering.,SUTTER_DIAPERS,
+DS-DEHYDRATION,Tanda dehidrasi pada bayi,0,365,Sulit dibangunkan untuk menyusu,Hubungi dokter dan susui lebih sering.,SUTTER_DIAPERS,
+DS-DEHYDRATION,Tanda dehidrasi pada bayi,0,365,Lidah dan mulut kering,Hubungi dokter dan susui lebih sering.,SUTTER_DIAPERS,
+DS-DEHYDRATION,Tanda dehidrasi pada bayi,0,365,Menangis tanpa air mata,Hubungi dokter dan susui lebih sering.,SUTTER_DIAPERS,
+DS-DEHYDRATION,Tanda dehidrasi pada bayi,0,365,Ubun-ubun cekung,Hubungi dokter dan susui lebih sering.,SUTTER_DIAPERS,
+DS-DEHYDRATION,Tanda dehidrasi pada bayi,0,365,Berat badan turun lebih dari 10%,Hubungi dokter dan susui lebih sering.,SUTTER_DIAPERS,

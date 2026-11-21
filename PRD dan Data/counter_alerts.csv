@@ -1,0 +1,15 @@
+﻿counter_id,alert_id,condition,level,text,source,page
+BAB,BAB-A1,age_days<=2 && hours_since_birth>=48 && total_count==0,segera,Bayi belum BAB dalam 48 jam pertama. Hubungi bidan/dokter.,BUKU_KIA_2021,35
+BAB,BAB-A2,age_days<=28 && days_since_last>3,periksa,Bayi baru lahir tidak BAB lebih dari 3 hari. Periksakan ke tenaga kesehatan.,BUKU_KIA_2021,36
+BAB,BAB-A3,choice==pucat/putih/abu-abu,segera,Tinja pucat/putih/abu-abu bisa tanda gangguan hati (atresia bilier). Segera ke dokter. Bandingkan dengan kartu warna tinja di Buku KIA.,BUKU_KIA_2021,39
+BAB,BAB-A4,choice==ada darah/merah,segera,Tinja merah/berdarah: segera hubungi dokter.,SUTTER_DIAPERS,
+BAB,BAB-A5,age_days>3 && choice==hitam/hijau gelap (mekonium),segera,Tinja hitam setelah usia 3 hari tidak normal. Segera hubungi dokter.,SUTTER_DIAPERS,
+BAB,BAB-A6,count_today>=6 && age_days>28,periksa,"BAB sangat sering hari ini. Waspadai diare dan tanda dehidrasi (malas minum, mulut kering, jarang pipis). Diare termasuk tanda bahaya di Buku KIA.",BUKU_KIA_2021,38
+BAK,BAK-A1,hours_since_birth>=24 && total_count==0,segera,Bayi belum pipis dalam 24 jam pertama. Hubungi bidan/dokter.,BUKU_KIA_2021,35
+BAK,BAK-A2,age_days>=4 && count_last_24h<=4 && log_coverage_ok,periksa,4 popok basah atau kurang dalam 24 jam bisa tanda dehidrasi. Hubungi dokter anak.,SUTTER_DIAPERS,
+NURSE,NURSE-A1,age_days<=28 && hours_since_last>3 && is_daytime_or_any,info,"Sudah lebih dari 3 jam sejak menyusu terakhir. Buku KIA: bila bayi tidur lebih dari 3 jam, bangunkan dan susui.",BUKU_KIA_2021,34
+NURSE,NURSE-A2,age_days<=28 && count_last_24h<8 && log_coverage_ok,periksa,Menyusu kurang dari 8 kali dalam 24 jam pada bayi baru lahir bisa tanda asupan kurang. Konsultasikan bila disertai jarang pipis atau lemas.,SUTTER_DIAPERS,
+NURSE,NURSE-A3,manual_flag_refuses_feeding,segera,Bayi tidak mau menyusu termasuk tanda bahaya bayi baru lahir. Segera ke fasilitas kesehatan.,BUKU_KIA_2021,37
+TEMP,TEMP-A1,celsius>37.5 && age_days<=28,segera,Demam pada bayi baru lahir adalah tanda bahaya. Segera ke fasilitas kesehatan.,BUKU_KIA_2021,37
+TEMP,TEMP-A2,celsius<36.5 && age_days<=28,segera,Suhu rendah/tubuh dingin pada bayi baru lahir adalah tanda bahaya. Hangatkan dan segera ke fasilitas kesehatan.,BUKU_KIA_2021,37
+TEMP,TEMP-A3,celsius>37.5 && age_days>28,periksa,Anak demam. Demam tinggi termasuk tanda bahaya balita; perhatikan tanda bahaya lain dan konsultasikan.,BUKU_KIA_2021,38

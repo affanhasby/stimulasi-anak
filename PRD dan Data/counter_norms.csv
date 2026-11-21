@@ -1,0 +1,17 @@
+﻿counter_id,label,age_unit,age_from,age_to,min_per_day,max_per_day,min_hours,max_hours,text,verification,source,page
+BAB,BAB / pup,hari,0,2,1,,,,"Hari 1-2: 1-2 kali, hitam pekat seperti ter (mekonium).",verified,AAP_ENOUGH_MILK,
+BAB,BAB / pup,hari,3,4,2,,,,"Hari 3-4: minimal 2 kali, mulai kehijauan-kuning.",verified,AAP_ENOUGH_MILK,
+BAB,BAB / pup,hari,5,28,3,,,,"Hari 5-7 dan seterusnya (bayi ASI): 3-4 kali per hari, kuning encer berbutir.",verified,AAP_ENOUGH_MILK,
+BAB,BAB / pup,hari,29,1095,,,,,"Setelah 1 bulan: bisa beberapa kali sehari atau 1 kali tiap 2-3 hari, selama anak nyaman dan menyusu baik.",verified,SUTTER_DIAPERS,
+BAK,Pipis / popok basah,hari,0,4,age_day_number,,,,"Hari-hari pertama: minimal 1 popok basah per hari usia (hari ke-1: 1, hari ke-2: 2, dst). Pipis pertama dalam 24 jam setelah lahir.",verified,SUTTER_DIAPERS,
+BAK,Pipis / popok basah,hari,5,365,6,,,,"Mulai hari 5-7: 6 popok basah atau lebih per hari, urin jernih/kuning pucat. Buku KIA: 6-8 kali sehari.",verified,AAP_ENOUGH_MILK,
+NURSE,Menyusu (ASI),hari,0,180,8,12,,,"Susui sesering mungkin, 8-12 kali per 24 jam atau sesuai keinginan bayi. Lama menyusu umumnya 5-30 menit.",verified,BUKU_KIA_2021,34
+MPASI,Makan (MP-ASI),bulan,6,9,,,,,6-8 bulan: 2-3 kali makan utama + 1-2 kali selingan; tekstur lumat/disaring; ASI tetap diberikan.,verified,BUKU_KIA_2021,41
+MPASI,Makan (MP-ASI),bulan,9,12,,,,,9-11 bulan: 3-4 kali makan utama + 1-2 kali selingan; tekstur cincang.,verified,BUKU_KIA_2021,41
+MPASI,Makan (MP-ASI),bulan,12,24,,,,,12-23 bulan: 3-4 kali makan utama + 1-2 kali selingan; makanan keluarga dipotong kecil; ASI dilanjutkan sampai 2 tahun atau lebih.,verified,BUKU_KIA_2021,41
+SLEEP,Tidur,bulan,0,4,,,,,"Bayi baru lahir tidur sampai sekitar 16 jam sehari. Selalu telentang di alas datar, jauhkan benda yang bisa menutupi kepala, gunakan kelambu.",verified,BUKU_KIA_2021,35
+SLEEP,Tidur,bulan,4,12,,,12,16,4-12 bulan: 12-16 jam per hari termasuk tidur siang.,verified,BUKU_KIA_2021,33
+SLEEP,Tidur,bulan,12,24,,,11,14,1-2 tahun: 11-14 jam per hari termasuk tidur siang.,verified,BUKU_KIA_2021,33
+SLEEP,Tidur,bulan,36,72,,,10,13,3-5 tahun: 10-13 jam per hari termasuk tidur siang.,verified,CDC_4Y,
+TUMMY,Waktu tengkurap,bulan,0,6,,,,,"Tengkurap hanya saat bayi bangun dan diawasi. Mulai beberapa menit, beberapa kali sehari.",verified,BUKU_KIA_2021,42
+TEMP,Suhu tubuh,,,,,,,,"Normal 36,5-37,5 °C.",verified,BUKU_KIA_2021,36

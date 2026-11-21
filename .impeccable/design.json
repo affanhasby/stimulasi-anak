@@ -1,0 +1,712 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-21T10:52:14+00:00",
+  "title": "Design System: Stimulasi Anak",
+  "extensions": {
+    "colorMeta": {
+      "sosial": {
+        "role": "primary",
+        "displayName": "Sosial Raspberry",
+        "canonical": "oklch(64.6% 0.178 5.2)",
+        "tonalRamp": [
+          "#1c0108",
+          "#420d1e",
+          "#6c2038",
+          "#993453",
+          "#c94a70",
+          "#f06c90",
+          "#ff9eb8",
+          "#ffd2e5"
+        ]
+      },
+      "bahasa": {
+        "role": "primary",
+        "displayName": "Bahasa Marigold",
+        "canonical": "oklch(75.7% 0.155 67.1)",
+        "tonalRamp": [
+          "#120903",
+          "#331f08",
+          "#58370f",
+          "#815217",
+          "#ab6d1e",
+          "#d88b26",
+          "#ffb156",
+          "#ffe09b"
+        ]
+      },
+      "kognitif": {
+        "role": "primary",
+        "displayName": "Kognitif Violet",
+        "canonical": "oklch(54.9% 0.180 289.7)",
+        "tonalRamp": [
+          "#0d0129",
+          "#261453",
+          "#412c80",
+          "#5f46b1",
+          "#7e66da",
+          "#9e8df0",
+          "#c2b8ff",
+          "#ede6ff"
+        ]
+      },
+      "motorik_kasar": {
+        "role": "primary",
+        "displayName": "Motorik Kasar Field Green",
+        "canonical": "oklch(61.2% 0.126 157.9)",
+        "tonalRamp": [
+          "#001005",
+          "#002d18",
+          "#074c2e",
+          "#196f47",
+          "#2a9361",
+          "#5db384",
+          "#92d6ae",
+          "#cafdde"
+        ]
+      },
+      "motorik_halus": {
+        "role": "primary",
+        "displayName": "Motorik Halus Clear Blue",
+        "canonical": "oklch(59.9% 0.141 247.2)",
+        "tonalRamp": [
+          "#000c20",
+          "#002545",
+          "#03426f",
+          "#13619c",
+          "#2582cb",
+          "#5ba4e6",
+          "#90caff",
+          "#c8f4ff"
+        ]
+      },
+      "kemandirian": {
+        "role": "primary",
+        "displayName": "Kemandirian Mustard",
+        "canonical": "oklch(67.7% 0.131 88.8)",
+        "tonalRamp": [
+          "#110a00",
+          "#2f2200",
+          "#503d01",
+          "#735a08",
+          "#997913",
+          "#be992f",
+          "#e0c172",
+          "#ffedb0"
+        ]
+      },
+      "ok": {
+        "role": "secondary",
+        "displayName": "Tepat Waktu Green",
+        "canonical": "oklch(51.7% 0.107 158.2)",
+        "tonalRamp": [
+          "#001104",
+          "#002d17",
+          "#034d2e",
+          "#1a6e47",
+          "#458e67",
+          "#73ae8c",
+          "#a3d1b5",
+          "#d8f8e4"
+        ],
+        "dark": "#5fc48f"
+      },
+      "warn": {
+        "role": "secondary",
+        "displayName": "Mendekati Batas Amber",
+        "canonical": "oklch(56.7% 0.124 64.1)",
+        "tonalRamp": [
+          "#190500",
+          "#3b1a00",
+          "#603300",
+          "#874e00",
+          "#ae6c20",
+          "#ca9158",
+          "#e9ba8d",
+          "#ffe7c7"
+        ],
+        "dark": "#f0b154"
+      },
+      "late": {
+        "role": "secondary",
+        "displayName": "Terlambat Brick",
+        "canonical": "oklch(51.9% 0.162 27.8)",
+        "tonalRamp": [
+          "#230000",
+          "#4a0203",
+          "#751814",
+          "#a22f28",
+          "#c5554a",
+          "#df8074",
+          "#fbada3",
+          "#ffdfd7"
+        ],
+        "dark": "#f08a80"
+      },
+      "danger": {
+        "role": "tertiary",
+        "displayName": "Tanda Bahaya Red",
+        "canonical": "oklch(54.4% 0.189 26.2)",
+        "tonalRamp": [
+          "#250000",
+          "#4d0001",
+          "#7a0a10",
+          "#a92123",
+          "#d24641",
+          "#ec766d",
+          "#ffa69c",
+          "#ffdad2"
+        ]
+      },
+      "ground": {
+        "role": "neutral",
+        "displayName": "Pale Sage Ground",
+        "canonical": "oklch(97.1% 0.004 134.8)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#3f403f",
+          "#5d5e5d",
+          "#7d7d7c",
+          "#9e9f9d",
+          "#c3c4c2",
+          "#edefec"
+        ],
+        "dark": "#12181b"
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Panel White",
+        "canonical": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#7d7d7d",
+          "#9e9e9e",
+          "#c4c4c4",
+          "#eeeeee"
+        ],
+        "dark": "#1b2327"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Slate Ink",
+        "canonical": "oklch(27.7% 0.019 232.2)",
+        "tonalRamp": [
+          "#050c11",
+          "#1b262b",
+          "#374147",
+          "#565f64",
+          "#777e83",
+          "#9a9fa2",
+          "#c1c5c6",
+          "#edeff0"
+        ],
+        "dark": "#edf1ee"
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Muted Slate",
+        "canonical": "oklch(46.6% 0.020 231.3)",
+        "tonalRamp": [
+          "#070c0f",
+          "#1d252a",
+          "#374247",
+          "#536067",
+          "#747f85",
+          "#97a0a5",
+          "#bec5c9",
+          "#eaeff2"
+        ],
+        "dark": "#a9b5b9"
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "oklch(92.4% 0.007 145.5)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#3f403f",
+          "#5d5e5d",
+          "#7c7e7c",
+          "#9d9f9d",
+          "#c2c5c2",
+          "#ecf0ec"
+        ],
+        "dark": "#2a3439"
+      },
+      "off": {
+        "role": "neutral",
+        "displayName": "Empty Portion Grey",
+        "canonical": "oklch(90.8% 0.008 151.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#3f403f",
+          "#5c5e5d",
+          "#7b7e7c",
+          "#9c9f9d",
+          "#c1c5c2",
+          "#ebf0ec"
+        ],
+        "dark": "#2c373c"
+      },
+      "tile": {
+        "role": "neutral",
+        "displayName": "Counter Ink",
+        "canonical": "oklch(27.7% 0.019 232.2)",
+        "tonalRamp": [
+          "#050c11",
+          "#1b262b",
+          "#374147",
+          "#565f64",
+          "#777e83",
+          "#9a9fa2",
+          "#c1c5c6",
+          "#edeff0"
+        ],
+        "dark": "#26323a"
+      },
+      "tile-active": {
+        "role": "neutral",
+        "displayName": "Counter Ink Running",
+        "canonical": "oklch(40.3% 0.025 232.9)",
+        "tonalRamp": [
+          "#050c11",
+          "#1a262c",
+          "#33424b",
+          "#516068",
+          "#737f87",
+          "#96a0a6",
+          "#bec5ca",
+          "#ebeff2"
+        ],
+        "dark": "#3d4f59"
+      },
+      "on-tile": {
+        "role": "neutral",
+        "displayName": "On Tile",
+        "canonical": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#7d7d7d",
+          "#9e9e9e",
+          "#c4c4c4",
+          "#eeeeee"
+        ],
+        "dark": "#edf1ee"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Today's done count on the plate section."
+      },
+      "verdict": {
+        "displayName": "Verdict",
+        "purpose": "Check question and result titles, congratulation title, current growth value, vaccine dose count."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Child name, screen titles in the shared header, sheet titles."
+      },
+      "counter": {
+        "displayName": "Counter",
+        "purpose": "Count or duration on counter tiles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Activity titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Instructions and danger-sign prose."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "Domain, minutes, sources, vaccine timing, daily hint."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Status chips, growth badges, tags, the unread badge, tab labels."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "settle",
+        "value": "scale 0.9 -> 1, 380ms cubic-bezier(.22,1,.36,1)",
+        "purpose": "A plate sector settling in when its domain is ticked (signature move)."
+      },
+      {
+        "name": "sector-fill",
+        "value": "fill-opacity, scale 300ms ease-out",
+        "purpose": "Plate sector fill crossfade."
+      },
+      {
+        "name": "tick-colour",
+        "value": "colors 200ms",
+        "purpose": "Tick ring and fill change."
+      },
+      {
+        "name": "chevron-rotate",
+        "value": "rotate 90deg, 200ms",
+        "purpose": "Activity row disclosure."
+      },
+      {
+        "name": "press",
+        "value": "scale .96 (tiles, 150ms) / .97 (danger pill)",
+        "purpose": "Press feedback on tap targets."
+      },
+      {
+        "name": "ease-out-quint",
+        "value": "cubic-bezier(.22,1,.36,1)",
+        "purpose": "The one entrance curve for every keyframe below except the badge pop and snackbar fade."
+      },
+      {
+        "name": "sheet-up",
+        "value": "translate 0 100% -> 0, 280ms cubic-bezier(.22,1,.36,1)",
+        "purpose": "Bottom sheet opening."
+      },
+      {
+        "name": "drop",
+        "value": "translate 0 -120% -> 0, 320ms cubic-bezier(.22,1,.36,1)",
+        "purpose": "Notice toast arriving at the top."
+      },
+      {
+        "name": "rise",
+        "value": "opacity 0, translate 0 16px -> rest, 420ms cubic-bezier(.22,1,.36,1)",
+        "purpose": "Check result card and congratulation panel arriving."
+      },
+      {
+        "name": "slide-in",
+        "value": "opacity 0, translate 24px 0 -> rest, 260ms cubic-bezier(.22,1,.36,1)",
+        "purpose": "Next question card in the daily-check stepper."
+      },
+      {
+        "name": "pop",
+        "value": "scale 0.6 -> 1.04 (60%) -> 1, opacity 0 -> 1; 520ms cubic-bezier(.22,1,.36,1) (brand plate) / 300ms ease-out (unread badge)",
+        "purpose": "Congratulation brand plate and unread badge."
+      },
+      {
+        "name": "fade-in",
+        "value": "opacity 0 -> 1, 160ms ease-out",
+        "purpose": "Snackbar."
+      },
+      {
+        "name": "progress",
+        "value": "width 300ms ease-out",
+        "purpose": "Daily-check progress fill."
+      },
+      {
+        "name": "chart-point",
+        "value": "r 4.5 -> 6, 150ms",
+        "purpose": "Selected growth-chart point."
+      },
+      {
+        "name": "chip",
+        "value": "colors 150ms, press scale .97",
+        "purpose": "Choice chip selection."
+      },
+      {
+        "name": "press-button",
+        "value": "scale .98 (buttons, call pair) / .97 (check answers) / .99 (Beranda check row), 150ms",
+        "purpose": "Press feedback."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "all transitions and animations 0.01ms",
+        "purpose": "prefers-reduced-motion: everything arrives instantly."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "column-max",
+        "value": "430px"
+      },
+      {
+        "name": "sheet-centred (sm)",
+        "value": "640px"
+      }
+    ],
+    "themes": {
+      "dark": {
+        "trigger": "prefers-color-scheme: dark",
+        "values": {
+          "ok": "#5fc48f",
+          "warn": "#f0b154",
+          "late": "#f08a80",
+          "ground": "#12181b",
+          "panel": "#1b2327",
+          "ink": "#edf1ee",
+          "ink-2": "#a9b5b9",
+          "line": "#2a3439",
+          "off": "#2c373c",
+          "tile": "#26323a",
+          "tile-active": "#3d4f59",
+          "on-tile": "#edf1ee"
+        },
+        "unchanged": [
+          "sosial",
+          "bahasa",
+          "kognitif",
+          "motorik_kasar",
+          "motorik_halus",
+          "kemandirian",
+          "danger"
+        ]
+      }
+    },
+    "font": {
+      "family": "Figtree",
+      "source": "/fonts/figtree-latin.woff2",
+      "weights": "300 900 variable",
+      "display": "swap",
+      "numeric": "tabular-nums on html"
+    },
+    "tints": [
+      {
+        "name": "chart-band",
+        "value": "color-mix(in oklab, var(--ok|--warn) 16%, transparent)",
+        "purpose": "WHO normal (ok) and outer (warn) bands."
+      },
+      {
+        "name": "legend-swatch",
+        "value": "color-mix(in oklab, var(--ok|--warn) 30%, transparent)",
+        "purpose": "Growth chart legend squares."
+      },
+      {
+        "name": "note-tint",
+        "value": "var(--warn|--late) at 10% (Tailwind /10)",
+        "purpose": "Cautionary note blocks (warn) and sign-in error blocks (late)."
+      }
+    ],
+    "rings": [
+      {
+        "name": "badge-cutout",
+        "value": "0 0 0 2px var(--ground)",
+        "purpose": "Unread badge ring cutting it out of the bell icon. A stroke, not a shadow."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Plate",
+      "kind": "custom",
+      "description": "Signature: six domain sectors; off grey, planned at 20% hue, ticked at full hue; centre check when the day's target is met.",
+      "html": "<div class=\"ds-plate\"><svg viewBox=\"0 0 160 160\" width=\"152\" height=\"152\" role=\"img\" aria-label=\"Piring stimulasi: Sosial, Motorik kasar terisi\"><path class=\"ds-sector ds-done\" fill=\"#e2557f\" d=\"M83.32 4.07A76 76 0 0 1 144.10 39.17L118.80 55.28A46 46 0 0 0 82.01 34.04Z\"/><path fill=\"#f09a2a\" fill-opacity=\"0.2\" d=\"M147.41 44.91A76 76 0 0 1 147.41 115.09L120.80 101.24A46 46 0 0 0 120.80 58.76Z\"/><path fill=\"var(--off,#dde2de)\" d=\"M144.10 120.83A76 76 0 0 1 83.32 155.93L82.01 125.96A46 46 0 0 0 118.80 104.72Z\"/><path class=\"ds-sector ds-done\" fill=\"#2e9a66\" d=\"M76.68 155.93A76 76 0 0 1 15.90 120.83L41.20 104.72A46 46 0 0 0 77.99 125.96Z\"/><path fill=\"#2685cf\" fill-opacity=\"0.2\" d=\"M12.59 115.09A76 76 0 0 1 12.59 44.91L39.20 58.76A46 46 0 0 0 39.20 101.24Z\"/><path fill=\"var(--off,#dde2de)\" d=\"M15.90 39.17A76 76 0 0 1 76.68 4.07L77.99 34.04A46 46 0 0 0 41.20 55.28Z\"/></svg></div>",
+      "css": ".ds-plate{width:152px;height:152px} .ds-plate svg{display:block} .ds-sector{transform-origin:center;transform-box:fill-box;transition:fill-opacity .3s ease-out} .ds-done{animation:ds-settle 380ms cubic-bezier(.22,1,.36,1)} .ds-plate:hover .ds-done{animation:none} @keyframes ds-settle{from{scale:.9}to{scale:1}} @media (prefers-reduced-motion:reduce){.ds-done{animation:none}}"
+    },
+    {
+      "name": "Danger Pill",
+      "kind": "button",
+      "refersTo": "button-danger-pill",
+      "description": "Header entry to the danger-sign sheet; the only red control.",
+      "html": "<button class=\"ds-btn-danger\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3 2.5 20h19z\"/><path d=\"M12 10v4.5M12 17.5v.01\"/></svg>Tanda bahaya</button>",
+      "css": ".ds-btn-danger{display:flex;align-items:center;gap:6px;min-height:44px;padding:8px 16px 8px 12px;border:0;border-radius:9999px;background:#c62e2e;color:#fff;font:700 14px/1.25 Figtree,ui-sans-serif,system-ui,sans-serif;cursor:pointer} .ds-btn-danger:active{transform:scale(.97)} .ds-btn-danger:focus-visible{outline:2.5px solid var(--ink,#1f2a30);outline-offset:2px}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary inline action, e.g. Ganti kegiatan lain.",
+      "html": "<button class=\"ds-btn-outline\">Ganti kegiatan lain</button>",
+      "css": ".ds-btn-outline{min-height:44px;padding:0 16px;border:1px solid var(--line,#e3e7e3);border-radius:9999px;background:var(--panel,#fff);color:var(--ink,#1f2a30);font:600 14px/1.25 Figtree,ui-sans-serif,system-ui,sans-serif;cursor:pointer} .ds-btn-outline:active{background:var(--ground,#f4f6f3)} .ds-btn-outline:focus-visible{outline:2.5px solid var(--ink,#1f2a30);outline-offset:2px}"
+    },
+    {
+      "name": "Activity Row with Tick",
+      "kind": "card",
+      "refersTo": "activity-list",
+      "description": "Domain mark, title and meta, chevron, 34px tick in a 48px hit area.",
+      "html": "<ul class=\"ds-list\"><li class=\"ds-row\"><span class=\"ds-mark\" style=\"background:#2e9a66\"></span><span class=\"ds-text\"><span class=\"ds-title\">Tengkurap sambil diajak bicara</span><span class=\"ds-meta\">Inti · Motorik kasar · 5 mnt</span></span><button class=\"ds-tick\" aria-pressed=\"false\" aria-label=\"Tandai selesai\"><span><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m5 12.5 4.5 4.5L19 7.5\"/></svg></span></button></li><li class=\"ds-row\"><span class=\"ds-mark\" style=\"background:#e2557f\"></span><span class=\"ds-text\"><span class=\"ds-title ds-muted\">Cilukba</span><span class=\"ds-meta\">Sosial · 3 mnt</span></span><button class=\"ds-tick ds-on\" aria-pressed=\"true\" aria-label=\"Batalkan\"><span><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m5 12.5 4.5 4.5L19 7.5\"/></svg></span></button></li></ul>",
+      "css": ".ds-list{list-style:none;margin:0;padding:0;border-radius:16px;overflow:hidden;background:var(--panel,#fff);color:var(--ink,#1f2a30);font-family:Figtree,ui-sans-serif,system-ui,sans-serif;max-width:406px} .ds-row{display:flex;align-items:center;gap:12px;min-height:58px;padding:6px 6px 6px 14px} .ds-row+.ds-row{border-top:1px solid var(--line,#e3e7e3)} .ds-mark{width:10px;height:28px;border-radius:9999px;flex-shrink:0} .ds-text{flex:1;min-width:0} .ds-title{display:block;font:600 16px/1.375 inherit} .ds-muted{color:var(--ink-2,#4f5c63)} .ds-meta{display:block;font-size:13px;color:var(--ink-2,#4f5c63)} .ds-tick{display:grid;place-items:center;width:48px;height:48px;border:0;background:none;padding:0;cursor:pointer} .ds-tick>span{display:grid;place-items:center;width:34px;height:34px;border-radius:9999px;border:2.5px solid var(--off,#dde2de);color:transparent;transition:background-color .2s,border-color .2s,color .2s;box-sizing:border-box} .ds-tick:hover>span{border-color:var(--ink-2,#4f5c63)} .ds-tick.ds-on>span{background:var(--ink,#1f2a30);border-color:var(--ink,#1f2a30);color:var(--panel,#fff)} .ds-tick:focus-visible{outline:2.5px solid var(--ink,#1f2a30);outline-offset:2px;border-radius:9999px}"
+    },
+    {
+      "name": "Counter Tile",
+      "kind": "button",
+      "refersTo": "counter-tile",
+      "description": "Docked one-tap logger: label, tabular count, last-time line; running timers switch to tile-active with an inset ring.",
+      "html": "<div class=\"ds-dock\"><button class=\"ds-tile\"><span class=\"ds-tl\">Menyusu</span><span class=\"ds-tc\">6</span><span class=\"ds-tx\">1 j lalu</span></button><button class=\"ds-tile ds-running\"><span class=\"ds-tl\">Tidur</span><span class=\"ds-tc\">1:20</span><span class=\"ds-tx\">14.05</span></button><button class=\"ds-tile\"><span class=\"ds-tl\">Pipis</span><span class=\"ds-tc\">4</span><span class=\"ds-tx\">belum</span></button></div>",
+      "css": ".ds-dock{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:8px;background:var(--ground,#f4f6f3);max-width:270px} .ds-tile{display:flex;flex-direction:column;justify-content:space-between;height:88px;padding:10px 7px;border:0;border-radius:16px;background:var(--tile,#1f2a30);color:var(--on-tile,#fff);text-align:left;font-family:Figtree,ui-sans-serif,system-ui,sans-serif;font-variant-numeric:tabular-nums;cursor:pointer;transition:transform .15s} .ds-tile:active{transform:scale(.96)} .ds-tile:focus-visible{outline:2.5px solid var(--ink,#1f2a30);outline-offset:2px} .ds-running{background:var(--tile-active,#3b4b54);box-shadow:inset 0 0 0 2px var(--on-tile,#fff)} .ds-tl{font-size:11.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis} .ds-tc{font-size:24px;line-height:1;font-weight:800} .ds-tx{font-size:11px;opacity:.75}"
+    },
+    {
+      "name": "Tab Bar",
+      "kind": "nav",
+      "refersTo": "tab-bar",
+      "description": "Fixed bottom navigation; current tab bold ink.",
+      "html": "<nav class=\"ds-tabs\"><a class=\"ds-tab ds-cur\" aria-current=\"page\" href=\"#\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z\"/></svg>Beranda</a><a class=\"ds-tab\" href=\"#\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"8.5\"/><circle cx=\"12\" cy=\"12\" r=\"3.5\"/><path d=\"M12 3.5v5M12 15.5v5M4.6 7.75l4.4 2.5M15 13.75l4.4 2.5M4.6 16.25l4.4-2.5M15 10.25l4.4-2.5\"/></svg>Stimulasi</a><a class=\"ds-tab\" href=\"#\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 21v-8M12 13c0-4-3-6-7-6 0 4 3 6 7 6ZM12 11c0-4 3-7 7-7 0 4-3 7-7 7Z\"/></svg>Tumbuh</a></nav>",
+      "css": ".ds-tabs{display:flex;justify-content:space-around;border-top:1px solid var(--line,#e3e7e3);background:var(--panel,#fff);max-width:430px} .ds-tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:64px;height:70px;font:400 12px/1.333 Figtree,ui-sans-serif,system-ui,sans-serif;color:var(--ink-2,#4f5c63);text-decoration:none} .ds-tab:hover{color:var(--ink,#1f2a30)} .ds-cur{font-weight:700;color:var(--ink,#1f2a30)} .ds-tab:focus-visible{outline:2.5px solid var(--ink,#1f2a30);outline-offset:2px}"
+    },
+    {
+      "name": "Status Chips",
+      "kind": "chip",
+      "refersTo": "status-chip-warn",
+      "description": "Vaccine window state: ok and warn fills with panel label, late doses as warn outline (\"Bisa dikejar\"), done in ink, waiting states on off.",
+      "html": "<div class=\"ds-chips\"><span class=\"ds-chip ds-chip-ok\">Bisa sekarang</span><span class=\"ds-chip ds-chip-warn\">Mendekati batas</span><span class=\"ds-chip ds-chip-catch\">Bisa dikejar</span><span class=\"ds-chip ds-chip-done\">Sudah</span><span class=\"ds-chip ds-chip-off\">Akan datang</span></div>",
+      "css": ".ds-chips{display:flex;gap:8px;flex-wrap:wrap} .ds-chip{display:inline-block;padding:4px 8px;border-radius:6px;font:700 12px/1.333 Figtree,ui-sans-serif,system-ui,sans-serif;border:1px solid transparent} .ds-chip-ok{background:var(--ok,#217a50);color:var(--panel,#fff)} .ds-chip-warn{background:var(--warn,#a8640c);color:var(--panel,#fff)} .ds-chip-catch{border-color:var(--warn,#a8640c);color:var(--warn,#a8640c)} .ds-chip-done{background:var(--ink,#1f2a30);color:var(--ground,#f4f6f3)} .ds-chip-off{background:var(--off,#dde2de);color:var(--ink,#1f2a30)}"
+    },
+    {
+      "name": "Primary and Secondary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Full-width decision buttons: ink fill, or panel with hairline border; 48px, 16px radius.",
+      "html": "<div class=\"ds-btns\"><button class=\"ds-btn ds-btn-primary\">Simpan</button><button class=\"ds-btn ds-btn-secondary\">Cek ulang</button><button class=\"ds-btn ds-btn-primary\" disabled>Simpan</button></div>",
+      "css": ".ds-btns{display:grid;gap:10px;max-width:360px} .ds-btn{min-height:48px;padding:0 20px;border-radius:16px;font:700 16px/1.2 Figtree,ui-sans-serif,system-ui,sans-serif;cursor:pointer;transition:transform 150ms,opacity 150ms} .ds-btn-primary{background:var(--ink,#1f2a30);color:var(--ground,#f4f6f3);border:0} .ds-btn-secondary{background:var(--panel,#fff);color:var(--ink,#1f2a30);border:1px solid var(--line,#e3e7e3)} .ds-btn:active{transform:scale(.98)} .ds-btn:disabled{opacity:.5;cursor:default} .ds-btn:focus-visible{outline:2.5px solid var(--ink,#1f2a30);outline-offset:2px}"
+    },
+    {
+      "name": "Call Pair",
+      "kind": "button",
+      "refersTo": "button-call-danger",
+      "description": "Darurat 119 in danger fill beside an outline hotline button, wherever a danger verdict lands.",
+      "html": "<div class=\"ds-calls\"><a class=\"ds-call ds-call-danger\" href=\"#\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2\"/></svg>Darurat 119</a><a class=\"ds-call ds-call-outline\" href=\"#\">Halo Kemenkes</a></div>",
+      "css": ".ds-calls{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:360px} .ds-call{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border-radius:12px;font:700 16px/1 Figtree,ui-sans-serif,system-ui,sans-serif;text-decoration:none;transition:transform 150ms} .ds-call-danger{background:#c62e2e;color:#fff} .ds-call-outline{background:var(--panel,#fff);color:var(--ink,#1f2a30);border:1px solid var(--line,#e3e7e3)} .ds-call:active{transform:scale(.98)} .ds-call:focus-visible{outline:2.5px solid var(--ink,#1f2a30);outline-offset:2px}"
+    },
+    {
+      "name": "Check Answers",
+      "kind": "button",
+      "refersTo": "answer-yes",
+      "description": "Daily-check stepper answers: Ya in danger outline, Tidak in ink fill, 64px.",
+      "html": "<div class=\"ds-answers\"><button class=\"ds-ans ds-ans-yes\">Ya</button><button class=\"ds-ans ds-ans-no\">Tidak</button></div>",
+      "css": ".ds-answers{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:360px} .ds-ans{min-height:64px;border-radius:16px;font:800 18px/1 Figtree,ui-sans-serif,system-ui,sans-serif;cursor:pointer;transition:transform 150ms} .ds-ans-yes{background:var(--panel,#fff);color:#c62e2e;border:2px solid #c62e2e} .ds-ans-no{background:var(--ink,#1f2a30);color:var(--ground,#f4f6f3);border:0} .ds-ans:active{transform:scale(.97)} .ds-ans:focus-visible{outline:2.5px solid var(--ink,#1f2a30);outline-offset:2px}"
+    },
+    {
+      "name": "Choice Chip",
+      "kind": "chip",
+      "refersTo": "chip-choice",
+      "description": "44px pill for segmented pairs and reason sets; selected in ink. Check variant leads with a circle.",
+      "html": "<div class=\"ds-cchips\"><button class=\"ds-cchip\" aria-pressed=\"true\">Berat badan</button><button class=\"ds-cchip\" aria-pressed=\"false\">Panjang badan</button><button class=\"ds-cchip\" aria-pressed=\"false\"><span class=\"ds-ccheck\"></span>Anak sedang sakit</button></div>",
+      "css": ".ds-cchips{display:flex;flex-wrap:wrap;gap:8px} .ds-cchip{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 16px;border-radius:9999px;border:1px solid var(--line,#e3e7e3);background:var(--panel,#fff);color:var(--ink,#1f2a30);font:600 15px/1 Figtree,ui-sans-serif,system-ui,sans-serif;cursor:pointer;transition:background-color 150ms,color 150ms,border-color 150ms,transform 150ms} .ds-cchip[aria-pressed=true]{background:var(--ink,#1f2a30);border-color:var(--ink,#1f2a30);color:var(--ground,#f4f6f3)} .ds-cchip:active{transform:scale(.97)} .ds-cchip:focus-visible{outline:2.5px solid var(--ink,#1f2a30);outline-offset:2px} .ds-ccheck{width:20px;height:20px;margin-left:-4px;border-radius:9999px;border:2px solid var(--off,#dde2de);box-sizing:border-box}"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Labelled 48px input, 12px radius; focus to ink border; error in late; reveal toggle for passwords.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-flabel\">Berat badan (kg)</label><input class=\"ds-input\" placeholder=\"mis. 6,4\"><p class=\"ds-fhint\">Timbang tanpa baju tebal/popok penuh.</p></div><div class=\"ds-field\"><label class=\"ds-flabel\">Kata sandi</label><div class=\"ds-frow\"><input class=\"ds-input ds-input-err\" type=\"password\" value=\"rahasia\" aria-invalid=\"true\"><button class=\"ds-reveal\" aria-label=\"Tampilkan kata sandi\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></svg></button></div><p class=\"ds-ferr\">Kata sandi minimal 8 karakter.</p></div>",
+      "css": ".ds-field{max-width:360px;margin-top:16px;font-family:Figtree,ui-sans-serif,system-ui,sans-serif} .ds-flabel{display:block;margin-bottom:6px;font-size:15px;font-weight:600;color:var(--ink,#1f2a30)} .ds-frow{position:relative} .ds-input{width:100%;min-height:48px;padding:0 14px;border-radius:12px;border:1px solid var(--line,#e3e7e3);background:var(--panel,#fff);color:var(--ink,#1f2a30);font:400 16px Figtree,ui-sans-serif,system-ui,sans-serif;outline:none;box-sizing:border-box} .ds-frow .ds-input{padding-right:48px} .ds-input:focus{border-color:var(--ink,#1f2a30)} .ds-input-err{border-color:var(--late,#b3372f)} .ds-reveal{position:absolute;top:0;bottom:0;right:0;width:48px;display:grid;place-items:center;border:0;background:none;color:var(--ink-2,#4f5c63);cursor:pointer} .ds-reveal:focus-visible{outline:2.5px solid var(--ink,#1f2a30);outline-offset:2px} .ds-fhint,.ds-ferr{margin:6px 0 0;font-size:13px;line-height:1.375} .ds-fhint{color:var(--ink-2,#4f5c63)} .ds-ferr{color:var(--late,#b3372f);font-weight:600}"
+    },
+    {
+      "name": "Check Result",
+      "kind": "card",
+      "refersTo": "result-card",
+      "description": "Verdict card: 80px state disc, 24px/800 title, ink-2 body; rises in.",
+      "html": "<div class=\"ds-result\"><span class=\"ds-disc\"><svg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m5 12.5 4.5 4.5L19 7.5\"/></svg></span><h3 class=\"ds-rtitle\">Kondisi Rara hari ini aman</h3><p class=\"ds-rbody\">Tidak ada tanda bahaya. Tetap pantau, dan cek lagi besok.</p></div>",
+      "css": "@keyframes ds-rise{from{opacity:0;translate:0 16px}} .ds-result{max-width:360px;display:flex;flex-direction:column;align-items:center;text-align:center;padding:32px 20px 24px;border-radius:24px;background:var(--panel,#fff);color:var(--ink,#1f2a30);font-family:Figtree,ui-sans-serif,system-ui,sans-serif;animation:ds-rise 420ms cubic-bezier(.22,1,.36,1)} .ds-disc{display:grid;place-items:center;width:80px;height:80px;border-radius:9999px;background:var(--ok,#217a50);color:#fff} .ds-rtitle{margin:16px 0 0;font-size:24px;font-weight:800;line-height:1.25;text-wrap:balance} .ds-rbody{margin:8px 0 0;font-size:16px;line-height:1.625;color:var(--ink-2,#4f5c63)} @media (prefers-reduced-motion:reduce){.ds-result{animation:none}}"
+    },
+    {
+      "name": "Notice Toast",
+      "kind": "custom",
+      "refersTo": "notice-toast",
+      "description": "Top toast in tile ink with an inverted action and a close; drops in.",
+      "html": "<div class=\"ds-toast\" role=\"status\"><p class=\"ds-ttext\">Waktunya imunisasi Polio 2</p><button class=\"ds-tact\">Lihat</button><button class=\"ds-tclose\" aria-label=\"Tutup\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><path d=\"M6 6l12 12M18 6 6 18\"/></svg></button></div>",
+      "css": "@keyframes ds-drop{from{translate:0 -120%}} .ds-toast{display:flex;align-items:center;gap:8px;max-width:406px;padding:8px 6px 8px 16px;border-radius:16px;background:var(--tile,#1f2a30);color:var(--on-tile,#fff);font-family:Figtree,ui-sans-serif,system-ui,sans-serif;animation:ds-drop 320ms cubic-bezier(.22,1,.36,1)} .ds-ttext{flex:1;margin:0;font-size:15px;font-weight:600;line-height:1.375} .ds-tact{min-height:44px;padding:0 14px;border:0;border-radius:12px;background:var(--on-tile,#fff);color:var(--tile,#1f2a30);font:700 14px/1 Figtree,ui-sans-serif,system-ui,sans-serif;cursor:pointer;transition:transform 150ms} .ds-tact:active{transform:scale(.95)} .ds-tclose{display:grid;place-items:center;width:44px;height:44px;border:0;border-radius:9999px;background:none;color:inherit;cursor:pointer} .ds-tclose:hover{background:var(--tile-active,#3b4b54)} .ds-tact:focus-visible,.ds-tclose:focus-visible{outline:2.5px solid var(--on-tile,#fff);outline-offset:2px} @media (prefers-reduced-motion:reduce){.ds-toast{animation:none}}"
+    },
+    {
+      "name": "Bell with Unread Badge",
+      "kind": "custom",
+      "refersTo": "badge-unread",
+      "description": "44px bell; ink count pill with a 2px ground cut-out ring, popping in.",
+      "html": "<button class=\"ds-bell\" aria-label=\"Notifikasi, 2 belum dibaca\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20.5a2 2 0 0 0 4 0\"/></svg><span class=\"ds-badge\">2</span></button>",
+      "css": "@keyframes ds-pop{0%{scale:.6;opacity:0}60%{scale:1.04;opacity:1}} .ds-bell{position:relative;display:grid;place-items:center;width:44px;height:44px;border:0;border-radius:9999px;background:var(--ground,#f4f6f3);color:var(--ink,#1f2a30);cursor:pointer} .ds-bell:active{background:var(--off,#dde2de)} .ds-bell:focus-visible{outline:2.5px solid var(--ink,#1f2a30);outline-offset:2px} .ds-badge{position:absolute;top:0;right:-2px;min-width:20px;padding:0 4px;box-sizing:border-box;border-radius:9999px;background:var(--ink,#1f2a30);color:var(--ground,#f4f6f3);box-shadow:0 0 0 2px var(--ground,#f4f6f3);font:800 12px/20px Figtree,ui-sans-serif,system-ui,sans-serif;text-align:center;animation:ds-pop 300ms ease-out}"
+    },
+    {
+      "name": "Growth Chart",
+      "kind": "custom",
+      "refersTo": "growth-badge-normal",
+      "description": "WHO bands (ok 16% normal, warn 16% outer), dashed ok median, ink series with panel points; status badge above.",
+      "html": "<figure class=\"ds-growth\"><div class=\"ds-ghead\"><b>6,2 kg</b><span class=\"ds-gbadge\">Berat badan normal</span></div><svg viewBox=\"0 0 340 160\" width=\"100%\"><path d=\"M30 150 C130 110 230 80 332 60 L332 100 C230 118 130 140 30 160Z\" fill=\"color-mix(in oklab, var(--warn,#a8640c) 16%, transparent)\"/><path d=\"M30 120 C130 80 230 50 332 28 L332 60 C230 80 130 110 30 150Z\" fill=\"color-mix(in oklab, var(--ok,#217a50) 16%, transparent)\"/><path d=\"M30 100 C130 60 230 30 332 10 L332 28 C230 50 130 80 30 120Z\" fill=\"color-mix(in oklab, var(--warn,#a8640c) 16%, transparent)\"/><path d=\"M30 135 C130 95 230 65 332 44\" fill=\"none\" stroke=\"var(--ok,#217a50)\" stroke-width=\"1.5\" stroke-dasharray=\"4 4\"/><path d=\"M60 128 L150 98 L210 80\" fill=\"none\" stroke=\"var(--ink,#1f2a30)\" stroke-width=\"2.5\" stroke-linejoin=\"round\"/><circle cx=\"60\" cy=\"128\" r=\"4.5\" fill=\"var(--panel,#fff)\" stroke=\"var(--ink,#1f2a30)\" stroke-width=\"2.5\"/><circle cx=\"150\" cy=\"98\" r=\"4.5\" fill=\"var(--panel,#fff)\" stroke=\"var(--ink,#1f2a30)\" stroke-width=\"2.5\"/><circle cx=\"210\" cy=\"80\" r=\"6\" fill=\"var(--ink,#1f2a30)\" stroke=\"var(--ink,#1f2a30)\" stroke-width=\"2.5\"/></svg></figure>",
+      "css": ".ds-growth{max-width:360px;margin:0;padding:12px;border-radius:16px;background:var(--panel,#fff);font-family:Figtree,ui-sans-serif,system-ui,sans-serif;color:var(--ink,#1f2a30)} .ds-ghead{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;padding:0 4px} .ds-ghead b{font-size:24px;font-weight:800} .ds-gbadge{padding:4px 8px;border-radius:6px;background:var(--ok,#217a50);color:var(--panel,#fff);font-size:12px;font-weight:700}"
+    },
+    {
+      "name": "Snackbar",
+      "kind": "custom",
+      "refersTo": "snackbar",
+      "description": "Confirmation after a counter tap with an undo action.",
+      "html": "<div class=\"ds-snack\" role=\"status\">Menyusu dicatat 14.32<button class=\"ds-undo\">Urungkan</button></div>",
+      "css": ".ds-snack{display:flex;align-items:center;justify-content:space-between;max-width:406px;padding:6px 6px 6px 16px;border-radius:12px;background:var(--tile,#1f2a30);color:var(--on-tile,#fff);font:600 14px/1.25 Figtree,ui-sans-serif,system-ui,sans-serif} .ds-undo{min-height:44px;padding:0 12px;border:0;border-radius:8px;background:none;color:inherit;font:700 14px/1 inherit;text-decoration:underline;text-underline-offset:4px;cursor:pointer} .ds-undo:hover{background:var(--tile-active,#3b4b54)} .ds-undo:focus-visible{outline:2.5px solid var(--on-tile,#fff);outline-offset:2px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Piring Stimulasi",
+    "overview": "The system borrows its whole grammar from the Kemenkes \"Isi Piringku\" public-health infographic: a plate divided into portions, each portion one flat, unmodulated colour field. Here the plate holds six development domains instead of food groups, and a portion fills when Ayah or Bunda ticks an activity of that domain. The plate is the measure of the day; nothing else on screen competes with it for colour.\n\nEverything that is not a domain or a state is chrome, and chrome lives in one cool neutral scale: dark ink on a pale green-grey ground, white panels, near-invisible hairlines. The density is that of a one-handed phone tool: one column at most 430px wide, generous 44 to 48px touch targets, short rows, and a dock of dark counter tiles fixed above the tab bar so the most frequent taps sit under the thumb. Surfaces are flat at every level; depth comes only from tone and from the fixed dock overlapping scrolled content.\n\nAt night the world \"lights down\" rather than changing: the neutral scale inverts to a deep blue-grey, the three state colours brighten for legibility, and the six domain hues and danger red stay exactly as they are, so the plate reads the same at 3 a.m. as at noon.",
+    "keyCharacteristics": [
+      "Six domain hues are the only colour besides state (ok, warn, late) and danger red.",
+      "Flat colour fields throughout: no gradients, no shadows, no grain, no translucency in chrome.",
+      "One sans family (Figtree, self-hosted variable 300 to 900) with tabular figures globally.",
+      "The plate and its seven-day strip of identical mini plates are the signature; progress is shown as filled portions, never as a score or percentage.",
+      "Counters dock fixed above the tab bar; activity and vaccine content scroll beneath them.",
+      "Light theme follows the day; `prefers-color-scheme: dark` lights it down for night feeding.",
+      "Motion is short and arriving: things enter (rise, slide in, drop, pop) on one ease-out-quint curve and never bounce on exit."
+    ],
+    "rules": [
+      {
+        "name": "The Plate Owns the Colour Rule",
+        "body": "Hue is spent only on the six domains, the three states and danger. Chrome (headers, panels, navigation, counters, buttons) stays in the neutral scale. A new surface that needs emphasis uses ink weight or the ink tile, not a new hue.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Red Rule",
+        "body": "Danger red means \"take the child to a health facility\" and nothing else. A late vaccine reads as catch-up in warn outline; form errors and destructive text use the brick `late`; neither borrows `danger`.",
+        "section": "colors"
+      },
+      {
+        "name": "The Catch-Up Not Failure Rule",
+        "body": "A dose past its on-time window but within the source's maximum age is \"Bisa dikejar\", shown in warn outline, never in red or brick. Growth outside the normal band is likewise warn, never late or danger.",
+        "section": "colors"
+      },
+      {
+        "name": "The Lights Down Rule",
+        "body": "The dark theme swaps only the neutral scale and brightens the three state colours. Domain hues and danger are never re-tuned per theme.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Everywhere Rule",
+        "body": "`font-variant-numeric: tabular-nums` is set on `html`; counters, the day count and dates never shift width as numbers change. Do not override it locally.",
+        "section": "typography"
+      },
+      {
+        "name": "The Heavy Means Number Rule",
+        "body": "Weight 800 is reserved for the child's name, screen and sheet titles, verdicts, moving numbers and the two 64px check answers. Everything else tops out at 600 to 700.",
+        "section": "typography"
+      },
+      {
+        "name": "The Thumb Dock Rule",
+        "body": "One-tap logging lives in the fixed dock directly above the tab bar, never in the scroll flow. New quick actions join the dock or a sheet; they do not push it off-screen.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat Plate Rule",
+        "body": "No gradients, shadows, glows or grain on any surface, including the plate. A state change is shown by a change of fill, not by lifting the element.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do show progress as filled plate portions and \"N dari M\"; the plate centre carries a check only when the day's target is met.",
+      "Do use each domain's hue for its sector, its row mark and its mini-plate portion, and nowhere else.",
+      "Do keep chrome in the neutral scale: ground, panel, ink, ink-2, line, off, tile.",
+      "Do keep touch targets at least 44px, and 48px for the tick.",
+      "Do settle a newly filled sector with scale 0.9 to 1 over 380ms ease-out-quint, and fill instantly under reduced motion.",
+      "Do carry a \"Sumber:\" line in meta type under every activity and danger-sign group.",
+      "Do derive any new dark-theme value from the existing dark neutral scale, keeping domain hues and danger unchanged.",
+      "Do put the call pair (\"Darurat 119\" plus hotline) wherever a danger verdict lands.",
+      "Do show a late but catchable dose as \"Bisa dikejar\" in warn outline, and growth outside the normal band in warn.",
+      "Do mark field errors with a `late` border and a 13px/600 `late` message, never with danger.",
+      "Do enter new verdicts, toasts and questions with the ease-out-quint keyframes (rise, drop, slide-in, pop) at 260 to 520ms.",
+      "Do keep every notice in the Notifikasi list; a toast is a one-time announcement of something the list already holds."
+    ],
+    "donts": [
+      "Don't add gradients, box shadows, glows, grain or blurred translucency to any surface.",
+      "Don't introduce a hue outside the six domains, three states and danger red.",
+      "Don't set text in a domain hue; domain colour is a fill.",
+      "Don't use danger red for anything except danger signs, emergency calls and the \"Ya\" answer to a danger-sign question; destructive confirmations and errors use ink or `late`.",
+      "Don't turn the plate into a score, percentage, streak or ranking.",
+      "Don't add a second typeface or disable tabular figures.",
+      "Don't move one-tap counters out of the fixed dock above the tab bar."
+    ]
+  }
+}

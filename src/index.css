@@ -1,0 +1,213 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url('/fonts/figtree-latin.woff2') format('woff2');
+}
+
+/* Isi Piringku world: one cool neutral scale for chrome; colour belongs to the six domains and to state. */
+@theme static {
+  --font-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif;
+
+  --color-ground: var(--ground);
+  --color-panel: var(--panel);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-line: var(--line);
+  --color-off: var(--off);
+  --color-tile: var(--tile);
+  --color-tile-active: var(--tile-active);
+  --color-on-tile: var(--on-tile);
+
+  --color-sosial: #e2557f;
+  --color-bahasa: #f09a2a;
+  --color-kognitif: #7357d1;
+  --color-motorik_kasar: #2e9a66;
+  --color-motorik_halus: #2685cf;
+  --color-kemandirian: #b8921c;
+
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-late: var(--late);
+  --color-danger: #c62e2e;
+}
+
+:root {
+  --ground: #f4f6f3;
+  --panel: #ffffff;
+  --ink: #1f2a30;
+  --ink-2: #4f5c63;
+  --line: #e3e7e3;
+  --off: #dde2de;
+  --tile: #1f2a30;
+  --tile-active: #3b4b54;
+  --on-tile: #ffffff;
+  --ok: #217a50;
+  --warn: #a8640c;
+  --late: #b3372f;
+  color-scheme: light;
+}
+
+/* Night feeding: same world, lights down. Domain hues stay; chrome inverts. Follows the phone unless overridden. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --ground: #12181b;
+    --panel: #1b2327;
+    --ink: #edf1ee;
+    --ink-2: #a9b5b9;
+    --line: #2a3439;
+    --off: #2c373c;
+    --tile: #26323a;
+    --tile-active: #3d4f59;
+    --on-tile: #edf1ee;
+    --ok: #5fc48f;
+    --warn: #f0b154;
+    --late: #f08a80;
+    color-scheme: dark;
+  }
+}
+:root[data-theme='dark'] {
+  --ground: #12181b;
+  --panel: #1b2327;
+  --ink: #edf1ee;
+  --ink-2: #a9b5b9;
+  --line: #2a3439;
+  --off: #2c373c;
+  --tile: #26323a;
+  --tile-active: #3d4f59;
+  --on-tile: #edf1ee;
+  --ok: #5fc48f;
+  --warn: #f0b154;
+  --late: #f08a80;
+  color-scheme: dark;
+}
+
+/* Native shell: the page itself never moves, zooms or rubber-bands; only the screen's own scroller scrolls. */
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: pan-y; /* no pinch, no sideways drift */
+}
+html {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+#root {
+  height: 100dvh;
+  overflow: hidden;
+}
+/* Larger text option (zoom is locked, so this is how text grows). */
+:root[data-text='large'] #root {
+  zoom: 1.15;
+  height: calc(100dvh / 1.15);
+}
+.scroller {
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-motorik_halus) 30%, transparent);
+}
+:focus-visible {
+  outline: 2.5px solid var(--ink);
+  outline-offset: 2px;
+}
+button,
+a,
+[role='button'],
+label {
+  touch-action: manipulation;
+}
+button,
+[role='button'],
+nav a {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  cursor: pointer;
+}
+input,
+select,
+textarea {
+  font-size: 16px; /* below 16px iOS zooms into the field */
+  accent-color: var(--ink);
+}
+input[type='date'],
+input[type='time'] {
+  min-height: 48px;
+}
+button:disabled {
+  cursor: default;
+}
+
+/* Signature move: a ticked domain's sector settles into the plate. */
+@keyframes settle {
+  from {
+    scale: 0.9;
+  }
+  to {
+    scale: 1;
+  }
+}
+@keyframes sheet-up {
+  from {
+    translate: 0 100%;
+  }
+}
+@keyframes drop {
+  from {
+    translate: 0 -120%;
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+}
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    translate: 24px 0;
+  }
+}
+@keyframes pop {
+  0% {
+    scale: 0.6;
+    opacity: 0;
+  }
+  60% {
+    scale: 1.04;
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
