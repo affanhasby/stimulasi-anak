@@ -5,7 +5,7 @@ import { GrowthChart } from '../components/GrowthChart'
 import { ageMonthsExact } from '../lib/growth'
 import { latestStatus, seriesOf, weighDue } from './Pertumbuhan'
 import { DomainMark, MiniPlate, Plate, type SectorState } from '../components/Plate'
-import { IconAlert, IconBell, IconCheck, IconChevron, IconPhone, IconSyringe } from '../components/icons'
+import { IconAlert, IconBell, IconSettings, IconCheck, IconChevron, IconPhone, IconSyringe } from '../components/icons'
 import { Button, Screen, Sheet } from '../components/ui'
 import { activeAlerts } from '../lib/alerts'
 import { HOTLINE, sourceLabel } from '../lib/content'
@@ -181,19 +181,22 @@ export function Beranda({ child }: { child: Child }) {
   return (
     <Screen bottom={counters.length ? 'dock' : 'tabs'}>
       <header className="flex items-start justify-between px-[18px] pt-[max(14px,var(--top-guard))] pb-1">
-        <div className="min-w-0">
+        <button type="button" onClick={() => go('lainnya/profil')} aria-label={`Profil ${child.nickname}`} className="min-w-0 text-left active:opacity-70">
           <h1 className="truncate text-xl leading-tight font-extrabold">{child.nickname}</h1>
           <p className="text-sm text-ink-2">
             {ageText(child.birth_date, today)}
             {devBirth !== child.birth_date && <> · usia koreksi {ageText(devBirth, today)}</>}
           </p>
-        </div>
-        <div className="mt-1 flex shrink-0 items-center gap-1">
+        </button>
+        <div className="mt-1 flex shrink-0 items-center">
           <button type="button" onClick={() => go('notifikasi')} aria-label={`Notifikasi${unread ? `, ${unread} belum dibaca` : ''}`} className="relative grid size-11 place-items-center rounded-full active:bg-off">
             <IconBell />
             {unread > 0 && (
               <span className="absolute top-0 -right-0.5 grid min-w-5 animate-[pop_300ms_ease-out] place-items-center rounded-full bg-ink px-1 text-xs leading-5 font-extrabold text-ground ring-2 ring-ground">{unread}</span>
             )}
+          </button>
+          <button type="button" onClick={() => go('lainnya')} aria-label="Pengaturan" className="grid size-11 place-items-center rounded-full active:bg-off">
+            <IconSettings />
           </button>
           <button
             type="button"

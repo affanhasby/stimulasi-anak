@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect } from 'react'
 import { NoticeToast } from './components/NoticeToast'
+import { TimerNotices } from './components/TimerNotices'
 import { TabBar } from './components/TabBar'
 import { RefreshedToast, Splash } from './components/ui'
 import { useSession } from './lib/auth'
@@ -64,6 +65,7 @@ function Main() {
     <>
       <Suspense fallback={<Splash />}>{screen}</Suspense>
       <NoticeToast child={child} />
+      <TimerNotices child={child} />
       <RefreshedToast />
       {!FOCUSED.includes(top) && <TabBar route={route} />}
     </>

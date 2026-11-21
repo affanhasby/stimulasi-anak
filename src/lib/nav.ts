@@ -9,11 +9,15 @@ const subscribe = (cb: () => void) => {
 
 export const useRoute = () => useSyncExternalStore(subscribe, read)
 
+// Each in-app push records its depth, so "Kembali" knows whether there is an app screen to return to
+// (history.length also counts forward entries and pages from before the app).
+const depth = () => (history.state as { d?: number } | null)?.d ?? 0
+
 export function go(path: string, replace = false) {
   const hash = `#/${path}`
-  if (replace) history.replaceState(null, '', hash)
-  else history.pushState(null, '', hash)
+  if (replace) history.replaceState({ d: depth() }, '', hash)
+  else history.pushState({ d: depth() + 1 }, '', hash)
   dispatchEvent(new HashChangeEvent('hashchange'))
 }
 
-export const back = (fallback = '') => (history.length > 1 ? history.back() : go(fallback, true))
+export const back = (fallback = '') => (depth() > 0 ? history.back() : go(fallback, true))

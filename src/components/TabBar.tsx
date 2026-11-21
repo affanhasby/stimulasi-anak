@@ -1,5 +1,5 @@
 import { go } from '../lib/nav'
-import { IconChart, IconHome, IconMenu, IconPlate, IconSprout, IconSyringe } from './icons'
+import { IconChart, IconHome, IconPlate, IconSprout, IconSyringe } from './icons'
 
 export const TABS = [
   ['', 'Beranda', IconHome],
@@ -7,7 +7,6 @@ export const TABS = [
   ['imunisasi', 'Imunisasi', IconSyringe],
   ['tumbuh', 'Kemampuan', IconSprout],
   ['rekap', 'Rekap', IconChart],
-  ['lainnya', 'Lainnya', IconMenu],
 ] as const
 
 export function TabBar({ route }: { route: string }) {

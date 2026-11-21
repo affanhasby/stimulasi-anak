@@ -49,3 +49,31 @@ export const PUSH_MESSAGE: Record<Exclude<PushResult, 'on'>, string> = {
   unsupported: 'Browser ini belum mendukung notifikasi. Gunakan pengingat email atau kalender.',
   error: 'Notifikasi belum bisa diaktifkan. Periksa koneksi lalu coba lagi.',
 }
+
+export type TestResult = 'sent' | 'not-on' | 'not-registered' | 'gone' | 'offline' | 'error'
+
+/** Ask the server to push one test notification to this device, through the same path as the reminders. */
+export async function testPush(): Promise<TestResult> {
+  if (!navigator.onLine) return 'offline'
+  if (!supported() || Notification.permission !== 'granted') return 'not-on'
+  const reg = await navigator.serviceWorker.getRegistration()
+  const sub = await reg?.pushManager.getSubscription()
+  if (!sub) return 'not-on'
+  const { data, error } = await supabase.functions.invoke('test-push', { body: { endpoint: sub.endpoint } })
+  if (error) return 'error'
+  const r = (data as { result?: string })?.result
+  if (r === 'not-registered') {
+    // Subscribed in the browser but missing on the server (e.g. registered before sign-in): register again.
+    return (await enablePush()) === 'on' ? testPush() : 'not-registered'
+  }
+  return r === 'sent' || r === 'gone' ? r : 'error'
+}
+
+export const TEST_MESSAGE: Record<TestResult, string> = {
+  sent: 'Terkirim. Notifikasi "Notifikasi uji berhasil" akan muncul dalam beberapa detik. Kalau tidak muncul, cek pengaturan notifikasi HP untuk aplikasi ini dan pastikan mode Fokus/Jangan Ganggu tidak aktif.',
+  'not-on': 'Nyalakan "Notifikasi di HP ini" dulu.',
+  'not-registered': 'HP ini belum terdaftar di server. Matikan lalu nyalakan lagi "Notifikasi di HP ini".',
+  gone: 'Pendaftaran notifikasi HP ini sudah kedaluwarsa. Matikan lalu nyalakan lagi "Notifikasi di HP ini".',
+  offline: 'Sedang offline. Sambungkan internet lalu coba lagi.',
+  error: 'Server belum bisa mengirim notifikasi. Coba lagi beberapa saat lagi.',
+}

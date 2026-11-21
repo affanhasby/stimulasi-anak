@@ -426,6 +426,10 @@ enabled = true
 # and column/key alignment. Set to "null" to emit raw, unformatted SQL.
 # format_options = "{\"keywordCase\":\"upper\",\"indent\":2,\"maxWidth\":180,\"commaStyle\":\"trailing\"}"
 
+[functions.test-push]
+# Checks the caller's token itself (works with the new asymmetric JWT keys).
+verify_jwt = false
+
 [functions.send-reminders]
 # Called by pg_cron with x-reminder-secret, not by signed-in users.
 verify_jwt = false

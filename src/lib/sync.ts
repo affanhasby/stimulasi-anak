@@ -143,8 +143,13 @@ export function requestSync(db: AppDb, ms = 1500) {
   timers.set(db, setTimeout(() => void syncNow(db), ms))
 }
 
+let active: AppDb | null = null
+/** Sync the signed-in user's database now (pull-to-refresh); a no-op before sign-in. */
+export const syncActive = () => (active ? syncNow(active) : Promise.resolve())
+
 /** Keeps a signed-in device in sync: on start, when back online, when reopened, and every minute. */
 export function startAutoSync(db: AppDb) {
+  active = db
   const run = () => void syncNow(db)
   const visible = () => document.visibilityState === 'visible' && run()
   addEventListener('online', run)
@@ -155,6 +160,7 @@ export function startAutoSync(db: AppDb) {
   return {
     first,
     stop: () => {
+      if (active === db) active = null
       removeEventListener('online', run)
       document.removeEventListener('visibilitychange', visible)
       clearInterval(t)

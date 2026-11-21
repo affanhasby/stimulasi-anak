@@ -82,7 +82,7 @@ function Pengingat() {
   if (!s) return null
   const lead = s.reminder_lead_days
   return (
-    <Sub title="Pengingat">
+    <Sub title="Pengingat & notifikasi">
       <Section title="Kapan diingatkan" note="Relatif ke tanggal 'Mulai bisa'. Pengingat tambahan 3 hari sebelum batas bila belum ditandai.">
         <div className="flex flex-wrap gap-2 p-4">
           {REMINDER_OPTIONS.lead_time_days_choices.map((d) => (
@@ -99,7 +99,7 @@ function Pengingat() {
           <span className="mt-1.5 block text-[15px] text-ink-2">Pukul {s.reminder_time.replace(':', '.')}</span>
         </label>
       </Section>
-      <Section title="Lewat" note="Bisa juga menyimpan jadwal ke kalender HP dari tab Imunisasi.">
+      <Section title="Notifikasi" note="Dipakai untuk pengingat imunisasi dan timer tidur/tengkurap yang sedang berjalan. Jadwal juga bisa disimpan ke kalender HP dari tab Imunisasi.">
         <PushToggle />
         {/* shortcut: email reminders hidden until outgoing email is set up (DEPLOY.md). */}
       </Section>
@@ -253,12 +253,12 @@ export function Lainnya({ child, sub }: { child: Child; sub?: string }) {
   if (sub === 'sandi') return <Sandi />
 
   return (
-    <Screen title="Lainnya">
+    <Screen title="Pengaturan" onBack>
       <Section title="Si Kecil">
         <Row label={child.nickname} value={longDate(child.birth_date)} onClick={() => go('lainnya/profil')} />
       </Section>
-      <Section title="Pengaturan">
-        <Row label="Pengingat imunisasi" onClick={() => go('lainnya/pengingat')} />
+      <Section title="Aplikasi">
+        <Row label="Pengingat & notifikasi" onClick={() => go('lainnya/pengingat')} />
         <Row label="Tombol penghitung" onClick={() => go('lainnya/penghitung')} />
         <Row label="Tampilan" onClick={() => go('lainnya/tampilan')} />
         {!isStandalone() && <Row label="Pasang di layar utama" onClick={() => go('lainnya/pasang')} />}

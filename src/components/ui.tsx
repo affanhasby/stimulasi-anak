@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
 import { back } from '../lib/nav'
+import { syncActive } from '../lib/sync'
 import { IconBack, IconCheck, IconChevron, IconClose, IconEye, IconEyeOff, IconRefresh } from './icons'
 import { BrandPlate } from './Plate'
 
@@ -17,7 +18,7 @@ function usePullToRefresh() {
   const ref = useRef<HTMLElement>(null)
   const spacer = useRef<HTMLDivElement>(null)
   const icon = useRef<HTMLSpanElement>(null)
-  const [phase, setPhase] = useState<'idle' | 'pull' | 'ready' | 'busy'>('idle')
+  const [phase, setPhase] = useState<'idle' | 'pull' | 'ready' | 'busy' | 'done' | 'update'>('idle')
   useEffect(() => {
     const el = ref.current
     const sp = spacer.current
@@ -64,12 +65,26 @@ function usePullToRefresh() {
       }
       paint(56, true)
       setPhase('busy')
-      sessionStorage.setItem('pulled', '1')
+      const wait = (ms: number) => new Promise((r) => setTimeout(r, ms))
       const reg = await navigator.serviceWorker?.getRegistration().catch(() => undefined)
-      // Let the spinner turn at least once, then fade before reloading so the swap is not a hard cut.
-      await Promise.all([reg?.update().catch(() => {}), new Promise((r) => setTimeout(r, 700))])
-      document.getElementById('root')?.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 180, fill: 'forwards' })
-      setTimeout(() => location.reload(), 180)
+      // Fetch the latest data and look for a newer app; the spinner turns at least once so it reads as work done.
+      await Promise.all([reg?.update().catch(() => {}), syncActive().catch(() => {}), wait(700)])
+      if (reg?.installing || reg?.waiting) {
+        // A new version only takes effect on reload: fade out first so the swap is not a hard cut.
+        setPhase('update')
+        sessionStorage.setItem('pulled', '1')
+        await wait(500)
+        document.getElementById('root')?.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 220, easing: 'ease-out', fill: 'forwards' })
+        await wait(220)
+        return location.reload()
+      }
+      // Already current: no reload (no flash), just confirm and fold away.
+      setPhase('done')
+      navigator.vibrate?.(8)
+      await wait(650)
+      paint(0, true)
+      await wait(420)
+      setPhase('idle')
     }
     el.addEventListener('touchstart', start, { passive: true })
     el.addEventListener('touchmove', move, { passive: false })
@@ -86,11 +101,13 @@ function usePullToRefresh() {
     <div ref={spacer} className="flex items-end justify-center overflow-hidden" style={{ height: 0 }}>
       <span role="status" className="mb-3 flex items-center gap-2 text-[13px] font-semibold whitespace-nowrap text-ink-2">
         <span ref={icon} className="grid size-8 place-items-center rounded-full bg-panel text-ink" style={{ opacity: 0 }}>
-          <span className={phase === 'busy' ? 'grid animate-spin' : 'grid'}>
-            <IconRefresh />
+          <span className={phase === 'busy' || phase === 'update' ? 'grid animate-spin' : 'grid'}>
+            {phase === 'done' ? <IconCheck size={18} /> : <IconRefresh />}
           </span>
         </span>
-        {phase === 'busy' ? 'Memuat ulang…' : phase === 'ready' ? 'Lepas untuk memuat ulang' : phase === 'pull' ? 'Tarik untuk memuat ulang' : ''}
+        {
+          { busy: 'Memeriksa pembaruan…', update: 'Versi baru, memuat…', done: 'Sudah terbaru', ready: 'Lepas untuk memperbarui', pull: 'Tarik untuk memperbarui', idle: '' }[phase]
+        }
       </span>
     </div>
   )
