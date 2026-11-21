@@ -62,6 +62,8 @@ function Main() {
     : <Beranda child={child} />
   return (
     <>
+      {/* iOS 26 blurs whatever sits under the status bar; a solid fixed strip there gives it nothing to blur. */}
+      <div aria-hidden className="pointer-events-none fixed inset-x-0 top-0 z-40 h-[env(safe-area-inset-top)] bg-ground" />
       <Suspense fallback={<Splash />}>{screen}</Suspense>
       <NoticeToast child={child} />
       {!FOCUSED.includes(top) && <TabBar route={route} />}
