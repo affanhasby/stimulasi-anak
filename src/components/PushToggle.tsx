@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { disablePush, enablePush, PUSH_MESSAGE, pushOnHere, TEST_MESSAGE, testPush, type TestResult } from '../lib/push'
+import { disablePush, enablePush, lastTestCode, PUSH_MESSAGE, pushOnHere, TEST_MESSAGE, testPush, type TestResult } from '../lib/push'
 import { Toggle } from './ui'
 
 /** Notifications on this device (each phone subscribes on its own). */
@@ -44,6 +44,7 @@ export function PushToggle() {
           {test && test !== 'busy' && (
             <p role="status" className={`mt-2 text-[13px] leading-snug ${test === 'sent' ? 'text-ink' : 'text-late'}`}>
               {TEST_MESSAGE[test]}
+              {test === 'error' && lastTestCode ? ` (kode ${lastTestCode})` : ''}
             </p>
           )}
         </div>

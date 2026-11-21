@@ -71,7 +71,7 @@ async function send(to: string, subject: string, text: string) {
 }
 
 const vapid = { pub: Deno.env.get('VAPID_PUBLIC_KEY'), priv: Deno.env.get('VAPID_PRIVATE_KEY') }
-if (vapid.pub && vapid.priv) webpush.setVapidDetails(Deno.env.get('VAPID_SUBJECT') ?? 'mailto:pengingat@stimulasi-anak.local', vapid.pub, vapid.priv)
+if (vapid.pub && vapid.priv) webpush.setVapidDetails(Deno.env.get('VAPID_SUBJECT') ?? 'https://affanhasby.github.io/stimulasi-anak/', vapid.pub, vapid.priv)
 
 const hourIn = (tz: string, at: Date) => Number(new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', hourCycle: 'h23' }).format(at))
 const dateIn = (tz: string, at: Date) => new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).format(at)

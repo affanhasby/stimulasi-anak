@@ -1,7 +1,8 @@
 import { useSyncExternalStore } from 'react'
 
 // Hash routes: GitHub Pages serves one index.html, and the phone's back gesture walks the history.
-const read = () => decodeURIComponent(location.hash.replace(/^#\/?/, ''))
+// A trailing '~' is the short-lived entry main.tsx pushes on iOS; it reads as the same screen.
+const read = () => decodeURIComponent(location.hash.replace(/^#\/?/, '').replace(/~$/, ''))
 const subscribe = (cb: () => void) => {
   addEventListener('hashchange', cb)
   return () => removeEventListener('hashchange', cb)

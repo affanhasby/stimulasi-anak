@@ -32,7 +32,7 @@ export const STATUS: Record<string, { text: string; tone: string }> = {
 }
 const PRIORITY = ['late', 'ending_soon', 'due', 'upcoming']
 const CHECK_TONE = { aman: 'var(--ok)', perhatian: 'var(--warn)', bahaya: 'var(--color-danger)' }
-const CHECK_TEXT = { aman: 'Kondisi hari ini aman', perhatian: 'Perlu perhatian hari ini', bahaya: 'Ada tanda bahaya: segera ke faskes' }
+const CHECK_TEXT = { aman: 'Kondisi hari ini aman', perhatian: 'Perlu perhatian', bahaya: 'Ada tanda bahaya' }
 
 /** Late but still within the source's maximum age reads as catch-up, never as failure. */
 export const chipFor = (d: ScheduledDose, today: IsoDate) =>
@@ -180,7 +180,7 @@ export function Beranda({ child }: { child: Child }) {
 
   return (
     <Screen bottom={counters.length ? 'dock' : 'tabs'}>
-      <header className="flex items-start justify-between px-[18px] pt-[max(14px,var(--top-guard))] pb-1">
+      <header className="flex items-center justify-between gap-3 px-[18px] pt-[max(14px,var(--top-guard))] pb-1">
         <button type="button" onClick={() => go('lainnya/profil')} aria-label={`Profil ${child.nickname}`} className="min-w-0 text-left active:opacity-70">
           <h1 className="truncate text-xl leading-tight font-extrabold">{child.nickname}</h1>
           <p className="text-sm text-ink-2">
@@ -188,7 +188,7 @@ export function Beranda({ child }: { child: Child }) {
             {devBirth !== child.birth_date && <> · usia koreksi {ageText(devBirth, today)}</>}
           </p>
         </button>
-        <div className="mt-1 flex shrink-0 items-center">
+        <div className="-mr-2 flex shrink-0 items-center">
           <button type="button" onClick={() => go('notifikasi')} aria-label={`Notifikasi${unread ? `, ${unread} belum dibaca` : ''}`} className="relative grid size-11 place-items-center rounded-full active:bg-off">
             <IconBell />
             {unread > 0 && (
@@ -198,32 +198,34 @@ export function Beranda({ child }: { child: Child }) {
           <button type="button" onClick={() => go('lainnya')} aria-label="Pengaturan" className="grid size-11 place-items-center rounded-full active:bg-off">
             <IconSettings />
           </button>
-          <button
-            type="button"
-            onClick={() => go('tanda-bahaya')}
-            className="flex min-h-11 items-center gap-1.5 rounded-full bg-danger py-2 pr-4 pl-3 text-sm font-bold text-white active:scale-[.97]"
-          >
-            <IconAlert />
-            Tanda bahaya
-          </button>
         </div>
       </header>
 
+      {/* Daily check and the emergency path side by side: the red tile is the only red on a calm day. */}
       {check?.result !== 'bahaya' && (
+      <div className="mx-3 mt-2 flex gap-2">
       <button
         type="button"
         onClick={() => go('cek-kondisi')}
-        className="mx-3 mt-2 flex w-[calc(100%-24px)] items-center gap-3 rounded-2xl bg-panel px-3.5 py-3 text-left active:scale-[.99] active:bg-ground"
+        className="flex min-w-0 flex-1 items-center gap-3 rounded-2xl bg-panel px-3.5 py-3 text-left active:scale-[.99] active:bg-ground"
       >
         <span className="grid size-10 shrink-0 place-items-center rounded-full text-ground" style={{ background: check ? CHECK_TONE[check.result] : 'var(--ink)' }}>
           {check?.result === 'aman' ? <IconCheck size={20} /> : <IconAlert />}
         </span>
         <span className="min-w-0 flex-1">
-          <span className="block text-[15px] font-bold">{check ? CHECK_TEXT[check.result] : `Cek kondisi ${child.nickname} hari ini`}</span>
-          <span className="block text-[13px] text-ink-2">{check ? `Dicek ${clockTime(new Date(check.checked_at))} · ketuk untuk cek ulang` : 'Beberapa pertanyaan singkat, sekitar 30 detik'}</span>
+          <span className="block text-[15px] font-bold">{check ? CHECK_TEXT[check.result] : 'Cek kondisi hari ini'}</span>
+          <span className="block text-[13px] text-ink-2">{check ? `Dicek ${clockTime(new Date(check.checked_at))}` : 'Sekitar 30 detik'}</span>
         </span>
-        <IconChevron size={16} />
       </button>
+      <button
+        type="button"
+        onClick={() => go('tanda-bahaya')}
+        className="flex w-[92px] shrink-0 flex-col items-center justify-center gap-1 rounded-2xl bg-danger px-2 py-2.5 text-center text-[13px] leading-tight font-bold text-white active:scale-[.97]"
+      >
+        <IconAlert />
+        Tanda bahaya
+      </button>
+      </div>
       )}
       {check?.result === 'bahaya' && (
         <div role="alert" className="mx-3 mt-2 rounded-2xl border-2 border-danger bg-panel p-3.5">

@@ -1,3 +1,5 @@
+// Apple's push service rejects a VAPID subject that is not a real mailto/https address (403 BadJwtToken),
+// so VAPID_SUBJECT is the site URL.
 // "Kirim notifikasi uji": sends one push to the caller's own device through the same path as the reminders,
 // so a parent can see end to end whether notifications reach this phone.
 import { createClient } from 'npm:@supabase/supabase-js@2'
@@ -12,7 +14,7 @@ const reply = (body: Record<string, unknown>, status = 200) => Response.json(bod
 
 const pub = Deno.env.get('VAPID_PUBLIC_KEY')
 const priv = Deno.env.get('VAPID_PRIVATE_KEY')
-if (pub && priv) webpush.setVapidDetails(Deno.env.get('VAPID_SUBJECT') ?? 'mailto:pengingat@stimulasi-anak.local', pub, priv)
+if (pub && priv) webpush.setVapidDetails(Deno.env.get('VAPID_SUBJECT') ?? 'https://affanhasby.github.io/stimulasi-anak/', pub, priv)
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: cors })

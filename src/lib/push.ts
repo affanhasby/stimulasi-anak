@@ -50,6 +50,9 @@ export const PUSH_MESSAGE: Record<Exclude<PushResult, 'on'>, string> = {
   error: 'Notifikasi belum bisa diaktifkan. Periksa koneksi lalu coba lagi.',
 }
 
+/** Status code from the push service on the last failed test, shown to help diagnose. */
+export let lastTestCode: number | null = null
+
 export type TestResult = 'sent' | 'not-on' | 'not-registered' | 'gone' | 'offline' | 'error'
 
 /** Ask the server to push one test notification to this device, through the same path as the reminders. */
@@ -62,6 +65,7 @@ export async function testPush(): Promise<TestResult> {
   const { data, error } = await supabase.functions.invoke('test-push', { body: { endpoint: sub.endpoint } })
   if (error) return 'error'
   const r = (data as { result?: string })?.result
+  lastTestCode = (data as { code?: number | null })?.code ?? null
   if (r === 'not-registered') {
     // Subscribed in the browser but missing on the server (e.g. registered before sign-in): register again.
     return (await enablePush()) === 'on' ? testPush() : 'not-registered'
