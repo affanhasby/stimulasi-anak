@@ -19,7 +19,7 @@ const SPECS: Spec[] = [
   { local: 'measurements', remote: 'measurements', key: ['id'], cols: ['id', 'child_id', 'measured_on', 'weight_kg', 'length_cm', 'method', 'deleted'] },
 ]
 // Settings that belong to the account; text size and seen toasts stay per device.
-const SETTING_COLS = ['reminder_lead_days', 'reminder_time', 'email_reminders', 'enabled_counters', 'theme', 'active_child_id']
+export const SETTING_COLS = ['reminder_lead_days', 'reminder_time', 'email_reminders', 'enabled_counters', 'theme', 'active_child_id']
 
 type Row = Record<string, unknown>
 const pick = (r: Row, cols: string[]) => Object.fromEntries(cols.map((c) => [c, r[c] ?? null]))
@@ -50,7 +50,10 @@ async function push(db: AppDb, userId: string) {
   }
   const s: Row | undefined = await db.table('settings').get('me')
   if (s?._dirty === 1) {
-    const row = { user_id: userId, ...pick(s, SETTING_COLS), timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }
+    // Only the account settings changed on this device: a device holding older values for the others
+    // (e.g. Safari next to the home-screen app) must not overwrite what was chosen elsewhere.
+    const cols = (s._dirtyCols as string[] | undefined) ?? SETTING_COLS
+    const row = { user_id: userId, ...pick(s, cols), timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }
     const { error } = await supabase.from('user_settings').upsert(row, { onConflict: 'user_id' })
     if (error) throw error
     await clean(db, 'settings', ['id'], [s])
@@ -63,7 +66,7 @@ async function clean(db: AppDb, table: string, key: string[], sent: Row[]) {
     for (const r of sent) {
       const k = keyOf(r, key)
       const cur: Row | undefined = await db.table(table).get(k)
-      if (cur && cur.updated_at === r.updated_at) await db.table(table).update(k, { _dirty: 0 })
+      if (cur && cur.updated_at === r.updated_at) await db.table(table).update(k, { _dirty: 0, ...(table === 'settings' ? { _dirtyCols: [] } : {}) })
     }
   })
 }

@@ -2,7 +2,7 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 import { DEFAULT_SETTINGS, dbFor, nowIso, type AppDb, type MeasurementRow, type Child, type EventRow, type Settings } from './db'
 import type { IsoDate } from './date'
-import { requestSync, startAutoSync } from './sync'
+import { requestSync, SETTING_COLS, startAutoSync } from './sync'
 
 type Ctx = { db: AppDb; userId: string; email: string; username: string; firstSyncDone: boolean }
 const StoreCtx = createContext<Ctx | null>(null)
@@ -86,8 +86,11 @@ export function actions(db: AppDb) {
   const after = <T,>(p: Promise<T>) => p.then((v) => (requestSync(db), v))
   return {
     async saveSettings(patch: Partial<Settings>) {
-      const cur = { ...DEFAULT_SETTINGS, ...(await db.settings.get('me')) }
-      await after(db.settings.put({ ...cur, ...patch, ...D, updated_at: nowIso() }))
+      const cur = { ...DEFAULT_SETTINGS, ...(await db.settings.get('me')) } as Settings & { _dirty?: number; _dirtyCols?: string[] }
+      // Device-only fields (seen toasts, text size) never mark the account settings for upload.
+      const cols = Object.keys(patch).filter((k) => SETTING_COLS.includes(k))
+      if (!cols.length) return void (await db.settings.put({ ...cur, ...patch, updated_at: nowIso() }))
+      await after(db.settings.put({ ...cur, ...patch, ...D, _dirtyCols: [...new Set([...(cur._dirtyCols ?? []), ...cols])], updated_at: nowIso() }))
     },
     async saveChild(child: Child) {
       await after(db.children.put({ ...child, ...D, updated_at: nowIso() }))

@@ -29,6 +29,7 @@ export type Settings = {
   text_size: 'normal' | 'large'
   active_child_id: string | null
   seen_notices: string[] | null // toasts already shown; null = take today's as the baseline
+  _dirtyCols?: string[] // sync bookkeeping: account settings changed here and not yet uploaded
   updated_at: string
 }
 
