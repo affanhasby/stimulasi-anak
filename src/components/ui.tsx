@@ -3,51 +3,76 @@ import { back } from '../lib/nav'
 import { IconBack, IconCheck, IconChevron, IconClose, IconEye, IconEyeOff, IconRefresh } from './icons'
 import { BrandPlate } from './Plate'
 
-const PULL_AT = 72
+const PULL_AT = 64 // px of indicator height that arms the reload
+const PULL_MAX = 110
+const EASE = 'cubic-bezier(.22,1,.36,1)'
 
 /**
  * Pull down from the top of a screen to reload the app (and fetch a newer version if one is deployed).
  * An installed PWA has no browser reload button, so this is the parent's way to be sure it is up to date.
+ * The finger drives the spacer directly (no React render per frame) with rubber-band resistance; iOS's own
+ * bounce is suppressed while pulling so the two never fight.
  */
 function usePullToRefresh() {
   const ref = useRef<HTMLElement>(null)
-  const [pull, setPull] = useState(0)
-  const [dragging, setDragging] = useState(false)
-  const [busy, setBusy] = useState(false)
+  const spacer = useRef<HTMLDivElement>(null)
+  const icon = useRef<HTMLSpanElement>(null)
+  const [phase, setPhase] = useState<'idle' | 'pull' | 'ready' | 'busy'>('idle')
   useEffect(() => {
     const el = ref.current
-    if (!el) return
+    const sp = spacer.current
+    if (!el || !sp) return
     let y0: number | null = null
-    let d = 0
+    let h = 0
+    let armed = false
+    const paint = (height: number, animate: boolean) => {
+      h = height
+      sp.style.transition = animate ? `height 420ms ${EASE}` : 'none'
+      sp.style.height = `${height}px`
+      if (icon.current) {
+        icon.current.style.transition = animate ? `transform 420ms ${EASE}, opacity 200ms` : 'none'
+        icon.current.style.transform = `rotate(${height * 2.6}deg) scale(${0.6 + 0.4 * Math.min(1, height / PULL_AT)})`
+        icon.current.style.opacity = String(Math.min(1, height / 40))
+      }
+    }
     const start = (e: TouchEvent) => {
       y0 = el.scrollTop <= 0 && e.touches.length === 1 ? e.touches[0].clientY : null
-      d = 0
+      armed = false
     }
     const move = (e: TouchEvent) => {
       if (y0 === null) return
-      d = Math.max(0, (e.touches[0].clientY - y0) * 0.5)
-      if (d > 0 && el.scrollTop > 0) {
-        y0 = null
-        return setPull(0)
+      const dy = e.touches[0].clientY - y0
+      if (dy <= 0 && h === 0) return // scrolling up: leave it to the browser
+      if (el.scrollTop > 0) return void (y0 = null)
+      e.preventDefault() // no native bounce on top of ours
+      const height = PULL_MAX * (1 - Math.exp(-Math.max(0, dy) / 170))
+      paint(height, false)
+      const now = height >= PULL_AT
+      if (!armed && !now && height > 0) setPhase((p) => (p === 'idle' ? 'pull' : p))
+      if (now !== armed) {
+        armed = now
+        if (now) navigator.vibrate?.(8)
+        setPhase(now ? 'ready' : 'pull')
       }
-      setDragging(true)
-      setPull(Math.min(d, 110))
     }
     const end = async () => {
-      setDragging(false)
       if (y0 === null) return
       y0 = null
-      if (d < PULL_AT) return setPull(0)
-      setBusy(true)
-      setPull(PULL_AT)
-      navigator.vibrate?.(10)
+      if (!armed) {
+        paint(0, true)
+        return setPhase('idle')
+      }
+      paint(56, true)
+      setPhase('busy')
       sessionStorage.setItem('pulled', '1')
       const reg = await navigator.serviceWorker?.getRegistration().catch(() => undefined)
-      await reg?.update().catch(() => {})
-      location.reload()
+      // Let the spinner turn at least once, then fade before reloading so the swap is not a hard cut.
+      await Promise.all([reg?.update().catch(() => {}), new Promise((r) => setTimeout(r, 700))])
+      document.getElementById('root')?.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 180, fill: 'forwards' })
+      setTimeout(() => location.reload(), 180)
     }
     el.addEventListener('touchstart', start, { passive: true })
-    el.addEventListener('touchmove', move, { passive: true })
+    el.addEventListener('touchmove', move, { passive: false })
     el.addEventListener('touchend', end)
     el.addEventListener('touchcancel', end)
     return () => {
@@ -58,19 +83,15 @@ function usePullToRefresh() {
     }
   }, [])
   const indicator = (
-    <div
-      role="status"
-      className="flex items-end justify-center overflow-hidden"
-      style={{ height: pull, transition: dragging ? 'none' : 'height 220ms cubic-bezier(.22,1,.36,1)' }}
-    >
-      {pull > 8 && (
-        <span className="mb-2.5 flex items-center gap-2 text-[13px] font-semibold text-ink-2">
-          <span className={`grid size-8 place-items-center rounded-full bg-panel text-ink ${busy ? 'animate-spin' : ''}`} style={busy ? undefined : { transform: `rotate(${pull * 3}deg)` }}>
+    <div ref={spacer} className="flex items-end justify-center overflow-hidden" style={{ height: 0 }}>
+      <span role="status" className="mb-3 flex items-center gap-2 text-[13px] font-semibold whitespace-nowrap text-ink-2">
+        <span ref={icon} className="grid size-8 place-items-center rounded-full bg-panel text-ink" style={{ opacity: 0 }}>
+          <span className={phase === 'busy' ? 'grid animate-spin' : 'grid'}>
             <IconRefresh />
           </span>
-          {busy ? 'Memuat ulang…' : pull >= PULL_AT ? 'Lepas untuk memuat ulang' : 'Tarik untuk memuat ulang'}
         </span>
-      )}
+        {phase === 'busy' ? 'Memuat ulang…' : phase === 'ready' ? 'Lepas untuk memuat ulang' : phase === 'pull' ? 'Tarik untuk memuat ulang' : ''}
+      </span>
     </div>
   )
   return { ref, indicator }

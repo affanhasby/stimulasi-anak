@@ -19,6 +19,9 @@
     <title>Stimulasi Anak</title>
   </head>
   <body>
+    <!-- Solid strip under the iOS status bar, present from the first paint: Safari 26 decides its top edge
+         treatment from the fixed elements it finds there, and a React-rendered strip arrives too late. -->
+    <div id="top-guard" aria-hidden="true"></div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

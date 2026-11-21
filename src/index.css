@@ -90,6 +90,15 @@
   --top-guard: calc(env(safe-area-inset-top) * 1.35);
 }
 
+#top-guard {
+  position: fixed;
+  inset: 0 0 auto;
+  height: var(--top-guard);
+  background: var(--ground);
+  z-index: 40;
+  pointer-events: none;
+}
+
 /* Native shell: the page itself never moves, zooms or rubber-bands; only the screen's own scroller scrolls. */
 html,
 body {
