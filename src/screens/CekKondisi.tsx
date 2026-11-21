@@ -2,10 +2,11 @@ import { useMemo, useState } from 'react'
 import { DISCLAIMER } from '../components/DangerSheet'
 import { IconAlert, IconBack, IconCheck, IconPhone } from '../components/icons'
 import { Button, Screen } from '../components/ui'
-import { HOTLINE, sourceLabel } from '../lib/content'
+import { HOTLINE } from '../lib/content'
 import { daysBetween } from '../lib/date'
 import type { Child } from '../lib/db'
-import { questionsFor, resultOf, type CheckResult } from '../lib/healthcheck'
+import { clockTime } from '../lib/counters'
+import { detailOf, questionsFor, resultOf, sourcesText, type CheckResult } from '../lib/healthcheck'
 import { useToday } from '../lib/hooks'
 import { go } from '../lib/nav'
 import { useActions, useChildRows, useStore } from '../lib/store'
@@ -27,7 +28,10 @@ const RESULT: Record<CheckResult, { title: (n: string) => string; body: string; 
   bahaya: { title: (n) => `Segera bawa ${n} ke fasilitas kesehatan`, body: 'Satu tanda bahaya saja sudah cukup alasan untuk segera diperiksa. Jangan menunggu.', tone: 'var(--color-danger)' },
 }
 
-/** Daily check: one danger sign per card, a tap for Ya/Tidak, then a plain conclusion with the next step. */
+/**
+ * Daily check: one topic per card, a tap for Ya/Tidak, then a plain conclusion with the next step.
+ * The full check runs once a day; "Cek ulang" afterwards asks only the topics answered "Ya".
+ */
 export function CekKondisi({ child }: { child: Child }) {
   const today = useToday()
   const rows = useChildRows(child.id)
@@ -37,24 +41,28 @@ export function CekKondisi({ child }: { child: Child }) {
   const saved = rows?.health.find((h) => h.day === today)
   const [answers, setAnswers] = useState<Record<string, boolean>>({})
   const [i, setI] = useState(0)
-  const [redo, setRedo] = useState(false)
+  const [recheck, setRecheck] = useState(false)
 
-  const finished = saved && !redo
+  const flagged = saved ? questions.filter((q) => saved.answers[q.id]) : []
+  // Re-check only what was wrong; a check saved before the questions were grouped falls back to all of them.
+  const asked = recheck ? (flagged.length ? flagged : questions) : questions
+  const finished = saved && !recheck
   const result = finished ? saved.result : null
 
   const answer = async (yes: boolean) => {
-    const next = { ...answers, [questions[i].id]: yes }
+    const next = { ...answers, [asked[i].id]: yes }
     setAnswers(next)
     navigator.vibrate?.(8)
-    if (i + 1 < questions.length) return setI(i + 1)
-    await act.saveHealthCheck(child.id, today, next, resultOf(questions, next))
+    if (i + 1 < asked.length) return setI(i + 1)
+    const all = { ...Object.fromEntries(questions.map((q) => [q.id, false])), ...(recheck ? saved?.answers : {}), ...next }
+    await act.saveHealthCheck(child.id, today, all, resultOf(questions, all))
     await db.notices.update(`cek-${today}`, { read_at: new Date().toISOString() })
-    setRedo(false)
+    setRecheck(false)
   }
 
   if (finished && result) {
     const r = RESULT[result]
-    const yes = questions.filter((q) => saved.answers[q.id])
+    const yes = flagged
     return (
       <Screen title="Cek kondisi" onBack>
         <div className="mx-4 animate-[rise_420ms_cubic-bezier(.22,1,.36,1)]">
@@ -64,6 +72,7 @@ export function CekKondisi({ child }: { child: Child }) {
             </span>
             <h1 className="mt-4 text-2xl leading-tight font-extrabold text-balance">{r.title(child.nickname)}</h1>
             <p className="mt-2 text-base leading-relaxed text-ink-2">{r.body}</p>
+            <p className="mt-3 text-[13px] font-semibold text-ink-2">Dicek pukul {clockTime(new Date(saved.checked_at))}</p>
           </div>
           {yes.length > 0 && (
             <div className="mt-3 rounded-2xl bg-panel p-4">
@@ -73,45 +82,63 @@ export function CekKondisi({ child }: { child: Child }) {
                   <li key={q.id}>{q.text}</li>
                 ))}
               </ul>
-              <p className="mt-2 text-[13px] text-ink-2">Sumber: {[...new Set(yes.map((q) => sourceLabel(q.source, q.page)))].join('; ')}</p>
+              <p className="mt-2 text-[13px] text-ink-2">Sumber: {sourcesText(yes)}</p>
             </div>
           )}
           {result !== 'aman' && <div className="mt-3">{CALLS}</div>}
           <div className="mt-4 grid gap-2.5">
-            <Button onClick={() => go('', true)}>Kembali ke Beranda</Button>
-            <Button
-              kind="secondary"
-              onClick={() => {
-                setAnswers({})
-                setI(0)
-                setRedo(true)
-              }}
-            >
-              Cek ulang
+            {result !== 'aman' && (
+              <Button
+                onClick={() => {
+                  setAnswers({})
+                  setI(0)
+                  setRecheck(true)
+                }}
+              >
+                Cek ulang {yes.length ? `yang bermasalah (${yes.length})` : ''}
+              </Button>
+            )}
+            <Button kind={result === 'aman' ? 'primary' : 'secondary'} onClick={() => go('', true)}>
+              Kembali ke Beranda
             </Button>
           </div>
+          {result === 'aman' && (
+            <p className="mt-3 text-center text-[15px] leading-relaxed text-ink-2">
+              Cek lengkap berikutnya besok. Ada keluhan baru hari ini?{' '}
+              <button type="button" onClick={() => go('tanda-bahaya')} className="font-semibold text-ink underline underline-offset-4">
+                Lihat tanda bahaya
+              </button>
+            </p>
+          )}
           <p className="mt-4 text-[13px] leading-relaxed text-ink-2">{DISCLAIMER}</p>
         </div>
       </Screen>
     )
   }
 
-  const q = questions[i]
+  const q = asked[i]
   return (
-    <Screen title="Cek kondisi hari ini" onBack bottom="none">
+    <Screen title={recheck ? 'Cek ulang' : 'Cek kondisi hari ini'} onBack bottom="none">
       <div className="flex min-h-full flex-col px-4">
         <div className="flex items-center gap-3">
-          <div className="h-2 flex-1 overflow-hidden rounded-full bg-off" role="progressbar" aria-valuemin={0} aria-valuemax={questions.length} aria-valuenow={i}>
-            <div className="h-full rounded-full bg-ink transition-[width] duration-300 ease-out" style={{ width: `${(i / questions.length) * 100}%` }} />
+          <div className="h-2 flex-1 overflow-hidden rounded-full bg-off" role="progressbar" aria-valuemin={0} aria-valuemax={asked.length} aria-valuenow={i}>
+            <div className="h-full rounded-full bg-ink transition-[width] duration-300 ease-out" style={{ width: `${(i / asked.length) * 100}%` }} />
           </div>
           <span className="text-[13px] font-bold text-ink-2">
-            {i + 1}/{questions.length}
+            {i + 1}/{asked.length}
           </span>
         </div>
-        <p className="mt-6 text-[15px] font-semibold text-ink-2">Apakah {child.nickname} mengalami ini hari ini?</p>
+        <p className="mt-6 text-[15px] font-semibold text-ink-2">{recheck ? `Apakah ${child.nickname} masih mengalami ini?` : `Apakah ${child.nickname} mengalami ini hari ini?`}</p>
         <div key={q.id} className="mt-3 animate-[slide-in_260ms_cubic-bezier(.22,1,.36,1)] rounded-3xl bg-panel p-6">
           <p className="text-2xl leading-tight font-extrabold text-balance">{q.text}</p>
-          <p className="mt-3 text-[13px] text-ink-2">{q.group}</p>
+          {detailOf(q).length > 0 && (
+            <ul className="mt-3 list-disc space-y-1 pl-5 text-[15px] leading-snug text-ink-2">
+              {detailOf(q).map((s) => (
+                <li key={s}>{s}</li>
+              ))}
+            </ul>
+          )}
+          {q.signs.length > 1 && <p className="mt-3 text-[13px] text-ink-2">Jawab Ya bila ada salah satunya.</p>}
         </div>
         <div className="flex-1" />
         <div className="mb-[max(16px,env(safe-area-inset-bottom))] grid grid-cols-2 gap-3 pt-6">
