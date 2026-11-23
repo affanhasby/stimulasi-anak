@@ -16,6 +16,8 @@ export function TandaBahaya({ child }: { child: Child }) {
   const saved = useChildRows(child.id)?.health.find((h) => h.day === today)
   const questions = useMemo(() => questionsFor(daysBetween(child.birth_date, today)), [child.birth_date, today])
   const record = async (id: string | null) => {
+    // One tap records it, so keep what was there to undo a mis-tap from the result screen.
+    if (id) sessionStorage.setItem('tb-undo', JSON.stringify({ day: today, prev: saved ? { answers: saved.answers, result: saved.result } : null }))
     // Adds to today's check instead of replacing it, so an earlier "Ya" is never lost.
     const answers = { ...Object.fromEntries(questions.map((q) => [q.id, false])), ...saved?.answers, ...(id ? { [id]: true } : {}) }
     await act.saveHealthCheck(child.id, today, answers, resultOf(questions, answers))

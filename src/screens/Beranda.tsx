@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { DISCLAIMER } from '../components/DangerSheet'
 import { BrandPlate } from '../components/Plate'
+import { PushCta } from '../components/PushCta'
 import { GrowthChart } from '../components/GrowthChart'
 import { ageMonthsExact } from '../lib/growth'
 import { latestStatus, seriesOf, weighDue } from './Pertumbuhan'
@@ -18,6 +19,7 @@ import { go } from '../lib/nav'
 import { useActions, useChildRows, useSettings, useUnreadCount } from '../lib/store'
 import { ACTIVITIES, dailyPlan, dayAchieved, DOMAIN_ORDER, DOMAINS, todaysPicks, type ActivityCheck, type Domain, type PlannedActivity } from '../lib/stimulation'
 import { doseName, vaccineSchedule, type ScheduledDose } from '../lib/vaccines'
+import { missed, nextVisit } from '../lib/visit'
 
 export const STATUS: Record<string, { text: string; tone: string }> = {
   late: { text: 'Lewat jadwal', tone: 'border border-warn text-warn' },
@@ -30,22 +32,12 @@ export const STATUS: Record<string, { text: string; tone: string }> = {
   conditional: { text: 'Bila berlaku', tone: 'bg-off text-ink' },
   skipped: { text: 'Tidak diberikan', tone: 'bg-off text-ink' },
 }
-const PRIORITY = ['late', 'ending_soon', 'due', 'upcoming']
 const CHECK_TONE = { aman: 'var(--ok)', perhatian: 'var(--warn)', bahaya: 'var(--color-danger)' }
 const CHECK_TEXT = { aman: 'Kondisi hari ini aman', perhatian: 'Perlu perhatian', bahaya: 'Ada tanda bahaya' }
 
 /** Late but still within the source's maximum age reads as catch-up, never as failure. */
 export const chipFor = (d: ScheduledDose, today: IsoDate) =>
   d.status === 'late' && d.maxUntil && today <= d.maxUntil ? { text: 'Bisa dikejar', tone: STATUS.late.tone } : STATUS[d.status]
-
-/** The next visit: the most pressing actionable doses that share one start date. */
-export function nextVisit(doses: ScheduledDose[]) {
-  const open = doses
-    .filter((d) => PRIORITY.includes(d.status))
-    .sort((a, b) => PRIORITY.indexOf(a.status) - PRIORITY.indexOf(b.status) || a.earliest.localeCompare(b.earliest))
-  if (!open.length) return null
-  return { lead: open[0], doses: open.filter((d) => d.status === open[0].status && d.earliest === open[0].earliest) }
-}
 
 export function plateStates(checks: ActivityCheck[], day: IsoDate, shown?: PlannedActivity[]) {
   const done = new Set(checks.filter((c) => c.day === day).map((c) => ACTIVITIES.find((a) => a.id === c.activity_id)?.domain))
@@ -155,7 +147,10 @@ export function Beranda({ child }: { child: Child }) {
   const rotDone = list.some((a) => a.kind !== 'core' && doneToday.has(a.id))
   const hint = achieved ? 'Target hari ini tercapai' : !coreDone && !rotDone ? 'Target: 1 utama + 1 lainnya' : !coreDone ? 'Tinggal 1 kegiatan utama' : 'Tinggal 1 kegiatan lain'
 
-  const visit = nextVisit(vaccineSchedule(child, rows?.vaccines ?? [], today))
+  const doses = vaccineSchedule(child, rows?.vaccines ?? [], today)
+  const visit = nextVisit(doses, today)
+  // Overdue doses a health worker must advise on live apart from the visit, but must stay visible from home.
+  const overdue = doses.filter((d) => d.status === 'late' && missed(d, today)).length
   const counters = visibleCounters(ageInMonths(child.birth_date, today), settings?.enabled_counters).slice(0, 5)
   const dayStart = new Date(now).setHours(0, 0, 0, 0)
 
@@ -300,6 +295,8 @@ export function Beranda({ child }: { child: Child }) {
         </button>
       )}
 
+      <PushCta card />
+
       {staleFeed && (
         <section className="mx-3 mt-2 animate-[rise_420ms_cubic-bezier(.22,1,.36,1)] rounded-2xl bg-panel p-3.5">
           <p className="text-[15px] leading-snug font-bold">Catatan menyusu terakhir {formatAgoShort(feedGap!)}. Sudah menyusu?</p>
@@ -418,7 +415,7 @@ export function Beranda({ child }: { child: Child }) {
                   onClick={() => act.toggleCheck(child.id, today, a.id)}
                   className="grid size-12 shrink-0 place-items-center"
                 >
-                  <span className={`grid size-[34px] place-items-center rounded-full border-[2.5px] transition-colors duration-200 ${done ? 'border-ink bg-ink text-panel' : 'border-off text-transparent'}`}>
+                  <span className={`grid size-[34px] place-items-center rounded-full border-[2.5px] transition-colors duration-200 ${done ? 'border-ink bg-ink text-panel' : 'border-ink-2/80 text-transparent'}`}>
                     <IconCheck />
                   </span>
                 </button>
@@ -455,6 +452,9 @@ export function Beranda({ child }: { child: Child }) {
         </span>
         {growth.weight || growth.length ? (
           <>
+            {!child.sex ? (
+              <span className="mt-1 block text-[13px] font-semibold text-warn">Pilih jenis kelamin {child.nickname} untuk status yang tepat ›</span>
+            ) : (
             <span className="mt-2 flex flex-wrap gap-1.5">
               {[growth.weight, growth.length].map(
                 (g) =>
@@ -465,6 +465,7 @@ export function Beranda({ child }: { child: Child }) {
                   ),
               )}
             </span>
+            )}
             <GrowthChart ind="wfa" sex={child.sex ?? 'M'} points={seriesOf(child, measurements, 'wfa')} fromMonth={Math.max(0, ageNow - 6)} toMonth={Math.min(60, ageNow + 2)} height={110} compact />
           </>
         ) : (
@@ -494,6 +495,7 @@ export function Beranda({ child }: { child: Child }) {
                     ? `Paling lambat ${shortDate(visit.lead.onTimeUntil)} · ${daysBetween(today, visit.lead.onTimeUntil)} hari lagi`
                     : 'Bisa diberikan sekarang'}
             </span>
+            {overdue > 0 && <span className="mt-0.5 block text-[13px] font-semibold text-warn">{overdue} lewat jadwal · tanyakan ke petugas</span>}
           </span>
           <span className={`shrink-0 rounded-md px-2 py-1 text-xs font-bold ${chipFor(visit.lead, today).tone}`}>{chipFor(visit.lead, today).text}</span>
         </button>

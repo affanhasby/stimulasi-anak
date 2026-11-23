@@ -89,7 +89,7 @@ function Pengingat({ child }: { child: Child }) {
       <Section title="Kapan diingatkan" note="Relatif ke tanggal 'Mulai bisa'. Pengingat tambahan 3 hari sebelum batas bila belum ditandai.">
         <div className="flex flex-wrap gap-2 p-4">
           {REMINDER_OPTIONS.lead_time_days_choices.map((d) => (
-            <Chip key={d} check selected={lead.includes(d)} onClick={() => act.saveSettings({ reminder_lead_days: lead.includes(d) ? lead.filter((x) => x !== d) : [...lead, d].sort((a, b) => a - b) })}>
+            <Chip key={d} check selected={lead.includes(d)} onClick={() => act.updateSettings((c) => ({ reminder_lead_days: c.reminder_lead_days.includes(d) ? c.reminder_lead_days.filter((x) => x !== d) : [...c.reminder_lead_days, d].sort((a, b) => a - b) }))}>
               {LEAD_LABEL[d] ?? `H-${d}`}
             </Chip>
           ))}
@@ -115,7 +115,7 @@ function Pengingat({ child }: { child: Child }) {
             label={r.label}
             hint={r.rule}
             checked={!s.routine_off.includes(r.id)}
-            onChange={(v) => act.saveSettings({ routine_off: v ? s.routine_off.filter((x) => x !== r.id) : [...s.routine_off, r.id] })}
+            onChange={(v) => act.updateSettings((c) => ({ routine_off: v ? c.routine_off.filter((x) => x !== r.id) : [...c.routine_off.filter((x) => x !== r.id), r.id] }))}
           />
         ))}
         {routines.some((r) => r.id === 'feed') && !s.routine_off.includes('feed') && (

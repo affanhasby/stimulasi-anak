@@ -7,7 +7,7 @@ import { longDate, shortDate } from '../lib/format'
 import { adjustedLength, ageMonthsExact, lengthStatus, MAX_MONTH, weightStatus, zScore, type Indicator, type Status } from '../lib/growth'
 import { useToday } from '../lib/hooks'
 import { go } from '../lib/nav'
-import { useChildRows } from '../lib/store'
+import { useActions, useChildRows } from '../lib/store'
 
 const TONE: Record<Status['level'], string> = { ok: 'bg-ok text-panel', watch: 'border border-warn text-warn', refer: 'bg-warn text-panel' }
 
@@ -44,6 +44,7 @@ export function Pertumbuhan({ child }: { child: Child }) {
   const today = useToday()
   const rows = useChildRows(child.id)?.measurements ?? []
   const [ind, setInd] = useState<Indicator>('wfa')
+  const act = useActions()
   const sex = child.sex ?? 'M'
   const age = ageMonthsExact(child.birth_date, today)
   const from = Math.max(0, Math.floor(age) - 12)
@@ -53,7 +54,17 @@ export function Pertumbuhan({ child }: { child: Child }) {
 
   return (
     <Screen title="Pertumbuhan" onBack>
-      {!child.sex && <p className="mx-4 mb-2 rounded-xl bg-warn/10 p-3 text-[13px] font-semibold text-warn">Jenis kelamin belum diisi; grafik memakai standar anak laki-laki. Isi di Lainnya &gt; Profil anak.</p>}
+      {!child.sex && (
+        // The WHO curves differ for boys and girls; without the sex the status could be wrong, so ask right here.
+        <div className="mx-3 mb-2 rounded-2xl border-2 border-warn bg-panel p-3.5">
+          <p className="text-[15px] font-bold">Jenis kelamin {child.nickname}?</p>
+          <p className="mt-0.5 text-[13px] text-ink-2">Standar pertumbuhan WHO berbeda untuk laki-laki dan perempuan. Sampai dipilih, statusnya bisa kurang tepat.</p>
+          <div className="mt-2.5 flex gap-2">
+            <Chip selected={false} onClick={() => act.saveChild({ ...child, sex: 'M' })}>Laki-laki</Chip>
+            <Chip selected={false} onClick={() => act.saveChild({ ...child, sex: 'F' })}>Perempuan</Chip>
+          </div>
+        </div>
+      )}
       <div className="mx-3 flex gap-2">
         <Chip selected={ind === 'wfa'} onClick={() => setInd('wfa')}>Berat badan</Chip>
         <Chip selected={ind === 'lhfa'} onClick={() => setInd('lhfa')}>{age < 24 ? 'Panjang badan' : 'Tinggi badan'}</Chip>

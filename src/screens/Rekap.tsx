@@ -15,7 +15,7 @@ import { ACTIVITIES, dayAchieved, DOMAIN_ORDER, DOMAINS, gridMonth } from '../li
 import { doseName, vaccineSchedule } from '../lib/vaccines'
 import { useNow } from '../lib/hooks'
 import { latestStatus, weighDue } from './Pertumbuhan'
-import { nextVisit } from './Beranda'
+import { nextVisit } from '../lib/visit'
 import { TONE_DOT } from './Catatan'
 
 type Finding = { tone: Tone | 'danger'; text: string; to: string }
@@ -82,7 +82,7 @@ export function Rekap({ child, focus }: { child: Child; focus?: string }) {
   const done = doses.filter((d) => d.status === 'done')
   const late = doses.filter((d) => d.status === 'late')
   const skipped = doses.filter((d) => d.status === 'skipped')
-  const visit = nextVisit(doses)
+  const visit = nextVisit(doses, today)
   if (late.length) findings.push({ tone: 'watch', text: `${late.length} imunisasi lewat jadwal; sebagian besar masih bisa dikejar.`, to: 'imunisasi' })
 
   // Kemampuan
@@ -207,7 +207,9 @@ export function Rekap({ child, focus }: { child: Child; focus?: string }) {
         </Line>
         {visit && (
           <Line tone="var(--ink-2)">
-            Berikutnya: {visit.doses.map((d) => doseName(d.dose)).join(', ')} · mulai {shortDate(visit.lead.earliest)}
+            {visit.lead.status === 'upcoming'
+              ? `Berikutnya: ${visit.doses.map((d) => doseName(d.dose)).join(', ')} · mulai ${shortDate(visit.lead.earliest)}`
+              : `Bisa diberikan sekarang: ${visit.doses.map((d) => doseName(d.dose)).join(', ')}`}
           </Line>
         )}
       </Card>

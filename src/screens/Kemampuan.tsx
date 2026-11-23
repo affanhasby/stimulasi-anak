@@ -126,7 +126,7 @@ export function Kemampuan({ child }: { child: Child }) {
 
       <Section
         title={`Biasanya mulai terlihat di usia ${g} bulan`}
-        note="Perkiraan bulan dari CDC/AAP, WHO, dan IDAI. Saran periksa tetap mengikuti batas usia Buku KIA, jadi 'Belum' di sini belum tentu masalah."
+        note="Setiap anak berkembang dengan kecepatannya sendiri. 'Belum' bukan berarti masalah; aplikasi akan memberi tahu bila sudah waktunya diperiksakan (sesuai batas usia Buku KIA)."
       >
         {now.length ? now.map((i) => <ItemRow key={i.id} item={i} answer={by.get(i.id)} onAnswer={answer(i.id)} />) : <p className="px-4 py-4 text-[15px] text-ink-2">Bulan ini tidak ada kemampuan baru yang dicek. Lanjutkan stimulasi harian.</p>}
       </Section>

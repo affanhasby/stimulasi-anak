@@ -62,6 +62,7 @@ function UkurForm({ child, rows, existing }: { child: Child; rows: MeasurementRo
         </div>
         <p className="mt-1.5 text-[13px] text-ink-2">Di bawah 2 tahun diukur berbaring; mulai 2 tahun berdiri. Selisihnya disesuaikan otomatis (0,7 cm).</p>
         <div className="mt-6 grid gap-2.5 pb-[max(16px,env(safe-area-inset-bottom))]">
+          {wv === null && lv === null && <p className="text-center text-[13px] text-ink-2">Isi berat atau panjang badan dulu untuk menyimpan.</p>}
           <Button
             disabled={!ok}
             onClick={async () => {

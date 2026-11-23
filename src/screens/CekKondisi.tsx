@@ -52,6 +52,16 @@ export function CekKondisi({ child }: { child: Child }) {
   const finished = saved && !recheck
   const result = finished ? saved.result : null
 
+  // Set by Tanda bahaya: one tap there records a danger sign, so offer to take a mis-tap back.
+  const undoRaw = sessionStorage.getItem('tb-undo')
+  const undo = undoRaw ? (JSON.parse(undoRaw) as { day: string; prev: { answers: Record<string, boolean>; result: CheckResult } | null }) : null
+  const takeBack = async () => {
+    sessionStorage.removeItem('tb-undo')
+    if (undo?.prev) await act.saveHealthCheck(child.id, today, undo.prev.answers, undo.prev.result)
+    else await act.removeHealthCheck(child.id, today)
+    go('', true)
+  }
+
   const noneOfThese = async () => {
     navigator.vibrate?.(8)
     const all = Object.fromEntries(questions.map((q) => [q.id, false]))
@@ -66,6 +76,7 @@ export function CekKondisi({ child }: { child: Child }) {
     if (i + 1 < asked.length) return setI(i + 1)
     const all = { ...Object.fromEntries(questions.map((q) => [q.id, false])), ...(recheck ? saved?.answers : {}), ...next }
     await act.saveHealthCheck(child.id, today, all, resultOf(questions, all))
+    sessionStorage.removeItem('tb-undo')
     await db.notices.update(`cek-${today}`, { read_at: new Date().toISOString() })
     setRecheck(false)
     setStepping(false)
@@ -97,6 +108,11 @@ export function CekKondisi({ child }: { child: Child }) {
             </div>
           )}
           {result !== 'aman' && <div className="mt-3">{CALLS}</div>}
+          {undo?.day === today && result !== 'aman' && (
+            <button type="button" onClick={takeBack} className="mt-3 min-h-11 w-full text-[15px] font-semibold text-ink underline underline-offset-4">
+              Salah pilih? Batalkan
+            </button>
+          )}
           <div className="mt-4 grid gap-2.5">
             {result !== 'aman' && (
               <Button

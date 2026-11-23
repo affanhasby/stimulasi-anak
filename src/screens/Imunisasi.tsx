@@ -9,7 +9,8 @@ import { useToday } from '../lib/hooks'
 import { downloadFile, scheduleIcs } from '../lib/ics'
 import { useActions, useChildRows, useSettings } from '../lib/store'
 import { doseName, VACCINES, VACCINES_AS_OF, vaccineInfo, vaccineSchedule, type ScheduledDose } from '../lib/vaccines'
-import { chipFor, nextVisit } from './Beranda'
+import { missed, nextVisit } from '../lib/visit'
+import { chipFor } from './Beranda'
 
 const vaccineName = (code: string) => VACCINES.find((v) => v.code === code)?.name ?? code
 
@@ -84,9 +85,10 @@ export function Imunisasi({ child }: { child: Child }) {
   const counted = doses.filter((d) => !['school', 'conditional'].includes(d.status) && !d.dose.optional).length
 
   // Only what matters now: the nearest visit, any doses to catch up, and the one visit after.
-  const visit = nextVisit(doses)
+  const visit = nextVisit(doses, today)
   const inVisit = new Set(visit?.doses.map((d) => d.key))
-  const catchUp = doses.filter((d) => (d.status === 'late' || d.status === 'skipped') && !inVisit.has(d.key))
+  // Past the maximum age or not given: kept apart so they never crowd out what can be given now.
+  const catchUp = doses.filter((d) => missed(d, today) && !inVisit.has(d.key))
   const after = doses
     .filter((d) => d.status === 'upcoming' && !inVisit.has(d.key) && (!visit || d.earliest > visit.lead.earliest))
     .sort((a, b) => a.earliest.localeCompare(b.earliest))
@@ -133,7 +135,7 @@ export function Imunisasi({ child }: { child: Child }) {
       )}
 
       {catchUp.length > 0 && (
-        <Section title="Bisa dikejar" note="Terlewat atau belum diberikan, tetapi banyak yang masih bisa dikejar. Tanyakan ke petugas kesehatan.">
+        <Section title="Terlewat · tanyakan ke petugas" note="Sudah lewat jadwal. Banyak yang masih bisa diberikan, tetapi petugas kesehatan yang menentukan; bawa Buku KIA saat kunjungan.">
           {catchUp.map((d) => (
             <DoseRow key={d.key} d={d} today={today} onOpen={() => openDose(d)} detail reason={d.status === 'skipped' ? [recordOf(d.key)?.skip_reason, recordOf(d.key)?.note].filter(Boolean).join(' · ') : null} />
           ))}
@@ -203,7 +205,7 @@ export function Imunisasi({ child }: { child: Child }) {
                 <dt className="text-ink-2">Paling lambat</dt>
                 <dd className="font-semibold">{sel.onTimeUntil ? longDate(sel.onTimeUntil) : '—'}</dd>
                 <dt className="text-ink-2">Batas maksimal</dt>
-                <dd className="font-semibold">{sel.maxUntil ? longDate(sel.maxUntil) : 'Tidak disebut sumber'}</dd>
+                <dd className="font-semibold">{sel.maxUntil ? longDate(sel.maxUntil) : 'Tidak ada batas khusus'}</dd>
               </dl>
             )}
             {sel.dose.verification !== 'verified' && (
@@ -246,7 +248,7 @@ export function Imunisasi({ child }: { child: Child }) {
                       setSel(null)
                     }}
                   >
-                    {sel.status === 'done' ? 'Simpan tanggal' : 'Tandai sudah'}
+                    {sel.status === 'done' ? 'Simpan tanggal' : 'Tandai sudah diberikan'}
                   </Button>
                   {(sel.status === 'done' || sel.status === 'skipped') && (
                     <Button

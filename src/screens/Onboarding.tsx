@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { PushToggle } from '../components/PushToggle'
+import { PushCta } from '../components/PushCta'
 import { Button, Chip, Screen, PickerInput } from '../components/ui'
 import { nowIso, type Child } from '../lib/db'
 import { addMonths, todayIso, type IsoDate } from '../lib/date'
@@ -23,7 +23,8 @@ export function Onboarding() {
   const act = useActions()
   const today = todayIso()
   const [step, setStep] = useState(1)
-  const [birth, setBirth] = useState<IsoDate>(today)
+  // No default: a birth date left at "today" by a quick tap would build every schedule for a newborn.
+  const [birth, setBirth] = useState<IsoDate>('')
   const [nickname, setNickname] = useState('')
   const [sex, setSex] = useState<'M' | 'F' | null>(null)
   const [preterm, setPreterm] = useState(false)
@@ -32,14 +33,15 @@ export function Onboarding() {
   const [lead, setLead] = useState<number[]>(REMINDER_OPTIONS.default_lead_time_days)
   const [time, setTime] = useState(REMINDER_OPTIONS.time_of_day_default)
   const [email] = useState(false) // email reminders hidden until outgoing email is set up
-  const [unticked, setUnticked] = useState<string[]>([])
+  // Past doses: nothing is assumed. The parent says "all given" (then unticks the exceptions) or picks the given ones.
+  const [given, setGiven] = useState<string[] | null>(null)
   const [saving, setSaving] = useState(false)
 
-  const birthOk = birth <= today && birth >= addMonths(today, -72)
-  // PRD: doses due before today are listed, all ticked by default; the parent unticks what was missed.
+  const birthOk = !!birth && birth <= today && birth >= addMonths(today, -72)
+  // Doses due before today. They used to start all ticked, so one quick "Mulai" marked missed doses as given.
   const past = useMemo(
-    () => vaccineSchedule({ birth_date: birth, schedule, sex }, [], today).filter((d) => d.earliest < today && !['school', 'conditional', 'waiting'].includes(d.status)),
-    [birth, schedule, sex, today],
+    () => (birthOk ? vaccineSchedule({ birth_date: birth, schedule, sex }, [], today).filter((d) => d.earliest < today && !['school', 'conditional', 'waiting'].includes(d.status)) : []),
+    [birth, birthOk, schedule, sex, today],
   )
   const total = past.length ? 4 : 3
 
@@ -61,7 +63,7 @@ export function Onboarding() {
     await db.transaction('rw', db.children, db.settings, db.vaccine_records, async () => {
       await act.saveChild(child)
       await act.saveSettings({ active_child_id: child.id, reminder_lead_days: lead, reminder_time: time, email_reminders: email })
-      for (const d of past) if (!unticked.includes(d.key)) await act.setVaccine(child.id, d.key, d.earliest)
+      for (const d of past) if (given?.includes(d.key)) await act.setVaccine(child.id, d.key, d.earliest)
     })
   }
 
@@ -75,7 +77,7 @@ export function Onboarding() {
           <label className="mt-6 block" aria-label="Tanggal lahir">
             <PickerInput type="date" big value={birth} max={today} min={addMonths(today, -72)} onChange={setBirth} />
           </label>
-          {!birthOk && <p className="mt-2 text-[15px] font-semibold text-late">Pilih tanggal dalam 6 tahun terakhir, tidak setelah hari ini.</p>}
+          {!!birth && !birthOk && <p className="mt-2 text-[15px] font-semibold text-late">Pilih tanggal dalam 6 tahun terakhir, tidak setelah hari ini.</p>}
           <div className="flex-1" />
           <p className="mt-6 text-[13px] leading-relaxed text-ink-2">
             Aplikasi ini alat bantu pemantauan berdasarkan Buku KIA Kemenkes RI, IDAI, CDC/AAP, dan WHO. Bukan alat diagnosis dan tidak menggantikan bidan, dokter, atau Posyandu. Jika ada tanda bahaya, segera ke fasilitas kesehatan atau hubungi 119.
@@ -102,7 +104,7 @@ export function Onboarding() {
           <input id="nick" value={nickname} onChange={(e) => setNickname(e.target.value)} placeholder="Si Kecil" maxLength={40} autoComplete="off" className="mt-1.5 min-h-12 w-full rounded-xl border border-line bg-panel px-3.5 outline-none focus:border-ink" />
 
           <p className="mt-5 text-[15px] font-semibold">Jenis kelamin</p>
-          <p className="text-[13px] text-ink-2">Dipakai untuk jadwal vaksin HPV.</p>
+          <p className="text-[13px] text-ink-2">Dipakai untuk grafik pertumbuhan (standar WHO berbeda untuk laki-laki dan perempuan) dan jadwal vaksin HPV.</p>
           <div className="mt-2 flex gap-2">
             <Chip selected={sex === 'M'} onClick={() => setSex(sex === 'M' ? null : 'M')}>Laki-laki</Chip>
             <Chip selected={sex === 'F'} onClick={() => setSex(sex === 'F' ? null : 'F')}>Perempuan</Chip>
@@ -156,7 +158,7 @@ export function Onboarding() {
           <p className="mt-2 text-[15px] leading-snug text-ink-2">Kapan Ayah/Bunda ingin diingatkan sebelum jadwal? Boleh pilih lebih dari satu.</p>
           <div className="mt-3 flex flex-wrap gap-2">
             {REMINDER_OPTIONS.lead_time_days_choices.map((d) => (
-              <Chip key={d} check selected={lead.includes(d)} onClick={() => setLead(lead.includes(d) ? lead.filter((x) => x !== d) : [...lead, d].sort((a, b) => a - b))}>
+              <Chip key={d} check selected={lead.includes(d)} onClick={() => setLead((l) => (l.includes(d) ? l.filter((x) => x !== d) : [...l, d].sort((a, b) => a - b)))}>
                 {LEAD_LABEL[d] ?? `H-${d}`}
               </Chip>
             ))}
@@ -165,8 +167,8 @@ export function Onboarding() {
           <div className="mt-1.5">
             <PickerInput id="rtime" type="time" value={time} onChange={(v) => setTime(v || '07:00')} />
           </div>
-          <div className="mt-5 overflow-hidden rounded-2xl bg-panel">
-            <PushToggle />
+          <div className="mt-5">
+            <PushCta />
           </div>
           <p className="mt-3 text-[13px] leading-relaxed text-ink-2">Jadwal juga bisa dimasukkan ke kalender HP dari tab Imunisasi.</p>
           <div className="mt-6 grid grid-cols-[auto_1fr] gap-2">
@@ -185,20 +187,36 @@ export function Onboarding() {
     <Screen bottom="none">
       <div className="px-5 pt-[max(20px,var(--top-guard))]">
         <Steps at={4} total={total} />
-        <h1 className="mt-6 text-[40px] leading-[1.05] font-extrabold text-balance">Mana yang sudah diberikan?</h1>
-        <p className="mt-2 text-[15px] leading-snug text-ink-2">Imunisasi ini dijadwalkan sebelum hari ini. Semua sudah dicentang; hapus centang yang belum diberikan. Tanggal bisa diubah nanti.</p>
-        <ul className="mt-3 flex flex-wrap gap-2">
-          {past.map((d) => (
-            <li key={d.key}>
-              <Chip check selected={!unticked.includes(d.key)} onClick={() => setUnticked(unticked.includes(d.key) ? unticked.filter((k) => k !== d.key) : [...unticked, d.key])}>
-                {doseName(d.dose)}
-              </Chip>
-            </li>
-          ))}
-        </ul>
-        <div className="mt-6 grid grid-cols-[auto_1fr] gap-2">
+        <h1 className="mt-6 text-[40px] leading-[1.05] font-extrabold text-balance">Imunisasi sejauh ini</h1>
+        <p className="mt-2 text-[15px] leading-snug text-ink-2">
+          {past.length} imunisasi dijadwalkan sebelum hari ini. Apakah semuanya sudah diberikan? Lihat catatan imunisasi di Buku KIA bila ragu.
+        </p>
+        <div className="mt-4 grid gap-2.5">
+          <Button kind={given !== null && given.length === past.length ? 'primary' : 'secondary'} onClick={() => setGiven(past.map((d) => d.key))}>
+            Ya, semua sudah
+          </Button>
+          <Button kind={given !== null && given.length < past.length ? 'primary' : 'secondary'} onClick={() => setGiven([])}>
+            Belum semua / tidak yakin
+          </Button>
+        </div>
+        {given !== null && (
+          <>
+            <p className="mt-5 text-[15px] font-semibold">{given.length === past.length ? 'Hapus centang yang ternyata belum:' : 'Centang yang sudah diberikan:'}</p>
+            <ul className="mt-2 flex flex-wrap gap-2">
+              {past.map((d) => (
+                <li key={d.key}>
+                  <Chip check selected={given.includes(d.key)} onClick={() => setGiven((g) => (g?.includes(d.key) ? g.filter((k) => k !== d.key) : [...(g ?? []), d.key]))}>
+                    {doseName(d.dose)}
+                  </Chip>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-2 text-[13px] text-ink-2">Yang belum dicentang akan muncul sebagai imunisasi yang perlu dikejar. Tanggal bisa diubah nanti.</p>
+          </>
+        )}
+        <div className="mt-6 grid grid-cols-[auto_1fr] gap-2 pb-[max(16px,env(safe-area-inset-bottom))]">
           <Button kind="secondary" full={false} onClick={() => setStep(3)}>Kembali</Button>
-          <Button disabled={saving} onClick={finish}>Mulai</Button>
+          <Button disabled={saving || given === null} onClick={finish}>Mulai</Button>
         </div>
       </div>
     </Screen>

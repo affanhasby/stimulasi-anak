@@ -81,17 +81,29 @@ export function useChildRows(childId: string) {
   )
 }
 
+// Settings writes are read-modify-write on one row: run them one at a time, so two quick taps never undo each other.
+let settingsQueue: Promise<unknown> = Promise.resolve()
+
 export function actions(db: AppDb) {
   const D = { _dirty: 1 } // see sync.ts
   const after = <T,>(p: Promise<T>) => p.then((v) => (requestSync(db), v))
+  const writeSettings = async (change: (cur: Settings) => Partial<Settings>) => {
+    const cur = { ...DEFAULT_SETTINGS, ...(await db.settings.get('me')) } as Settings & { _dirty?: number; _dirtyCols?: string[] }
+    const patch = change(cur)
+    // Only the fields changed here are uploaded, so a device with older values never overwrites the others.
+    const cols = Object.keys(patch).filter((k) => SETTING_COLS.includes(k))
+    if (!cols.length) return void (await db.settings.put({ ...cur, ...patch, updated_at: nowIso() }))
+    await after(db.settings.put({ ...cur, ...patch, ...D, _dirtyCols: [...new Set([...(cur._dirtyCols ?? []), ...cols])], updated_at: nowIso() }))
+  }
+  const queued = (change: (cur: Settings) => Partial<Settings>) => {
+    const run = settingsQueue.then(() => writeSettings(change))
+    settingsQueue = run.catch(() => {})
+    return run
+  }
   return {
-    async saveSettings(patch: Partial<Settings>) {
-      const cur = { ...DEFAULT_SETTINGS, ...(await db.settings.get('me')) } as Settings & { _dirty?: number; _dirtyCols?: string[] }
-      // Only the fields changed here are uploaded, so a device with older values never overwrites the others.
-      const cols = Object.keys(patch).filter((k) => SETTING_COLS.includes(k))
-      if (!cols.length) return void (await db.settings.put({ ...cur, ...patch, updated_at: nowIso() }))
-      await after(db.settings.put({ ...cur, ...patch, ...D, _dirtyCols: [...new Set([...(cur._dirtyCols ?? []), ...cols])], updated_at: nowIso() }))
-    },
+    /** Toggle-style changes computed from the stored settings (latest, after any write still in flight). */
+    updateSettings: (fn: (cur: Settings) => Partial<Settings>) => queued(fn),
+    saveSettings: (patch: Partial<Settings>) => queued(() => patch),
     async saveChild(child: Child) {
       await after(db.children.put({ ...child, ...D, updated_at: nowIso() }))
     },
@@ -115,6 +127,9 @@ export function actions(db: AppDb) {
     },
     async saveHealthCheck(childId: string, day: IsoDate, answers: Record<string, boolean>, result: 'aman' | 'perhatian' | 'bahaya') {
       await after(db.health_checks.put({ child_id: childId, day, answers, result, checked_at: nowIso(), deleted: false, ...D, updated_at: nowIso() }))
+    },
+    async removeHealthCheck(childId: string, day: IsoDate) {
+      await after(db.health_checks.update([childId, day], { deleted: true, ...D, updated_at: nowIso() }))
     },
     async saveMeasurement(m: Omit<MeasurementRow, 'deleted' | 'updated_at'>) {
       await after(db.measurements.put({ ...m, deleted: false, ...D, updated_at: nowIso() }))

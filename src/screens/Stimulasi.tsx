@@ -143,7 +143,7 @@ export function Stimulasi({ child }: { child: Child }) {
                   </span>
                 </button>
                 <button type="button" aria-pressed={done} aria-label={`${done ? 'Batalkan' : isToday ? 'Tandai selesai hari ini' : `Tandai selesai ${longDate(sel)}`}: ${a.title}`} onClick={() => act.toggleCheck(child.id, sel, a.id)} className="grid size-12 shrink-0 place-items-center">
-                  <span className={`grid size-[34px] place-items-center rounded-full border-[2.5px] transition-colors duration-200 ${done ? 'border-ink bg-ink text-panel' : 'border-off text-transparent'}`}>
+                  <span className={`grid size-[34px] place-items-center rounded-full border-[2.5px] transition-colors duration-200 ${done ? 'border-ink bg-ink text-panel' : 'border-ink-2/80 text-transparent'}`}>
                     <IconCheck />
                   </span>
                 </button>
