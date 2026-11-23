@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Button, Chip, Field, Screen } from '../components/ui'
-import type { Child } from '../lib/db'
+import type { Child, MeasurementRow } from '../lib/db'
 import { ageMonthsExact } from '../lib/growth'
 import { useToday } from '../lib/hooks'
 import { back, go } from '../lib/nav'
@@ -8,12 +8,24 @@ import { useActions, useChildRows } from '../lib/store'
 
 const num = (s: string) => (s.trim() === '' ? null : Number(s.replace(',', '.')))
 
-/** Record (or edit) one measurement: weight and/or length/height on a date. */
+/**
+ * Record (or edit) one measurement: weight and/or length/height on a date.
+ * The form starts from the stored values, so it waits until the device database has loaded (and restarts
+ * when the record arrives by sync): starting earlier would open an edit as a blank form dated today.
+ */
 export function Ukur({ child, id }: { child: Child; id?: string }) {
+  const loaded = useChildRows(child.id)
+  if (!loaded) return <Screen title={id ? 'Ubah pengukuran' : 'Catat pengukuran'} onBack="pertumbuhan" bottom="none">{null}</Screen>
+  const existing = id ? loaded.measurements.find((r) => r.id === id) : undefined
+  // Keyed by whether the record is here yet: if it arrives later (synced from the server), the form restarts
+  // from its values instead of keeping the blank start.
+  return <UkurForm key={existing ? existing.id : 'new'} child={child} rows={loaded.measurements} existing={existing} />
+}
+
+function UkurForm({ child, rows, existing }: { child: Child; rows: MeasurementRow[]; existing?: MeasurementRow }) {
   const today = useToday()
-  const rows = useChildRows(child.id)?.measurements ?? []
   const act = useActions()
-  const existing = id ? rows.find((r) => r.id === id) : undefined
+  const id = existing?.id
   const [date, setDate] = useState(existing?.measured_on ?? today)
   const [w, setW] = useState(existing?.weight_kg != null ? String(existing.weight_kg).replace('.', ',') : '')
   const [l, setL] = useState(existing?.length_cm != null ? String(existing.length_cm).replace('.', ',') : '')
