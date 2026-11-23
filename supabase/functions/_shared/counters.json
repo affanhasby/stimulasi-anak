@@ -1,0 +1,498 @@
+{
+  "_info": "Definisi penghitung harian sekali-tap. type: tap (satu tap = +1 kejadian, simpan timestamp), timer (tap mulai/berhenti, simpan durasi), tap_with_choice (tap lalu satu pilihan opsional, bisa dilewati). 'Hari' = 00:00-23:59 zona waktu perangkat; untuk bayi baru lahir, tampilkan juga 'per 24 jam terakhir'. Rentang normal hanya panduan; alert bersifat informatif, bukan diagnosis. Rule `age_days` dihitung dari tanggal lahir.",
+  "as_of": "2026-11-21",
+  "counters": [
+    {
+      "id": "BAB",
+      "label": "BAB / pup",
+      "icon": "poop",
+      "type": "tap_with_choice",
+      "visible_months": [
+        0,
+        36
+      ],
+      "default_on": true,
+      "choice": {
+        "key": "warna",
+        "optional": true,
+        "options": [
+          "hitam/hijau gelap (mekonium)",
+          "hijau",
+          "kuning",
+          "coklat",
+          "pucat/putih/abu-abu",
+          "ada darah/merah"
+        ]
+      },
+      "norms": [
+        {
+          "age_days": [
+            0,
+            2
+          ],
+          "min_per_day": 1,
+          "text": "Hari 1-2: 1-2 kali, hitam pekat seperti ter (mekonium).",
+          "source": "AAP_ENOUGH_MILK"
+        },
+        {
+          "age_days": [
+            3,
+            4
+          ],
+          "min_per_day": 2,
+          "text": "Hari 3-4: minimal 2 kali, mulai kehijauan-kuning.",
+          "source": "AAP_ENOUGH_MILK"
+        },
+        {
+          "age_days": [
+            5,
+            28
+          ],
+          "min_per_day": 3,
+          "text": "Hari 5-7 dan seterusnya (bayi ASI): 3-4 kali per hari, kuning encer berbutir.",
+          "source": "AAP_ENOUGH_MILK",
+          "related_source": "BUKU_KIA_2021"
+        },
+        {
+          "age_days": [
+            29,
+            1095
+          ],
+          "min_per_day": null,
+          "text": "Setelah 1 bulan: bisa beberapa kali sehari atau 1 kali tiap 2-3 hari, selama anak nyaman dan menyusu baik.",
+          "source": "SUTTER_DIAPERS"
+        }
+      ],
+      "alerts": [
+        {
+          "id": "BAB-A1",
+          "if": "age_days<=2 && hours_since_birth>=48 && total_count==0",
+          "level": "segera",
+          "text": "Bayi belum BAB dalam 48 jam pertama. Hubungi bidan/dokter.",
+          "source": "BUKU_KIA_2021",
+          "page": "35"
+        },
+        {
+          "id": "BAB-A2",
+          "if": "age_days<=28 && days_since_last>3",
+          "level": "periksa",
+          "text": "Bayi baru lahir tidak BAB lebih dari 3 hari. Periksakan ke tenaga kesehatan.",
+          "source": "BUKU_KIA_2021",
+          "page": "36"
+        },
+        {
+          "id": "BAB-A3",
+          "if": "choice==pucat/putih/abu-abu",
+          "level": "segera",
+          "text": "Tinja pucat/putih/abu-abu bisa tanda gangguan hati (atresia bilier). Segera ke dokter. Bandingkan dengan kartu warna tinja di Buku KIA.",
+          "source": "BUKU_KIA_2021",
+          "page": "39"
+        },
+        {
+          "id": "BAB-A4",
+          "if": "choice==ada darah/merah",
+          "level": "segera",
+          "text": "Tinja merah/berdarah: segera hubungi dokter.",
+          "source": "SUTTER_DIAPERS"
+        },
+        {
+          "id": "BAB-A5",
+          "if": "age_days>3 && choice==hitam/hijau gelap (mekonium)",
+          "level": "segera",
+          "text": "Tinja hitam setelah usia 3 hari tidak normal. Segera hubungi dokter.",
+          "source": "SUTTER_DIAPERS"
+        },
+        {
+          "id": "BAB-A6",
+          "if": "count_today>=6 && age_days>28",
+          "level": "periksa",
+          "text": "BAB sangat sering hari ini. Waspadai diare dan tanda dehidrasi (malas minum, mulut kering, jarang pipis). Diare termasuk tanda bahaya di Buku KIA.",
+          "source": "BUKU_KIA_2021",
+          "page": "38"
+        }
+      ]
+    },
+    {
+      "id": "BAK",
+      "label": "Pipis / popok basah",
+      "icon": "droplet",
+      "type": "tap",
+      "visible_months": [
+        0,
+        24
+      ],
+      "default_on": true,
+      "norms": [
+        {
+          "age_days": [
+            0,
+            4
+          ],
+          "min_per_day": "age_day_number",
+          "text": "Hari-hari pertama: minimal 1 popok basah per hari usia (hari ke-1: 1, hari ke-2: 2, dst). Pipis pertama dalam 24 jam setelah lahir.",
+          "source": "SUTTER_DIAPERS",
+          "related_source": "BUKU_KIA_2021"
+        },
+        {
+          "age_days": [
+            5,
+            365
+          ],
+          "min_per_day": 6,
+          "text": "Mulai hari 5-7: 6 popok basah atau lebih per hari, urin jernih/kuning pucat. Buku KIA: 6-8 kali sehari.",
+          "source": "AAP_ENOUGH_MILK",
+          "related_source": "BUKU_KIA_2021"
+        }
+      ],
+      "alerts": [
+        {
+          "id": "BAK-A1",
+          "if": "hours_since_birth>=24 && total_count==0",
+          "level": "segera",
+          "text": "Bayi belum pipis dalam 24 jam pertama. Hubungi bidan/dokter.",
+          "source": "BUKU_KIA_2021",
+          "page": "35"
+        },
+        {
+          "id": "BAK-A2",
+          "if": "age_days>=4 && count_last_24h<=4 && log_coverage_ok",
+          "level": "periksa",
+          "text": "4 popok basah atau kurang dalam 24 jam bisa tanda dehidrasi. Hubungi dokter anak.",
+          "source": "SUTTER_DIAPERS"
+        }
+      ]
+    },
+    {
+      "id": "NURSE",
+      "label": "Menyusu (ASI)",
+      "icon": "breast",
+      "type": "timer",
+      "visible_months": [
+        0,
+        24
+      ],
+      "default_on": true,
+      "timer_options": {
+        "side_choice": [
+          "kiri",
+          "kanan"
+        ],
+        "side_optional": true,
+        "suggest_next_side": true,
+        "one_tap_mode": "Tap = catat 1 kali menyusu tanpa timer"
+      },
+      "norms": [
+        {
+          "age_days": [
+            0,
+            180
+          ],
+          "min_per_day": 8,
+          "max_per_day": 12,
+          "text": "Susui sesering mungkin, 8-12 kali per 24 jam atau sesuai keinginan bayi. Lama menyusu umumnya 5-30 menit.",
+          "source": "BUKU_KIA_2021",
+          "page": "34",
+          "related_source": "AAP_ENOUGH_MILK"
+        }
+      ],
+      "alerts": [
+        {
+          "id": "NURSE-A1",
+          "if": "age_days<=28 && hours_since_last>3 && is_daytime_or_any",
+          "level": "info",
+          "text": "Sudah lebih dari 3 jam sejak menyusu terakhir. Buku KIA: bila bayi tidur lebih dari 3 jam, bangunkan dan susui.",
+          "source": "BUKU_KIA_2021",
+          "page": "34"
+        },
+        {
+          "id": "NURSE-A2",
+          "if": "age_days<=28 && count_last_24h<8 && log_coverage_ok",
+          "level": "periksa",
+          "text": "Menyusu kurang dari 8 kali dalam 24 jam pada bayi baru lahir bisa tanda asupan kurang. Konsultasikan bila disertai jarang pipis atau lemas.",
+          "source": "SUTTER_DIAPERS"
+        },
+        {
+          "id": "NURSE-A3",
+          "if": "manual_flag_refuses_feeding",
+          "level": "segera",
+          "text": "Bayi tidak mau menyusu termasuk tanda bahaya bayi baru lahir. Segera ke fasilitas kesehatan.",
+          "source": "BUKU_KIA_2021",
+          "page": "37"
+        }
+      ]
+    },
+    {
+      "id": "BOTTLE",
+      "label": "Susu botol (ASIP/formula)",
+      "icon": "bottle",
+      "type": "tap_with_choice",
+      "visible_months": [
+        0,
+        24
+      ],
+      "default_on": false,
+      "choice": {
+        "key": "ml",
+        "optional": true,
+        "options": [
+          30,
+          60,
+          90,
+          120,
+          150,
+          180,
+          210,
+          240
+        ]
+      },
+      "norms": [],
+      "alerts": []
+    },
+    {
+      "id": "MPASI",
+      "label": "Makan (MP-ASI)",
+      "icon": "bowl",
+      "type": "tap_with_choice",
+      "visible_months": [
+        6,
+        24
+      ],
+      "default_on": true,
+      "choice": {
+        "key": "jenis",
+        "optional": true,
+        "options": [
+          "makan utama",
+          "selingan"
+        ]
+      },
+      "norms": [
+        {
+          "age_months": [
+            6,
+            9
+          ],
+          "text": "6-8 bulan: 2-3 kali makan utama + 1-2 kali selingan; tekstur lumat/disaring; ASI tetap diberikan.",
+          "source": "BUKU_KIA_2021",
+          "page": "41"
+        },
+        {
+          "age_months": [
+            9,
+            12
+          ],
+          "text": "9-11 bulan: 3-4 kali makan utama + 1-2 kali selingan; tekstur cincang.",
+          "source": "BUKU_KIA_2021",
+          "page": "41"
+        },
+        {
+          "age_months": [
+            12,
+            24
+          ],
+          "text": "12-23 bulan: 3-4 kali makan utama + 1-2 kali selingan; makanan keluarga dipotong kecil; ASI dilanjutkan sampai 2 tahun atau lebih.",
+          "source": "BUKU_KIA_2021",
+          "page": "41"
+        }
+      ],
+      "alerts": [],
+      "pre_start_info": {
+        "age_months": 5,
+        "text": "MP-ASI dimulai usia 6 bulan. ASI eksklusif sampai 6 bulan.",
+        "source": "BUKU_KIA_2021",
+        "page": "35, 41"
+      }
+    },
+    {
+      "id": "SLEEP",
+      "label": "Tidur",
+      "icon": "moon",
+      "type": "timer",
+      "visible_months": [
+        0,
+        72
+      ],
+      "default_on": true,
+      "timer_options": {
+        "one_tap_mode": "Tap 'tidur' saat mulai, tap 'bangun' saat selesai. Bisa edit jam bila lupa."
+      },
+      "norms": [
+        {
+          "age_months": [
+            0,
+            4
+          ],
+          "text": "Bayi baru lahir tidur sampai sekitar 16 jam sehari. Selalu telentang di alas datar, jauhkan benda yang bisa menutupi kepala, gunakan kelambu.",
+          "source": "BUKU_KIA_2021",
+          "page": "35"
+        },
+        {
+          "age_months": [
+            4,
+            12
+          ],
+          "min_hours": 12,
+          "max_hours": 16,
+          "text": "4-12 bulan: 12-16 jam per hari termasuk tidur siang.",
+          "source": "BUKU_KIA_2021",
+          "page": "33",
+          "related_source": "AASM_SLEEP_2016"
+        },
+        {
+          "age_months": [
+            12,
+            24
+          ],
+          "min_hours": 11,
+          "max_hours": 14,
+          "text": "1-2 tahun: 11-14 jam per hari termasuk tidur siang.",
+          "source": "BUKU_KIA_2021",
+          "page": "33",
+          "related_source": "AASM_SLEEP_2016"
+        },
+        {
+          "age_months": [
+            36,
+            72
+          ],
+          "min_hours": 10,
+          "max_hours": 13,
+          "text": "3-5 tahun: 10-13 jam per hari termasuk tidur siang.",
+          "source": "CDC_4Y",
+          "related_source": "CDC_5Y",
+          "verification": "verified"
+        }
+      ],
+      "alerts": []
+    },
+    {
+      "id": "TUMMY",
+      "label": "Waktu tengkurap",
+      "icon": "baby",
+      "type": "timer",
+      "visible_months": [
+        0,
+        6
+      ],
+      "default_on": true,
+      "norms": [
+        {
+          "age_months": [
+            0,
+            6
+          ],
+          "text": "Tengkurap hanya saat bayi bangun dan diawasi. Mulai beberapa menit, beberapa kali sehari.",
+          "source": "BUKU_KIA_2021",
+          "page": "42"
+        }
+      ],
+      "alerts": []
+    },
+    {
+      "id": "PUMP",
+      "label": "Pompa ASI",
+      "icon": "pump",
+      "type": "tap_with_choice",
+      "visible_months": [
+        0,
+        24
+      ],
+      "default_on": false,
+      "choice": {
+        "key": "ml",
+        "optional": true,
+        "options": [
+          30,
+          60,
+          90,
+          120,
+          150,
+          200
+        ]
+      },
+      "norms": [],
+      "alerts": []
+    },
+    {
+      "id": "MED",
+      "label": "Obat / vitamin",
+      "icon": "pill",
+      "type": "tap_with_choice",
+      "visible_months": [
+        0,
+        72
+      ],
+      "default_on": false,
+      "choice": {
+        "key": "nama",
+        "optional": false,
+        "options_user_defined": true,
+        "note": "Pengguna membuat 1x tombol, misal 'Vitamin D' atau 'Paracetamol'; selanjutnya cukup tap."
+      },
+      "norms": [],
+      "alerts": []
+    },
+    {
+      "id": "TEMP",
+      "label": "Suhu tubuh",
+      "icon": "thermo",
+      "type": "tap_with_choice",
+      "visible_months": [
+        0,
+        72
+      ],
+      "default_on": false,
+      "choice": {
+        "key": "celsius",
+        "optional": false,
+        "picker": "wheel 35.0-41.0 step 0.1"
+      },
+      "norms": [
+        {
+          "text": "Normal 36,5-37,5 °C.",
+          "source": "BUKU_KIA_2021",
+          "page": "36"
+        }
+      ],
+      "alerts": [
+        {
+          "id": "TEMP-A1",
+          "if": "celsius>37.5 && age_days<=28",
+          "level": "segera",
+          "text": "Demam pada bayi baru lahir adalah tanda bahaya. Segera ke fasilitas kesehatan.",
+          "source": "BUKU_KIA_2021",
+          "page": "37"
+        },
+        {
+          "id": "TEMP-A2",
+          "if": "celsius<36.5 && age_days<=28",
+          "level": "segera",
+          "text": "Suhu rendah/tubuh dingin pada bayi baru lahir adalah tanda bahaya. Hangatkan dan segera ke fasilitas kesehatan.",
+          "source": "BUKU_KIA_2021",
+          "page": "37"
+        },
+        {
+          "id": "TEMP-A3",
+          "if": "celsius>37.5 && age_days>28",
+          "level": "periksa",
+          "text": "Anak demam. Demam tinggi termasuk tanda bahaya balita; perhatikan tanda bahaya lain dan konsultasikan.",
+          "source": "BUKU_KIA_2021",
+          "page": "38"
+        }
+      ]
+    },
+    {
+      "id": "STIM",
+      "label": "Stimulasi hari ini",
+      "icon": "star",
+      "type": "derived",
+      "visible_months": [
+        0,
+        72
+      ],
+      "default_on": true,
+      "note": "Bukan tombol; ringkasan otomatis jumlah kegiatan stimulasi yang dicentang hari ini."
+    }
+  ],
+  "version": "2026.11.21-3"
+}

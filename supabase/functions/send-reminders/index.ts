@@ -3,7 +3,8 @@
 import { createClient } from 'npm:@supabase/supabase-js@2'
 import nodemailer from 'npm:nodemailer@6.9.16'
 import webpush from 'npm:web-push@3.6.7'
-import { addDays, daysBetween, type IsoDate } from '../_shared/date.ts'
+import { addDays, ageInMonths, type IsoDate } from '../_shared/date.ts'
+import { routinesFor } from '../_shared/routines.ts'
 import type { SupabaseClient } from 'npm:@supabase/supabase-js@2'
 import { doseName, vaccineSchedule, type ScheduledDose, type VaccineChild } from '../_shared/vaccines.ts'
 
@@ -102,47 +103,63 @@ const once = async (sb: SupabaseClient, userId: string, childId: string, key: st
 
 const H = 3_600_000
 
+type NudgeSettings = { user_id: string; recap_time?: string; log_nudges?: boolean; enabled_counters?: string[] | null; routine_off?: string[] | null }
+
+/** When a routine was last sent for the child, to keep its interval between reminders. */
+async function lastSent(sb: SupabaseClient, childId: string, prefix: string) {
+  const { data } = await sb.from('reminder_log').select('created_at').eq('child_id', childId).like('reminder_key', `${prefix}%`).order('created_at', { ascending: false }).limit(1)
+  return data?.[0] ? Date.parse(data[0].created_at) : 0
+}
+
 /**
- * Help with forgotten counter taps (only for families who log, and never at night, 21.00–07.00):
- * - at the chosen recap time: "isi yang terlewat", unless already filled in today in the app;
- * - babies up to 6 months: a gentle "sudah menyusu?" when no feed was logged for 3.5 h (up to 28 days old)
- *   or 5 h, at most twice a day and 3 h apart.
+ * Help with counting (only for families who logged something in the last 2 days, never 21.00-07.00):
+ * - routine reminders for the active counter buttons (src/lib/routines.ts): "nothing for N hours",
+ *   fixed times (MP-ASI, tummy time) and timers left running;
+ * - at the chosen recap time: "isi yang terlewat", unless already filled in today in the app.
  */
-async function logNudges(sb: SupabaseClient, s: { user_id: string; recap_time?: string }, devices: Device[], tz: string, now: Date, report: Report) {
+async function logNudges(sb: SupabaseClient, s: NudgeSettings, devices: Device[], tz: string, now: Date, report: Report) {
   const h = hourIn(tz, now)
   if (h < 7 || h >= 21) return
   const today = dateIn(tz, now) as IsoDate
-  const recapHour = Number(String(s.recap_time ?? '20:00').slice(0, 2))
+  const t = now.getTime()
   const { data: kids } = await sb.from('children').select('id, nickname, birth_date').eq('user_id', s.user_id).is('deleted_at', null)
   for (const child of kids ?? []) {
     const { data: ev } = await sb
       .from('counter_events')
-      .select('counter_id, start_at')
+      .select('id, counter_id, start_at, end_at')
       .eq('child_id', child.id)
       .eq('deleted', false)
-      .gte('start_at', new Date(now.getTime() - 48 * H).toISOString())
+      .gte('start_at', new Date(t - 48 * H).toISOString())
     if (!ev?.length) continue // not logging lately: never nag
 
-    if (h === recapHour) {
-      const { data: filled } = await sb.from('alert_logs').select('alert_id').eq('child_id', child.id).eq('alert_id', 'RECAP').eq('day', today).maybeSingle()
-      if (!filled && (await once(sb, s.user_id, child.id, 'log:recap', today))) {
-        await pushAll(sb, devices, { title: `Rekap ${child.nickname} hari ini`, body: 'Ada BAB, pipis, atau menyusu yang lupa dicatat? Ketuk untuk melengkapi, cukup jumlahnya.', url: '#/isi', tag: `recap-${today}` }, 4 * 3600, report)
-        report.nudged++
-      }
-      continue
+    const push = async (key: string, routine: { title: string; url?: string; tag: string }, body: string) => {
+      if (!(await once(sb, s.user_id, child.id, key, today))) return
+      await pushAll(sb, devices, { title: routine.title, body, url: routine.url ?? '#/', tag: routine.tag }, 2 * 3600, report)
+      report.nudged++
     }
 
-    const ageDays = daysBetween(child.birth_date, today)
-    if (ageDays > 182) continue
-    const feeds = ev.filter((e) => e.counter_id === 'NURSE' || e.counter_id === 'BOTTLE')
-    if (!feeds.length) continue
-    const gap = (now.getTime() - Math.max(...feeds.map((e) => Date.parse(e.start_at)))) / H
-    if (gap < (ageDays <= 28 ? 3.5 : 5)) continue
-    const { data: sent } = await sb.from('reminder_log').select('created_at').eq('child_id', child.id).eq('sent_on', today).like('reminder_key', 'log:gap:%')
-    if ((sent?.length ?? 0) >= 2 || sent?.some((r) => now.getTime() - Date.parse(r.created_at) < 3 * H)) continue
-    if (!(await once(sb, s.user_id, child.id, `log:gap:${h}`, today))) continue
-    await pushAll(sb, devices, { title: 'Sudah menyusu?', body: `Sudah ${Math.floor(gap)} jam belum ada catatan menyusu ${child.nickname}. Kalau sudah, ketuk untuk mencatat.`, url: '#/', tag: `gap-${child.id}` }, 2 * 3600, report)
-    report.nudged++
+    // Evening catch-up.
+    if (s.log_nudges !== false && h === Number(String(s.recap_time ?? '20:00').slice(0, 2))) {
+      const { data: filled } = await sb.from('alert_logs').select('alert_id').eq('child_id', child.id).eq('alert_id', 'RECAP').eq('day', today).maybeSingle()
+      if (!filled) await push('log:recap', { title: `Rekap ${child.nickname} hari ini`, url: '#/isi', tag: `recap-${today}` }, 'Ada BAB, pipis, atau menyusu yang lupa dicatat? Ketuk untuk melengkapi, cukup jumlahnya.')
+    }
+
+    const months = ageInMonths(child.birth_date, today)
+    for (const r of routinesFor(months, s.enabled_counters ?? null, s.routine_off ?? [])) {
+      const mine = ev.filter((e) => r.counters.includes(e.counter_id))
+      const tag = `routine-${r.id}-${child.id}`
+      // A timer left running (forgot to stop it): once per timer.
+      if (r.running) {
+        const open = mine.find((e) => e.end_at === null && t - Date.parse(e.start_at) >= r.running! * 60_000)
+        if (open) await push(`routine:${r.id}:run:${open.id}`, { title: r.id === 'sleep' ? 'Masih tidur?' : 'Masih tengkurap?', tag }, r.id === 'sleep' ? r.body(child.nickname) : `Timer tengkurap ${child.nickname} masih berjalan. Kalau sudah selesai, ketuk kotak Tengkurap untuk menghentikan.`)
+      }
+      const last = mine.length ? Math.max(...mine.map((e) => Date.parse(e.start_at))) : 0
+      // "Nothing logged for N hours": not again until another N hours have passed since the last reminder.
+      if (r.every && last && t - last >= r.every * H && t - (await lastSent(sb, child.id, `routine:${r.id}:every`)) >= r.every * H)
+        await push(`routine:${r.id}:every:${h}`, { title: r.title, tag }, r.body(child.nickname))
+      // Fixed times of day, skipped when one was logged in the last 2 hours.
+      if (r.at?.includes(h) && t - last >= 2 * H) await push(`routine:${r.id}:at:${h}`, { title: r.title, tag }, r.body(child.nickname))
+    }
   }
 }
 
@@ -154,7 +171,7 @@ Deno.serve(async (req) => {
   const testDay = url.searchParams.get('today') // for tests: pretend it is this date, ignore the hour
   const sb = createClient(Deno.env.get('SUPABASE_URL')!, Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!, { auth: { persistSession: false } })
 
-  const { data: settings, error } = await sb.from('user_settings').select('user_id, reminder_lead_days, reminder_time, timezone, email_reminders, log_nudges, recap_time')
+  const { data: settings, error } = await sb.from('user_settings').select('user_id, reminder_lead_days, reminder_time, timezone, email_reminders, log_nudges, recap_time, enabled_counters, routine_off')
   if (error) return new Response(error.message, { status: 500 })
 
   const report: Report = { checked: 0, emailed: 0, pushed: 0, items: 0, nudged: 0, errors: [] }
@@ -163,7 +180,7 @@ Deno.serve(async (req) => {
     const { data: devices } = await sb.from('push_subscriptions').select('endpoint, p256dh, auth').eq('user_id', s.user_id)
     if (!s.email_reminders && !devices?.length) continue
     const tz = s.timezone || 'Asia/Jakarta'
-    if (devices?.length && s.log_nudges !== false && !testDay)
+    if (devices?.length && !testDay)
       await logNudges(sb, s, devices, tz, url.searchParams.get('now') ? new Date(url.searchParams.get('now')!) : now, report).catch((e) => report.errors.push(`nudge ${String(e)}`))
     if (!testDay && hourIn(tz, now) !== Number(String(s.reminder_time).slice(0, 2))) continue
     report.checked++

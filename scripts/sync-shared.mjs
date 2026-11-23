@@ -1,4 +1,4 @@
-// Copies the vaccine engine into supabase/functions/_shared so the reminder function computes
+// Copies the vaccine engine and the routine-reminder rules into supabase/functions/_shared so the reminder function computes
 // exactly the dates the app shows. Run after editing src/lib/date.ts, src/lib/vaccines.ts or vaccines.json.
 import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 
@@ -10,6 +10,7 @@ const deno = (src) =>
   src
     .replace("import vaccinesJson from '@data/vaccines.json'", "import vaccinesJson from './vaccines.json' with { type: 'json' }")
     .replace(/from '\.\/date'/g, "from './date.ts'")
-for (const f of ['date.ts', 'vaccines.ts']) writeFileSync(new URL(f, out), deno(readFileSync(new URL(`../src/lib/${f}`, import.meta.url), 'utf8')))
-copyFileSync(new URL('../PRD dan Data/vaccines.json', import.meta.url), new URL('vaccines.json', out))
+    .replace("import countersJson from '@data/counters.json'", "import countersJson from './counters.json' with { type: 'json' }")
+for (const f of ['date.ts', 'vaccines.ts', 'routines.ts']) writeFileSync(new URL(f, out), deno(readFileSync(new URL(`../src/lib/${f}`, import.meta.url), 'utf8')))
+for (const j of ['vaccines.json', 'counters.json']) copyFileSync(new URL(`../PRD dan Data/${j}`, import.meta.url), new URL(j, out))
 console.log('supabase/functions/_shared updated')

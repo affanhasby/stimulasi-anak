@@ -25,6 +25,7 @@ export type Settings = {
   reminder_time: string // 'HH:MM'
   log_nudges: boolean // push when feeds go unlogged for long + evening catch-up prompt
   recap_time: string // 'HH:MM', evening catch-up
+  routine_off: string[] // routine reminders switched off (ids in lib/routines.ts)
   email_reminders: boolean
   enabled_counters: string[] | null // null = defaults from counters.json
   theme: 'system' | 'light' | 'dark'
@@ -146,6 +147,7 @@ export const DEFAULT_SETTINGS: Settings = {
   reminder_time: '07:00',
   log_nudges: true,
   recap_time: '20:00',
+  routine_off: [],
   email_reminders: false,
   enabled_counters: null,
   theme: 'system',

@@ -48,3 +48,7 @@ export function developmentalBirth(birth: IsoDate, today: IsoDate, gestationalWe
   if (ageInMonths(birth, today) >= 24) return birth
   return addDays(birth, (40 - gestationalWeeks) * 7)
 }
+
+/** First day whose records may be added or changed: the day the child was added to the app (not before birth). */
+export const editableFrom = (child: { birth_date: IsoDate; created_at: string }): IsoDate =>
+  maxDate(child.birth_date, todayIso(Date.parse(child.created_at)))

@@ -14,6 +14,7 @@ import { downloadFile } from '../lib/ics'
 import { isStandalone, needsIosGuide, promptInstall, useCanInstall } from '../lib/install'
 import { back, go } from '../lib/nav'
 import { useActions, useSettings, useStore } from '../lib/store'
+import { routinesFor } from '../lib/routines'
 import { REMINDER_OPTIONS } from '../lib/vaccines'
 import sourcesJson from '@data/sources.json'
 
@@ -76,11 +77,13 @@ function Profil({ child }: { child: Child }) {
   )
 }
 
-function Pengingat() {
+function Pengingat({ child }: { child: Child }) {
   const s = useSettings()
   const act = useActions()
   if (!s) return null
   const lead = s.reminder_lead_days
+  // Every routine this child's active buttons have, switched on or off (switching keeps the list stable).
+  const routines = routinesFor(ageInMonths(child.birth_date, todayIso()), s.enabled_counters, [])
   return (
     <Sub title="Pengingat & notifikasi">
       <Section title="Kapan diingatkan" note="Relatif ke tanggal 'Mulai bisa'. Pengingat tambahan 3 hari sebelum batas bila belum ditandai.">
@@ -102,15 +105,22 @@ function Pengingat() {
         {/* shortcut: email reminders hidden until outgoing email is set up (DEPLOY.md). */}
       </Section>
       <Section
-        title="Catatan harian"
-        note="Pengingat menyusu hanya untuk bayi sampai 6 bulan yang catatannya sedang dipakai, paling banyak 2 kali sehari dan tidak antara pukul 21.00–06.00."
+        title="Pengingat rutin"
+        note="Untuk tombol penghitung yang aktif. Hanya dikirim bila ada catatan dalam 2 hari terakhir, dan tidak antara pukul 21.00–07.00."
       >
-        <Toggle
-          label="Bantu ingatkan mencatat"
-          hint="Bila lama tidak ada catatan menyusu, dan rekap malam untuk mengisi yang terlewat"
-          checked={s.log_nudges}
-          onChange={(v) => act.saveSettings({ log_nudges: v })}
-        />
+        {routines.length === 0 && <p className="px-4 py-4 text-[15px] text-ink-2">Tidak ada tombol aktif yang punya pengingat rutin.</p>}
+        {routines.map((r) => (
+          <Toggle
+            key={r.id}
+            label={r.label}
+            hint={r.rule}
+            checked={!s.routine_off.includes(r.id)}
+            onChange={(v) => act.saveSettings({ routine_off: v ? s.routine_off.filter((x) => x !== r.id) : [...s.routine_off, r.id] })}
+          />
+        ))}
+      </Section>
+      <Section title="Rekap malam" note="Mengingatkan untuk mengisi BAB, pipis, atau menyusu yang lupa dicatat hari itu.">
+        <Toggle label="Rekap malam" hint="Lewati bila hari itu sudah diisi" checked={s.log_nudges} onChange={(v) => act.saveSettings({ log_nudges: v })} />
         {s.log_nudges && (
           <div className="border-t border-line p-4">
             <p className="mb-1.5 text-[15px] font-semibold">Jam rekap malam</p>
@@ -260,7 +270,7 @@ export function Lainnya({ child, sub }: { child: Child; sub?: string }) {
     : 'Menunggu'
 
   if (sub === 'profil') return <Profil child={child} />
-  if (sub === 'pengingat') return <Pengingat />
+  if (sub === 'pengingat') return <Pengingat child={child} />
   if (sub === 'penghitung') return <Penghitung child={child} />
   if (sub === 'tampilan') return <Tampilan />
   if (sub === 'pasang') return <Pasang />
