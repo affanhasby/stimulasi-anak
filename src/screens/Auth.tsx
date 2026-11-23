@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { BrandPlate } from '../components/Plate'
 import { Button, Field, Screen } from '../components/ui'
+import { InstallBanner } from '../components/Install'
 import { resendConfirmation, sendReset, signIn, signUp, USERNAME_RE, usernameAvailable } from '../lib/auth'
 import { go, useRoute } from '../lib/nav'
 
@@ -45,6 +46,7 @@ function Masuk() {
     <Screen bottom="none">
       <div className="px-5">
         <Brand line="Stimulasi harian, jadwal imunisasi, dan catatan si Kecil dalam satu tempat." />
+        <InstallBanner login />
         <form onSubmit={submit} noValidate>
           <Field label="Email atau username" value={id} onChange={(e) => setId(e.target.value)} autoComplete="username" autoCapitalize="none" autoCorrect="off" enterKeyHint="next" required />
           <Field label="Kata sandi" reveal value={pw} onChange={(e) => setPw(e.target.value)} autoComplete="current-password" enterKeyHint="go" required />

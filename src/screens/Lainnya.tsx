@@ -11,7 +11,8 @@ import type { Child } from '../lib/db'
 import { COUNTERS, visibleCounters } from '../lib/counters'
 import { longDate } from '../lib/format'
 import { downloadFile } from '../lib/ics'
-import { isStandalone, needsIosGuide, promptInstall, useCanInstall } from '../lib/install'
+import { isStandalone, promptInstall, useCanInstall, useInstallMode } from '../lib/install'
+import { InstallGuide } from '../components/Install'
 import { back, go } from '../lib/nav'
 import { useActions, useSettings, useStore } from '../lib/store'
 import { routinesFor } from '../lib/routines'
@@ -184,6 +185,7 @@ function Tampilan() {
 
 function Pasang() {
   const can = useCanInstall()
+  const mode = useInstallMode()
   return (
     <Sub title="Pasang di layar utama">
       <div className="px-4">
@@ -196,15 +198,10 @@ function Pasang() {
               <Button onClick={promptInstall}>Pasang sekarang</Button>
             </div>
           </>
-        ) : needsIosGuide() ? (
-          <ol className="list-decimal space-y-2 rounded-2xl bg-panel p-4 pl-9 text-base leading-relaxed">
-            <li>Buka halaman ini di Safari.</li>
-            <li>Ketuk tombol Bagikan (kotak dengan panah ke atas) di bawah layar.</li>
-            <li>Pilih <b>Tambah ke Layar Utama</b>, lalu ketuk <b>Tambah</b>.</li>
-            <li>Buka dari ikon baru di layar utama. Notifikasi di iPhone hanya bisa setelah dipasang (iOS 16.4+).</li>
-          </ol>
         ) : (
-          <p className="rounded-2xl bg-panel p-4 text-base leading-relaxed">Buka menu browser (⋮) lalu pilih <b>Pasang aplikasi</b> atau <b>Tambahkan ke layar utama</b>.</p>
+          <div className="rounded-2xl bg-panel p-4">
+            <InstallGuide mode={mode} />
+          </div>
         )}
       </div>
     </Sub>

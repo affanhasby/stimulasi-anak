@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { DISCLAIMER } from '../components/DangerSheet'
 import { BrandPlate } from '../components/Plate'
 import { PushCta } from '../components/PushCta'
+import { InstallBanner } from '../components/Install'
+import { isStandalone } from '../lib/install'
 import { GrowthChart } from '../components/GrowthChart'
 import { ageMonthsExact } from '../lib/growth'
 import { latestStatus, seriesOf, weighDue } from './Pertumbuhan'
@@ -295,7 +297,7 @@ export function Beranda({ child }: { child: Child }) {
         </button>
       )}
 
-      <PushCta card />
+      {isStandalone() ? <PushCta card /> : <InstallBanner />}
 
       {staleFeed && (
         <section className="mx-3 mt-2 animate-[rise_420ms_cubic-bezier(.22,1,.36,1)] rounded-2xl bg-panel p-3.5">
