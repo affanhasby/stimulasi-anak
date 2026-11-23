@@ -51,13 +51,14 @@ export function formatDuration(ms: number) {
 
 export const formatAgo = (ms: number) => (ms < min ? 'baru saja' : `${formatDuration(ms)} lalu`)
 
-/** Compact "time since" for tiles, always ending in "lalu" so it never reads as a duration: "40m lalu", "3j lalu", "2 hari lalu". */
+/** Compact "time since" for tiles, always ending in "lalu" so it never reads as a duration: "40m lalu", "3j lalu", "kemarin", "3 hr lalu". */
 export function formatAgoShort(ms: number) {
   const m = Math.floor(ms / min)
   if (m < 1) return 'baru saja'
   if (m < 60) return `${m}m lalu`
   if (m < 24 * 60) return `${Math.floor(m / 60)}j lalu`
-  return `${Math.floor(m / (24 * 60))} hari lalu`
+  const d = Math.floor(m / (24 * 60))
+  return d === 1 ? 'kemarin' : `${d} hr lalu` // short enough for five tiles on a 360 px phone
 }
 
 /** Timer value on a tile, always in one unit family: "0m", "45m", "9j 20m". */

@@ -63,6 +63,35 @@ export function useTodayList(child: Child, today: IsoDate, checks: ActivityCheck
   return { devBirth, plan, list, swap: (id: string) => setReplaced((r) => [...r, id]) }
 }
 
+/**
+ * A running total on a narrow tile, always on one line: big numbers with small units ("2j 15m"),
+ * and from 10 hours on just the hours, so five tiles side by side never wrap.
+ */
+function TileDuration({ ms }: { ms: number }) {
+  const m = Math.floor(ms / 60_000)
+  const h = Math.floor(m / 60)
+  const unit = 'text-xs font-bold'
+  if (h === 0)
+    return (
+      <span className="text-2xl leading-none font-extrabold whitespace-nowrap">
+        {m}
+        <span className={unit}>m</span>
+      </span>
+    )
+  return (
+    <span className="text-base leading-none font-extrabold whitespace-nowrap">
+      {h}
+      <span className={unit}>j</span>
+      {h < 10 && (
+        <span className="ml-[3px]">
+          {m % 60}
+          <span className={unit}>m</span>
+        </span>
+      )}
+    </span>
+  )
+}
+
 function CounterTile({ c, events, dayStart, now, onTap }: { c: CounterDef; events: EventRow[]; dayStart: number; now: number; onTap: () => void }) {
   const timer = isTimer(c)
   const s = todayStats(events, c.id, dayStart, now)
@@ -82,7 +111,7 @@ function CounterTile({ c, events, dayStart, now, onTap }: { c: CounterDef; event
       }`}
     >
       <span className="truncate text-[11.5px] font-semibold">{label}</span>
-      <span className="text-2xl leading-none font-extrabold">{value}</span>
+      {timer ? <TileDuration ms={s.durationMs} /> : <span className="text-2xl leading-none font-extrabold">{value}</span>}
       <span className="truncate text-xs opacity-75">
         {s.running ? clockTime(new Date(s.running.start_at)) : s.lastAgoMs === null ? (timer ? 'mulai' : 'belum') : formatAgoShort(s.lastAgoMs)}
       </span>
