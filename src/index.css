@@ -134,6 +134,9 @@ html {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
+.sheet-open .scroller {
+  overflow-y: hidden;
+}
 .scroller::-webkit-scrollbar {
   display: none;
 }

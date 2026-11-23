@@ -38,7 +38,9 @@ function usePullToRefresh() {
       }
     }
     const start = (e: TouchEvent) => {
-      y0 = el.scrollTop <= 0 && e.touches.length === 1 ? e.touches[0].clientY : null
+      // A sheet's <dialog> lives inside this scroller in the DOM: its drags are not a pull on the page.
+      const inSheet = (e.target as Element).closest?.('dialog')
+      y0 = !inSheet && el.scrollTop <= 0 && e.touches.length === 1 ? e.touches[0].clientY : null
       armed = false
     }
     const move = (e: TouchEvent) => {
@@ -371,6 +373,8 @@ export function Field({
   )
 }
 
+let openSheets = 0
+
 /** Bottom sheet on a native <dialog>: focus trap, Escape and the back gesture come for free. */
 export function Sheet({ open, onClose, title, children }: { open: boolean; onClose: () => void; title: string; children: ReactNode }) {
   const ref = useRef<HTMLDialogElement>(null)
@@ -380,6 +384,13 @@ export function Sheet({ open, onClose, title, children }: { open: boolean; onClo
     if (!d) return
     if (open && !d.open) d.showModal()
     if (!open && d.open) d.close()
+    if (!open) return
+    // Freeze the page behind while the sheet is up, or iOS hands the sheet's scroll on to it.
+    openSheets++
+    document.documentElement.classList.add('sheet-open')
+    return () => {
+      if (--openSheets === 0) document.documentElement.classList.remove('sheet-open')
+    }
   }, [open])
   return (
     <dialog
