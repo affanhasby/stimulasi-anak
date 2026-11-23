@@ -33,13 +33,15 @@ export const formatValue = (v: number, timer: boolean) => (timer ? formatTileDur
 
 /**
  * Per-day totals for one counter over `n` days ending today, and a plain conclusion.
- * Only days on which the parent logged anything count: an unused day says nothing about the baby.
+ * Only days on which this button was used count: an unused day says nothing about the baby.
  * Today is still running, so it is shown but never judged.
  */
 export function counterRecap(def: CounterDef, all: EventRow[], birth: IsoDate, today: IsoDate, n: number, now: number): CounterRecap {
   const timer = isTimer(def)
-  const loggedDays = new Set(all.map(eventDay))
   const mine = all.filter((e) => e.counter_id === def.id)
+  // A day counts only if this button was used that day: a whole day without a single feed or wee logged is
+  // almost always a forgotten log, not the baby (a real one is a danger sign the daily check asks about).
+  const loggedDays = new Set(mine.map(eventDay))
   const days: DayValue[] = Array.from({ length: n }, (_, i) => {
     const day = addDays(today, i - n + 1)
     const evs = mine.filter((e) => eventDay(e) === day)

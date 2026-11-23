@@ -22,13 +22,20 @@ export function currentNotices(
   if ((extra.hour ?? 0) >= 9 && !extra.health?.some((h) => h.day === today))
     out.push({ id: `cek-${today}`, text: `Sudah cek kondisi ${name} hari ini? Sekitar 30 detik.`, route: 'cek-kondisi', action: 'Cek' })
   // Monthly weighing (Posyandu schedule), until 5 years.
+  // Length/height at least every 3 months (Permenkes 66/2014). Both due: one notice, since it is one visit and one form.
+  const under5 = daysBetween(child.birth_date, today) <= 5 * 365
   const lastWeight = extra.measurements?.filter((r) => r.weight_kg !== null).at(-1)
-  if (daysBetween(child.birth_date, today) <= 5 * 365 && (!lastWeight || lastWeight.measured_on.slice(0, 7) < today.slice(0, 7)))
-    out.push({ id: `timbang-${today.slice(0, 7)}`, text: `Waktunya menimbang ${name} bulan ini. Sudah ditimbang? Catat hasilnya.`, route: 'ukur', action: 'Catat' })
-  // Length/height at least every 3 months (Permenkes 66/2014).
   const lastLength = extra.measurements?.filter((r) => r.length_cm !== null).at(-1)
-  if (daysBetween(child.birth_date, today) <= 5 * 365 && (!lastLength || daysBetween(lastLength.measured_on, today) >= 90))
-    out.push({ id: `ukur-${lastLength?.measured_on ?? 'awal'}`, text: `Waktunya mengukur panjang/tinggi ${name}. Catat hasilnya.`, route: 'ukur', action: 'Catat' })
+  const weigh = under5 && (!lastWeight || lastWeight.measured_on.slice(0, 7) < today.slice(0, 7))
+  const measure = under5 && (!lastLength || daysBetween(lastLength.measured_on, today) >= 90)
+  if (weigh)
+    out.push({
+      id: `timbang-${today.slice(0, 7)}`,
+      text: measure ? `Waktunya menimbang dan mengukur panjang/tinggi ${name}. Catat hasilnya.` : `Waktunya menimbang ${name} bulan ini. Sudah ditimbang? Catat hasilnya.`,
+      route: 'ukur',
+      action: 'Catat',
+    })
+  else if (measure) out.push({ id: `ukur-${lastLength?.measured_on ?? 'awal'}`, text: `Waktunya mengukur panjang/tinggi ${name}. Catat hasilnya.`, route: 'ukur', action: 'Catat' })
   const vax = vaccineSchedule(child, vaccines, today).filter((d) => d.status === 'due' || d.status === 'ending_soon')
   if (vax.length) {
     const first = vax.sort((a, b) => a.earliest.localeCompare(b.earliest))[0].earliest

@@ -124,7 +124,7 @@ export function Beranda({ child }: { child: Child }) {
   const ageNow = Math.floor(ageMonthsExact(child.birth_date, today))
   const coreDone = plan.core.some((a) => doneToday.has(a.id))
   const rotDone = list.some((a) => a.kind !== 'core' && doneToday.has(a.id))
-  const hint = achieved ? 'Target hari ini tercapai' : !coreDone && !rotDone ? 'Target: 1 inti + 1 lainnya' : !coreDone ? 'Tinggal 1 kegiatan inti' : 'Tinggal 1 kegiatan lain'
+  const hint = achieved ? 'Target hari ini tercapai' : !coreDone && !rotDone ? 'Target: 1 utama + 1 lainnya' : !coreDone ? 'Tinggal 1 kegiatan utama' : 'Tinggal 1 kegiatan lain'
 
   const visit = nextVisit(vaccineSchedule(child, rows?.vaccines ?? [], today))
   const counters = visibleCounters(ageInMonths(child.birth_date, today), settings?.enabled_counters).slice(0, 5)
@@ -136,6 +136,12 @@ export function Beranda({ child }: { child: Child }) {
   const clock = `${String(new Date(now).getHours()).padStart(2, '0')}:${String(new Date(now).getMinutes()).padStart(2, '0')}`
   const catchUp = !!settings?.log_nudges && counters.length > 0 && clock >= (settings.recap_time ?? '20:00') && !(rows?.alertLogs ?? []).some((l) => l.alert_id === 'RECAP' && l.day === today)
   const alerts = activeAlerts(events, child.birth_date, now, dayStart, enabled).filter((a) => !dismissed.has(a.id))
+  // A long gap in the feeding log is usually a forgotten tap: ask, don't alarm (the medical alert needs active logging).
+  const nurse = counters.find((c) => c.id === 'NURSE')
+  const lastFeed = events.filter((e) => (e.counter_id === 'NURSE' || e.counter_id === 'BOTTLE') && !e.value?.susulan).at(-1)
+  const feedGap = lastFeed ? now - Date.parse(lastFeed.start_at) : null
+  const staleFeed =
+    !!nurse && daysBetween(child.birth_date, today) <= 182 && feedGap !== null && feedGap >= 4 * 3_600_000 && !catchUp && !alerts.some((a) => a.id === 'NURSE-A1') && !dismissed.has('STALE-FEED')
 
   useEffect(() => {
     if (!snack) return
@@ -265,6 +271,24 @@ export function Beranda({ child }: { child: Child }) {
         </button>
       )}
 
+      {staleFeed && (
+        <section className="mx-3 mt-2 animate-[rise_420ms_cubic-bezier(.22,1,.36,1)] rounded-2xl bg-panel p-3.5">
+          <p className="text-[15px] leading-snug font-bold">Catatan menyusu terakhir {formatAgoShort(feedGap!)}. Sudah menyusu?</p>
+          <p className="mt-0.5 text-[13px] text-ink-2">Kalau lupa dicatat, tambahkan sekarang supaya rekapnya tepat.</p>
+          <div className="mt-2.5 flex flex-wrap gap-2">
+            <button type="button" onClick={() => tapCounter(nurse!)} className="min-h-11 rounded-full bg-ink px-4 text-sm font-bold text-ground active:scale-[.97]">
+              Catat menyusu sekarang
+            </button>
+            <button type="button" onClick={() => go('isi')} className="min-h-11 rounded-full border border-line px-4 text-sm font-semibold active:scale-[.97]">
+              Isi yang terlewat
+            </button>
+            <button type="button" onClick={() => act.dismissAlert(child.id, 'STALE-FEED', today)} className="min-h-11 px-2 text-sm font-semibold text-ink-2">
+              Nanti
+            </button>
+          </div>
+        </section>
+      )}
+
       {alerts.slice(0, 2).map((a) => (
         <section key={a.id} role="alert" className="mx-3 mt-2 rounded-2xl border-2 border-current bg-panel p-3.5" style={{ color: a.level === 'segera' ? 'var(--late)' : a.level === 'periksa' ? 'var(--warn)' : 'var(--ink-2)' }}>
           <p className="flex items-start gap-2 text-[15px] leading-snug font-bold">
@@ -350,7 +374,7 @@ export function Beranda({ child }: { child: Child }) {
                   <span className="min-w-0 flex-1">
                     <span className={`block text-base leading-snug font-semibold ${done ? 'text-ink-2' : ''}`}>{a.title}</span>
                     <span className="block text-[13px] text-ink-2">
-                      {a.kind === 'core' ? 'Inti · ' : a.kind === 'challenge' ? 'Tantangan · ' : ''}
+                      {a.kind === 'core' ? 'Utama · ' : a.kind === 'challenge' ? 'Tantangan · ' : ''}
                       {DOMAINS[a.domain]} · {a.minutes} mnt
                     </span>
                   </span>
@@ -448,18 +472,26 @@ export function Beranda({ child }: { child: Child }) {
 
       {counters.length > 0 && (
         <section
-          aria-label="Catat hari ini. Tekan lama untuk riwayat."
-          className="fixed inset-x-0 bottom-[calc(70px+env(safe-area-inset-bottom))] mx-auto grid max-w-[430px] gap-1.5 bg-ground px-2 pt-2 pb-2"
-          style={{ gridTemplateColumns: `repeat(${counters.length}, minmax(0, 1fr))` }}
+          aria-label="Catat hari ini"
+          className="fixed inset-x-0 bottom-[calc(70px+env(safe-area-inset-bottom))] mx-auto max-w-[430px] bg-ground px-2 pt-1 pb-2"
         >
-          {counters.map((c) => (
-            <CounterTile key={c.id} c={c} events={events} dayStart={dayStart} now={now} onTap={() => tapCounter(c)} />
-          ))}
+          {/* The history used to hide behind a long press; it now has a visible way in. */}
+          <div className="flex items-center justify-between pl-1.5">
+            <span className="text-xs font-semibold text-ink-2">Ketuk untuk mencatat</span>
+            <button type="button" onClick={() => go('rekap/catatan')} className="flex min-h-9 items-center gap-0.5 px-1.5 text-xs font-bold text-ink active:opacity-60">
+              Riwayat & yang terlewat <IconChevron size={14} />
+            </button>
+          </div>
+          <div className="grid gap-1.5" style={{ gridTemplateColumns: `repeat(${counters.length}, minmax(0, 1fr))` }}>
+            {counters.map((c) => (
+              <CounterTile key={c.id} c={c} events={events} dayStart={dayStart} now={now} onTap={() => tapCounter(c)} />
+            ))}
+          </div>
         </section>
       )}
 
       {snack && (
-        <div role="status" className="fixed inset-x-3 bottom-[calc(178px+env(safe-area-inset-bottom))] mx-auto max-w-[406px] animate-[fade-in_160ms_ease-out] rounded-xl bg-tile py-1.5 pr-1.5 pl-4 text-sm font-semibold text-on-tile">
+        <div role="status" className="fixed inset-x-3 bottom-[calc(214px+env(safe-area-inset-bottom))] mx-auto max-w-[406px] animate-[fade-in_160ms_ease-out] rounded-xl bg-tile py-1.5 pr-1.5 pl-4 text-sm font-semibold text-on-tile">
           <div className="flex items-center justify-between">
             {snack.text}
             <button type="button" onClick={undo} className="min-h-11 rounded-lg px-3 font-bold underline underline-offset-4">

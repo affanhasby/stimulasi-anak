@@ -75,7 +75,7 @@ export function Pertumbuhan({ child }: { child: Child }) {
           )}
           <GrowthChart ind={ind} sex={sex} points={seriesOf(child, rows, ind)} fromMonth={from} toMonth={to} />
           <p className="mt-2 flex flex-wrap justify-center gap-x-4 gap-y-1 text-[12px] text-ink-2">
-            <span className="flex items-center gap-1.5"><i className="size-3 rounded-sm" style={{ background: 'color-mix(in oklab, var(--ok) 30%, transparent)' }} /> Normal (−2 s.d. +2 SD)</span>
+            <span className="flex items-center gap-1.5"><i className="size-3 rounded-sm" style={{ background: 'color-mix(in oklab, var(--ok) 30%, transparent)' }} /> Sesuai standar</span>
             <span className="flex items-center gap-1.5"><i className="size-3 rounded-sm" style={{ background: 'color-mix(in oklab, var(--warn) 30%, transparent)' }} /> Perlu perhatian</span>
           </p>
         </div>

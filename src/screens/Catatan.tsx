@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { DayBars } from '../components/DayBars'
+import { IconChevron } from '../components/icons'
 import { Button, Chip, Screen, Section, Sheet, PickerInput } from '../components/ui'
 import { sourceLabel } from '../lib/content'
 import { clockTime, COUNTERS, formatTileDuration, isTimer, shortLabel } from '../lib/counters'
@@ -97,7 +98,7 @@ export function Catatan({ child, counterId }: { child: Child; counterId: string 
             <DayBars days={recap.days} timer={recap.timer} today={today} />
           </div>
           <p className="mt-2 text-[12px] leading-snug text-ink-2">
-            {recap.timer ? 'Angka dalam jam. ' : ''}Hijau sesuai anjuran, kuning di bawah anjuran, garis tipis = batas minimal. Hari tanpa catatan apa pun tidak dihitung; hari ini belum dinilai.
+            {recap.timer ? 'Angka dalam jam. ' : ''}Hijau sesuai anjuran, kuning di bawah anjuran, garis tipis = batas minimal. Hari tanpa catatan {shortLabel(def).toLowerCase()} tidak dihitung (biasanya lupa mencatat); hari ini belum dinilai.
           </p>
         </div>
       ) : (
@@ -132,16 +133,9 @@ export function Catatan({ child, counterId }: { child: Child; counterId: string 
         ])}
       </Section>
       <div className="mx-3 mt-4">
-        <div className="grid gap-2.5">
-          <Button kind="secondary" onClick={() => open(null)}>
-            Tambah catatan terlewat (dengan jam)
-          </Button>
-          {!timer && (
-            <Button kind="quiet" onClick={() => go('isi')}>
-              Isi jumlah yang terlewat
-            </Button>
-          )}
-        </div>
+        <Button kind="secondary" onClick={() => open(null)}>
+          Tambah yang terlewat
+        </Button>
       </div>
 
       <Sheet open={!!edit} onClose={() => setEdit(null)} title={edit?.id ? `Ubah ${shortLabel(def)}` : `Tambah ${shortLabel(def)}`}>
@@ -184,6 +178,12 @@ export function Catatan({ child, counterId }: { child: Child; counterId: string 
               <PickerInput id="t-end" type="time" value={end} onChange={setEnd} />
             </div>
           </>
+        )}
+        {edit && !edit.id && !timer && (
+          <button type="button" onClick={() => go('isi')} className="mt-4 flex min-h-11 w-full items-center justify-between rounded-xl bg-ground px-3.5 text-left text-[15px] font-semibold">
+            Lupa jamnya? Isi jumlahnya saja
+            <IconChevron size={16} />
+          </button>
         )}
         <div className="mt-5 grid gap-2.5">
           <Button onClick={save} disabled={!start}>Simpan</Button>

@@ -55,6 +55,10 @@ function DoseRow({ d, today, onOpen, detail, reason }: { d: ScheduledDose; today
         {reason && <span className="block text-[13px] text-ink-2">Alasan: {reason}</span>}
       </span>
       <span className={`shrink-0 rounded-md px-2 py-1 text-xs font-bold ${chipFor(d, today).tone}`}>{chipFor(d, today).text}</span>
+      {/* The chevron says "tap for details and to mark it given", so no instruction line is needed. */}
+      <span className="-mr-1 shrink-0 text-ink-2">
+        <IconChevron size={16} />
+      </span>
     </button>
   )
 }
@@ -105,7 +109,7 @@ export function Imunisasi({ child }: { child: Child }) {
       title="Imunisasi"
       action={
         <button type="button" onClick={exportIcs} className="flex min-h-11 items-center gap-1.5 rounded-full px-3 text-sm font-bold active:bg-off">
-          <IconCalendar /> Kalender
+          <IconCalendar /> Simpan ke kalender
         </button>
       }
     >
@@ -119,7 +123,6 @@ export function Imunisasi({ child }: { child: Child }) {
       {visit ? (
         <Section
           title={visit.lead.status === 'upcoming' ? `Kunjungan berikutnya · mulai ${shortDate(visit.lead.earliest)}` : 'Kunjungan sekarang'}
-          note="Ketuk vaksin untuk penjelasan dan menandai sudah diberikan."
         >
           {visit.doses.map((d) => (
             <DoseRow key={d.key} d={d} today={today} onOpen={() => openDose(d)} detail />
@@ -171,7 +174,7 @@ export function Imunisasi({ child }: { child: Child }) {
           </Section>
         ))}
       <p className="mx-4 mt-4 text-[13px] leading-relaxed text-ink-2">
-        Tombol Kalender menyimpan jadwal yang akan datang ke kalender HP, lengkap dengan pengingat sesuai pilihan Ayah/Bunda. Data per {longDate(VACCINES_AS_OF)}.
+        Tombol Simpan ke kalender menyimpan jadwal yang akan datang ke kalender HP, lengkap dengan pengingat sesuai pilihan Ayah/Bunda. Data per {longDate(VACCINES_AS_OF)}.
       </p>
 
       <Sheet open={!!sel} onClose={() => setSel(null)} title={sel ? doseName(sel.dose) : ''}>

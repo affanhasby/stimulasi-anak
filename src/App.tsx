@@ -59,7 +59,7 @@ function Main() {
     : top === 'tanda-bahaya' ? <TandaBahaya child={child} />
     : top === 'notifikasi' ? <Notifikasi child={child} />
     : top === 'isi' ? <IsiCatatan key={arg ?? 'today'} child={child} day={arg} />
-    : top === 'rekap' ? <Rekap child={child} />
+    : top === 'rekap' ? <Rekap child={child} focus={arg} />
     : top === 'pertumbuhan' ? <Pertumbuhan child={child} />
     : top === 'ukur' ? <Ukur key={arg ?? 'new'} child={child} id={arg} />
     : <Beranda child={child} />

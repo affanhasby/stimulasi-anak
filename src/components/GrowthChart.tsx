@@ -51,8 +51,9 @@ export function GrowthChart({ ind, sex, points, fromMonth, toMonth, height = 220
             </text>
           ))}
         {!compact &&
-          [fromMonth, Math.round((fromMonth + toMonth) / 2), toMonth].map((m) => (
-            <text key={m} x={x(m)} y={height - 6} textAnchor="middle" className="fill-ink-2 text-xs">
+          [fromMonth, Math.round((fromMonth + toMonth) / 2), toMonth].map((m, i) => (
+            // First and last labels hug the plot edges so neither is cut off.
+            <text key={m} x={x(m)} y={height - 6} textAnchor={i === 0 ? 'start' : i === 2 ? 'end' : 'middle'} className="fill-ink-2 text-xs">
               {m} bln
             </text>
           ))}

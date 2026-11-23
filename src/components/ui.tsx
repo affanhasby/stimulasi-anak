@@ -130,7 +130,7 @@ export function Screen({
   bottom?: 'tabs' | 'dock' | 'none'
 }) {
   const ptr = usePullToRefresh()
-  const pad = bottom === 'dock' ? 'pb-[calc(188px+env(safe-area-inset-bottom))]' : bottom === 'tabs' ? 'pb-[calc(90px+env(safe-area-inset-bottom))]' : 'pb-[calc(24px+env(safe-area-inset-bottom))]'
+  const pad = bottom === 'dock' ? 'pb-[calc(224px+env(safe-area-inset-bottom))]' : bottom === 'tabs' ? 'pb-[calc(90px+env(safe-area-inset-bottom))]' : 'pb-[calc(24px+env(safe-area-inset-bottom))]'
   return (
     <div className="mx-auto flex h-full max-w-[430px] flex-col">
       {title !== undefined && (

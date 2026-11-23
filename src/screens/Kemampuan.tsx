@@ -12,6 +12,13 @@ import { MONTHLY, milestonesForMonth, nextScreenings, RED_FLAGS, redFlags, type 
 import { useActions, useChildRows } from '../lib/store'
 import { ACTIVITIES, DOMAINS, gridMonth, nextGridMonth } from '../lib/stimulation'
 
+// Plain words for the screening names in the data (the source names stay in the data and the citation).
+const PLAIN_SCREENING: Record<string, string> = {
+  'Skrining perkembangan terstandar (AAP)': 'Pemeriksaan perkembangan oleh dokter',
+  'Skrining autisme (AAP)': 'Pemeriksaan tanda autisme oleh dokter',
+  'KPSP di fasilitas kesehatan (SDIDTK)': 'Cek perkembangan (KPSP) di Posyandu/Puskesmas',
+}
+
 const FLAG_UI: Record<Flag['rule'], { title: string; tone: string }> = {
   'RF-REGRESSION': { title: 'Periksakan segera', tone: 'var(--late)' },
   'RF-KIA-CUTOFF': { title: 'Sebaiknya periksakan', tone: 'var(--late)' },
@@ -148,7 +155,7 @@ export function Kemampuan({ child }: { child: Child }) {
         <Section title="Skrining di Posyandu/dokter">
           {screenings.map((s) => (
             <div key={s.what} className="border-t border-line px-4 py-3 first:border-t-0">
-              <p className="text-base font-semibold">{s.what}</p>
+              <p className="text-base font-semibold">{PLAIN_SCREENING[s.what] ?? s.what}</p>
               <p className="text-[13px] text-ink-2">
                 {s.next === m ? 'Bulan ini' : `Berikutnya di ${ageLabel(s.next!).toLowerCase()}`} · tanyakan saat kunjungan. ({sourceLabel(s.source, s.page)})
               </p>

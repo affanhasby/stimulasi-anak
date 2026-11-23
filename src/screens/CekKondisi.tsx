@@ -42,12 +42,22 @@ export function CekKondisi({ child }: { child: Child }) {
   const [answers, setAnswers] = useState<Record<string, boolean>>({})
   const [i, setI] = useState(0)
   const [recheck, setRecheck] = useState(false)
+  // Most days nothing is wrong: the check opens on the whole list with one "none of these" tap;
+  // one question at a time only when something is.
+  const [stepping, setStepping] = useState(false)
 
   const flagged = saved ? questions.filter((q) => saved.answers[q.id]) : []
   // Re-check only what was wrong; a check saved before the questions were grouped falls back to all of them.
   const asked = recheck ? (flagged.length ? flagged : questions) : questions
   const finished = saved && !recheck
   const result = finished ? saved.result : null
+
+  const noneOfThese = async () => {
+    navigator.vibrate?.(8)
+    const all = Object.fromEntries(questions.map((q) => [q.id, false]))
+    await act.saveHealthCheck(child.id, today, all, 'aman')
+    await db.notices.update(`cek-${today}`, { read_at: new Date().toISOString() })
+  }
 
   const answer = async (yes: boolean) => {
     const next = { ...answers, [asked[i].id]: yes }
@@ -58,6 +68,7 @@ export function CekKondisi({ child }: { child: Child }) {
     await act.saveHealthCheck(child.id, today, all, resultOf(questions, all))
     await db.notices.update(`cek-${today}`, { read_at: new Date().toISOString() })
     setRecheck(false)
+    setStepping(false)
   }
 
   if (finished && result) {
@@ -115,6 +126,31 @@ export function CekKondisi({ child }: { child: Child }) {
       </Screen>
     )
   }
+
+  if (!recheck && !stepping)
+    return (
+      <Screen title="Cek kondisi hari ini" onBack bottom="none">
+        <div className="flex min-h-full flex-col px-4">
+          <p className="text-[15px] font-semibold text-ink-2">Apakah {child.nickname} mengalami salah satu ini hari ini?</p>
+          <ul className="mt-3 overflow-hidden rounded-2xl bg-panel">
+            {questions.map((q) => (
+              <li key={q.id} className="border-t border-line px-4 py-2.5 first:border-t-0">
+                <span className="block text-base leading-snug font-bold">{q.text}</span>
+                {detailOf(q).length > 0 && <span className="mt-0.5 block text-[13px] leading-snug text-ink-2">{detailOf(q).join(' · ')}</span>}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-2 px-1 text-[13px] text-ink-2">Sumber: {sourcesText(questions)}</p>
+          <div className="flex-1" />
+          <div className="mb-[max(16px,env(safe-area-inset-bottom))] grid gap-2.5 pt-5">
+            <Button onClick={noneOfThese}>Tidak ada satu pun</Button>
+            <Button kind="secondary" onClick={() => (setAnswers({}), setI(0), setStepping(true))}>
+              Ada yang dialami
+            </Button>
+          </div>
+        </div>
+      </Screen>
+    )
 
   const q = asked[i]
   return (

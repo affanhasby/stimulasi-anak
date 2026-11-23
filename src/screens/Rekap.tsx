@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { DISCLAIMER } from '../components/DangerSheet'
 import { DayBars } from '../components/DayBars'
 import { IconChevron, IconShare } from '../components/icons'
@@ -45,12 +45,16 @@ const Line = ({ tone, children }: { tone: string; children: ReactNode }) => (
 )
 
 /** Everything recorded for the child on one page, each part with its own conclusion, plus one summary on top. */
-export function Rekap({ child }: { child: Child }) {
+export function Rekap({ child, focus }: { child: Child; focus?: string }) {
   const [now] = useNow()
   const today = todayIso(now)
   const rows = useChildRows(child.id)
   const settings = useSettings()
   const [n, setN] = useState<7 | 30>(7)
+  // Opened from Beranda's "Riwayat": jump to the daily-log section.
+  useEffect(() => {
+    if (focus === 'catatan') requestAnimationFrame(() => document.getElementById('catatan-harian')?.scrollIntoView({ behavior: 'smooth' }))
+  }, [focus, !!rows])
   if (!rows) return <Screen title="Rekap">{null}</Screen>
 
   const from = addDays(today, -n + 1)
@@ -157,13 +161,20 @@ export function Rekap({ child }: { child: Child }) {
         <div className="flex gap-[3px]" aria-label="Hasil cek kondisi per hari">
           {days.map((d) => {
             const h = rows.health.find((x) => x.day === d)
-            return <span key={d} title={`${d}: ${h ? HEALTH_TEXT[h.result] : 'belum dicek'}`} className="h-6 flex-1 rounded-[4px]" style={{ background: h ? HEALTH_DOT[h.result] : 'var(--off)' }} />
+            return (
+              <span
+                key={d}
+                title={`${d}: ${h ? HEALTH_TEXT[h.result] : 'belum dicek'}`}
+                className={`h-6 flex-1 rounded-[4px] ${d === today ? 'ring-2 ring-ink ring-offset-1 ring-offset-panel' : ''}`}
+                style={{ background: h ? HEALTH_DOT[h.result] : 'var(--off)' }}
+              />
+            )
           })}
         </div>
         {n === 7 && (
           <div className="mt-1 flex gap-[3px] text-center text-[11px] text-ink-2">
             {days.map((d) => (
-              <span key={d} className="flex-1">{weekday(d)}</span>
+              <span key={d} className={`flex-1 ${d === today ? 'font-bold text-ink' : ''}`}>{d === today ? 'Ini' : weekday(d)}</span>
             ))}
           </div>
         )}
@@ -216,7 +227,7 @@ export function Rekap({ child }: { child: Child }) {
       </Card>
 
       {recaps.length > 0 && (
-        <section className="mx-3 mt-3 rounded-2xl bg-panel">
+        <section id="catatan-harian" className="mx-3 mt-3 scroll-mt-3 rounded-2xl bg-panel">
           <div className="flex items-center justify-between px-4 pt-2">
             <h2 className="text-base font-extrabold">Catatan harian</h2>
             <button type="button" onClick={() => go('isi')} className="min-h-11 text-[13px] font-semibold text-ink underline underline-offset-4">

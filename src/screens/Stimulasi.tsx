@@ -76,7 +76,7 @@ function Calendar({ month, checks, today, onMonth, selected, from, onPick }: { m
         })}
       </div>
       <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1 px-1 text-[13px] text-ink-2">
-        <span className="flex items-center gap-1.5"><i className="size-3 rounded-full bg-ok" /> Tercapai (1 inti + 1 lainnya)</span>
+        <span className="flex items-center gap-1.5"><i className="size-3 rounded-full bg-ok" /> Tercapai (1 utama + 1 lainnya)</span>
         <span className="flex items-center gap-1.5"><i className="size-3 rounded-full bg-ok/20" /> Ada kegiatan</span>
       </p>
     </div>
@@ -107,31 +107,12 @@ export function Stimulasi({ child }: { child: Child }) {
 
   return (
     <Screen title="Stimulasi">
-      <Section title="Kalender">
-        <Calendar month={month} checks={checks} today={today} onMonth={setMonth} selected={sel} from={from} onPick={(d) => (setSel(d), setOpen(null), document.getElementById('kegiatan')?.scrollIntoView({ behavior: 'smooth' }))} />
-      </Section>
-
-      <Section title="7 hari terakhir per domain" note="Domain yang jarang dicentang akan didahulukan di daftar harian.">
-        <ul className="p-4">
-          {perDomain.map(({ d, n }) => (
-            <li key={d} className="flex items-center gap-2.5 py-1.5">
-              <DomainMark domain={d} />
-              <span className="w-[120px] shrink-0 text-[15px]">{DOMAINS[d]}</span>
-              <span className="h-3 flex-1 overflow-hidden rounded-full bg-off">
-                <span className="block h-full rounded-full" style={{ width: `${(n / max) * 100}%`, background: `var(--color-${d})` }} />
-              </span>
-              <span className="w-6 text-right text-[15px] font-bold">{n}</span>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
       <Section
         id="kegiatan"
         title={isToday ? `Semua kegiatan usia ${bandLabel}` : `Kegiatan ${weekdayLong(sel)}, ${longDate(sel)}`}
         note={
           isToday ? (
-            'Centang kegiatan mana saja yang dilakukan hari ini, termasuk yang tidak ada di daftar harian. Ketuk tanggal di kalender untuk mengisi hari sebelumnya.'
+            'Centang kegiatan yang dilakukan hari ini, termasuk yang tidak ada di daftar Beranda. Hari sebelumnya bisa diisi lewat kalender di bawah.'
           ) : (
             <>
               Centang yang sudah dilakukan pada hari itu.{' '}
@@ -153,7 +134,7 @@ export function Stimulasi({ child }: { child: Child }) {
                   <span className="min-w-0 flex-1">
                     <span className="block text-base leading-snug font-semibold">{a.title}</span>
                     <span className="block text-[13px] text-ink-2">
-                      {a.frequency === 'daily_core' ? 'Inti · ' : ''}
+                      {a.frequency === 'daily_core' ? 'Utama · ' : ''}
                       {DOMAINS[a.domain]} · {a.minutes} mnt
                     </span>
                   </span>
@@ -177,6 +158,25 @@ export function Stimulasi({ child }: { child: Child }) {
             </div>
           )
         })}
+      </Section>
+
+      <Section title="Kalender" note="Ketuk tanggal untuk melihat atau mengisi kegiatan hari itu.">
+        <Calendar month={month} checks={checks} today={today} onMonth={setMonth} selected={sel} from={from} onPick={(d) => (setSel(d), setOpen(null), document.querySelector('main')?.scrollTo({ top: 0, behavior: 'smooth' }))} />
+      </Section>
+
+      <Section title="7 hari terakhir per domain" note="Domain yang jarang dicentang akan didahulukan di daftar harian.">
+        <ul className="p-4">
+          {perDomain.map(({ d, n }) => (
+            <li key={d} className="flex items-center gap-2.5 py-1.5">
+              <DomainMark domain={d} />
+              <span className="w-[120px] shrink-0 text-[15px]">{DOMAINS[d]}</span>
+              <span className="h-3 flex-1 overflow-hidden rounded-full bg-off">
+                <span className="block h-full rounded-full" style={{ width: `${(n / max) * 100}%`, background: `var(--color-${d})` }} />
+              </span>
+              <span className="w-6 text-right text-[15px] font-bold">{n}</span>
+            </li>
+          ))}
+        </ul>
       </Section>
 
       {rules.length > 0 && (
