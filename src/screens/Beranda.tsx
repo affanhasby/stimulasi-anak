@@ -2,16 +2,17 @@ import { useEffect, useMemo, useState } from 'react'
 import { DISCLAIMER } from '../components/DangerSheet'
 import { BrandPlate } from '../components/Plate'
 import { PushCta } from '../components/PushCta'
+import { CallButtons } from '../components/CallButtons'
 import { InstallBanner } from '../components/Install'
 import { isStandalone } from '../lib/install'
 import { GrowthChart } from '../components/GrowthChart'
 import { ageMonthsExact } from '../lib/growth'
 import { latestStatus, seriesOf, weighDue } from './Pertumbuhan'
 import { DomainMark, MiniPlate, Plate, type SectorState } from '../components/Plate'
-import { IconAlert, IconBell, IconSettings, IconCheck, IconChevron, IconPhone, IconSyringe } from '../components/icons'
+import { IconAlert, IconBell, IconSettings, IconCheck, IconChevron, IconSyringe } from '../components/icons'
 import { Button, Screen, Sheet } from '../components/ui'
 import { activeAlerts } from '../lib/alerts'
-import { HOTLINE, sourceLabel } from '../lib/content'
+import { sourceLabel } from '../lib/content'
 import { clockTime, formatAgoShort, formatTileDuration, isTimer, shortLabel, todayStats, visibleCounters, type CounterDef } from '../lib/counters'
 import { addDays, ageInMonths, daysBetween, developmentalBirth, todayIso, type IsoDate } from '../lib/date'
 import type { Child, EventRow } from '../lib/db'
@@ -271,13 +272,8 @@ export function Beranda({ child }: { child: Child }) {
               Lihat hasil cek
             </button>
           </p>
-          <div className="mt-2.5 grid grid-cols-2 gap-2">
-            <a href="tel:119" className="flex min-h-11 items-center justify-center gap-1.5 rounded-xl bg-danger text-sm font-bold text-white">
-              <IconPhone /> Darurat 119
-            </a>
-            <a href={`tel:${HOTLINE.number.replace(/\D/g, '')}`} className="flex min-h-11 items-center justify-center gap-1.5 rounded-xl border border-line text-sm font-bold">
-              <IconPhone /> {HOTLINE.label}
-            </a>
+          <div className="mt-2.5">
+            <CallButtons compact />
           </div>
         </div>
       )}

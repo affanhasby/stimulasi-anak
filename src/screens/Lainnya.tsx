@@ -13,6 +13,7 @@ import { longDate } from '../lib/format'
 import { downloadFile } from '../lib/ics'
 import { isStandalone, promptInstall, useCanInstall, useInstallMode } from '../lib/install'
 import { InstallGuide } from '../components/Install'
+import { waNumber } from '../lib/phone'
 import { back, go } from '../lib/nav'
 import { useActions, useSettings, useStore } from '../lib/store'
 import { routinesFor } from '../lib/routines'
@@ -183,6 +184,68 @@ function Tampilan() {
   )
 }
 
+function Kontak() {
+  const s = useSettings()
+  const act = useActions()
+  if (!s) return null
+  return <KontakForm name={s.doctor_name} phone={s.doctor_phone} show={s.show_hotlines} save={act.saveSettings} />
+}
+
+function KontakForm({ name, phone, show, save }: { name: string; phone: string; show: boolean; save: ReturnType<typeof useActions>['saveSettings'] }) {
+  const [n, setN] = useState(name)
+  const [p, setP] = useState(phone)
+  const [saved, setSaved] = useState(false)
+  const wa = waNumber(p)
+  const bad = p.trim() !== '' && !wa
+  const changed = n.trim() !== name || p.trim() !== phone
+  const hasDoctor = waNumber(phone) !== null
+  return (
+    <Sub title="Kontak darurat">
+      <Section title="Dokter atau bidan" note="Muncul sebagai tombol WhatsApp di layar tanda bahaya dan hasil cek kondisi.">
+        <div className="p-4">
+          <Field label="Nama" placeholder="mis. dr. Rina" value={n} onChange={(e) => (setN(e.target.value), setSaved(false))} autoCapitalize="words" />
+          <Field
+            label="Nomor WhatsApp"
+            type="tel"
+            inputMode="tel"
+            placeholder="0812 3456 7890"
+            value={p}
+            onChange={(e) => (setP(e.target.value), setSaved(false))}
+            error={bad ? 'Nomor belum benar. Contoh: 0812 3456 7890' : null}
+            hint={wa ? `Dibuka sebagai wa.me/${wa}` : 'Boleh diawali 0 atau +62.'}
+          />
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            <Button
+              full={false}
+              disabled={bad || !changed}
+              onClick={async () => {
+                await save({ doctor_name: n.trim(), doctor_phone: p.trim() })
+                setSaved(true)
+              }}
+            >
+              Simpan
+            </Button>
+            {wa && !changed && (
+              <a href={`https://wa.me/${wa}`} target="_blank" rel="noreferrer" className="min-h-11 content-center px-2 text-sm font-semibold underline underline-offset-4">
+                Coba buka WhatsApp
+              </a>
+            )}
+            {saved && !changed && <span role="status" className="text-sm font-semibold text-ok">Tersimpan</span>}
+          </div>
+        </div>
+      </Section>
+      <Section note={hasDoctor ? undefined : 'Isi nomor dokter dulu. Selama belum ada, 119 dan Halo Kemenkes selalu ditampilkan.'}>
+        <Toggle
+          label="Tampilkan Darurat 119 & Halo Kemenkes"
+          hint={!hasDoctor ? undefined : show ? 'Muncul bersama tombol dokter.' : 'Hanya tombol dokter yang muncul.'}
+          checked={show || !hasDoctor}
+          onChange={(v) => hasDoctor && save({ show_hotlines: v })}
+        />
+      </Section>
+    </Sub>
+  )
+}
+
 function Pasang() {
   const can = useCanInstall()
   const mode = useInstallMode()
@@ -261,6 +324,7 @@ function Sandi() {
 }
 
 export function Lainnya({ child, sub }: { child: Child; sub?: string }) {
+  const settings = useSettings()
   const { email, username, db } = useStore()
   const act = useActions()
   const sync = useSyncState()
@@ -279,6 +343,7 @@ export function Lainnya({ child, sub }: { child: Child; sub?: string }) {
   if (sub === 'penghitung') return <Penghitung child={child} />
   if (sub === 'tampilan') return <Tampilan />
   if (sub === 'pasang') return <Pasang />
+  if (sub === 'kontak') return <Kontak />
   if (sub === 'sumber') return <Sumber />
   if (sub === 'sandi') return <Sandi />
 
@@ -290,6 +355,7 @@ export function Lainnya({ child, sub }: { child: Child; sub?: string }) {
       <Section title="Aplikasi">
         <Row label="Pengingat & notifikasi" onClick={() => go('lainnya/pengingat')} />
         <Row label="Tombol penghitung" onClick={() => go('lainnya/penghitung')} />
+        <Row label="Kontak darurat" value={settings?.doctor_name || undefined} onClick={() => go('lainnya/kontak')} />
         <Row label="Tampilan" onClick={() => go('lainnya/tampilan')} />
         {!isStandalone() && <Row label="Pasang di layar utama" onClick={() => go('lainnya/pasang')} />}
       </Section>

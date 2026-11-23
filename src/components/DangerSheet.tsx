@@ -1,7 +1,7 @@
-import { dangerGroupsFor, HOTLINE, sourceLabel } from '../lib/content'
+import { dangerGroupsFor, sourceLabel } from '../lib/content'
 import { daysBetween, todayIso } from '../lib/date'
 import type { Child } from '../lib/db'
-import { IconPhone } from './icons'
+import { CallButtons } from './CallButtons'
 import { Sheet } from './ui'
 
 export const DISCLAIMER =
@@ -11,13 +11,8 @@ export function DangerSheet({ child, open, onClose }: { child: Child; open: bool
   return (
     <Sheet open={open} onClose={onClose} title="Tanda bahaya">
       <p className="text-[15px] leading-relaxed">Satu tanda saja sudah cukup. Segera bawa {child.nickname} ke fasilitas kesehatan terdekat.</p>
-      <div className="mt-3 grid grid-cols-2 gap-2">
-        <a href="tel:119" className="flex min-h-12 items-center justify-center gap-2 rounded-xl bg-danger font-bold text-white active:scale-[.98]">
-          <IconPhone /> Darurat 119
-        </a>
-        <a href={`tel:${HOTLINE.number.replace(/\D/g, '')}`} className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-line font-bold active:scale-[.98]">
-          <IconPhone /> {HOTLINE.label}
-        </a>
+      <div className="mt-3">
+        <CallButtons />
       </div>
       {dangerGroupsFor(daysBetween(child.birth_date, todayIso())).map((g) => (
         <section key={g.id} className="mt-5">

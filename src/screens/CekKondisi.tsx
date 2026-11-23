@@ -1,8 +1,7 @@
 import { useMemo, useState } from 'react'
 import { DISCLAIMER } from '../components/DangerSheet'
-import { IconAlert, IconBack, IconCheck, IconPhone } from '../components/icons'
+import { IconAlert, IconBack, IconCheck } from '../components/icons'
 import { Button, Screen } from '../components/ui'
-import { HOTLINE } from '../lib/content'
 import { daysBetween } from '../lib/date'
 import type { Child } from '../lib/db'
 import { clockTime } from '../lib/counters'
@@ -10,17 +9,9 @@ import { detailOf, questionsFor, resultOf, sourcesText, type CheckResult } from 
 import { useToday } from '../lib/hooks'
 import { go } from '../lib/nav'
 import { useActions, useChildRows, useStore } from '../lib/store'
+import { CallButtons } from '../components/CallButtons'
 
-const CALLS = (
-  <div className="grid grid-cols-2 gap-2">
-    <a href="tel:119" className="flex min-h-12 items-center justify-center gap-2 rounded-xl bg-danger font-bold text-white active:scale-[.98]">
-      <IconPhone /> Darurat 119
-    </a>
-    <a href={`tel:${HOTLINE.number.replace(/\D/g, '')}`} className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-line bg-panel font-bold active:scale-[.98]">
-      <IconPhone /> {HOTLINE.label}
-    </a>
-  </div>
-)
+const CALLS = <CallButtons panel />
 
 const RESULT: Record<CheckResult, { title: (n: string) => string; body: string; tone: string }> = {
   aman: { title: (n) => `Kondisi ${n} hari ini aman`, body: 'Tidak ada tanda bahaya. Tetap pantau, dan cek lagi besok.', tone: 'var(--ok)' },
