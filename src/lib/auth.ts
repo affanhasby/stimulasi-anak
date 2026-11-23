@@ -75,7 +75,8 @@ export async function updatePassword(password: string) {
   if (error) throw new Error(friendly(error.message))
 }
 
-export const signOut = () => supabase.auth.signOut()
+// Supabase signs out every device by default (scope 'global'); "Keluar" means this phone only.
+export const signOut = () => supabase.auth.signOut({ scope: 'local' })
 
 /** Deletes the account and every row on the server (cascade), then signs out. */
 export async function deleteAccount() {
