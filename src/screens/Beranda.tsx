@@ -375,9 +375,10 @@ export function Beranda({ child }: { child: Child }) {
             {doneCount} <span className="text-lg font-semibold text-ink-2">dari {list.length}</span>
           </p>
           <p className="mt-0.5 text-[13px] leading-snug text-ink-2">{hint}</p>
+          {/* Seven days share the width: on a 360 px phone the plates shrink a little instead of spilling out. */}
           <ol className="mt-2.5 flex gap-0.5" aria-label="Tujuh hari terakhir">
             {week.map((d) => (
-              <li key={d} className={`flex flex-col items-center text-xs ${d === today ? 'font-extrabold text-ink' : 'text-ink-2'}`}>
+              <li key={d} className={`flex min-w-0 flex-1 flex-col items-center text-[11px] [&>svg]:h-auto [&>svg]:w-full [&>svg]:max-w-6 ${d === today ? 'font-extrabold text-ink' : 'text-ink-2'}`}>
                 <MiniPlate states={plateStates(checks, d)} achieved={dayAchieved(d, checks)} />
                 <span>{d === today ? 'Ini' : weekday(d)}</span>
               </li>
