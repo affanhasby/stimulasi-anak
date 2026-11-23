@@ -106,7 +106,7 @@ function Pengingat({ child }: { child: Child }) {
       </Section>
       <Section
         title="Pengingat rutin"
-        note="Untuk tombol penghitung yang aktif. Hanya dikirim bila ada catatan dalam 2 hari terakhir, dan tidak antara pukul 21.00–07.00."
+        note="Untuk tombol penghitung yang aktif. Hanya dikirim bila ada catatan dalam 2 hari terakhir. Antara pukul 21.00–07.00 hanya pengingat menyusu (bila dinyalakan)."
       >
         {routines.length === 0 && <p className="px-4 py-4 text-[15px] text-ink-2">Tidak ada tombol aktif yang punya pengingat rutin.</p>}
         {routines.map((r) => (
@@ -118,6 +118,14 @@ function Pengingat({ child }: { child: Child }) {
             onChange={(v) => act.saveSettings({ routine_off: v ? s.routine_off.filter((x) => x !== r.id) : [...s.routine_off, r.id] })}
           />
         ))}
+        {routines.some((r) => r.id === 'feed') && !s.routine_off.includes('feed') && (
+          <Toggle
+            label="Menyusu juga malam hari"
+            hint="Bayi tetap perlu menyusu di malam hari; pengingat lain tetap diam 21.00–07.00"
+            checked={s.feed_at_night}
+            onChange={(v) => act.saveSettings({ feed_at_night: v })}
+          />
+        )}
       </Section>
       <Section title="Rekap malam" note="Mengingatkan untuk mengisi BAB, pipis, atau menyusu yang lupa dicatat hari itu.">
         <Toggle label="Rekap malam" hint="Lewati bila hari itu sudah diisi" checked={s.log_nudges} onChange={(v) => act.saveSettings({ log_nudges: v })} />

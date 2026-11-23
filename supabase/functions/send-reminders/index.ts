@@ -103,7 +103,7 @@ const once = async (sb: SupabaseClient, userId: string, childId: string, key: st
 
 const H = 3_600_000
 
-type NudgeSettings = { user_id: string; recap_time?: string; log_nudges?: boolean; enabled_counters?: string[] | null; routine_off?: string[] | null }
+type NudgeSettings = { user_id: string; recap_time?: string; log_nudges?: boolean; enabled_counters?: string[] | null; routine_off?: string[] | null; feed_at_night?: boolean }
 
 /** When a routine was last sent for the child, to keep its interval between reminders. */
 async function lastSent(sb: SupabaseClient, childId: string, prefix: string) {
@@ -112,14 +112,16 @@ async function lastSent(sb: SupabaseClient, childId: string, prefix: string) {
 }
 
 /**
- * Help with counting (only for families who logged something in the last 2 days, never 21.00-07.00):
+ * Help with counting (only for families who logged something in the last 2 days; 21.00-07.00 only the
+ * feeding reminder, when the family keeps it on at night):
  * - routine reminders for the active counter buttons (src/lib/routines.ts): "nothing for N hours",
  *   fixed times (MP-ASI, tummy time) and timers left running;
  * - at the chosen recap time: "isi yang terlewat", unless already filled in today in the app.
  */
 async function logNudges(sb: SupabaseClient, s: NudgeSettings, devices: Device[], tz: string, now: Date, report: Report) {
   const h = hourIn(tz, now)
-  if (h < 7 || h >= 21) return
+  const night = h < 7 || h >= 21
+  if (night && s.feed_at_night === false) return
   const today = dateIn(tz, now) as IsoDate
   const t = now.getTime()
   const { data: kids } = await sb.from('children').select('id, nickname, birth_date').eq('user_id', s.user_id).is('deleted_at', null)
@@ -139,13 +141,14 @@ async function logNudges(sb: SupabaseClient, s: NudgeSettings, devices: Device[]
     }
 
     // Evening catch-up.
-    if (s.log_nudges !== false && h === Number(String(s.recap_time ?? '20:00').slice(0, 2))) {
+    if (!night && s.log_nudges !== false && h === Number(String(s.recap_time ?? '20:00').slice(0, 2))) {
       const { data: filled } = await sb.from('alert_logs').select('alert_id').eq('child_id', child.id).eq('alert_id', 'RECAP').eq('day', today).maybeSingle()
       if (!filled) await push('log:recap', { title: `Rekap ${child.nickname} hari ini`, url: '#/isi', tag: `recap-${today}` }, 'Ada BAB, pipis, atau menyusu yang lupa dicatat? Ketuk untuk melengkapi, cukup jumlahnya.')
     }
 
     const months = ageInMonths(child.birth_date, today)
     for (const r of routinesFor(months, s.enabled_counters ?? null, s.routine_off ?? [])) {
+      if (night && r.id !== 'feed') continue
       const mine = ev.filter((e) => r.counters.includes(e.counter_id))
       const tag = `routine-${r.id}-${child.id}`
       // A timer left running (forgot to stop it): once per timer.
@@ -171,7 +174,7 @@ Deno.serve(async (req) => {
   const testDay = url.searchParams.get('today') // for tests: pretend it is this date, ignore the hour
   const sb = createClient(Deno.env.get('SUPABASE_URL')!, Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!, { auth: { persistSession: false } })
 
-  const { data: settings, error } = await sb.from('user_settings').select('user_id, reminder_lead_days, reminder_time, timezone, email_reminders, log_nudges, recap_time, enabled_counters, routine_off')
+  const { data: settings, error } = await sb.from('user_settings').select('user_id, reminder_lead_days, reminder_time, timezone, email_reminders, log_nudges, recap_time, enabled_counters, routine_off, feed_at_night')
   if (error) return new Response(error.message, { status: 500 })
 
   const report: Report = { checked: 0, emailed: 0, pushed: 0, items: 0, nudged: 0, errors: [] }
