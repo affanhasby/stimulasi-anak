@@ -3,16 +3,19 @@ import { DomainMark } from '../components/Plate'
 import { IconBack, IconCheck, IconChevron } from '../components/icons'
 import { Screen, Section } from '../components/ui'
 import { sourceLabel } from '../lib/content'
-import { addDays, addMonths, ageInMonths, developmentalBirth, type IsoDate } from '../lib/date'
+import { addDays, addMonths, ageInMonths, developmentalBirth, editableFrom, type IsoDate } from '../lib/date'
 import type { Child } from '../lib/db'
-import { MONTHS } from '../lib/format'
+import { longDate, MONTHS } from '../lib/format'
+
+const DAY_NAMES = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']
+const weekdayLong = (iso: IsoDate) => DAY_NAMES[new Date(`${iso}T00:00:00Z`).getUTCDay()]
 import { useToday } from '../lib/hooks'
 import { useActions, useChildRows } from '../lib/store'
 import { ACTIVITIES, dayAchieved, DOMAIN_ORDER, DOMAINS, GENERAL_RULES, gridMonth } from '../lib/stimulation'
 
 const DOW = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min']
 
-function Calendar({ month, checks, today, onMonth }: { month: IsoDate; checks: { day: IsoDate }[]; today: IsoDate; onMonth: (m: IsoDate) => void }) {
+function Calendar({ month, checks, today, onMonth, selected, from, onPick }: { month: IsoDate; checks: { day: IsoDate }[]; today: IsoDate; onMonth: (m: IsoDate) => void; selected: IsoDate; from: IsoDate; onPick: (d: IsoDate) => void }) {
   const [y, m] = month.split('-').map(Number)
   const first = `${y}-${String(m).padStart(2, '0')}-01`
   const lead = (new Date(`${first}T00:00:00Z`).getUTCDay() + 6) % 7
@@ -50,16 +53,25 @@ function Calendar({ month, checks, today, onMonth }: { month: IsoDate; checks: {
           const day = addDays(first, i)
           const achieved = dayAchieved(day, checks as never)
           const some = anyDay.has(day)
+          const pickable = day >= from && day <= today
           return (
-            <span key={day} className="grid h-10 place-items-center" aria-label={`${i + 1}${achieved ? ', tercapai' : some ? ', ada kegiatan' : ''}`}>
+            <button
+              key={day}
+              type="button"
+              disabled={!pickable}
+              onClick={() => onPick(day)}
+              aria-pressed={day === selected}
+              className="grid h-10 place-items-center disabled:cursor-default"
+              aria-label={`${i + 1}${achieved ? ', tercapai' : some ? ', ada kegiatan' : ''}${pickable ? ', ketuk untuk melihat atau mengubah' : ''}`}
+            >
               <span
-                className={`grid size-8 place-items-center rounded-full text-[13px] font-semibold ${
-                  achieved ? 'bg-ok text-panel' : some ? 'bg-ok/20 text-ink' : day > today ? 'text-ink-2/50' : 'text-ink'
-                } ${day === today ? 'ring-2 ring-ink' : ''}`}
+                className={`grid size-8 place-items-center rounded-full text-[13px] font-semibold transition-shadow ${
+                  achieved ? 'bg-ok text-panel' : some ? 'bg-ok/20 text-ink' : !pickable ? 'text-ink-2/50' : 'text-ink'
+                } ${day === selected ? 'ring-2 ring-ink ring-offset-2 ring-offset-panel' : day === today ? 'ring-1 ring-ink/40' : ''}`}
               >
                 {i + 1}
               </span>
-            </span>
+            </button>
           )
         })}
       </div>
@@ -77,12 +89,16 @@ export function Stimulasi({ child }: { child: Child }) {
   const act = useActions()
   const [month, setMonth] = useState(today.slice(0, 8) + '01')
   const [open, setOpen] = useState<string | null>(null)
+  // Ticks can be added or undone for any day since the child was added to the app.
+  const from = editableFrom(child)
+  const [sel, setSel] = useState<IsoDate>(today)
   const checks = useMemo(() => rows?.checks ?? [], [rows])
-  const devBirth = developmentalBirth(child.birth_date, today, child.gestational_weeks)
-  const months = Math.min(ageInMonths(devBirth, today), 71)
+  const devBirth = developmentalBirth(child.birth_date, sel, child.gestational_weeks)
+  const months = Math.min(ageInMonths(devBirth, sel), 71)
   const band = ACTIVITIES.filter((a) => a.start <= months && months < a.end)
   const bandLabel = `${gridMonth(months)} bulan`
-  const doneToday = new Set(checks.filter((c) => c.day === today).map((c) => c.activity_id))
+  const doneToday = new Set(checks.filter((c) => c.day === sel).map((c) => c.activity_id))
+  const isToday = sel === today
 
   const weekAgo = addDays(today, -6)
   const perDomain = DOMAIN_ORDER.map((d) => ({ d, n: checks.filter((c) => c.day >= weekAgo && ACTIVITIES.find((a) => a.id === c.activity_id)?.domain === d).length }))
@@ -92,7 +108,7 @@ export function Stimulasi({ child }: { child: Child }) {
   return (
     <Screen title="Stimulasi">
       <Section title="Kalender">
-        <Calendar month={month} checks={checks} today={today} onMonth={setMonth} />
+        <Calendar month={month} checks={checks} today={today} onMonth={setMonth} selected={sel} from={from} onPick={(d) => (setSel(d), setOpen(null), document.getElementById('kegiatan')?.scrollIntoView({ behavior: 'smooth' }))} />
       </Section>
 
       <Section title="7 hari terakhir per domain" note="Domain yang jarang dicentang akan didahulukan di daftar harian.">
@@ -110,7 +126,22 @@ export function Stimulasi({ child }: { child: Child }) {
         </ul>
       </Section>
 
-      <Section title={`Semua kegiatan usia ${bandLabel}`} note="Centang kegiatan mana saja yang dilakukan hari ini, termasuk yang tidak ada di daftar harian.">
+      <Section
+        id="kegiatan"
+        title={isToday ? `Semua kegiatan usia ${bandLabel}` : `Kegiatan ${weekdayLong(sel)}, ${longDate(sel)}`}
+        note={
+          isToday ? (
+            'Centang kegiatan mana saja yang dilakukan hari ini, termasuk yang tidak ada di daftar harian. Ketuk tanggal di kalender untuk mengisi hari sebelumnya.'
+          ) : (
+            <>
+              Centang yang sudah dilakukan pada hari itu.{' '}
+              <button type="button" onClick={() => setSel(today)} className="font-semibold text-ink underline underline-offset-4">
+                Kembali ke hari ini
+              </button>
+            </>
+          )
+        }
+      >
         {band.map((a) => {
           const done = doneToday.has(a.id)
           const expanded = open === a.id
@@ -130,7 +161,7 @@ export function Stimulasi({ child }: { child: Child }) {
                     <IconChevron size={16} />
                   </span>
                 </button>
-                <button type="button" aria-pressed={done} aria-label={`${done ? 'Batalkan' : 'Tandai selesai hari ini'}: ${a.title}`} onClick={() => act.toggleCheck(child.id, today, a.id)} className="grid size-12 shrink-0 place-items-center">
+                <button type="button" aria-pressed={done} aria-label={`${done ? 'Batalkan' : isToday ? 'Tandai selesai hari ini' : `Tandai selesai ${longDate(sel)}`}: ${a.title}`} onClick={() => act.toggleCheck(child.id, sel, a.id)} className="grid size-12 shrink-0 place-items-center">
                   <span className={`grid size-[34px] place-items-center rounded-full border-[2.5px] transition-colors duration-200 ${done ? 'border-ink bg-ink text-panel' : 'border-off text-transparent'}`}>
                     <IconCheck />
                   </span>

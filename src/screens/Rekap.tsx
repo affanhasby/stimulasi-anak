@@ -217,7 +217,12 @@ export function Rekap({ child }: { child: Child }) {
 
       {recaps.length > 0 && (
         <section className="mx-3 mt-3 rounded-2xl bg-panel">
-          <h2 className="px-4 pt-3.5 pb-1 text-base font-extrabold">Catatan harian</h2>
+          <div className="flex items-center justify-between px-4 pt-2">
+            <h2 className="text-base font-extrabold">Catatan harian</h2>
+            <button type="button" onClick={() => go('isi')} className="min-h-11 text-[13px] font-semibold text-ink underline underline-offset-4">
+              Isi yang terlewat
+            </button>
+          </div>
           {recaps.map(({ c, r }) => (
             <button key={c.id} type="button" onClick={() => go(`catatan/${c.id}`)} className="block w-full border-t border-line px-4 py-3 text-left first:border-t-0 active:bg-ground">
               <span className="flex items-center gap-2">

@@ -3,7 +3,8 @@
 import { createClient } from 'npm:@supabase/supabase-js@2'
 import nodemailer from 'npm:nodemailer@6.9.16'
 import webpush from 'npm:web-push@3.6.7'
-import { addDays, type IsoDate } from '../_shared/date.ts'
+import { addDays, daysBetween, type IsoDate } from '../_shared/date.ts'
+import type { SupabaseClient } from 'npm:@supabase/supabase-js@2'
 import { doseName, vaccineSchedule, type ScheduledDose, type VaccineChild } from '../_shared/vaccines.ts'
 
 const MONTHS = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
@@ -76,6 +77,75 @@ if (vapid.pub && vapid.priv) webpush.setVapidDetails(Deno.env.get('VAPID_SUBJECT
 const hourIn = (tz: string, at: Date) => Number(new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', hourCycle: 'h23' }).format(at))
 const dateIn = (tz: string, at: Date) => new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).format(at)
 
+type Device = { endpoint: string; p256dh: string; auth: string }
+type Report = { checked: number; emailed: number; pushed: number; items: number; nudged: number; errors: string[] }
+
+/** Push one message to every device of the family; devices the push service no longer knows are forgotten. */
+async function pushAll(sb: SupabaseClient, devices: Device[], message: Record<string, string>, ttl: number, report: Report) {
+  if (!vapid.pub || !vapid.priv) return
+  const payload = JSON.stringify(message)
+  for (const d of devices) {
+    try {
+      await webpush.sendNotification({ endpoint: d.endpoint, keys: { p256dh: d.p256dh, auth: d.auth } }, payload, { TTL: ttl })
+      report.pushed++
+    } catch (e) {
+      const code = (e as { statusCode?: number }).statusCode
+      if (code === 404 || code === 410) await sb.from('push_subscriptions').delete().eq('endpoint', d.endpoint)
+      else report.errors.push(`push ${code ?? ''} ${String(e)}`)
+    }
+  }
+}
+
+/** First send of this key for the child today? Recording it is what makes the check-and-send happen once. */
+const once = async (sb: SupabaseClient, userId: string, childId: string, key: string, day: string) =>
+  !(await sb.from('reminder_log').insert({ user_id: userId, child_id: childId, reminder_key: key, sent_on: day })).error
+
+const H = 3_600_000
+
+/**
+ * Help with forgotten counter taps (only for families who log, and never at night, 21.00–07.00):
+ * - at the chosen recap time: "isi yang terlewat", unless already filled in today in the app;
+ * - babies up to 6 months: a gentle "sudah menyusu?" when no feed was logged for 3.5 h (up to 28 days old)
+ *   or 5 h, at most twice a day and 3 h apart.
+ */
+async function logNudges(sb: SupabaseClient, s: { user_id: string; recap_time?: string }, devices: Device[], tz: string, now: Date, report: Report) {
+  const h = hourIn(tz, now)
+  if (h < 7 || h >= 21) return
+  const today = dateIn(tz, now) as IsoDate
+  const recapHour = Number(String(s.recap_time ?? '20:00').slice(0, 2))
+  const { data: kids } = await sb.from('children').select('id, nickname, birth_date').eq('user_id', s.user_id).is('deleted_at', null)
+  for (const child of kids ?? []) {
+    const { data: ev } = await sb
+      .from('counter_events')
+      .select('counter_id, start_at')
+      .eq('child_id', child.id)
+      .eq('deleted', false)
+      .gte('start_at', new Date(now.getTime() - 48 * H).toISOString())
+    if (!ev?.length) continue // not logging lately: never nag
+
+    if (h === recapHour) {
+      const { data: filled } = await sb.from('alert_logs').select('alert_id').eq('child_id', child.id).eq('alert_id', 'RECAP').eq('day', today).maybeSingle()
+      if (!filled && (await once(sb, s.user_id, child.id, 'log:recap', today))) {
+        await pushAll(sb, devices, { title: `Rekap ${child.nickname} hari ini`, body: 'Ada BAB, pipis, atau menyusu yang lupa dicatat? Ketuk untuk melengkapi, cukup jumlahnya.', url: '#/isi', tag: `recap-${today}` }, 4 * 3600, report)
+        report.nudged++
+      }
+      continue
+    }
+
+    const ageDays = daysBetween(child.birth_date, today)
+    if (ageDays > 182) continue
+    const feeds = ev.filter((e) => e.counter_id === 'NURSE' || e.counter_id === 'BOTTLE')
+    if (!feeds.length) continue
+    const gap = (now.getTime() - Math.max(...feeds.map((e) => Date.parse(e.start_at)))) / H
+    if (gap < (ageDays <= 28 ? 3.5 : 5)) continue
+    const { data: sent } = await sb.from('reminder_log').select('created_at').eq('child_id', child.id).eq('sent_on', today).like('reminder_key', 'log:gap:%')
+    if ((sent?.length ?? 0) >= 2 || sent?.some((r) => now.getTime() - Date.parse(r.created_at) < 3 * H)) continue
+    if (!(await once(sb, s.user_id, child.id, `log:gap:${h}`, today))) continue
+    await pushAll(sb, devices, { title: 'Sudah menyusu?', body: `Sudah ${Math.floor(gap)} jam belum ada catatan menyusu ${child.nickname}. Kalau sudah, ketuk untuk mencatat.`, url: '#/', tag: `gap-${child.id}` }, 2 * 3600, report)
+    report.nudged++
+  }
+}
+
 Deno.serve(async (req) => {
   // Only the scheduler (or an operator) may trigger sends.
   if (req.headers.get('x-reminder-secret') !== Deno.env.get('REMINDER_SECRET')) return new Response('forbidden', { status: 403 })
@@ -84,15 +154,17 @@ Deno.serve(async (req) => {
   const testDay = url.searchParams.get('today') // for tests: pretend it is this date, ignore the hour
   const sb = createClient(Deno.env.get('SUPABASE_URL')!, Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!, { auth: { persistSession: false } })
 
-  const { data: settings, error } = await sb.from('user_settings').select('user_id, reminder_lead_days, reminder_time, timezone, email_reminders')
+  const { data: settings, error } = await sb.from('user_settings').select('user_id, reminder_lead_days, reminder_time, timezone, email_reminders, log_nudges, recap_time')
   if (error) return new Response(error.message, { status: 500 })
 
-  const report = { checked: 0, emailed: 0, pushed: 0, items: 0, errors: [] as string[] }
+  const report: Report = { checked: 0, emailed: 0, pushed: 0, items: 0, nudged: 0, errors: [] }
   for (const s of settings) {
     // Channels: email when chosen, push to every device that subscribed. Nothing chosen: skip the family.
     const { data: devices } = await sb.from('push_subscriptions').select('endpoint, p256dh, auth').eq('user_id', s.user_id)
     if (!s.email_reminders && !devices?.length) continue
     const tz = s.timezone || 'Asia/Jakarta'
+    if (devices?.length && s.log_nudges !== false && !testDay)
+      await logNudges(sb, s, devices, tz, url.searchParams.get('now') ? new Date(url.searchParams.get('now')!) : now, report).catch((e) => report.errors.push(`nudge ${String(e)}`))
     if (!testDay && hourIn(tz, now) !== Number(String(s.reminder_time).slice(0, 2))) continue
     report.checked++
     const today = testDay ?? (dateIn(tz, now) as IsoDate)
@@ -121,19 +193,7 @@ Deno.serve(async (req) => {
       } catch (e) {
         report.errors.push(String(e))
       }
-    if (vapid.pub && vapid.priv)
-      for (const d of devices ?? []) {
-        const payload = JSON.stringify({ title: 'Pengingat imunisasi', body: lines.join('\n'), url: '#/imunisasi', tag: `vax-${today}` })
-        try {
-          await webpush.sendNotification({ endpoint: d.endpoint, keys: { p256dh: d.p256dh, auth: d.auth } }, payload, { TTL: 12 * 3600 })
-          report.pushed++
-        } catch (e) {
-          const code = (e as { statusCode?: number }).statusCode
-          // Gone or unknown at the push service: the device unsubscribed or reinstalled; forget it.
-          if (code === 404 || code === 410) await sb.from('push_subscriptions').delete().eq('endpoint', d.endpoint)
-          else report.errors.push(`push ${code ?? ''} ${String(e)}`)
-        }
-      }
+    await pushAll(sb, devices ?? [], { title: 'Pengingat imunisasi', body: lines.join('\n'), url: '#/imunisasi', tag: `vax-${today}` }, 12 * 3600, report)
   }
   return Response.json(report)
 })

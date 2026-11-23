@@ -51,7 +51,8 @@ export function activeAlerts(events: EventRow[], birthDate: string, now: number,
     const alerts = (c as { alerts?: { id: string; level: ActiveAlert['level']; text: string; source: string; page?: string }[] }).alerts
     if (!alerts?.length || !enabled.has(c.id)) continue
     const mine = events.filter((e) => e.counter_id === c.id)
-    const last = mine.at(-1)
+    // Catch-up entries ("isi yang terlewat") count toward totals but carry no real time or detail.
+    const last = mine.filter((e) => !e.value?.susulan).at(-1)
     const ctx: Ctx = {
       ageDays,
       hoursSinceBirth,

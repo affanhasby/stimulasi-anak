@@ -23,10 +23,11 @@ const Pertumbuhan = lazy(() => import('./screens/Pertumbuhan').then((m) => ({ de
 const Ukur = lazy(() => import('./screens/Ukur').then((m) => ({ default: m.Ukur })))
 const TandaBahaya = lazy(() => import('./screens/TandaBahaya').then((m) => ({ default: m.TandaBahaya })))
 const Rekap = lazy(() => import('./screens/Rekap').then((m) => ({ default: m.Rekap })))
+const IsiCatatan = lazy(() => import('./screens/IsiCatatan').then((m) => ({ default: m.IsiCatatan })))
 const Catatan = lazy(() => import('./screens/Catatan').then((m) => ({ default: m.Catatan })))
 
 // Task flows take the whole screen: no tab bar under their own bottom buttons.
-const FOCUSED = ['cek-kondisi', 'ukur', 'tanda-bahaya']
+const FOCUSED = ['cek-kondisi', 'ukur', 'tanda-bahaya', 'isi']
 
 function useTheme() {
   const s = useSettings()
@@ -57,6 +58,7 @@ function Main() {
     : top === 'cek-kondisi' ? <CekKondisi child={child} />
     : top === 'tanda-bahaya' ? <TandaBahaya child={child} />
     : top === 'notifikasi' ? <Notifikasi child={child} />
+    : top === 'isi' ? <IsiCatatan key={arg ?? 'today'} child={child} day={arg} />
     : top === 'rekap' ? <Rekap child={child} />
     : top === 'pertumbuhan' ? <Pertumbuhan child={child} />
     : top === 'ukur' ? <Ukur key={arg ?? 'new'} child={child} id={arg} />

@@ -132,6 +132,9 @@ export function Beranda({ child }: { child: Child }) {
 
   const enabled = new Set(visibleCounters(ageInMonths(child.birth_date, today), settings?.enabled_counters).map((c) => c.id))
   const dismissed = new Set((rows?.alertLogs ?? []).filter((l) => l.day === today).map((l) => l.alert_id))
+  // Evening catch-up: from the chosen recap time until it is filled in (or dismissed) for today.
+  const clock = `${String(new Date(now).getHours()).padStart(2, '0')}:${String(new Date(now).getMinutes()).padStart(2, '0')}`
+  const catchUp = !!settings?.log_nudges && counters.length > 0 && clock >= (settings.recap_time ?? '20:00') && !(rows?.alertLogs ?? []).some((l) => l.alert_id === 'RECAP' && l.day === today)
   const alerts = activeAlerts(events, child.birth_date, now, dayStart, enabled).filter((a) => !dismissed.has(a.id))
 
   useEffect(() => {
@@ -245,6 +248,21 @@ export function Beranda({ child }: { child: Child }) {
             </a>
           </div>
         </div>
+      )}
+
+      {catchUp && (
+        <button
+          type="button"
+          onClick={() => go('isi')}
+          className="mx-3 mt-2 flex w-[calc(100%-24px)] animate-[rise_420ms_cubic-bezier(.22,1,.36,1)] items-center gap-3 rounded-2xl bg-panel px-3.5 py-3 text-left active:scale-[.99] active:bg-ground"
+        >
+          <span className="grid size-10 shrink-0 place-items-center rounded-full bg-ink text-lg font-extrabold text-ground">+</span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-[15px] font-bold">Ada yang lupa dicatat hari ini?</span>
+            <span className="block text-[13px] text-ink-2">Tambahkan BAB, pipis, atau menyusu yang terlewat</span>
+          </span>
+          <IconChevron size={16} />
+        </button>
       )}
 
       {alerts.slice(0, 2).map((a) => (

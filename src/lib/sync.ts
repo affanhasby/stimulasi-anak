@@ -19,7 +19,7 @@ const SPECS: Spec[] = [
   { local: 'measurements', remote: 'measurements', key: ['id'], cols: ['id', 'child_id', 'measured_on', 'weight_kg', 'length_cm', 'method', 'deleted'] },
 ]
 // Every setting belongs to the account (push permission is the only per-device choice, kept by the browser).
-export const SETTING_COLS = ['reminder_lead_days', 'reminder_time', 'email_reminders', 'enabled_counters', 'theme', 'text_size', 'active_child_id', 'seen_notices']
+export const SETTING_COLS = ['reminder_lead_days', 'reminder_time', 'email_reminders', 'enabled_counters', 'theme', 'text_size', 'active_child_id', 'seen_notices', 'log_nudges', 'recap_time']
 
 type Row = Record<string, unknown>
 const pick = (r: Row, cols: string[]) => Object.fromEntries(cols.map((c) => [c, r[c] ?? null]))
@@ -86,7 +86,7 @@ async function pull(db: AppDb) {
       if (!data.length) break
       await db.transaction('rw', db.table(spec.local), db.table('meta'), async () => {
         for (const remote of data) {
-          const local = spec.local === 'settings' ? { ...remote, id: 'me', reminder_time: String(remote.reminder_time).slice(0, 5) } : remote
+          const local = spec.local === 'settings' ? { ...remote, id: 'me', reminder_time: String(remote.reminder_time).slice(0, 5), recap_time: String(remote.recap_time ?? '20:00').slice(0, 5) } : remote
           const k = spec.local === 'settings' ? 'me' : keyOf(local, spec.key)
           const cur: Row | undefined = await db.table(spec.local).get(k)
           if (cur?._dirty === 1) continue // edited here meanwhile: this device's version is pushed next

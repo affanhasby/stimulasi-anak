@@ -101,6 +101,23 @@ function Pengingat() {
         <PushToggle />
         {/* shortcut: email reminders hidden until outgoing email is set up (DEPLOY.md). */}
       </Section>
+      <Section
+        title="Catatan harian"
+        note="Pengingat menyusu hanya untuk bayi sampai 6 bulan yang catatannya sedang dipakai, paling banyak 2 kali sehari dan tidak antara pukul 21.00–06.00."
+      >
+        <Toggle
+          label="Bantu ingatkan mencatat"
+          hint="Bila lama tidak ada catatan menyusu, dan rekap malam untuk mengisi yang terlewat"
+          checked={s.log_nudges}
+          onChange={(v) => act.saveSettings({ log_nudges: v })}
+        />
+        {s.log_nudges && (
+          <div className="border-t border-line p-4">
+            <p className="mb-1.5 text-[15px] font-semibold">Jam rekap malam</p>
+            <PickerInput type="time" label="Jam rekap malam" value={s.recap_time} onChange={(v) => v && act.saveSettings({ recap_time: v })} />
+          </div>
+        )}
+      </Section>
     </Sub>
   )
 }

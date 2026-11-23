@@ -3,11 +3,12 @@ import { DayBars } from '../components/DayBars'
 import { Button, Chip, Screen, Section, Sheet, PickerInput } from '../components/ui'
 import { sourceLabel } from '../lib/content'
 import { clockTime, COUNTERS, formatTileDuration, isTimer, shortLabel } from '../lib/counters'
-import { ageInMonths, daysBetween, todayIso } from '../lib/date'
+import { ageInMonths, daysBetween, editableFrom, todayIso } from '../lib/date'
 import { longDate, weekday } from '../lib/format'
 import { counterRecap, eventDay, type Tone } from '../lib/recap'
 import type { Child, EventRow } from '../lib/db'
 import { useNow } from '../lib/hooks'
+import { go } from '../lib/nav'
 import { useActions, useChildRows } from '../lib/store'
 
 const H = 3_600_000
@@ -22,7 +23,11 @@ const withTime = (iso: string, hhmm: string) => {
   return d.toISOString()
 }
 const valueText = (e: EventRow) =>
-  e.value ? Object.values(e.value).map((v) => (typeof v === 'number' ? (v > 30 && v < 45 ? `${v} °C` : `${v} ml`) : String(v))).join(', ') : ''
+  e.value?.susulan
+    ? 'diisi susulan'
+    : e.value
+      ? Object.values(e.value).map((v) => (typeof v === 'number' ? (v > 30 && v < 45 ? `${v} °C` : `${v} ml`) : String(v))).join(', ')
+      : ''
 
 export const TONE_DOT: Record<Tone, string> = { ok: 'var(--ok)', watch: 'var(--warn)', info: 'var(--ink-2)', none: 'var(--off)' }
 
@@ -127,19 +132,49 @@ export function Catatan({ child, counterId }: { child: Child; counterId: string 
         ])}
       </Section>
       <div className="mx-3 mt-4">
-        <Button kind="secondary" onClick={() => open(null)}>
-          Tambah catatan terlewat
-        </Button>
+        <div className="grid gap-2.5">
+          <Button kind="secondary" onClick={() => open(null)}>
+            Tambah catatan terlewat (dengan jam)
+          </Button>
+          {!timer && (
+            <Button kind="quiet" onClick={() => go('isi')}>
+              Isi jumlah yang terlewat
+            </Button>
+          )}
+        </div>
       </div>
 
       <Sheet open={!!edit} onClose={() => setEdit(null)} title={edit?.id ? `Ubah ${shortLabel(def)}` : `Tambah ${shortLabel(def)}`}>
+        {edit && !edit.id && (
+          <>
+            <label className="block text-[15px] font-semibold" htmlFor="t-day">
+              Tanggal
+            </label>
+            <div className="mt-1.5 mb-4">
+              <PickerInput
+                id="t-day"
+                type="date"
+                value={todayIso(Date.parse(edit.start_at))}
+                min={editableFrom(child)}
+                max={today}
+                onChange={(v) => {
+                  if (!v) return
+                  // Keep the chosen clock time; only the day moves (back to the day the child was added).
+                  const [y, m, d] = v.split('-').map(Number)
+                  const at = new Date(y, m - 1, d, 12).toISOString()
+                  setEdit({ ...edit, start_at: at, end_at: timer ? null : at })
+                }}
+              />
+            </div>
+          </>
+        )}
         <label className="block text-[15px] font-semibold" htmlFor="t-start">
           {timer ? 'Mulai' : 'Jam'}
         </label>
         <div className="mt-1.5">
           <PickerInput id="t-start" type="time" value={start} onChange={setStart} />
         </div>
-        {edit && <p className="mt-1.5 text-[15px] text-ink-2">{longDate(todayIso(Date.parse(edit.start_at)))}</p>}
+        {edit?.id && <p className="mt-1.5 text-[15px] text-ink-2">{longDate(todayIso(Date.parse(edit.start_at)))}</p>}
         {timer && (edit?.end_at || !edit?.id) && (
           <>
             <label className="mt-4 block text-[15px] font-semibold" htmlFor="t-end">
